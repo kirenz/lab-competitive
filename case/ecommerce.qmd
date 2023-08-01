@@ -26,7 +26,7 @@ E-Shop with the Highest Average Rating
 ```
 -->
 
-1. Find the e-shop with the highest average rating
+2. Find the e-shop with the highest average rating
 
 
 <!-- 
@@ -40,7 +40,7 @@ E-Shop Performance Over Time
 ```
  -->
 
-1. Calculate the total annual revenue for each e-shop, for each year.
+3. Calculate the total annual revenue for each e-shop, for each year.
 
 <!-- 
 ```sql
@@ -51,7 +51,7 @@ GROUP BY eshop_name, year;
 -->
 
 
-1. What is the E-Shop with the most Social Media Followers?
+4. What is the E-Shop with the most Social Media Followers?
 
 <!-- 
 ```sql
@@ -64,7 +64,7 @@ LIMIT 1;
 -->
 
 
-1. Show the growth of the active user base each month for each e-shop:
+5. Show the growth of the active user base each month for each e-shop:
 
 <!-- 
 ```sql
