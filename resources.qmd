@@ -2,4 +2,17 @@
 title: "Resources"
 ---
 
-This is a Quarto slidedeck. 
+## Technology
+
+For this case studies, you'll need the following technology:
+
+- MySQL
+- Anaconda environment
+
+
+## Market analysis case "Red"
+
+
+- Download the [data](https://docs.google.com/spreadsheets/d/1MlwDNgvhwJoQoh1_-HZsjKK5PW0ZdeQMKQ5GuQGP-94/edit?usp=sharing) as Excel Sheet or work directly in Google Sheets.
+
+## Competitive analysis "E-commerce"
