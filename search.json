@@ -28,102 +28,25 @@
     "text": "Competitive analysis “E-commerce”\nPlease find below the materials:\n\n📑 Slides\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
   },
   {
-    "objectID": "code/notebook.html",
-    "href": "code/notebook.html",
-    "title": "Notebook",
+    "objectID": "workflow.html",
+    "href": "workflow.html",
+    "title": "Workflow",
     "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
+    "text": "This is a Quarto slidedeck.\n\nCreate new labs GitHub-Repo\nCreate new branch gh-pages\nChange settings in page: gh-pages and root\nOpen VS Code\nChange Quarto seetings in files\nRender all in terminal: quarto render\nPush to GitHub"
   },
   {
-    "objectID": "code/notebook.html#setup",
-    "href": "code/notebook.html#setup",
-    "title": "Notebook",
+    "objectID": "case/ecommerce.html",
+    "href": "case/ecommerce.html",
+    "title": "Competitive analysis E-commerce",
     "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
+    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC. We’ll use SQL and Python for data analysis and visualization."
   },
   {
-    "objectID": "code/notebook.html#data",
-    "href": "code/notebook.html#data",
-    "title": "Notebook",
-    "section": "Data",
-    "text": "Data"
-  },
-  {
-    "objectID": "case/red.html",
-    "href": "case/red.html",
-    "title": "Market analysis case Red",
-    "section": "",
-    "text": "You are a marketer working for Red, a company that sells orange juice online. In order to develop a new online marketing strategy you first need to analyze and interpret some essential market data. You’re two top competitors are the companies “Blue” and “Yellow”.\nTake a look at the @glossary to get information about the definition of key market figures."
-  },
-  {
-    "objectID": "case/red.html#data",
-    "href": "case/red.html#data",
-    "title": "Market analysis case Red",
-    "section": "1 Data",
-    "text": "1 Data\nDownload the data as Excel spreadsheet or work directly in Google Sheets.\nSolve the following tasks by using cell formulas in the spreadsheets.\n\nOverview of cell formulas in Excel\nOverview of cell formulas in Google Sheets"
-  },
-  {
-    "objectID": "case/red.html#market-penetration",
-    "href": "case/red.html#market-penetration",
-    "title": "Market analysis case Red",
-    "section": "2 Market penetration",
-    "text": "2 Market penetration\nFirst, use the market penetration formula (calculates the percentage of customers in the potential market who are currently purchasing a product or service) to determine the growth opportunity for orange juice.\nIn this example, Red’s defined current customers as individuals who buy orange juice. This is a subset of the larger group of potential customers (the set of customers who have some interest in a product or service, or to whom the product is potentially relevant)— individuals who buy a variety of other juices.\nCalculate both the (1) market penetration and the (2) market growth opportunity."
-  },
-  {
-    "objectID": "case/red.html#market-penetration-by-segment",
-    "href": "case/red.html#market-penetration-by-segment",
-    "title": "Market analysis case Red",
-    "section": "3 Market penetration by segment",
-    "text": "3 Market penetration by segment\nNext, identify market segments and use the market penetration formula to determine the growth potential for each of the segments.\nRed identified three customer segments of the 150 million juice consumers based on the number of bottles an individual purchased per year:\n\nfrequent buyers\nmoderate buyers\noccasional buyers\n\nThese market segments are a subset of the total current or potential customers in the market. They add up to the total number of customers.\nThe market penetration formula helps you determine the growth potential for each of these three market segments."
-  },
-  {
-    "objectID": "case/red.html#potential-market-sales",
-    "href": "case/red.html#potential-market-sales",
-    "title": "Market analysis case Red",
-    "section": "4 Potential market sales",
-    "text": "4 Potential market sales\nNext, estimate annual sales (in (1) units and (2) gross revenue) for each segment of the juice market. Then add up the segment results to find the total potential sales.\nOn average, frequent buyers purchased 21 bottles of juice last year and were very price-sensitive. They waited for sales or used coupons so that they paid only $1.99 for a bottle of juice.\nModerate buyers purchased eight bottles of juice, sometimes on sale, but sometimes at full price, so they paid, on average, $3.49 for a bottle of juice.\nOccasional buyers purchased three bottles of juice and were price-insensitive, usually paying full price, $4.99, for a bottle of juice."
-  },
-  {
-    "objectID": "case/red.html#current-market-sales",
-    "href": "case/red.html#current-market-sales",
-    "title": "Market analysis case Red",
-    "section": "5 Current market sales",
-    "text": "5 Current market sales\nNow find the current market sales (in units and revenue) for orange juice by segment. Then add up the segment results to find the total current sales."
-  },
-  {
-    "objectID": "case/red.html#current-market-share-by-segment",
-    "href": "case/red.html#current-market-share-by-segment",
-    "title": "Market analysis case Red",
-    "section": "6 Current market share by segment",
-    "text": "6 Current market share by segment\nNext, calculate the market share of each segment of the current orange juice market in terms of customers, bottles, and revenue.\nDivide each market segment’s quantity by the total amount (the sum of all three segments) of customers, bottles, and revenue."
-  },
-  {
-    "objectID": "case/red.html#current-market-units-and-average-price",
-    "href": "case/red.html#current-market-units-and-average-price",
-    "title": "Market analysis case Red",
-    "section": "7 Current market units and average price",
-    "text": "7 Current market units and average price\nUse the current market’s total sales, in units and revenue, to determine, on average, how many bottles of orange juice each customer purchases and at what price.\nLater, you will use these averages to help you analyze pricing and individual customer sales across all orange juice brands."
-  },
-  {
-    "objectID": "case/red.html#current-market-average-unitsprice-by-brand",
-    "href": "case/red.html#current-market-average-unitsprice-by-brand",
-    "title": "Market analysis case Red",
-    "section": "8 Current market average units/price by brand",
-    "text": "8 Current market average units/price by brand\nNow you’re ready to calculate the average number of bottles purchased by a customer of Red, Blue, and Yellow (use dataset-2).\nDivide each brand’s bottles by its total customers. Then calculate the average price paid for a Red, Blue, and Yellow bottle by dividing the total revenue by the total bottles. Compare these results with the general averages that you calculated in 6."
-  },
-  {
-    "objectID": "case/red.html#current-market-share-by-brand",
-    "href": "case/red.html#current-market-share-by-brand",
-    "title": "Market analysis case Red",
-    "section": "9 Current market share by brand",
-    "text": "9 Current market share by brand\nNow analyze the competition. Compare Red with its top two competitors, Blue and Yellow. Analyze the market share of each brand in terms of customers, units, and revenue (use dataset-2)."
-  },
-  {
-    "objectID": "case/red.html#glossary",
-    "href": "case/red.html#glossary",
-    "title": "Market analysis case Red",
-    "section": "10 Glossary",
-    "text": "10 Glossary\nCurrent market: The total number of customers, units, or revenue currently being generated in the market.\nMarket penetration formula: Calculates the percentage of customers in the potential market who are currently purchasing a product or service.\nMarket segment: A subset of the total current or potential customers in a market.\nMarket share: The percentage of the total demand that a company has captured in terms of units sold or gross revenue.\nPotential market: The set of customers who have some interest in a product or service, or to whom the product is potentially relevant."
+    "objectID": "case/ecommerce.html#first-analysis",
+    "href": "case/ecommerce.html#first-analysis",
+    "title": "Competitive analysis E-commerce",
+    "section": "First analysis",
+    "text": "First analysis\nUse SQL queries to analyze your data:\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
   },
   {
     "objectID": "slides/slides.html#text",
@@ -203,24 +126,94 @@
     "text": "Competitive analysis “E-commerce”"
   },
   {
-    "objectID": "case/ecommerce.html",
-    "href": "case/ecommerce.html",
-    "title": "Competitive analysis E-commerce",
+    "objectID": "case/red.html",
+    "href": "case/red.html",
+    "title": "Market analysis case Red",
     "section": "",
-    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC. We’ll use SQL and Python for data analysis and visualization."
+    "text": "You are a marketer working for Red, a company that sells orange juice online. In order to develop a new online marketing strategy you first need to analyze and interpret some essential market data. You’re two top competitors are the companies “Blue” and “Yellow”.\nDownload the data as Excel spreadsheet or work directly in Google Sheets.\nSolve the following tasks by using cell formulas in the spreadsheets."
   },
   {
-    "objectID": "case/ecommerce.html#first-analysis",
-    "href": "case/ecommerce.html#first-analysis",
-    "title": "Competitive analysis E-commerce",
-    "section": "First analysis",
-    "text": "First analysis\nUse SQL queries to analyze your data:\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
+    "objectID": "case/red.html#market-penetration",
+    "href": "case/red.html#market-penetration",
+    "title": "Market analysis case Red",
+    "section": "1 Market penetration",
+    "text": "1 Market penetration\nFirst, use the market penetration formula (calculates the percentage of customers in the potential market who are currently purchasing a product or service) to determine the growth opportunity for orange juice.\nIn this example, Red’s defined current customers as individuals who buy orange juice. This is a subset of the larger group of potential customers (the set of customers who have some interest in a product or service, or to whom the product is potentially relevant)— individuals who buy a variety of other juices.\nCalculate both the (1) market penetration and the (2) market growth opportunity."
   },
   {
-    "objectID": "workflow.html",
-    "href": "workflow.html",
-    "title": "Workflow",
+    "objectID": "case/red.html#market-penetration-by-segment",
+    "href": "case/red.html#market-penetration-by-segment",
+    "title": "Market analysis case Red",
+    "section": "2 Market penetration by segment",
+    "text": "2 Market penetration by segment\nNext, identify market segments and use the market penetration formula to determine the growth potential for each of the segments.\nRed identified three customer segments of the 150 million juice consumers based on the number of bottles an individual purchased per year:\n\nfrequent buyers\nmoderate buyers\noccasional buyers\n\nThese market segments are a subset of the total current or potential customers in the market. They add up to the total number of customers.\nThe market penetration formula helps you determine the growth potential for each of these three market segments."
+  },
+  {
+    "objectID": "case/red.html#potential-market-sales",
+    "href": "case/red.html#potential-market-sales",
+    "title": "Market analysis case Red",
+    "section": "3 Potential market sales",
+    "text": "3 Potential market sales\nNext, estimate annual sales (in (1) units and (2) gross revenue) for each segment of the juice market. Then add up the segment results to find the total potential sales.\nOn average, frequent buyers purchased 21 bottles of juice last year and were very price-sensitive. They waited for sales or used coupons so that they paid only $1.99 for a bottle of juice.\nModerate buyers purchased eight bottles of juice, sometimes on sale, but sometimes at full price, so they paid, on average, $3.49 for a bottle of juice.\nOccasional buyers purchased three bottles of juice and were price-insensitive, usually paying full price, $4.99, for a bottle of juice."
+  },
+  {
+    "objectID": "case/red.html#current-market-sales",
+    "href": "case/red.html#current-market-sales",
+    "title": "Market analysis case Red",
+    "section": "4 Current market sales",
+    "text": "4 Current market sales\nNow find the current market sales (in units and revenue) for orange juice by segment. Then add up the segment results to find the total current sales."
+  },
+  {
+    "objectID": "case/red.html#current-market-share-by-segment",
+    "href": "case/red.html#current-market-share-by-segment",
+    "title": "Market analysis case Red",
+    "section": "5 Current market share by segment",
+    "text": "5 Current market share by segment\nNext, calculate the market share of each segment of the current orange juice market in terms of customers, bottles, and revenue.\nDivide each market segment’s quantity by the total amount (the sum of all three segments) of customers, bottles, and revenue."
+  },
+  {
+    "objectID": "case/red.html#current-market-units-and-average-price",
+    "href": "case/red.html#current-market-units-and-average-price",
+    "title": "Market analysis case Red",
+    "section": "6 Current market units and average price",
+    "text": "6 Current market units and average price\nUse the current market’s total sales, in units and revenue, to determine, on average, how many bottles of orange juice each customer purchases and at what price.\nLater, you will use these averages to help you analyze pricing and individual customer sales across all orange juice brands."
+  },
+  {
+    "objectID": "case/red.html#current-market-average-unitsprice-by-brand",
+    "href": "case/red.html#current-market-average-unitsprice-by-brand",
+    "title": "Market analysis case Red",
+    "section": "7 Current market average units/price by brand",
+    "text": "7 Current market average units/price by brand\nNow you’re ready to calculate the average number of bottles purchased by a customer of Red, Blue, and Yellow (use dataset-2).\nDivide each brand’s bottles by its total customers. Then calculate the average price paid for a Red, Blue, and Yellow bottle by dividing the total revenue by the total bottles. Compare these results with the general averages that you calculated in 6."
+  },
+  {
+    "objectID": "case/red.html#current-market-share-by-brand",
+    "href": "case/red.html#current-market-share-by-brand",
+    "title": "Market analysis case Red",
+    "section": "8 Current market share by brand",
+    "text": "8 Current market share by brand\nNow analyze the competition. Compare Red with its top two competitors, Blue and Yellow. Analyze the market share of each brand in terms of customers, units, and revenue (use dataset-2)."
+  },
+  {
+    "objectID": "case/red.html#sec-glossary",
+    "href": "case/red.html#sec-glossary",
+    "title": "Market analysis case Red",
+    "section": "9 Glossary",
+    "text": "9 Glossary\nCurrent market: The total number of customers, units, or revenue currently being generated in the market.\nMarket penetration formula: Calculates the percentage of customers in the potential market who are currently purchasing a product or service.\nMarket segment: A subset of the total current or potential customers in a market.\nMarket share: The percentage of the total demand that a company has captured in terms of units sold or gross revenue.\nPotential market: The set of customers who have some interest in a product or service, or to whom the product is potentially relevant."
+  },
+  {
+    "objectID": "code/notebook.html",
+    "href": "code/notebook.html",
+    "title": "Notebook",
     "section": "",
-    "text": "This is a Quarto slidedeck.\n\nCreate new labs GitHub-Repo\nCreate new branch gh-pages\nChange settings in page: gh-pages and root\nOpen VS Code\nChange Quarto seetings in files\nRender all in terminal: quarto render\nPush to GitHub"
+    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
+  },
+  {
+    "objectID": "code/notebook.html#setup",
+    "href": "code/notebook.html#setup",
+    "title": "Notebook",
+    "section": "",
+    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
+  },
+  {
+    "objectID": "code/notebook.html#data",
+    "href": "code/notebook.html#data",
+    "title": "Notebook",
+    "section": "Data",
+    "text": "Data"
   }
 ]
