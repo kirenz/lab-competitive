@@ -3,14 +3,13 @@ title: "Market analysis case Red"
 number-sections: true
 ---
 
-You are a marketer working for Red, a company that sells orange juice online. In order to develop a new online marketing strategy you first need to analyze and interpret some essential market data. You’re two top competitors are the companies “Blue” and “Yellow”. 
+You are a marketer working for Red, a company that sells orange juice online. In order to develop a new online marketing strategy you first need to analyze and interpret some essential market figures like market penetration and market share. You’re two top competitors are the companies “Blue” and “Yellow”. 
 
 Download the [data](https://docs.google.com/spreadsheets/d/1MlwDNgvhwJoQoh1_-HZsjKK5PW0ZdeQMKQ5GuQGP-94/edit?usp=sharing) as Excel spreadsheet or work directly in Google Sheets.
 
 ::: {.callout-note}
-Take a look at the @sec-glossary to get information about the definition of key market figures.
+Take a look at @sec-glossary to get information about the definition of key market figures.
 :::
-
 
 Solve the following tasks by using cell formulas in the spreadsheets. 
 
