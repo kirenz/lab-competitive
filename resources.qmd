@@ -4,15 +4,24 @@ title: "Resources"
 
 ## Technology
 
-For this case studies, you'll need the following technology:
+For these case studies, you'll need the following technology:
 
 - MySQL
-- Anaconda environment
+- [💾 Anaconda Environment](https://github.com/kirenz/environments)
 
 
 ## Market analysis case "Red"
 
 
-- Download the [data](https://docs.google.com/spreadsheets/d/1MlwDNgvhwJoQoh1_-HZsjKK5PW0ZdeQMKQ5GuQGP-94/edit?usp=sharing) as Excel Sheet or work directly in Google Sheets.
 
 ## Competitive analysis "E-commerce"
+
+
+Please find below the materials:
+
+- [📑 Slides](https://github.com/kirenz/lab-template/slides/slides.html)
+- [💻 Notebook](https://github.com/kirenz/lab-template/tutorial/notebook.ipynb)
+- [📚 Reading]()
+- [☑️ Questions]()
+- [Mindmap]()
+- [Weekly feedback]()
