@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.268">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lab - Notebook</title>
+<title>Lab - Market analysis case Red</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -81,9 +47,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
-  "keyboard-shortcut": [
-    null
-  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -108,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Lab</span>
     </a>
@@ -140,9 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Code</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools ms-auto">
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -155,8 +118,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#part-i" id="toc-part-i" class="nav-link active" data-scroll-target="#part-i">PART I</a>
+  <ul class="collapse">
+  <li><a href="#task-1-market-penetration" id="toc-task-1-market-penetration" class="nav-link" data-scroll-target="#task-1-market-penetration">TASK 1: MARKET PENETRATION</a></li>
+  <li><a href="#task-2-market-penetration-by-segment" id="toc-task-2-market-penetration-by-segment" class="nav-link" data-scroll-target="#task-2-market-penetration-by-segment">TASK 2: MARKET PENETRATION BY SEGMENT</a></li>
+  <li><a href="#task-3-potential-market-sales" id="toc-task-3-potential-market-sales" class="nav-link" data-scroll-target="#task-3-potential-market-sales">TASK 3: POTENTIAL MARKET SALES</a></li>
+  <li><a href="#task-4-current-market-sales" id="toc-task-4-current-market-sales" class="nav-link" data-scroll-target="#task-4-current-market-sales">TASK 4: CURRENT MARKET SALES</a></li>
+  <li><a href="#task-5-current-market-share-by-segment" id="toc-task-5-current-market-share-by-segment" class="nav-link" data-scroll-target="#task-5-current-market-share-by-segment">TASK 5: CURRENT MARKET SHARE BY SEGMENT</a></li>
+  <li><a href="#task-6-current-market-units-and-average-price" id="toc-task-6-current-market-units-and-average-price" class="nav-link" data-scroll-target="#task-6-current-market-units-and-average-price">TASK 6: CURRENT MARKET UNITS AND AVERAGE PRICE</a></li>
+  </ul></li>
+  <li><a href="#part-ii-use-excel-data" id="toc-part-ii-use-excel-data" class="nav-link" data-scroll-target="#part-ii-use-excel-data">PART II (use Excel-data)</a>
+  <ul class="collapse">
+  <li><a href="#task-7-current-market-average-units-and-price-by-brand" id="toc-task-7-current-market-average-units-and-price-by-brand" class="nav-link" data-scroll-target="#task-7-current-market-average-units-and-price-by-brand">TASK 7: CURRENT MARKET AVERAGE UNITS AND PRICE BY BRAND</a></li>
+  <li><a href="#task-8-current-market-share-by-brand" id="toc-task-8-current-market-share-by-brand" class="nav-link" data-scroll-target="#task-8-current-market-share-by-brand">TASK 8: CURRENT MARKET SHARE BY BRAND</a></li>
+  </ul></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
   </ul>
 </nav>
     </div>
@@ -165,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notebook</h1>
+<h1 class="title">Market analysis case Red</h1>
 </div>
 
 
@@ -178,26 +154,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-
 </header>
 
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>Load Python libaries and API keys.</p>
-<div id="19cd4e96" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv, find_dotenv</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> load_dotenv(find_dotenv()) <span class="co"># read local .env file</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>openai.api_key  <span class="op">=</span> os.environ[<span class="st">'OPENAI_API_KEY'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>You are a marketer working for Red, a company that sells orange juice online.</p>
+<p>In order to develop a new online marketing strategy you first need to analyze and interpret some essential market data.</p>
+<p>You’re two top competitors are the companies “Blue” and “Yellow”.</p>
+<section id="part-i" class="level2">
+<h2 class="anchored" data-anchor-id="part-i">PART I</h2>
+<section id="task-1-market-penetration" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-market-penetration">TASK 1: MARKET PENETRATION</h3>
+<p>First, use the market penetration formula (calculates the percentage of customers in the potential market who are currently purchasing a product or service) to determine the growth opportunity for orange juice.</p>
+<p>In this example, Red’s defined current customers as individuals who buy orange juice. This is a subset of the larger group of potential customers (the set of customers who have some interest in a product or service, or to whom the product is potentially relevant)— individuals who buy a variety of other juices.</p>
+<p>Calculate both the (1) market penetration and the (2) market growth opportunity.</p>
 </section>
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
+<section id="task-2-market-penetration-by-segment" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-market-penetration-by-segment">TASK 2: MARKET PENETRATION BY SEGMENT</h3>
+<p>Next, identify market segments and use the market penetration formula to determine the growth potential for each of the segments.</p>
+<p>Red identified three customer segments of the 150 million juice consumers based on the number of bottles an individual purchased per year:</p>
+<ul>
+<li>frequent buyers</li>
+<li>moderate buyers</li>
+<li>occasional buyers</li>
+</ul>
+<p>These market segments are a subset of the total current or potential customers in the market. They add up to the total number of customers.</p>
+<p>The market penetration formula helps you determine the growth potential for each of these three market segments.</p>
+</section>
+<section id="task-3-potential-market-sales" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-potential-market-sales">TASK 3: POTENTIAL MARKET SALES</h3>
+<p>Next, estimate annual sales (in (1) units and (2) gross revenue) for each segment of the juice market. Then add up the segment results to find the total potential sales.</p>
+<p>On average, <em>frequent buyers</em> purchased 21 bottles of juice last year and were very price-sensitive. They waited for sales or used coupons so that they paid only $1.99 for a bottle of juice.</p>
+<p><em>Moderate buyers</em> purchased eight bottles of juice, sometimes on sale, but sometimes at full price, so they paid, on average, $3.49 for a bottle of juice.</p>
+<p><em>Occasional buyers</em> purchased three bottles of juice and were price-insensitive, usually paying full price, $4.99, for a bottle of juice.</p>
+</section>
+<section id="task-4-current-market-sales" class="level3">
+<h3 class="anchored" data-anchor-id="task-4-current-market-sales">TASK 4: CURRENT MARKET SALES</h3>
+<p>Now find the current market sales (in units and revenue) for orange juice by segment. Then add up the segment results to find the total current sales.</p>
+</section>
+<section id="task-5-current-market-share-by-segment" class="level3">
+<h3 class="anchored" data-anchor-id="task-5-current-market-share-by-segment">TASK 5: CURRENT MARKET SHARE BY SEGMENT</h3>
+<p>Next, calculate the market share of each segment of the current orange juice market in terms of customers, bottles, and revenue.</p>
+<p>Divide each market segment’s quantity by the total amount (the sum of all three segments) of customers, bottles, and revenue.</p>
+</section>
+<section id="task-6-current-market-units-and-average-price" class="level3">
+<h3 class="anchored" data-anchor-id="task-6-current-market-units-and-average-price">TASK 6: CURRENT MARKET UNITS AND AVERAGE PRICE</h3>
+<p>Use the current market’s total sales, in units and revenue, to determine, on average, how many bottles of orange juice each customer purchases and at what price.</p>
+<p>Later, you will use these averages to help you analyze pricing and individual customer sales across all orange juice brands.</p>
+</section>
+</section>
+<section id="part-ii-use-excel-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-ii-use-excel-data">PART II (use Excel-data)</h2>
+<section id="task-7-current-market-average-units-and-price-by-brand" class="level3">
+<h3 class="anchored" data-anchor-id="task-7-current-market-average-units-and-price-by-brand">TASK 7: CURRENT MARKET AVERAGE UNITS AND PRICE BY BRAND</h3>
+<p>Now you’re ready to calculate the average number of bottles purchased by a customer of Red, Blue, and Yellow (use imported Excel-data).</p>
+<p>Divide each brand’s bottles by its total customers. Then calculate the average price paid for a Red, Blue, and Yellow bottle by dividing the total revenue by the total bottles. Compare these results with the general averages that you calculated in task 6.</p>
+</section>
+<section id="task-8-current-market-share-by-brand" class="level3">
+<h3 class="anchored" data-anchor-id="task-8-current-market-share-by-brand">TASK 8: CURRENT MARKET SHARE BY BRAND</h3>
+<p>Now analyze the competition. Compare Red with its top two competitors, Blue and Yellow. Analyze the market share of each brand in terms of customers, units, and revenue.</p>
+</section>
+</section>
+<section id="glossary" class="level2">
+<h2 class="anchored" data-anchor-id="glossary">Glossary</h2>
+<p><strong>CURRENT MARKET</strong> The total number of customers, units, or revenue currently being generated in the market.</p>
+<p><strong>MARKET PENETRATION FORMULA</strong> Calculates the percentage of customers in the potential market who are currently purchasing a product or service.</p>
+<p><strong>MARKET SEGMENT</strong> A subset of the total current or potential customers in a market.</p>
+<p><strong>MARKET SHARE</strong> The percentage of the total demand that a company has captured in terms of units sold or gross revenue.</p>
+<p><strong>POTENTIAL MARKET</strong> The set of customers who have some interest in a product or service, or to whom the product is potentially relevant.</p>
 
 
 </section>
@@ -282,9 +304,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -294,17 +317,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -317,81 +331,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
-        }
-        return container.innerHTML
-      } else {
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      return note.innerHTML;
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -435,7 +374,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -523,30 +461,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>© <a href="https://www.kirenz.com/">Jan Kirenz</a>, 2023</p>
-</div>   
+    <div class="nav-footer-left">© <a href="https://www.kirenz.com/">Jan Kirenz</a>, 2023</div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../about.html">
-<p>About</p>
-</a>
+    <a class="nav-link" href="../about.html">About</a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../slide.html">
-<p>Slides</p>
-</a>
+    <a class="nav-link" href="../slide.html">Slides</a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../resources.html">
-<p>Resources</p>
-</a>
+    <a class="nav-link" href="../resources.html">Resources</a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../code.html">
-<p>Code</p>
-</a>
+    <a class="nav-link" href="../code.html">Code</a>
   </li>  
 </ul>
     </div>
@@ -568,7 +496,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-
 
 
 

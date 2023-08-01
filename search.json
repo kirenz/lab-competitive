@@ -4,7 +4,21 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "This is a Quarto slidedeck."
+    "text": "You are a marketer working for Red, a company that sells orange juice online. In order to develop a new online marketing strategy you first need to analyze and interpret some essential market data. You’re two top competitors are the companies “Blue” and “Yellow”."
+  },
+  {
+    "objectID": "about.html#market-analysis-case-red",
+    "href": "about.html#market-analysis-case-red",
+    "title": "About",
+    "section": "",
+    "text": "You are a marketer working for Red, a company that sells orange juice online. In order to develop a new online marketing strategy you first need to analyze and interpret some essential market data. You’re two top competitors are the companies “Blue” and “Yellow”."
+  },
+  {
+    "objectID": "about.html#competitive-analysis-e-commerce",
+    "href": "about.html#competitive-analysis-e-commerce",
+    "title": "About",
+    "section": "Competitive analysis “E-commerce”",
+    "text": "Competitive analysis “E-commerce”\nIn this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC. We’ll use SQL and Python for data analysis and visualization."
   },
   {
     "objectID": "workflow.html",
@@ -14,25 +28,32 @@
     "text": "This is a Quarto slidedeck.\n\nCreate new labs GitHub-Repo\nCreate new branch gh-pages\nChange settings in page: gh-pages and root\nOpen VS Code\nChange Quarto seetings in files\nRender all in terminal: quarto render\nPush to GitHub"
   },
   {
-    "objectID": "slide.html",
-    "href": "slide.html",
-    "title": "Slides",
+    "objectID": "case/market-analysis-red.html",
+    "href": "case/market-analysis-red.html",
+    "title": "Market analysis case Red",
     "section": "",
-    "text": "This is a Quarto slidedeck."
+    "text": "You are a marketer working for Red, a company that sells orange juice online.\nIn order to develop a new online marketing strategy you first need to analyze and interpret some essential market data.\nYou’re two top competitors are the companies “Blue” and “Yellow”."
   },
   {
-    "objectID": "code.html",
-    "href": "code.html",
-    "title": "Code",
-    "section": "",
-    "text": "This is a Quarto slidedeck."
+    "objectID": "case/market-analysis-red.html#part-i",
+    "href": "case/market-analysis-red.html#part-i",
+    "title": "Market analysis case Red",
+    "section": "PART I",
+    "text": "PART I\n\nTASK 1: MARKET PENETRATION\nFirst, use the market penetration formula (calculates the percentage of customers in the potential market who are currently purchasing a product or service) to determine the growth opportunity for orange juice.\nIn this example, Red’s defined current customers as individuals who buy orange juice. This is a subset of the larger group of potential customers (the set of customers who have some interest in a product or service, or to whom the product is potentially relevant)— individuals who buy a variety of other juices.\nCalculate both the (1) market penetration and the (2) market growth opportunity.\n\n\nTASK 2: MARKET PENETRATION BY SEGMENT\nNext, identify market segments and use the market penetration formula to determine the growth potential for each of the segments.\nRed identified three customer segments of the 150 million juice consumers based on the number of bottles an individual purchased per year:\n\nfrequent buyers\nmoderate buyers\noccasional buyers\n\nThese market segments are a subset of the total current or potential customers in the market. They add up to the total number of customers.\nThe market penetration formula helps you determine the growth potential for each of these three market segments.\n\n\nTASK 3: POTENTIAL MARKET SALES\nNext, estimate annual sales (in (1) units and (2) gross revenue) for each segment of the juice market. Then add up the segment results to find the total potential sales.\nOn average, frequent buyers purchased 21 bottles of juice last year and were very price-sensitive. They waited for sales or used coupons so that they paid only $1.99 for a bottle of juice.\nModerate buyers purchased eight bottles of juice, sometimes on sale, but sometimes at full price, so they paid, on average, $3.49 for a bottle of juice.\nOccasional buyers purchased three bottles of juice and were price-insensitive, usually paying full price, $4.99, for a bottle of juice.\n\n\nTASK 4: CURRENT MARKET SALES\nNow find the current market sales (in units and revenue) for orange juice by segment. Then add up the segment results to find the total current sales.\n\n\nTASK 5: CURRENT MARKET SHARE BY SEGMENT\nNext, calculate the market share of each segment of the current orange juice market in terms of customers, bottles, and revenue.\nDivide each market segment’s quantity by the total amount (the sum of all three segments) of customers, bottles, and revenue.\n\n\nTASK 6: CURRENT MARKET UNITS AND AVERAGE PRICE\nUse the current market’s total sales, in units and revenue, to determine, on average, how many bottles of orange juice each customer purchases and at what price.\nLater, you will use these averages to help you analyze pricing and individual customer sales across all orange juice brands."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Lab",
-    "section": "",
-    "text": "Welcome to this lab!\nPlease find below the materials:\n\n📑 Slides\n💾 Anaconda Environment\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
+    "objectID": "case/market-analysis-red.html#part-ii-use-excel-data",
+    "href": "case/market-analysis-red.html#part-ii-use-excel-data",
+    "title": "Market analysis case Red",
+    "section": "PART II (use Excel-data)",
+    "text": "PART II (use Excel-data)\n\nTASK 7: CURRENT MARKET AVERAGE UNITS AND PRICE BY BRAND\nNow you’re ready to calculate the average number of bottles purchased by a customer of Red, Blue, and Yellow (use imported Excel-data).\nDivide each brand’s bottles by its total customers. Then calculate the average price paid for a Red, Blue, and Yellow bottle by dividing the total revenue by the total bottles. Compare these results with the general averages that you calculated in task 6.\n\n\nTASK 8: CURRENT MARKET SHARE BY BRAND\nNow analyze the competition. Compare Red with its top two competitors, Blue and Yellow. Analyze the market share of each brand in terms of customers, units, and revenue."
+  },
+  {
+    "objectID": "case/market-analysis-red.html#glossary",
+    "href": "case/market-analysis-red.html#glossary",
+    "title": "Market analysis case Red",
+    "section": "Glossary",
+    "text": "Glossary\nCURRENT MARKET The total number of customers, units, or revenue currently being generated in the market.\nMARKET PENETRATION FORMULA Calculates the percentage of customers in the potential market who are currently purchasing a product or service.\nMARKET SEGMENT A subset of the total current or potential customers in a market.\nMARKET SHARE The percentage of the total demand that a company has captured in terms of units sold or gross revenue.\nPOTENTIAL MARKET The set of customers who have some interest in a product or service, or to whom the product is potentially relevant."
   },
   {
     "objectID": "slides/slides.html#text",
@@ -84,6 +105,27 @@
     "text": "End\n\n\nJan Kirenz"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Lab",
+    "section": "",
+    "text": "Welcome to this lab!\nPlease find below the materials:\n\n📑 Slides\n💾 Anaconda Environment\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
+  },
+  {
+    "objectID": "code.html#competitive-analysis-e-commerce",
+    "href": "code.html#competitive-analysis-e-commerce",
+    "title": "Code",
+    "section": "Competitive analysis “E-commerce”",
+    "text": "Competitive analysis “E-commerce”"
+  },
+  {
+    "objectID": "slide.html",
+    "href": "slide.html",
+    "title": "Slides",
+    "section": "",
+    "text": "Market analysis case “Red”"
+  },
+  {
     "objectID": "code/notebook.html",
     "href": "code/notebook.html",
     "title": "Notebook",
@@ -109,6 +151,27 @@
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "This is a Quarto slidedeck."
+    "text": "For this case studies, you’ll need the following technology:\n\nMySQL\nAnaconda environment"
+  },
+  {
+    "objectID": "resources.html#technology",
+    "href": "resources.html#technology",
+    "title": "Resources",
+    "section": "",
+    "text": "For this case studies, you’ll need the following technology:\n\nMySQL\nAnaconda environment"
+  },
+  {
+    "objectID": "resources.html#market-analysis-case-red",
+    "href": "resources.html#market-analysis-case-red",
+    "title": "Resources",
+    "section": "Market analysis case “Red”",
+    "text": "Market analysis case “Red”\n\nDownload the data as Excel Sheet or work directly in Google Sheets."
+  },
+  {
+    "objectID": "resources.html#competitive-analysis-e-commerce",
+    "href": "resources.html#competitive-analysis-e-commerce",
+    "title": "Resources",
+    "section": "Competitive analysis “E-commerce”",
+    "text": "Competitive analysis “E-commerce”"
   }
 ]
