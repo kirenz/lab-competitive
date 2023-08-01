@@ -1,0 +1,90 @@
+---
+title: "Market sizing"
+---
+
+You are a marketer working for Red, a company that sells orange juice online. 
+
+In order to develop a new online marketing strategy you first need to analyze and interpret some essential market data. 
+
+You’re two top competitors are the companies “Blue” and “Yellow”. 
+
+
+## PART I
+
+### TASK 1: MARKET PENETRATION
+
+First, use the market penetration formula (calculates the percentage of customers in the potential market who are currently purchasing a product or service) to determine the growth opportunity for orange juice. 
+
+In this example, Red’s defined current customers as individuals who buy orange juice. This is a subset of the larger group of potential customers (the set of customers who have some interest in a product or service, or to whom the product is potentially relevant)— individuals who buy a variety of other juices. 
+
+Calculate both the (1) market penetration and the (2) market growth opportunity.
+
+### TASK 2: MARKET PENETRATION BY SEGMENT
+
+Next, identify market segments and use the market penetration formula to determine the growth potential for each of the segments.
+
+Red identified three customer segments of the 150 million juice consumers based on the number of bottles an individual purchased per year: 
+
+- frequent buyers
+- moderate buyers 
+- occasional buyers 
+
+These market segments are a subset of the total current or potential customers in the market. They add up to the total number of customers. 
+
+The market penetration formula helps you determine the growth potential for each of these three market segments.
+
+### TASK 3: POTENTIAL MARKET SALES
+
+Next, estimate annual sales (in (1) units and (2) gross revenue) for each segment of the juice market. Then add up the segment results to find the total potential sales. 
+
+On average, *frequent buyers* purchased 21 bottles of juice last year and were very price-sensitive. They waited for sales or used coupons so that they paid only $1.99 for a bottle of juice. 
+
+*Moderate buyers* purchased eight bottles of juice, sometimes on sale, but sometimes at full price, so they paid, on average, $3.49 for a bottle of juice. 
+
+*Occasional buyers* purchased three bottles of juice and were price-insensitive, usually paying full price, $4.99, for a bottle of juice.
+
+### TASK 4: CURRENT MARKET SALES
+
+Now find the current market sales (in units and revenue) for orange juice by segment. Then add up the segment results to find the total current sales.
+
+### TASK 5: CURRENT MARKET SHARE BY SEGMENT
+
+Next, calculate the market share of each segment of the current orange juice market in terms of customers, bottles, and revenue.
+
+Divide each market segment’s quantity by the total amount (the sum of all three segments) of customers, bottles, and revenue.
+
+### TASK 6: CURRENT MARKET UNITS AND AVERAGE PRICE
+
+Use the current market’s total sales, in units and revenue, to determine, on average, how many bottles of orange juice each customer purchases and at what price. 
+
+Later, you will use these averages to help you analyze pricing and individual customer sales across all orange juice brands.
+
+## PART II (use Excel-data)
+
+### TASK 7: CURRENT MARKET AVERAGE UNITS AND PRICE BY BRAND
+
+Now you’re ready to calculate the average number of bottles purchased by a customer of Red, Blue, and Yellow (use imported Excel-data). 
+
+Divide each brand’s bottles by its total customers. Then calculate the average price paid for a Red, Blue, and Yellow bottle by dividing the total revenue by the total bottles. Compare these results with the general averages that you calculated in task 6.
+
+### TASK 8: CURRENT MARKET SHARE BY BRAND
+
+Now analyze the competition. Compare Red with its top two competitors, Blue and Yellow. Analyze the market share of each brand in terms of customers, units, and revenue.
+
+
+## Glossary
+
+**CURRENT MARKET**
+The total number of customers, units, or revenue currently being generated in the market.
+
+**MARKET PENETRATION FORMULA**
+Calculates the percentage of customers in the potential market who are currently purchasing a product or service.
+
+**MARKET SEGMENT**
+A subset of the total current or potential customers in a market.
+
+**MARKET SHARE**
+The percentage of the total demand that a company has captured in terms of units sold or gross revenue.
+
+**POTENTIAL MARKET**
+The set of customers who have some interest in a product or service, or to whom the product is potentially relevant.
