@@ -14,8 +14,6 @@ website:
     left: |
       © [Jan Kirenz](https://www.kirenz.com/), 2023
     center:
-      - text: "About"
-        href: about.qmd
       - text: "Slides"
         href: slide.qmd
       - text: "Resources"
@@ -33,7 +31,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
       - slide.qmd
       - resources.qmd
       - code.qmd

@@ -42,6 +42,76 @@
     "text": "First analysis\nUse SQL queries to analyze your data:\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Lab",
+    "section": "",
+    "text": "You are a marketer working for Red, a company that sells orange juice online.\n\nTask description"
+  },
+  {
+    "objectID": "index.html#market-analysis-case-red",
+    "href": "index.html#market-analysis-case-red",
+    "title": "Lab",
+    "section": "",
+    "text": "You are a marketer working for Red, a company that sells orange juice online.\n\nTask description"
+  },
+  {
+    "objectID": "index.html#competitive-analysis-e-commerce",
+    "href": "index.html#competitive-analysis-e-commerce",
+    "title": "Lab",
+    "section": "Competitive analysis “E-commerce”",
+    "text": "Competitive analysis “E-commerce”\nIn this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\n\nTask description"
+  },
+  {
+    "objectID": "code/notebook.html",
+    "href": "code/notebook.html",
+    "title": "Notebook",
+    "section": "",
+    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
+  },
+  {
+    "objectID": "code/notebook.html#setup",
+    "href": "code/notebook.html#setup",
+    "title": "Notebook",
+    "section": "",
+    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
+  },
+  {
+    "objectID": "code/notebook.html#data",
+    "href": "code/notebook.html#data",
+    "title": "Notebook",
+    "section": "Data",
+    "text": "Data"
+  },
+  {
+    "objectID": "code.html#competitive-analysis-e-commerce",
+    "href": "code.html#competitive-analysis-e-commerce",
+    "title": "Code",
+    "section": "Competitive analysis “E-commerce”",
+    "text": "Competitive analysis “E-commerce”"
+  },
+  {
+    "objectID": "code/data.html",
+    "href": "code/data.html",
+    "title": "Data generation",
+    "section": "",
+    "text": "Load Python libaries and API keys.\n\nimport pandas as pd\nimport numpy as np\nimport mysql.connector\n\n\n# Function to generate monthly data\ndef generate_monthly_data(eshop_name, start_year, num_years=3):\n    # Generate a monthly date range for 3 years\n    dates = pd.date_range(start=f'{start_year}-01-01', periods=num_years*12, freq='M')\n    \n    # Initialize a random number generator\n    rng = np.random.default_rng(42)\n\n    # Generate revenues, active user base, ratings, social media followers, and response times\n    revenues = np.round(np.linspace(10, 50, num=num_years*12) + rng.normal(scale=3, size=num_years*12), 2)\n    active_users = np.round(np.linspace(1, 10, num=num_years*12) + rng.normal(scale=1, size=num_years*12), 2)\n    ratings = np.clip(np.linspace(3.5, 4.5, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 1, 5)\n    social_followers = np.round(np.linspace(100, 1000, num=num_years*12) + rng.normal(scale=50, size=num_years*12), 2)\n    response_times = np.clip(np.linspace(2, 1, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 0.5, 2.5)\n\n    # Create a DataFrame\n    data = {\n        'E-Shop': eshop_name,\n        'Date': dates,\n        'Annual Revenue': revenues,\n        'Active User Base': active_users,\n        'Average Rating': ratings,\n        'Social Media Followers': social_followers,\n        'Average Response Time': response_times\n    }\n    df = pd.DataFrame(data)\n    return df\n\n# Generate data for E-ShopA, E-ShopB, and E-ShopC\ndf_a = generate_monthly_data('E-ShopA', start_year=2020)\ndf_b = generate_monthly_data('E-ShopB', start_year=2020)\ndf_c = generate_monthly_data('E-ShopC', start_year=2020)\n\n# Combine the data into one DataFrame\ndf = pd.concat([df_a, df_b, df_c])\n\n# Save data\n\ndf.to_csv(\"data.csv\")\n\n# Preview the data\nprint(df.head())\n\n\n\n    E-Shop       Date  Annual Revenue  Active User Base  Average Rating  \\\n0  E-ShopA 2020-01-31           10.91              0.89        3.408055   \n1  E-ShopA 2020-02-29            8.02              0.42        3.578288   \n2  E-ShopA 2020-03-31           14.54              0.69        3.571385   \n3  E-ShopA 2020-04-30           16.25              2.42        3.654763   \n4  E-ShopA 2020-05-31            8.72              2.77        3.571560   \n\n   Social Media Followers  Average Response Time  \n0                  142.02               1.918706  \n1                   39.35               1.929893  \n2                  173.15               1.881647  \n3                  189.03               1.900207  \n4                  173.15               1.992312"
+  },
+  {
+    "objectID": "code/data.html#setup",
+    "href": "code/data.html#setup",
+    "title": "Data generation",
+    "section": "",
+    "text": "Load Python libaries and API keys.\n\nimport pandas as pd\nimport numpy as np\nimport mysql.connector\n\n\n# Function to generate monthly data\ndef generate_monthly_data(eshop_name, start_year, num_years=3):\n    # Generate a monthly date range for 3 years\n    dates = pd.date_range(start=f'{start_year}-01-01', periods=num_years*12, freq='M')\n    \n    # Initialize a random number generator\n    rng = np.random.default_rng(42)\n\n    # Generate revenues, active user base, ratings, social media followers, and response times\n    revenues = np.round(np.linspace(10, 50, num=num_years*12) + rng.normal(scale=3, size=num_years*12), 2)\n    active_users = np.round(np.linspace(1, 10, num=num_years*12) + rng.normal(scale=1, size=num_years*12), 2)\n    ratings = np.clip(np.linspace(3.5, 4.5, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 1, 5)\n    social_followers = np.round(np.linspace(100, 1000, num=num_years*12) + rng.normal(scale=50, size=num_years*12), 2)\n    response_times = np.clip(np.linspace(2, 1, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 0.5, 2.5)\n\n    # Create a DataFrame\n    data = {\n        'E-Shop': eshop_name,\n        'Date': dates,\n        'Annual Revenue': revenues,\n        'Active User Base': active_users,\n        'Average Rating': ratings,\n        'Social Media Followers': social_followers,\n        'Average Response Time': response_times\n    }\n    df = pd.DataFrame(data)\n    return df\n\n# Generate data for E-ShopA, E-ShopB, and E-ShopC\ndf_a = generate_monthly_data('E-ShopA', start_year=2020)\ndf_b = generate_monthly_data('E-ShopB', start_year=2020)\ndf_c = generate_monthly_data('E-ShopC', start_year=2020)\n\n# Combine the data into one DataFrame\ndf = pd.concat([df_a, df_b, df_c])\n\n# Save data\n\ndf.to_csv(\"data.csv\")\n\n# Preview the data\nprint(df.head())\n\n\n\n    E-Shop       Date  Annual Revenue  Active User Base  Average Rating  \\\n0  E-ShopA 2020-01-31           10.91              0.89        3.408055   \n1  E-ShopA 2020-02-29            8.02              0.42        3.578288   \n2  E-ShopA 2020-03-31           14.54              0.69        3.571385   \n3  E-ShopA 2020-04-30           16.25              2.42        3.654763   \n4  E-ShopA 2020-05-31            8.72              2.77        3.571560   \n\n   Social Media Followers  Average Response Time  \n0                  142.02               1.918706  \n1                   39.35               1.929893  \n2                  173.15               1.881647  \n3                  189.03               1.900207  \n4                  173.15               1.992312"
+  },
+  {
+    "objectID": "code/data.html#sql",
+    "href": "code/data.html#sql",
+    "title": "Data generation",
+    "section": "SQL",
+    "text": "SQL\n\n# Create a connection\ncnx = mysql.connector.connect(user='root', password='Jul1ian-09', host='127.0.0.1')\n\n\n\n# Create a cursor object\ncursor = cnx.cursor()\n\n# Execute the SQL command to create a database\ncursor.execute(\"CREATE DATABASE `db_ecommerce`\")\n\n# Close the cursor and connection\ncursor.close()\ncnx.close()\n\n\ncnx = mysql.connector.connect(user='root', password='Jul1ian-09',\n                              host='127.0.0.1',\n                              database='db_ecommerce')\n\n\n# Create a cursor object\ncursor = cnx.cursor()\n\n# SQL command to create a table\ncreate_table_query = \"\"\"\nCREATE TABLE ecommerce_data (\n    id INT AUTO_INCREMENT,\n    eshop_name VARCHAR(255),\n    date DATE,\n    annual_revenue DECIMAL(10,2),\n    active_user_base DECIMAL(10,2),\n    average_rating DECIMAL(3,1),\n    social_media_followers INT,\n    average_response_time DECIMAL(3,2),\n    PRIMARY KEY(id)\n);\n\"\"\"\n\n# Execute the SQL command\ncursor.execute(create_table_query)\n\n# Close the cursor and connection\ncursor.close()\ncnx.close()\n\n\ncursor = cnx.cursor()\n\n# Iterate through the DataFrame and insert each row into the database\nfor i, row in df.iterrows():\n    # Construct the SQL query\n    query = \"\"\"\n    INSERT INTO ecommerce_data (eshop_name, date, annual_revenue, active_user_base, average_rating, social_media_followers, average_response_time)\n    VALUES (%s, %s, %s, %s, %s, %s, %s)\n    \"\"\"\n    # Execute the query\n    cursor.execute(query, tuple(row))\n\n# Commit the transaction\ncnx.commit()\n\n# Close the cursor and connection\ncursor.close()\ncnx.close()"
+  },
+  {
     "objectID": "slides/slides.html#text",
     "href": "slides/slides.html#text",
     "title": "Title",
@@ -91,76 +161,6 @@
     "text": "End\n\n\nJan Kirenz"
   },
   {
-    "objectID": "code/data.html",
-    "href": "code/data.html",
-    "title": "Data generation",
-    "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport pandas as pd\nimport numpy as np\nimport mysql.connector\n\n\n# Function to generate monthly data\ndef generate_monthly_data(eshop_name, start_year, num_years=3):\n    # Generate a monthly date range for 3 years\n    dates = pd.date_range(start=f'{start_year}-01-01', periods=num_years*12, freq='M')\n    \n    # Initialize a random number generator\n    rng = np.random.default_rng(42)\n\n    # Generate revenues, active user base, ratings, social media followers, and response times\n    revenues = np.round(np.linspace(10, 50, num=num_years*12) + rng.normal(scale=3, size=num_years*12), 2)\n    active_users = np.round(np.linspace(1, 10, num=num_years*12) + rng.normal(scale=1, size=num_years*12), 2)\n    ratings = np.clip(np.linspace(3.5, 4.5, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 1, 5)\n    social_followers = np.round(np.linspace(100, 1000, num=num_years*12) + rng.normal(scale=50, size=num_years*12), 2)\n    response_times = np.clip(np.linspace(2, 1, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 0.5, 2.5)\n\n    # Create a DataFrame\n    data = {\n        'E-Shop': eshop_name,\n        'Date': dates,\n        'Annual Revenue': revenues,\n        'Active User Base': active_users,\n        'Average Rating': ratings,\n        'Social Media Followers': social_followers,\n        'Average Response Time': response_times\n    }\n    df = pd.DataFrame(data)\n    return df\n\n# Generate data for E-ShopA, E-ShopB, and E-ShopC\ndf_a = generate_monthly_data('E-ShopA', start_year=2020)\ndf_b = generate_monthly_data('E-ShopB', start_year=2020)\ndf_c = generate_monthly_data('E-ShopC', start_year=2020)\n\n# Combine the data into one DataFrame\ndf = pd.concat([df_a, df_b, df_c])\n\n# Save data\n\ndf.to_csv(\"data.csv\")\n\n# Preview the data\nprint(df.head())\n\n\n\n    E-Shop       Date  Annual Revenue  Active User Base  Average Rating  \\\n0  E-ShopA 2020-01-31           10.91              0.89        3.408055   \n1  E-ShopA 2020-02-29            8.02              0.42        3.578288   \n2  E-ShopA 2020-03-31           14.54              0.69        3.571385   \n3  E-ShopA 2020-04-30           16.25              2.42        3.654763   \n4  E-ShopA 2020-05-31            8.72              2.77        3.571560   \n\n   Social Media Followers  Average Response Time  \n0                  142.02               1.918706  \n1                   39.35               1.929893  \n2                  173.15               1.881647  \n3                  189.03               1.900207  \n4                  173.15               1.992312"
-  },
-  {
-    "objectID": "code/data.html#setup",
-    "href": "code/data.html#setup",
-    "title": "Data generation",
-    "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport pandas as pd\nimport numpy as np\nimport mysql.connector\n\n\n# Function to generate monthly data\ndef generate_monthly_data(eshop_name, start_year, num_years=3):\n    # Generate a monthly date range for 3 years\n    dates = pd.date_range(start=f'{start_year}-01-01', periods=num_years*12, freq='M')\n    \n    # Initialize a random number generator\n    rng = np.random.default_rng(42)\n\n    # Generate revenues, active user base, ratings, social media followers, and response times\n    revenues = np.round(np.linspace(10, 50, num=num_years*12) + rng.normal(scale=3, size=num_years*12), 2)\n    active_users = np.round(np.linspace(1, 10, num=num_years*12) + rng.normal(scale=1, size=num_years*12), 2)\n    ratings = np.clip(np.linspace(3.5, 4.5, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 1, 5)\n    social_followers = np.round(np.linspace(100, 1000, num=num_years*12) + rng.normal(scale=50, size=num_years*12), 2)\n    response_times = np.clip(np.linspace(2, 1, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 0.5, 2.5)\n\n    # Create a DataFrame\n    data = {\n        'E-Shop': eshop_name,\n        'Date': dates,\n        'Annual Revenue': revenues,\n        'Active User Base': active_users,\n        'Average Rating': ratings,\n        'Social Media Followers': social_followers,\n        'Average Response Time': response_times\n    }\n    df = pd.DataFrame(data)\n    return df\n\n# Generate data for E-ShopA, E-ShopB, and E-ShopC\ndf_a = generate_monthly_data('E-ShopA', start_year=2020)\ndf_b = generate_monthly_data('E-ShopB', start_year=2020)\ndf_c = generate_monthly_data('E-ShopC', start_year=2020)\n\n# Combine the data into one DataFrame\ndf = pd.concat([df_a, df_b, df_c])\n\n# Save data\n\ndf.to_csv(\"data.csv\")\n\n# Preview the data\nprint(df.head())\n\n\n\n    E-Shop       Date  Annual Revenue  Active User Base  Average Rating  \\\n0  E-ShopA 2020-01-31           10.91              0.89        3.408055   \n1  E-ShopA 2020-02-29            8.02              0.42        3.578288   \n2  E-ShopA 2020-03-31           14.54              0.69        3.571385   \n3  E-ShopA 2020-04-30           16.25              2.42        3.654763   \n4  E-ShopA 2020-05-31            8.72              2.77        3.571560   \n\n   Social Media Followers  Average Response Time  \n0                  142.02               1.918706  \n1                   39.35               1.929893  \n2                  173.15               1.881647  \n3                  189.03               1.900207  \n4                  173.15               1.992312"
-  },
-  {
-    "objectID": "code/data.html#sql",
-    "href": "code/data.html#sql",
-    "title": "Data generation",
-    "section": "SQL",
-    "text": "SQL\n\n# Create a connection\ncnx = mysql.connector.connect(user='root', password='Jul1ian-09', host='127.0.0.1')\n\n\n\n# Create a cursor object\ncursor = cnx.cursor()\n\n# Execute the SQL command to create a database\ncursor.execute(\"CREATE DATABASE `db_ecommerce`\")\n\n# Close the cursor and connection\ncursor.close()\ncnx.close()\n\n\ncnx = mysql.connector.connect(user='root', password='Jul1ian-09',\n                              host='127.0.0.1',\n                              database='db_ecommerce')\n\n\n# Create a cursor object\ncursor = cnx.cursor()\n\n# SQL command to create a table\ncreate_table_query = \"\"\"\nCREATE TABLE ecommerce_data (\n    id INT AUTO_INCREMENT,\n    eshop_name VARCHAR(255),\n    date DATE,\n    annual_revenue DECIMAL(10,2),\n    active_user_base DECIMAL(10,2),\n    average_rating DECIMAL(3,1),\n    social_media_followers INT,\n    average_response_time DECIMAL(3,2),\n    PRIMARY KEY(id)\n);\n\"\"\"\n\n# Execute the SQL command\ncursor.execute(create_table_query)\n\n# Close the cursor and connection\ncursor.close()\ncnx.close()\n\n\ncursor = cnx.cursor()\n\n# Iterate through the DataFrame and insert each row into the database\nfor i, row in df.iterrows():\n    # Construct the SQL query\n    query = \"\"\"\n    INSERT INTO ecommerce_data (eshop_name, date, annual_revenue, active_user_base, average_rating, social_media_followers, average_response_time)\n    VALUES (%s, %s, %s, %s, %s, %s, %s)\n    \"\"\"\n    # Execute the query\n    cursor.execute(query, tuple(row))\n\n# Commit the transaction\ncnx.commit()\n\n# Close the cursor and connection\ncursor.close()\ncnx.close()"
-  },
-  {
-    "objectID": "code.html#competitive-analysis-e-commerce",
-    "href": "code.html#competitive-analysis-e-commerce",
-    "title": "Code",
-    "section": "Competitive analysis “E-commerce”",
-    "text": "Competitive analysis “E-commerce”"
-  },
-  {
-    "objectID": "code/notebook.html",
-    "href": "code/notebook.html",
-    "title": "Notebook",
-    "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
-  },
-  {
-    "objectID": "code/notebook.html#setup",
-    "href": "code/notebook.html#setup",
-    "title": "Notebook",
-    "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
-  },
-  {
-    "objectID": "code/notebook.html#data",
-    "href": "code/notebook.html#data",
-    "title": "Notebook",
-    "section": "Data",
-    "text": "Data"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Lab",
-    "section": "",
-    "text": "You are a marketer working for Red, a company that sells orange juice online.\n\nTask description"
-  },
-  {
-    "objectID": "index.html#market-analysis-case-red",
-    "href": "index.html#market-analysis-case-red",
-    "title": "Lab",
-    "section": "",
-    "text": "You are a marketer working for Red, a company that sells orange juice online.\n\nTask description"
-  },
-  {
-    "objectID": "index.html#competitive-analysis-e-commerce",
-    "href": "index.html#competitive-analysis-e-commerce",
-    "title": "Lab",
-    "section": "Competitive analysis “E-commerce”",
-    "text": "Competitive analysis “E-commerce”\nIn this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\n\nTask description"
-  },
-  {
     "objectID": "workflow.html",
     "href": "workflow.html",
     "title": "Workflow",
@@ -172,14 +172,14 @@
     "href": "case/red.html",
     "title": "Market analysis case Red",
     "section": "",
-    "text": "You are a marketer working for Red, a company that sells orange juice online. In order to develop a new online marketing strategy you first need to analyze and interpret some essential market data. You’re two top competitors are the companies “Blue” and “Yellow”.\nTake a look at the @glossary for additional context."
+    "text": "You are a marketer working for Red, a company that sells orange juice online. In order to develop a new online marketing strategy you first need to analyze and interpret some essential market data. You’re two top competitors are the companies “Blue” and “Yellow”.\nTake a look at the @glossary to get information about the definition of key market figures."
   },
   {
     "objectID": "case/red.html#data",
     "href": "case/red.html#data",
     "title": "Market analysis case Red",
     "section": "Data",
-    "text": "Data\nDownload the data as Excel spreadsheet or work directly in Google Sheets."
+    "text": "Data\nDownload the data as Excel spreadsheet or work directly in Google Sheets.\nSolve the following tasks by using cell formulas in the spreadsheets.\n\nOverview of cell formulas in Excel\nOverview of cell formulas in Google Sheets"
   },
   {
     "objectID": "case/red.html#market-penetration",
@@ -242,6 +242,6 @@
     "href": "case/red.html#glossary",
     "title": "Market analysis case Red",
     "section": "Glossary",
-    "text": "Glossary\nCurrent market: The total number of customers, units, or revenue currently being generated in the market.\nMarket penetration formula: Calculates the percentage of customers in the potential market who are currently purchasing a product or service.\nMarket segment:: A subset of the total current or potential customers in a market.\nMarket share: The percentage of the total demand that a company has captured in terms of units sold or gross revenue.\nPotential market: The set of customers who have some interest in a product or service, or to whom the product is potentially relevant."
+    "text": "Glossary\nCurrent market: The total number of customers, units, or revenue currently being generated in the market.\nMarket penetration formula: Calculates the percentage of customers in the potential market who are currently purchasing a product or service.\nMarket segment: A subset of the total current or potential customers in a market.\nMarket share: The percentage of the total demand that a company has captured in terms of units sold or gross revenue.\nPotential market: The set of customers who have some interest in a product or service, or to whom the product is potentially relevant."
   }
 ]
