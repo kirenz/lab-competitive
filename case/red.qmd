@@ -5,10 +5,10 @@ number-sections: true
 
 You are a marketer working for Red, a company that sells orange juice online. In order to develop a new online marketing strategy you first need to analyze and interpret some essential market figures like market penetration and market share. You’re two top competitors are the companies “Blue” and “Yellow”. 
 
-Download the [data](https://docs.google.com/spreadsheets/d/1MlwDNgvhwJoQoh1_-HZsjKK5PW0ZdeQMKQ5GuQGP-94/edit?usp=sharing) as Excel spreadsheet or work directly in Google Sheets.
+::: {.callout-tip}
+## Data
 
-::: {.callout-note}
-Take a look at @sec-glossary to get information about the definition of key market figures.
+Download the [data](https://docs.google.com/spreadsheets/d/1MlwDNgvhwJoQoh1_-HZsjKK5PW0ZdeQMKQ5GuQGP-94/edit?usp=sharing) as Excel spreadsheet or work directly in Google Sheets.
 :::
 
 Solve the following tasks by using cell formulas in the spreadsheets. 
@@ -17,7 +17,11 @@ Solve the following tasks by using cell formulas in the spreadsheets.
 - [Overview of cell formulas in Google Sheets](https://support.google.com/docs/table/25273?hl=en)
 
 
+::: {.callout-note}
+Take a look at @sec-glossary to get information about the definition of key market figures.
+:::
 
+---
 
 ## Market penetration
 
