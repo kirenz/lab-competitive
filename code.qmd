@@ -2,4 +2,9 @@
 title: "Code"
 ---
 
-This is a Quarto slidedeck. 
+## Market analysis case "Red"
+
+
+
+
+## Competitive analysis "E-commerce"
