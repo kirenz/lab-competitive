@@ -28,25 +28,25 @@
     "text": "Competitive analysis “E-commerce”\nPlease find below the materials:\n\n📑 Slides\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
   },
   {
-    "objectID": "code/notebook.html",
-    "href": "code/notebook.html",
-    "title": "Notebook",
+    "objectID": "code/ecommerce.html",
+    "href": "code/ecommerce.html",
+    "title": "Competitive analysis E-commerce",
     "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
+    "text": "import mysql.connector\nimport pandas as pd"
   },
   {
-    "objectID": "code/notebook.html#setup",
-    "href": "code/notebook.html#setup",
-    "title": "Notebook",
+    "objectID": "code/ecommerce.html#setup",
+    "href": "code/ecommerce.html#setup",
+    "title": "Competitive analysis E-commerce",
     "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport os\nimport openai\nimport pandas as pd\nimport altair as alt\nfrom dotenv import load_dotenv, find_dotenv\n\n\n_ = load_dotenv(find_dotenv()) # read local .env file\nopenai.api_key  = os.environ['OPENAI_API_KEY']"
+    "text": "import mysql.connector\nimport pandas as pd"
   },
   {
-    "objectID": "code/notebook.html#data",
-    "href": "code/notebook.html#data",
-    "title": "Notebook",
+    "objectID": "code/ecommerce.html#data",
+    "href": "code/ecommerce.html#data",
+    "title": "Competitive analysis E-commerce",
     "section": "Data",
-    "text": "Data"
+    "text": "Data\nConnect to your MySQL-database\n\n\n\n# Create a connection\ncnx = mysql.connector.connect(user='&lt;username&gt;', password='&lt;password&gt;', host='127.0.0.1', database='db-ecommerce')\n\n# Average Revenue by E-Shop\ndf_avg_revenue = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(annual_revenue) as average_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name;\n\"\"\", cnx)\n\n# E-Shop with the Highest Average Rating\ndf_best_rating = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY average_rating DESC\n    LIMIT 1;\n\"\"\", cnx)\n\n# E-Shop Performance Over Time\ndf_revenue_by_year = pd.read_sql(\"\"\"\n    SELECT eshop_name, YEAR(date) as year, SUM(annual_revenue) as total_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name, year;\n\"\"\", cnx)\n\n# E-Shop with the Most Social Media Followers\ndf_most_followers = pd.read_sql(\"\"\"\n    SELECT eshop_name, MAX(social_media_followers) as max_followers\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY max_followers DESC\n    LIMIT 1;\n\"\"\", cnx)\n\n# Monthly Active User Base Growth\ndf_user_growth = pd.read_sql(\"\"\"\n    SELECT eshop_name, DATE_FORMAT(date, '%Y-%m') as month, AVG(active_user_base) as average_active_users\n    FROM ecommerce_data\n    GROUP BY eshop_name, month;\n\"\"\", cnx)\n\n# Close the connection\ncnx.close()"
   },
   {
     "objectID": "case/red.html",
