@@ -18,7 +18,7 @@ You are a marketer working for Red, a company that sells orange juice online.
 In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis. 
 
 
-- [Task description](/case/ecommerce.qmd)
+- [Task description](case.qmd)
 
 
 
