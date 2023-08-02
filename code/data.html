@@ -152,6 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#create-data" id="toc-create-data" class="nav-link" data-scroll-target="#create-data">Create data</a></li>
   <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql">SQL</a></li>
   </ul>
 </nav>
@@ -180,141 +181,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>Load Python libaries and API keys.</p>
-<div id="384b0574" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mysql.connector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="384b0574" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>load_dotenv()   <span class="co"># take environment variables from .env</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>True</code></pre>
 </div>
-<div id="0da44632" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to generate monthly data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_monthly_data(eshop_name, start_year, num_years<span class="op">=</span><span class="dv">3</span>):</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a monthly date range for 3 years</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    dates <span class="op">=</span> pd.date_range(start<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-01-01'</span>, periods<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>, freq<span class="op">=</span><span class="st">'M'</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize a random number generator</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">42</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate revenues, active user base, ratings, social media followers, and response times</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    revenues <span class="op">=</span> np.<span class="bu">round</span>(np.linspace(<span class="dv">10</span>, <span class="dv">50</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="dv">3</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="dv">2</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    active_users <span class="op">=</span> np.<span class="bu">round</span>(np.linspace(<span class="dv">1</span>, <span class="dv">10</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="dv">2</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    ratings <span class="op">=</span> np.clip(np.linspace(<span class="fl">3.5</span>, <span class="fl">4.5</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="fl">0.1</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="dv">1</span>, <span class="dv">5</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    social_followers <span class="op">=</span> np.<span class="bu">round</span>(np.linspace(<span class="dv">100</span>, <span class="dv">1000</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="dv">50</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="dv">2</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    response_times <span class="op">=</span> np.clip(np.linspace(<span class="dv">2</span>, <span class="dv">1</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="fl">0.1</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="fl">0.5</span>, <span class="fl">2.5</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a DataFrame</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'E-Shop'</span>: eshop_name,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Date'</span>: dates,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Annual Revenue'</span>: revenues,</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Active User Base'</span>: active_users,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Average Rating'</span>: ratings,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Social Media Followers'</span>: social_followers,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Average Response Time'</span>: response_times</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data for E-ShopA, E-ShopB, and E-ShopC</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>df_a <span class="op">=</span> generate_monthly_data(<span class="st">'E-ShopA'</span>, start_year<span class="op">=</span><span class="dv">2020</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>df_b <span class="op">=</span> generate_monthly_data(<span class="st">'E-ShopB'</span>, start_year<span class="op">=</span><span class="dv">2020</span>)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>df_c <span class="op">=</span> generate_monthly_data(<span class="st">'E-ShopC'</span>, start_year<span class="op">=</span><span class="dv">2020</span>)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the data into one DataFrame</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([df_a, df_b, df_c])</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Save data</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">"data.csv"</span>)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the data</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-data" class="level2">
+<h2 class="anchored" data-anchor-id="create-data">Create data</h2>
+<div id="0da44632" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to generate monthly data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_monthly_data(eshop_name, start_year, num_years<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a monthly date range for 3 years</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    dates <span class="op">=</span> pd.date_range(start<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-01-01'</span>, periods<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>, freq<span class="op">=</span><span class="st">'M'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize a random number generator</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">42</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate revenues, active user base, ratings, social media followers, and response times</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    revenues <span class="op">=</span> np.<span class="bu">round</span>(np.linspace(<span class="dv">10</span>, <span class="dv">50</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="dv">3</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="dv">2</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    active_users <span class="op">=</span> np.<span class="bu">round</span>(np.linspace(<span class="dv">1</span>, <span class="dv">10</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="dv">2</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    ratings <span class="op">=</span> np.clip(np.linspace(<span class="fl">3.5</span>, <span class="fl">4.5</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="fl">0.1</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="dv">1</span>, <span class="dv">5</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    social_followers <span class="op">=</span> np.<span class="bu">round</span>(np.linspace(<span class="dv">100</span>, <span class="dv">1000</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="dv">50</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="dv">2</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    response_times <span class="op">=</span> np.clip(np.linspace(<span class="dv">2</span>, <span class="dv">1</span>, num<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>) <span class="op">+</span> rng.normal(scale<span class="op">=</span><span class="fl">0.1</span>, size<span class="op">=</span>num_years<span class="op">*</span><span class="dv">12</span>), <span class="fl">0.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a DataFrame</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'eshop_name'</span>: eshop_name,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'date'</span>: dates,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'annual_revenue'</span>: revenues,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">'active_user_base'</span>: active_users,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">'average_rating'</span>: ratings,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">'social_media_followers'</span>: social_followers,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">'average_response_time'</span>: response_times</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data for E-ShopA, E-ShopB, and E-ShopC</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>df_a <span class="op">=</span> generate_monthly_data(<span class="st">'E-ShopA'</span>, start_year<span class="op">=</span><span class="dv">2020</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>df_b <span class="op">=</span> generate_monthly_data(<span class="st">'E-ShopB'</span>, start_year<span class="op">=</span><span class="dv">2020</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>df_c <span class="op">=</span> generate_monthly_data(<span class="st">'E-ShopC'</span>, start_year<span class="op">=</span><span class="dv">2020</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the data into one DataFrame</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([df_a, df_b, df_c])</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Save data</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">"data.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the data</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    E-Shop       Date  Annual Revenue  Active User Base  Average Rating  \
-0  E-ShopA 2020-01-31           10.91              0.89        3.408055   
-1  E-ShopA 2020-02-29            8.02              0.42        3.578288   
-2  E-ShopA 2020-03-31           14.54              0.69        3.571385   
-3  E-ShopA 2020-04-30           16.25              2.42        3.654763   
-4  E-ShopA 2020-05-31            8.72              2.77        3.571560   
+<pre><code>  eshop_name       date  annual_revenue  active_user_base  average_rating  \
+0    E-ShopA 2020-01-31           10.91              0.89            3.41   
+1    E-ShopA 2020-02-29            8.02              0.42            3.58   
+2    E-ShopA 2020-03-31           14.54              0.69            3.57   
+3    E-ShopA 2020-04-30           16.25              2.42            3.65   
+4    E-ShopA 2020-05-31            8.72              2.77            3.57   
 
-   Social Media Followers  Average Response Time  
-0                  142.02               1.918706  
-1                   39.35               1.929893  
-2                  173.15               1.881647  
-3                  189.03               1.900207  
-4                  173.15               1.992312  </code></pre>
+   social_media_followers  average_response_time  
+0                  142.02                   1.92  
+1                   39.35                   1.93  
+2                  173.15                   1.88  
+3                  189.03                   1.90  
+4                  173.15                   1.99  </code></pre>
 </div>
 </div>
 </section>
 <section id="sql" class="level2">
 <h2 class="anchored" data-anchor-id="sql">SQL</h2>
-<div id="bebf046d" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a connection</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cnx <span class="op">=</span> mysql.connector.<span class="ex">connect</span>(user<span class="op">=</span><span class="st">'root'</span>, password<span class="op">=</span><span class="st">'Jul1ian-09'</span>, host<span class="op">=</span><span class="st">'127.0.0.1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>First, create the database in Workbench</p>
+<div id="6e877d3b" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">"mysql+pymysql://"</span> <span class="op">+</span> os.environ[<span class="st">'DB_URL'</span>] <span class="op">+</span> <span class="st">"/db_ecommerce"</span>, pool_pre_ping<span class="op">=</span><span class="va">True</span>, pool_recycle<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ab3c7970" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a cursor object</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cursor <span class="op">=</span> cnx.cursor()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the SQL command to create a database</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>cursor.execute(<span class="st">"CREATE DATABASE `db_ecommerce`"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the cursor and connection</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>cursor.close()</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>cnx.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5125dfbc" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use pandas to_sql function to create the table in the database</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df.to_sql(<span class="st">'ecommerce_data'</span>, engine, if_exists<span class="op">=</span><span class="st">'replace'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>108</code></pre>
 </div>
-<div id="75ed81c1" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cnx <span class="op">=</span> mysql.connector.<span class="ex">connect</span>(user<span class="op">=</span><span class="st">'root'</span>, password<span class="op">=</span><span class="st">'Jul1ian-09'</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                              host<span class="op">=</span><span class="st">'127.0.0.1'</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                              database<span class="op">=</span><span class="st">'db_ecommerce'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="b8756391" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a cursor object</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cursor <span class="op">=</span> cnx.cursor()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL command to create a table</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>create_table_query <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE ecommerce_data (</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">    id INT AUTO_INCREMENT,</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="st">    eshop_name VARCHAR(255),</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="st">    date DATE,</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="st">    annual_revenue DECIMAL(10,2),</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="st">    active_user_base DECIMAL(10,2),</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="st">    average_rating DECIMAL(3,1),</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="st">    social_media_followers INT,</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="st">    average_response_time DECIMAL(3,2),</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="st">    PRIMARY KEY(id)</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="st">);</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the SQL command</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>cursor.execute(create_table_query)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the cursor and connection</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>cursor.close()</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>cnx.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="d6818eaa" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cursor <span class="op">=</span> cnx.cursor()</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate through the DataFrame and insert each row into the database</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> df.iterrows():</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Construct the SQL query</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    query <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">    INSERT INTO ecommerce_data (eshop_name, date, annual_revenue, active_user_base, average_rating, social_media_followers, average_response_time)</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">    VALUES (</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">, </span><span class="sc">%s</span><span class="st">)</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">    """</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Execute the query</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    cursor.execute(query, <span class="bu">tuple</span>(row))</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit the transaction</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>cnx.commit()</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the cursor and connection</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>cursor.close()</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>cnx.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -666,7 +620,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
-    <a class="nav-link" href="hhttps://e-learning.hdm-stuttgart.de/moodle/login/index.php">
+    <a class="nav-link" href="https://e-learning.hdm-stuttgart.de/moodle/login/index.php">
       <i class="bi bi-person-circle" role="img" aria-label="Moodle">
 </i> 
     </a>
