@@ -6,3 +6,4 @@
 /.quarto/
 code/data.ipynb
 code/key.py
+code/.env
