@@ -4,5 +4,5 @@ title: "Code"
 
 ## First analysis
 
-- [Notebook](/code/first_analysis-c.ipynb)
+- Download the [Jupyter Notebook from Colab](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/first_analysis-c.ipynb)
 

@@ -2,11 +2,28 @@
 title: "Resources"
 ---
 
-## Technology
+## Prerequisites
 
-For these case studies, you'll need the following technology:
+To start this case study, you'll need the following software:
 
-- MySQL
+- MySQL database
+- MySQL Workbench
+- Anaconda
+
+## Installation
+
+- MySQL (select "No thanks, just start my download")
+  - [Windows](https://dev.mysql.com/downloads/installer/)
+  - [Mac](https://dev.mysql.com/downloads/mysql/)
+
+- [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+
+- [Anaconda](https://www.anaconda.com/download)
+
+## Anaconda Environment
+
+Install the Anaconda Environment `env-mr-pip.yml`
+
 - [💾 Anaconda Environment](https://github.com/kirenz/environments)
 
 

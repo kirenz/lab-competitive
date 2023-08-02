@@ -4,42 +4,63 @@
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "For these case studies, you’ll need the following technology:\n\nMySQL\n💾 Anaconda Environment\n\nPlease find below the materials:\n\n📑 Slides\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
+    "text": "To start this case study, you’ll need the following software:\n\nMySQL database\nMySQL Workbench\nAnaconda"
   },
   {
-    "objectID": "resources.html#technology",
-    "href": "resources.html#technology",
+    "objectID": "resources.html#prerequisites",
+    "href": "resources.html#prerequisites",
     "title": "Resources",
     "section": "",
-    "text": "For these case studies, you’ll need the following technology:\n\nMySQL\n💾 Anaconda Environment\n\nPlease find below the materials:\n\n📑 Slides\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
+    "text": "To start this case study, you’ll need the following software:\n\nMySQL database\nMySQL Workbench\nAnaconda"
+  },
+  {
+    "objectID": "resources.html#installation",
+    "href": "resources.html#installation",
+    "title": "Resources",
+    "section": "Installation",
+    "text": "Installation\n\nMySQL (select “No thanks, just start my download”)\n\nWindows\nMac\n\nMySQL Workbench\nAnaconda"
+  },
+  {
+    "objectID": "resources.html#anaconda-environment",
+    "href": "resources.html#anaconda-environment",
+    "title": "Resources",
+    "section": "Anaconda Environment",
+    "text": "Anaconda Environment\nInstall the Anaconda Environment env-mr-pip.yml\n\n💾 Anaconda Environment\n\nPlease find below the materials:\n\n📑 Slides\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Lab",
     "section": "",
-    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC. We’ll use SQL and Python for data analysis and visualization.\n\nTask description"
+    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC.\nWe’ll use SQL and Python for data analysis and visualization.\n\nTask description"
   },
   {
     "objectID": "code/data.html",
     "href": "code/data.html",
     "title": "Data generation",
     "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport pandas as pd\nimport numpy as np\nimport mysql.connector\n\n\n# Function to generate monthly data\ndef generate_monthly_data(eshop_name, start_year, num_years=3):\n    # Generate a monthly date range for 3 years\n    dates = pd.date_range(start=f'{start_year}-01-01', periods=num_years*12, freq='M')\n    \n    # Initialize a random number generator\n    rng = np.random.default_rng(42)\n\n    # Generate revenues, active user base, ratings, social media followers, and response times\n    revenues = np.round(np.linspace(10, 50, num=num_years*12) + rng.normal(scale=3, size=num_years*12), 2)\n    active_users = np.round(np.linspace(1, 10, num=num_years*12) + rng.normal(scale=1, size=num_years*12), 2)\n    ratings = np.clip(np.linspace(3.5, 4.5, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 1, 5)\n    social_followers = np.round(np.linspace(100, 1000, num=num_years*12) + rng.normal(scale=50, size=num_years*12), 2)\n    response_times = np.clip(np.linspace(2, 1, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 0.5, 2.5)\n\n    # Create a DataFrame\n    data = {\n        'E-Shop': eshop_name,\n        'Date': dates,\n        'Annual Revenue': revenues,\n        'Active User Base': active_users,\n        'Average Rating': ratings,\n        'Social Media Followers': social_followers,\n        'Average Response Time': response_times\n    }\n    df = pd.DataFrame(data)\n    return df\n\n# Generate data for E-ShopA, E-ShopB, and E-ShopC\ndf_a = generate_monthly_data('E-ShopA', start_year=2020)\ndf_b = generate_monthly_data('E-ShopB', start_year=2020)\ndf_c = generate_monthly_data('E-ShopC', start_year=2020)\n\n# Combine the data into one DataFrame\ndf = pd.concat([df_a, df_b, df_c])\n\n# Save data\n\ndf.to_csv(\"data.csv\")\n\n# Preview the data\nprint(df.head())\n\n\n\n    E-Shop       Date  Annual Revenue  Active User Base  Average Rating  \\\n0  E-ShopA 2020-01-31           10.91              0.89        3.408055   \n1  E-ShopA 2020-02-29            8.02              0.42        3.578288   \n2  E-ShopA 2020-03-31           14.54              0.69        3.571385   \n3  E-ShopA 2020-04-30           16.25              2.42        3.654763   \n4  E-ShopA 2020-05-31            8.72              2.77        3.571560   \n\n   Social Media Followers  Average Response Time  \n0                  142.02               1.918706  \n1                   39.35               1.929893  \n2                  173.15               1.881647  \n3                  189.03               1.900207  \n4                  173.15               1.992312"
+    "text": "Load Python libaries and API keys.\n\nimport os\nimport pandas as pd\nimport numpy as np\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv\nload_dotenv()   # take environment variables from .env\n\nTrue"
   },
   {
     "objectID": "code/data.html#setup",
     "href": "code/data.html#setup",
     "title": "Data generation",
     "section": "",
-    "text": "Load Python libaries and API keys.\n\nimport pandas as pd\nimport numpy as np\nimport mysql.connector\n\n\n# Function to generate monthly data\ndef generate_monthly_data(eshop_name, start_year, num_years=3):\n    # Generate a monthly date range for 3 years\n    dates = pd.date_range(start=f'{start_year}-01-01', periods=num_years*12, freq='M')\n    \n    # Initialize a random number generator\n    rng = np.random.default_rng(42)\n\n    # Generate revenues, active user base, ratings, social media followers, and response times\n    revenues = np.round(np.linspace(10, 50, num=num_years*12) + rng.normal(scale=3, size=num_years*12), 2)\n    active_users = np.round(np.linspace(1, 10, num=num_years*12) + rng.normal(scale=1, size=num_years*12), 2)\n    ratings = np.clip(np.linspace(3.5, 4.5, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 1, 5)\n    social_followers = np.round(np.linspace(100, 1000, num=num_years*12) + rng.normal(scale=50, size=num_years*12), 2)\n    response_times = np.clip(np.linspace(2, 1, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 0.5, 2.5)\n\n    # Create a DataFrame\n    data = {\n        'E-Shop': eshop_name,\n        'Date': dates,\n        'Annual Revenue': revenues,\n        'Active User Base': active_users,\n        'Average Rating': ratings,\n        'Social Media Followers': social_followers,\n        'Average Response Time': response_times\n    }\n    df = pd.DataFrame(data)\n    return df\n\n# Generate data for E-ShopA, E-ShopB, and E-ShopC\ndf_a = generate_monthly_data('E-ShopA', start_year=2020)\ndf_b = generate_monthly_data('E-ShopB', start_year=2020)\ndf_c = generate_monthly_data('E-ShopC', start_year=2020)\n\n# Combine the data into one DataFrame\ndf = pd.concat([df_a, df_b, df_c])\n\n# Save data\n\ndf.to_csv(\"data.csv\")\n\n# Preview the data\nprint(df.head())\n\n\n\n    E-Shop       Date  Annual Revenue  Active User Base  Average Rating  \\\n0  E-ShopA 2020-01-31           10.91              0.89        3.408055   \n1  E-ShopA 2020-02-29            8.02              0.42        3.578288   \n2  E-ShopA 2020-03-31           14.54              0.69        3.571385   \n3  E-ShopA 2020-04-30           16.25              2.42        3.654763   \n4  E-ShopA 2020-05-31            8.72              2.77        3.571560   \n\n   Social Media Followers  Average Response Time  \n0                  142.02               1.918706  \n1                   39.35               1.929893  \n2                  173.15               1.881647  \n3                  189.03               1.900207  \n4                  173.15               1.992312"
+    "text": "Load Python libaries and API keys.\n\nimport os\nimport pandas as pd\nimport numpy as np\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv\nload_dotenv()   # take environment variables from .env\n\nTrue"
+  },
+  {
+    "objectID": "code/data.html#create-data",
+    "href": "code/data.html#create-data",
+    "title": "Data generation",
+    "section": "Create data",
+    "text": "Create data\n\n# Function to generate monthly data\ndef generate_monthly_data(eshop_name, start_year, num_years=3):\n    # Generate a monthly date range for 3 years\n    dates = pd.date_range(start=f'{start_year}-01-01', periods=num_years*12, freq='M')\n    \n    # Initialize a random number generator\n    rng = np.random.default_rng(42)\n\n    # Generate revenues, active user base, ratings, social media followers, and response times\n    revenues = np.round(np.linspace(10, 50, num=num_years*12) + rng.normal(scale=3, size=num_years*12), 2)\n    active_users = np.round(np.linspace(1, 10, num=num_years*12) + rng.normal(scale=1, size=num_years*12), 2)\n    ratings = np.clip(np.linspace(3.5, 4.5, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 1, 5)\n    social_followers = np.round(np.linspace(100, 1000, num=num_years*12) + rng.normal(scale=50, size=num_years*12), 2)\n    response_times = np.clip(np.linspace(2, 1, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 0.5, 2.5)\n\n    # Create a DataFrame\n    data = {\n        'eshop_name': eshop_name,\n        'date': dates,\n        'annual_revenue': revenues,\n        'active_user_base': active_users,\n        'average_rating': ratings,\n        'social_media_followers': social_followers,\n        'average_response_time': response_times\n    }\n    df = pd.DataFrame(data)\n    return df\n\n# Generate data for E-ShopA, E-ShopB, and E-ShopC\ndf_a = generate_monthly_data('E-ShopA', start_year=2020)\ndf_b = generate_monthly_data('E-ShopB', start_year=2020)\ndf_c = generate_monthly_data('E-ShopC', start_year=2020)\n\n# Combine the data into one DataFrame\ndf = pd.concat([df_a, df_b, df_c])\n\n# Save data\n\ndf = df.round(2)\n\ndf.to_csv(\"data.csv\", index=False)\n\n# Preview the data\nprint(df.head())\n\n  eshop_name       date  annual_revenue  active_user_base  average_rating  \\\n0    E-ShopA 2020-01-31           10.91              0.89            3.41   \n1    E-ShopA 2020-02-29            8.02              0.42            3.58   \n2    E-ShopA 2020-03-31           14.54              0.69            3.57   \n3    E-ShopA 2020-04-30           16.25              2.42            3.65   \n4    E-ShopA 2020-05-31            8.72              2.77            3.57   \n\n   social_media_followers  average_response_time  \n0                  142.02                   1.92  \n1                   39.35                   1.93  \n2                  173.15                   1.88  \n3                  189.03                   1.90  \n4                  173.15                   1.99"
   },
   {
     "objectID": "code/data.html#sql",
     "href": "code/data.html#sql",
     "title": "Data generation",
     "section": "SQL",
-    "text": "SQL\n\n# Create a connection\ncnx = mysql.connector.connect(user='root', password='Jul1ian-09', host='127.0.0.1')\n\n\n\n# Create a cursor object\ncursor = cnx.cursor()\n\n# Execute the SQL command to create a database\ncursor.execute(\"CREATE DATABASE `db_ecommerce`\")\n\n# Close the cursor and connection\ncursor.close()\ncnx.close()\n\n\ncnx = mysql.connector.connect(user='root', password='Jul1ian-09',\n                              host='127.0.0.1',\n                              database='db_ecommerce')\n\n\n# Create a cursor object\ncursor = cnx.cursor()\n\n# SQL command to create a table\ncreate_table_query = \"\"\"\nCREATE TABLE ecommerce_data (\n    id INT AUTO_INCREMENT,\n    eshop_name VARCHAR(255),\n    date DATE,\n    annual_revenue DECIMAL(10,2),\n    active_user_base DECIMAL(10,2),\n    average_rating DECIMAL(3,1),\n    social_media_followers INT,\n    average_response_time DECIMAL(3,2),\n    PRIMARY KEY(id)\n);\n\"\"\"\n\n# Execute the SQL command\ncursor.execute(create_table_query)\n\n# Close the cursor and connection\ncursor.close()\ncnx.close()\n\n\ncursor = cnx.cursor()\n\n# Iterate through the DataFrame and insert each row into the database\nfor i, row in df.iterrows():\n    # Construct the SQL query\n    query = \"\"\"\n    INSERT INTO ecommerce_data (eshop_name, date, annual_revenue, active_user_base, average_rating, social_media_followers, average_response_time)\n    VALUES (%s, %s, %s, %s, %s, %s, %s)\n    \"\"\"\n    # Execute the query\n    cursor.execute(query, tuple(row))\n\n# Commit the transaction\ncnx.commit()\n\n# Close the cursor and connection\ncursor.close()\ncnx.close()"
+    "text": "SQL\nFirst, create the database in Workbench\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf.to_sql('ecommerce_data', engine, if_exists='replace')\n\n108"
   },
   {
     "objectID": "code/first_analysis-c.html",
@@ -74,28 +95,28 @@
     "href": "code.html",
     "title": "Code",
     "section": "",
-    "text": "Notebook"
+    "text": "Download the Jupyter Notebook from Colab"
   },
   {
     "objectID": "code.html#first-analysis",
     "href": "code.html#first-analysis",
     "title": "Code",
     "section": "",
-    "text": "Notebook"
+    "text": "Download the Jupyter Notebook from Colab"
   },
   {
     "objectID": "code/first_analysis.html",
     "href": "code/first_analysis.html",
     "title": "Competitive analysis",
     "section": "",
-    "text": "import os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv\n\nTrue"
+    "text": "import os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
   },
   {
     "objectID": "code/first_analysis.html#setup",
     "href": "code/first_analysis.html#setup",
     "title": "Competitive analysis",
     "section": "",
-    "text": "import os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv\n\nTrue"
+    "text": "import os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
   },
   {
     "objectID": "code/first_analysis.html#data",
@@ -109,7 +130,7 @@
     "href": "code/first_analysis.html#first-analysis",
     "title": "Competitive analysis",
     "section": "First analysis",
-    "text": "First analysis\n\nSolve the tasks by inserting the SQL queries.\nThe tasks are provided as comments in the Python code.\n\nExample query (we include df_example at th end to print the result):\ndf_example = pd.read_sql(\"\"\"\n    SELECT *\n    FROM ecommerce_data;\n\"\"\", engine)\n\ndf_example\n\n# Average Revenue by E-Shop\n\ndf_avg_revenue = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(annual_revenue) as average_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name;\n\"\"\", engine)\n\ndf_avg_revenue\n\n\n\n\n\n\n\n\neshop_name\naverage_revenue\n\n\n\n\n0\nE-ShopA\n30.221111\n\n\n1\nE-ShopB\n30.221111\n\n\n2\nE-ShopC\n30.221111\n\n\n\n\n\n\n\n\n# E-Shop with the Highest Average Rating\n\ndf_best_rating = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY average_rating DESC\n    LIMIT 1;\n\"\"\", engine)\n\ndf_best_rating\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopA\n3.98611\n\n\n\n\n\n\n\n\n# E-Shop Performance Over Time (Revenue per E-Shop by Year)\n\ndf_revenue_by_year = pd.read_sql(\"\"\"\n    SELECT eshop_name, YEAR(date) as year, SUM(annual_revenue) as total_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name, year;\n\"\"\", engine)\n\ndf_revenue_by_year\n\n\n\n\n\n\n\n\neshop_name\nyear\ntotal_revenue\n\n\n\n\n0\nE-ShopA\n2020\n190.33\n\n\n1\nE-ShopA\n2021\n363.71\n\n\n2\nE-ShopA\n2022\n533.92\n\n\n3\nE-ShopB\n2020\n190.33\n\n\n4\nE-ShopB\n2021\n363.71\n\n\n5\nE-ShopB\n2022\n533.92\n\n\n6\nE-ShopC\n2020\n190.33\n\n\n7\nE-ShopC\n2021\n363.71\n\n\n8\nE-ShopC\n2022\n533.92\n\n\n\n\n\n\n\n\n# E-Shop with the Most Social Media Followers\n\ndf_most_followers = pd.read_sql(\"\"\"\n    SELECT eshop_name, MAX(social_media_followers) as max_followers\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY max_followers DESC\n    LIMIT 1;\n\"\"\", engine)\n\ndf_most_followers\n\n\n\n\n\n\n\n\neshop_name\nmax_followers\n\n\n\n\n0\nE-ShopA\n1043\n\n\n\n\n\n\n\n\n# Monthly Active User Base Growth\n\n# Hint: use DATE_FORMAT(date, '%%Y-%%m') as month\n\ndf_user_growth = pd.read_sql(\"\"\"\n    SELECT eshop_name, DATE_FORMAT(date, '%%Y-%%m') as month, AVG(active_user_base) as average_active_users\n    FROM ecommerce_data\n    GROUP BY eshop_name, month;\n\"\"\", engine)\n\ndf_user_growth\n\n\n\n\n\n\n\n\neshop_name\nmonth\naverage_active_users\n\n\n\n\n0\nE-ShopA\n2020-01\n0.89\n\n\n1\nE-ShopA\n2020-02\n0.42\n\n\n2\nE-ShopA\n2020-03\n0.69\n\n\n3\nE-ShopA\n2020-04\n2.42\n\n\n4\nE-ShopA\n2020-05\n2.77\n\n\n...\n...\n...\n...\n\n\n103\nE-ShopC\n2022-08\n8.51\n\n\n104\nE-ShopC\n2022-09\n10.09\n\n\n105\nE-ShopC\n2022-10\n9.29\n\n\n106\nE-ShopC\n2022-11\n8.47\n\n\n107\nE-ShopC\n2022-12\n8.87\n\n\n\n\n108 rows × 3 columns\n\n\n\n\n# close connection\nengine.dispose()"
+    "text": "First analysis\n\nSolve the tasks by inserting the SQL queries.\nThe tasks are provided as comments in the Python code.\n\nExample query (we include df_example at th end to print the result):\ndf_example = pd.read_sql(\"\"\"\n    SELECT *\n    FROM ecommerce_data;\n\"\"\", engine)\n\ndf_example\n\n# Average Revenue by E-Shop\n\ndf_avg_revenue = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(annual_revenue) as average_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name;\n\"\"\", engine)\n\ndf_avg_revenue\n\n\n\n\n\n\n\n\neshop_name\naverage_revenue\n\n\n\n\n0\nE-ShopA\n30.221111\n\n\n1\nE-ShopB\n30.221111\n\n\n2\nE-ShopC\n30.221111\n\n\n\n\n\n\n\n\n# E-Shop with the Highest Average Rating\n\ndf_best_rating = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY average_rating DESC\n    LIMIT 1;\n\"\"\", engine)\n\ndf_best_rating\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopA\n3.977778\n\n\n\n\n\n\n\n\n# E-Shop Performance Over Time (Revenue per E-Shop by Year)\n\ndf_revenue_by_year = pd.read_sql(\"\"\"\n    SELECT eshop_name, YEAR(date) as year, SUM(annual_revenue) as total_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name, year;\n\"\"\", engine)\n\ndf_revenue_by_year\n\n\n\n\n\n\n\n\neshop_name\nyear\ntotal_revenue\n\n\n\n\n0\nE-ShopA\n2020\n190.33\n\n\n1\nE-ShopA\n2021\n363.71\n\n\n2\nE-ShopA\n2022\n533.92\n\n\n3\nE-ShopB\n2020\n190.33\n\n\n4\nE-ShopB\n2021\n363.71\n\n\n5\nE-ShopB\n2022\n533.92\n\n\n6\nE-ShopC\n2020\n190.33\n\n\n7\nE-ShopC\n2021\n363.71\n\n\n8\nE-ShopC\n2022\n533.92\n\n\n\n\n\n\n\n\n# E-Shop with the Most Social Media Followers\n\ndf_most_followers = pd.read_sql(\"\"\"\n    SELECT eshop_name, MAX(social_media_followers) as max_followers\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY max_followers DESC\n    LIMIT 1;\n\"\"\", engine)\n\ndf_most_followers\n\n\n\n\n\n\n\n\neshop_name\nmax_followers\n\n\n\n\n0\nE-ShopA\n1042.84\n\n\n\n\n\n\n\n\n# Monthly Active User Base Growth\n\n# Hint: use DATE_FORMAT(date, '%%Y-%%m') as month\n\ndf_user_growth = pd.read_sql(\"\"\"\n    SELECT eshop_name, DATE_FORMAT(date, '%%Y-%%m') as month, AVG(active_user_base) as average_active_users\n    FROM ecommerce_data\n    GROUP BY eshop_name, month;\n\"\"\", engine)\n\ndf_user_growth\n\n\n\n\n\n\n\n\neshop_name\nmonth\naverage_active_users\n\n\n\n\n0\nE-ShopA\n2020-01\n0.89\n\n\n1\nE-ShopA\n2020-02\n0.42\n\n\n2\nE-ShopA\n2020-03\n0.69\n\n\n3\nE-ShopA\n2020-04\n2.42\n\n\n4\nE-ShopA\n2020-05\n2.77\n\n\n...\n...\n...\n...\n\n\n103\nE-ShopC\n2022-08\n8.51\n\n\n104\nE-ShopC\n2022-09\n10.09\n\n\n105\nE-ShopC\n2022-10\n9.29\n\n\n106\nE-ShopC\n2022-11\n8.47\n\n\n107\nE-ShopC\n2022-12\n8.87\n\n\n\n\n108 rows × 3 columns\n\n\n\n\n# close connection\nengine.dispose()"
   },
   {
     "objectID": "case.html",
