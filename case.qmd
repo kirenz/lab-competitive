@@ -2,13 +2,7 @@
 title: "Competitive analysis E-commerce"
 ---
 
-In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis. 
 
-You'll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage. 
-
-Through this process, you'll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.
-
-For this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC. We'll use SQL and Python for data analysis and visualization.
 
 ## First analysis
 
