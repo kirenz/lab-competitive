@@ -14,11 +14,46 @@
     "text": "For these case studies, you’ll need the following technology:\n\nMySQL\n💾 Anaconda Environment\n\nPlease find below the materials:\n\n📑 Slides\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
   },
   {
-    "objectID": "workflow.html",
-    "href": "workflow.html",
-    "title": "Workflow",
+    "objectID": "code/first_analysis.html",
+    "href": "code/first_analysis.html",
+    "title": "Competitive analysis",
     "section": "",
-    "text": "This is a Quarto slidedeck.\n\nCreate new labs GitHub-Repo\nCreate new branch gh-pages\nChange settings in page: gh-pages and root\nOpen VS Code\nChange Quarto seetings in files\nRender all in terminal: quarto render\nPush to GitHub"
+    "text": "import os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv\n\nTrue"
+  },
+  {
+    "objectID": "code/first_analysis.html#setup",
+    "href": "code/first_analysis.html#setup",
+    "title": "Competitive analysis",
+    "section": "",
+    "text": "import os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv\n\nTrue"
+  },
+  {
+    "objectID": "code/first_analysis.html#data",
+    "href": "code/first_analysis.html#data",
+    "title": "Competitive analysis",
+    "section": "Data",
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)"
+  },
+  {
+    "objectID": "code/first_analysis.html#first-analysis",
+    "href": "code/first_analysis.html#first-analysis",
+    "title": "Competitive analysis",
+    "section": "First analysis",
+    "text": "First analysis\n\nSolve the tasks by inserting the SQL queries.\nThe tasks are provided as comments in the Python code.\n\nExample query (we include df_example at th end to print the result):\ndf_example = pd.read_sql(\"\"\"\n    SELECT *\n    FROM ecommerce_data;\n\"\"\", engine)\n\ndf_example\n\n# Average Revenue by E-Shop\n\ndf_avg_revenue = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(annual_revenue) as average_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name;\n\"\"\", engine)\n\ndf_avg_revenue\n\n\n\n\n\n\n\n\neshop_name\naverage_revenue\n\n\n\n\n0\nE-ShopA\n30.221111\n\n\n1\nE-ShopB\n30.221111\n\n\n2\nE-ShopC\n30.221111\n\n\n\n\n\n\n\n\n# E-Shop with the Highest Average Rating\n\ndf_best_rating = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY average_rating DESC\n    LIMIT 1;\n\"\"\", engine)\n\ndf_best_rating\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopA\n3.98611\n\n\n\n\n\n\n\n\n# E-Shop Performance Over Time (Revenue per E-Shop by Year)\n\ndf_revenue_by_year = pd.read_sql(\"\"\"\n    SELECT eshop_name, YEAR(date) as year, SUM(annual_revenue) as total_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name, year;\n\"\"\", engine)\n\ndf_revenue_by_year\n\n\n\n\n\n\n\n\neshop_name\nyear\ntotal_revenue\n\n\n\n\n0\nE-ShopA\n2020\n190.33\n\n\n1\nE-ShopA\n2021\n363.71\n\n\n2\nE-ShopA\n2022\n533.92\n\n\n3\nE-ShopB\n2020\n190.33\n\n\n4\nE-ShopB\n2021\n363.71\n\n\n5\nE-ShopB\n2022\n533.92\n\n\n6\nE-ShopC\n2020\n190.33\n\n\n7\nE-ShopC\n2021\n363.71\n\n\n8\nE-ShopC\n2022\n533.92\n\n\n\n\n\n\n\n\n# E-Shop with the Most Social Media Followers\n\ndf_most_followers = pd.read_sql(\"\"\"\n    SELECT eshop_name, MAX(social_media_followers) as max_followers\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY max_followers DESC\n    LIMIT 1;\n\"\"\", engine)\n\ndf_most_followers\n\n\n\n\n\n\n\n\neshop_name\nmax_followers\n\n\n\n\n0\nE-ShopA\n1043\n\n\n\n\n\n\n\n\n# Monthly Active User Base Growth\n\n# Hint: use DATE_FORMAT(date, '%%Y-%%m') as month\n\ndf_user_growth = pd.read_sql(\"\"\"\n    SELECT eshop_name, DATE_FORMAT(date, '%%Y-%%m') as month, AVG(active_user_base) as average_active_users\n    FROM ecommerce_data\n    GROUP BY eshop_name, month;\n\"\"\", engine)\n\ndf_user_growth\n\n\n\n\n\n\n\n\neshop_name\nmonth\naverage_active_users\n\n\n\n\n0\nE-ShopA\n2020-01\n0.89\n\n\n1\nE-ShopA\n2020-02\n0.42\n\n\n2\nE-ShopA\n2020-03\n0.69\n\n\n3\nE-ShopA\n2020-04\n2.42\n\n\n4\nE-ShopA\n2020-05\n2.77\n\n\n...\n...\n...\n...\n\n\n103\nE-ShopC\n2022-08\n8.51\n\n\n104\nE-ShopC\n2022-09\n10.09\n\n\n105\nE-ShopC\n2022-10\n9.29\n\n\n106\nE-ShopC\n2022-11\n8.47\n\n\n107\nE-ShopC\n2022-12\n8.87\n\n\n\n\n108 rows × 3 columns\n\n\n\n\n# close connection\nengine.dispose()"
+  },
+  {
+    "objectID": "code.html",
+    "href": "code.html",
+    "title": "Code",
+    "section": "",
+    "text": "Notebook"
+  },
+  {
+    "objectID": "code.html#first-analysis",
+    "href": "code.html#first-analysis",
+    "title": "Code",
+    "section": "",
+    "text": "Notebook"
   },
   {
     "objectID": "index.html",
@@ -26,6 +61,20 @@
     "title": "Lab",
     "section": "",
     "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC. We’ll use SQL and Python for data analysis and visualization.\n\nTask description"
+  },
+  {
+    "objectID": "case.html",
+    "href": "case.html",
+    "title": "Competitive analysis E-commerce",
+    "section": "",
+    "text": "Use SQL queries to analyze your data:\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
+  },
+  {
+    "objectID": "case.html#first-analysis",
+    "href": "case.html#first-analysis",
+    "title": "Competitive analysis E-commerce",
+    "section": "",
+    "text": "Use SQL queries to analyze your data:\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
   },
   {
     "objectID": "slides/slides.html#text",
@@ -77,45 +126,38 @@
     "text": "End\n\n\nJan Kirenz"
   },
   {
-    "objectID": "code/first_analysis.html",
-    "href": "code/first_analysis.html",
-    "title": "Competitive analysis E-commerce",
+    "objectID": "workflow.html",
+    "href": "workflow.html",
+    "title": "Workflow",
     "section": "",
-    "text": "import mysql.connector\nimport pandas as pd\nfrom keys import *"
+    "text": "This is a Quarto slidedeck.\n\nCreate new labs GitHub-Repo\nCreate new branch gh-pages\nChange settings in page: gh-pages and root\nOpen VS Code\nChange Quarto seetings in files\nRender all in terminal: quarto render\nPush to GitHub"
   },
   {
-    "objectID": "code/first_analysis.html#setup",
-    "href": "code/first_analysis.html#setup",
-    "title": "Competitive analysis E-commerce",
+    "objectID": "code/first_analysis-c.html",
+    "href": "code/first_analysis-c.html",
+    "title": "Competitive analysis",
     "section": "",
-    "text": "import mysql.connector\nimport pandas as pd\nfrom keys import *"
+    "text": "import os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
   },
   {
-    "objectID": "code/first_analysis.html#data",
-    "href": "code/first_analysis.html#data",
-    "title": "Competitive analysis E-commerce",
+    "objectID": "code/first_analysis-c.html#setup",
+    "href": "code/first_analysis-c.html#setup",
+    "title": "Competitive analysis",
+    "section": "",
+    "text": "import os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
+  },
+  {
+    "objectID": "code/first_analysis-c.html#data",
+    "href": "code/first_analysis-c.html#data",
+    "title": "Competitive analysis",
     "section": "Data",
-    "text": "Data\nConnect to your MySQL-database\n\nconfig = {\n  'user': '&lt;username&gt;',\n  'password': '&lt;password&gt;',\n  'host': '127.0.0.1',\n  'database': 'db-ecommerce',\n  'raise_on_warnings': True\n}\n\ncnx = mysql.connector.connect(**config)\n\n\n# Create a connection\n#cnx = mysql.connector.connect(user='&lt;username&gt;', password='&lt;password&gt;', host='127.0.0.1', database='db-ecommerce')"
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)"
   },
   {
-    "objectID": "code/first_analysis.html#first-analysis",
-    "href": "code/first_analysis.html#first-analysis",
-    "title": "Competitive analysis E-commerce",
+    "objectID": "code/first_analysis-c.html#first-analysis",
+    "href": "code/first_analysis-c.html#first-analysis",
+    "title": "Competitive analysis",
     "section": "First analysis",
-    "text": "First analysis\n\n\n# Average Revenue by E-Shop\ndf_avg_revenue = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(annual_revenue) as average_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name;\n\"\"\", cnx)\n\n\n\n# E-Shop with the Highest Average Rating\ndf_best_rating = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY average_rating DESC\n    LIMIT 1;\n\"\"\", cnx)\n\n\n\n# E-Shop Performance Over Time\ndf_revenue_by_year = pd.read_sql(\"\"\"\n    SELECT eshop_name, YEAR(date) as year, SUM(annual_revenue) as total_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name, year;\n\"\"\", cnx)\n\n\n\n# E-Shop with the Most Social Media Followers\ndf_most_followers = pd.read_sql(\"\"\"\n    SELECT eshop_name, MAX(social_media_followers) as max_followers\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY max_followers DESC\n    LIMIT 1;\n\"\"\", cnx)\n\n\n\n# Monthly Active User Base Growth\ndf_user_growth = pd.read_sql(\"\"\"\n    SELECT eshop_name, DATE_FORMAT(date, '%Y-%m') as month, AVG(active_user_base) as average_active_users\n    FROM ecommerce_data\n    GROUP BY eshop_name, month;\n\"\"\", cnx)\n\n\n\n# Close the connection\ncnx.close()"
-  },
-  {
-    "objectID": "case.html",
-    "href": "case.html",
-    "title": "Competitive analysis E-commerce",
-    "section": "",
-    "text": "Use SQL queries to analyze your data:\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
-  },
-  {
-    "objectID": "case.html#first-analysis",
-    "href": "case.html#first-analysis",
-    "title": "Competitive analysis E-commerce",
-    "section": "",
-    "text": "Use SQL queries to analyze your data:\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
+    "text": "First analysis\n\nSolve the tasks by inserting the SQL queries.\nThe tasks are provided as comments in the Python code.\n\nExample query (we include df_example at th end to print the result):\ndf_example = pd.read_sql(\"\"\"\n    SELECT *\n    FROM ecommerce_data;\n\"\"\", engine)\n\ndf_example\n\n# Average Revenue by E-Shop\n\ndf_avg_revenue = pd.read_sql(\"\"\"\n    \n\"\"\", engine)\n\ndf_avg_revenue\n\n\n# E-Shop with the Highest Average Rating\n\ndf_best_rating = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_best_rating\n\n\n# E-Shop Performance Over Time (Revenue per E-Shop by Year)\n\ndf_revenue_by_year = pd.read_sql(\"\"\"\n    \n\"\"\", engine)\n\ndf_revenue_by_year\n\n\n# E-Shop with the Most Social Media Followers\n\ndf_most_followers = pd.read_sql(\"\"\"\n    \n\"\"\", engine)\n\ndf_most_followers\n\n\n# Monthly Active User Base Growth\n\n# Hint: use DATE_FORMAT(date, '%%Y-%%m') as month\n\ndf_user_growth = pd.read_sql(\"\"\"\n    \n\"\"\", engine)\n\ndf_user_growth\n\n\n# close connection\nengine.dispose()"
   }
 ]
