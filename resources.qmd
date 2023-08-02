@@ -10,11 +10,8 @@ For these case studies, you'll need the following technology:
 - [💾 Anaconda Environment](https://github.com/kirenz/environments)
 
 
-## Market analysis case "Red"
 
 
-
-## Competitive analysis "E-commerce"
 
 
 Please find below the materials:
