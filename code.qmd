@@ -2,9 +2,3 @@
 title: "Code"
 ---
 
-## Market analysis case "Red"
-
-
-
-
-## Competitive analysis "E-commerce"
