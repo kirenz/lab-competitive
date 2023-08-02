@@ -70,6 +70,20 @@
     "text": "First analysis\n\nSolve the tasks by inserting the SQL queries.\nThe tasks are provided as comments in the Python code.\n\nExample query (we include df_example at th end to print the result):\ndf_example = pd.read_sql(\"\"\"\n    SELECT *\n    FROM ecommerce_data;\n\"\"\", engine)\n\ndf_example\n\n# Average Revenue by E-Shop\n\ndf_avg_revenue = pd.read_sql(\"\"\"\n    \n\"\"\", engine)\n\ndf_avg_revenue\n\n\n# E-Shop with the Highest Average Rating\n\ndf_best_rating = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_best_rating\n\n\n# E-Shop Performance Over Time (Revenue per E-Shop by Year)\n\ndf_revenue_by_year = pd.read_sql(\"\"\"\n    \n\"\"\", engine)\n\ndf_revenue_by_year\n\n\n# E-Shop with the Most Social Media Followers\n\ndf_most_followers = pd.read_sql(\"\"\"\n    \n\"\"\", engine)\n\ndf_most_followers\n\n\n# Monthly Active User Base Growth\n\n# Hint: use DATE_FORMAT(date, '%%Y-%%m') as month\n\ndf_user_growth = pd.read_sql(\"\"\"\n    \n\"\"\", engine)\n\ndf_user_growth\n\n\n# close connection\nengine.dispose()"
   },
   {
+    "objectID": "code.html",
+    "href": "code.html",
+    "title": "Code",
+    "section": "",
+    "text": "Notebook"
+  },
+  {
+    "objectID": "code.html#first-analysis",
+    "href": "code.html#first-analysis",
+    "title": "Code",
+    "section": "",
+    "text": "Notebook"
+  },
+  {
     "objectID": "code/first_analysis.html",
     "href": "code/first_analysis.html",
     "title": "Competitive analysis",
