@@ -11,6 +11,6 @@ config = {
     'user': 'root',
     'password': '<password>',
     'host': '127.0.0.1',
-    'database': 'db-ecommerce',
+    'database': 'db_ecommerce',
     'raise_on_warnings': True
 }
