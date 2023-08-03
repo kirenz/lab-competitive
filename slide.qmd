@@ -4,6 +4,8 @@ title: "Slides"
 
 ## SQL
 
+### Part 1
+
 [SQL introduction](https://kirenz.github.io/sql/slides/2-intro.html#/title-slide)
 
 - SELECT
@@ -15,3 +17,12 @@ title: "Slides"
 - LIKE, REGEXP
 - NULL, NOT NULL
 - LIMIT
+
+### Part 2
+
+[Aggregate data](https://kirenz.github.io/sql/slides/5-aggregieren.html#/title-slide)
+
+- COUNT, SUM, MAX, MIN, AVG
+- GROUP BY
+- HAVING
+- WITH ROLLUP
