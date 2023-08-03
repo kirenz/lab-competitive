@@ -28,65 +28,303 @@
     "text": "Anaconda Environment\nInstall the Anaconda Environment env-mr-pip.yml\n\n💾 Anaconda Environment"
   },
   {
-    "objectID": "code/analysis.html",
-    "href": "code/analysis.html",
-    "title": "SQL analysis",
+    "objectID": "code/sql-analysis-3-pandas.html",
+    "href": "code/sql-analysis-3-pandas.html",
+    "title": "Analysis part 3 with Pandas",
+    "section": "",
+    "text": "Download this Juypter Notebook and solve the tasks with Pandas."
+  },
+  {
+    "objectID": "code/sql-analysis-3-pandas.html#setup",
+    "href": "code/sql-analysis-3-pandas.html#setup",
+    "title": "Analysis part 3 with Pandas",
+    "section": "Setup",
+    "text": "Setup\n\nimport pandas as pd"
+  },
+  {
+    "objectID": "code/sql-analysis-3-pandas.html#data",
+    "href": "code/sql-analysis-3-pandas.html#data",
+    "title": "Analysis part 3 with Pandas",
+    "section": "Data",
+    "text": "Data\n\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\n\n\ndf\n\n\n\n\n\n\n\n\neshop_name\ndate\nannual_revenue\ntime_on_site\naverage_rating\nsocial_media_followers\naverage_response_time\n\n\n\n\n0\nE-ShopA\n2020-01-31\n13.35\n1.09\n4.17\n173.76\n2.35\n\n\n1\nE-ShopA\n2020-02-29\n10.74\n0.56\n4.79\n52.69\n2.58\n\n\n2\nE-ShopA\n2020-03-31\n11.91\n0.57\n2.92\n141.79\n1.54\n\n\n3\nE-ShopA\n2020-04-30\n16.38\n2.44\n3.68\n190.57\n1.92\n\n\n4\nE-ShopA\n2020-05-31\n6.52\n2.07\n2.67\n129.49\n1.49\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n103\nE-ShopC\n2022-08-31\n64.83\n12.48\n6.54\n1529.19\n1.66\n\n\n104\nE-ShopC\n2022-09-30\n31.70\n7.10\n3.04\n664.30\n0.88\n\n\n105\nE-ShopC\n2022-10-31\n27.09\n5.56\n2.65\n538.03\n0.64\n\n\n106\nE-ShopC\n2022-11-30\n56.59\n9.45\n4.88\n968.37\n1.13\n\n\n107\nE-ShopC\n2022-12-31\n66.50\n11.05\n5.56\n1262.25\n1.28\n\n\n\n\n108 rows × 7 columns\n\n\n\n\ndf.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 108 entries, 0 to 107\nData columns (total 7 columns):\n #   Column                  Non-Null Count  Dtype         \n---  ------                  --------------  -----         \n 0   eshop_name              108 non-null    object        \n 1   date                    108 non-null    datetime64[ns]\n 2   annual_revenue          108 non-null    float64       \n 3   time_on_site            108 non-null    float64       \n 4   average_rating          108 non-null    float64       \n 5   social_media_followers  108 non-null    float64       \n 6   average_response_time   108 non-null    float64       \ndtypes: datetime64[ns](1), float64(5), object(1)\nmemory usage: 6.0+ KB\n\n\n\ndf['date'] = pd.to_datetime(df['date'])"
+  },
+  {
+    "objectID": "code/sql-analysis-3-pandas.html#average-revenue-by-e-shop",
+    "href": "code/sql-analysis-3-pandas.html#average-revenue-by-e-shop",
+    "title": "Analysis part 3 with Pandas",
+    "section": "Average Revenue by E-Shop",
+    "text": "Average Revenue by E-Shop\n\nShow the average revenue for all shops\nUse the alias average_revenue\n\n\n# Average Revenue by E-Shop\ndf_avg_revenue = df.groupby('eshop_name')['annual_revenue'].mean().reset_index().rename(columns={'annual_revenue':'average_revenue'})\n\ndf_avg_revenue\n\n\n\n\n\n\n\n\neshop_name\naverage_revenue\n\n\n\n\n0\nE-ShopA\n33.483333\n\n\n1\nE-ShopB\n29.222778\n\n\n2\nE-ShopC\n30.625000"
+  },
+  {
+    "objectID": "code/sql-analysis-3-pandas.html#e-shop-with-the-highest-average-rating",
+    "href": "code/sql-analysis-3-pandas.html#e-shop-with-the-highest-average-rating",
+    "title": "Analysis part 3 with Pandas",
+    "section": "E-Shop with the Highest Average Rating",
+    "text": "E-Shop with the Highest Average Rating\n\nOnly show the E-Shop with the highest average rating\nUse the alias average_rating\n\n\ndf_best_rating = df.groupby('eshop_name')['average_rating'].mean().reset_index().sort_values('average_rating', ascending=False).head(1)\n\ndf_best_rating\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopA\n4.339167"
+  },
+  {
+    "objectID": "code/sql-analysis-3-pandas.html#e-shop-performance-over-time",
+    "href": "code/sql-analysis-3-pandas.html#e-shop-performance-over-time",
+    "title": "Analysis part 3 with Pandas",
+    "section": "E-Shop Performance Over Time",
+    "text": "E-Shop Performance Over Time\n\nShow the annual revenue per E-Shop by year\nUse the aliases year and total_revenue\n\n\ndf['year'] = df['date'].dt.year\n\ndf_revenue_by_year = df.groupby(['eshop_name', 'year'])['annual_revenue'].sum().reset_index().rename(columns={'annual_revenue':'total_revenue'})\ndf_revenue_by_year\n\n\n\n\n\n\n\n\neshop_name\nyear\ntotal_revenue\n\n\n\n\n0\nE-ShopA\n2020\n196.02\n\n\n1\nE-ShopA\n2021\n377.07\n\n\n2\nE-ShopA\n2022\n632.31\n\n\n3\nE-ShopB\n2020\n189.20\n\n\n4\nE-ShopB\n2021\n308.77\n\n\n5\nE-ShopB\n2022\n554.05\n\n\n6\nE-ShopC\n2020\n200.91\n\n\n7\nE-ShopC\n2021\n363.94\n\n\n8\nE-ShopC\n2022\n537.65"
+  },
+  {
+    "objectID": "code/sql-analysis-3-pandas.html#maximum-social-media-followers",
+    "href": "code/sql-analysis-3-pandas.html#maximum-social-media-followers",
+    "title": "Analysis part 3 with Pandas",
+    "section": "Maximum Social Media Followers",
+    "text": "Maximum Social Media Followers\n\nShow the maximum amount of social media followers for every E-shop in a descending order.\nUse the alias max_followers\n\n\n\ndf_most_followers = df.groupby('eshop_name')['social_media_followers'].max().reset_index().sort_values('social_media_followers', ascending=False).head(1)\n\n\ndf_most_followers\n\n\n\n\n\n\n\n\neshop_name\nsocial_media_followers\n\n\n\n\n2\nE-ShopC\n1529.19"
+  },
+  {
+    "objectID": "code/sql-analysis-3-pandas.html#monthly-time-on-site-overview",
+    "href": "code/sql-analysis-3-pandas.html#monthly-time-on-site-overview",
+    "title": "Analysis part 3 with Pandas",
+    "section": "Monthly Time on Site overview",
+    "text": "Monthly Time on Site overview\n\nShow a monthly overview of the average time on site for every E-shop (order by E-shop and month)\nUse the aliases month and average_time_on_site\nHint: in Python, you need to use %% instead of % in your query. This means you have to use DATE_FORMAT(date, '%%m')\n\n\n\ndf['month'] = df['date'].dt.to_period('M')\ndf_user_growth = df.groupby(['eshop_name', 'month'])['time_on_site'].mean().reset_index().rename(columns={'time_on_site':'average_time_on_site'})\n\ndf_user_growth\n\n\n\n\n\n\n\n\neshop_name\nmonth\naverage_time_on_site\n\n\n\n\n0\nE-ShopA\n2020-01\n1.09\n\n\n1\nE-ShopA\n2020-02\n0.56\n\n\n2\nE-ShopA\n2020-03\n0.57\n\n\n3\nE-ShopA\n2020-04\n2.44\n\n\n4\nE-ShopA\n2020-05\n2.07\n\n\n...\n...\n...\n...\n\n\n103\nE-ShopC\n2022-08\n12.48\n\n\n104\nE-ShopC\n2022-09\n7.10\n\n\n105\nE-ShopC\n2022-10\n5.56\n\n\n106\nE-ShopC\n2022-11\n9.45\n\n\n107\nE-ShopC\n2022-12\n11.05\n\n\n\n\n108 rows × 3 columns"
+  },
+  {
+    "objectID": "code/sql-analysis-2.html",
+    "href": "code/sql-analysis-2.html",
+    "title": "SQL analysis part 2",
     "section": "",
     "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
   },
   {
-    "objectID": "code/analysis.html#setup",
-    "href": "code/analysis.html#setup",
-    "title": "SQL analysis",
+    "objectID": "code/sql-analysis-2.html#setup",
+    "href": "code/sql-analysis-2.html#setup",
+    "title": "SQL analysis part 2",
     "section": "Setup",
     "text": "Setup\n\nimport os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
   },
   {
-    "objectID": "code/analysis.html#data",
-    "href": "code/analysis.html#data",
-    "title": "SQL analysis",
+    "objectID": "code/sql-analysis-2.html#data",
+    "href": "code/sql-analysis-2.html#data",
+    "title": "SQL analysis part 2",
+    "section": "Data",
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')\n\n108"
+  },
+  {
+    "objectID": "code/sql-analysis-2.html#close-the-connection",
+    "href": "code/sql-analysis-2.html#close-the-connection",
+    "title": "SQL analysis part 2",
+    "section": "Close the connection",
+    "text": "Close the connection\n\n# close connection\nengine.dispose()"
+  },
+  {
+    "objectID": "code/sql-analysis-3-c.html",
+    "href": "code/sql-analysis-3-c.html",
+    "title": "SQL analysis part 3",
+    "section": "",
+    "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
+  },
+  {
+    "objectID": "code/sql-analysis-3-c.html#setup",
+    "href": "code/sql-analysis-3-c.html#setup",
+    "title": "SQL analysis part 3",
+    "section": "Setup",
+    "text": "Setup\n\nimport os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
+  },
+  {
+    "objectID": "code/sql-analysis-3-c.html#data",
+    "href": "code/sql-analysis-3-c.html#data",
+    "title": "SQL analysis part 3",
     "section": "Data",
     "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
   },
   {
-    "objectID": "code/analysis.html#average-revenue-by-e-shop",
-    "href": "code/analysis.html#average-revenue-by-e-shop",
-    "title": "SQL analysis",
+    "objectID": "code/sql-analysis-3-c.html#average-revenue-by-e-shop",
+    "href": "code/sql-analysis-3-c.html#average-revenue-by-e-shop",
+    "title": "SQL analysis part 3",
     "section": "Average Revenue by E-Shop",
-    "text": "Average Revenue by E-Shop\n\nShow the average revenue for all shops\nUse the alias average_revenue\n\n\n\ndf_avg_revenue = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(annual_revenue) as average_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name;\n\"\"\", engine)\n\ndf_avg_revenue\n\n\n\n\n\n\n\n\neshop_name\naverage_revenue\n\n\n\n\n0\nE-ShopA\n54.163333\n\n\n1\nE-ShopB\n54.360000\n\n\n2\nE-ShopC\n47.520556"
+    "text": "Average Revenue by E-Shop\n\nShow the average revenue for all shops\nUse the alias average_revenue\n\n\n\ndf_avg_revenue = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_avg_revenue"
   },
   {
-    "objectID": "code/analysis.html#e-shop-with-the-highest-average-rating",
-    "href": "code/analysis.html#e-shop-with-the-highest-average-rating",
-    "title": "SQL analysis",
+    "objectID": "code/sql-analysis-3-c.html#e-shop-with-the-highest-average-rating",
+    "href": "code/sql-analysis-3-c.html#e-shop-with-the-highest-average-rating",
+    "title": "SQL analysis part 3",
     "section": "E-Shop with the Highest Average Rating",
-    "text": "E-Shop with the Highest Average Rating\n\nOnly show the E-Shop with the highest average rating\nUse the alias average_rating\n\n\n\ndf_best_rating = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY average_rating DESC\n    LIMIT 1;\n\"\"\", engine)\n\ndf_best_rating\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopB\n7.203333"
+    "text": "E-Shop with the Highest Average Rating\n\nOnly show the E-Shop with the highest average rating\nUse the alias average_rating\n\n\n\ndf_best_rating = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_best_rating"
   },
   {
-    "objectID": "code/analysis.html#e-shop-performance-over-time",
-    "href": "code/analysis.html#e-shop-performance-over-time",
-    "title": "SQL analysis",
+    "objectID": "code/sql-analysis-3-c.html#e-shop-performance-over-time",
+    "href": "code/sql-analysis-3-c.html#e-shop-performance-over-time",
+    "title": "SQL analysis part 3",
     "section": "E-Shop Performance Over Time",
-    "text": "E-Shop Performance Over Time\n\nShow the annual revenue per E-Shop by year\nUse the aliases year and total_revenue\n\n\n\ndf_revenue_by_year = pd.read_sql(\"\"\"\n    SELECT eshop_name, YEAR(date) as year, SUM(annual_revenue) as total_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name, year;\n\"\"\", engine)\n\ndf_revenue_by_year\n\n\n\n\n\n\n\n\neshop_name\nyear\ntotal_revenue\n\n\n\n\n0\nE-ShopA\n2020\n355.79\n\n\n1\nE-ShopA\n2021\n608.77\n\n\n2\nE-ShopA\n2022\n985.32\n\n\n3\nE-ShopB\n2020\n359.12\n\n\n4\nE-ShopB\n2021\n660.61\n\n\n5\nE-ShopB\n2022\n937.23\n\n\n6\nE-ShopC\n2020\n279.54\n\n\n7\nE-ShopC\n2021\n600.67\n\n\n8\nE-ShopC\n2022\n830.53"
+    "text": "E-Shop Performance Over Time\n\nShow the annual revenue per E-Shop by year\nUse the aliases year and total_revenue\n\n\n\ndf_revenue_by_year = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_revenue_by_year"
   },
   {
-    "objectID": "code/analysis.html#maximum-social-media-followers",
-    "href": "code/analysis.html#maximum-social-media-followers",
-    "title": "SQL analysis",
+    "objectID": "code/sql-analysis-3-c.html#maximum-social-media-followers",
+    "href": "code/sql-analysis-3-c.html#maximum-social-media-followers",
+    "title": "SQL analysis part 3",
     "section": "Maximum Social Media Followers",
-    "text": "Maximum Social Media Followers\n\nShow the maximum amount of social media followers for every E-shop in a descending order.\nUse the alias max_followers\n\n\n\ndf_most_followers = pd.read_sql(\"\"\"\n    SELECT eshop_name, MAX(social_media_followers) as max_followers\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY max_followers DESC;\n\"\"\", engine)\n\ndf_most_followers\n\n\n\n\n\n\n\n\neshop_name\nmax_followers\n\n\n\n\n0\nE-ShopA\n2416.26\n\n\n1\nE-ShopC\n2265.09\n\n\n2\nE-ShopB\n2253.55"
+    "text": "Maximum Social Media Followers\n\nShow the maximum amount of social media followers for every E-shop in a descending order.\nUse the alias max_followers\n\n\n\ndf_most_followers = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_most_followers"
   },
   {
-    "objectID": "code/analysis.html#monthly-time-on-site-overview",
-    "href": "code/analysis.html#monthly-time-on-site-overview",
-    "title": "SQL analysis",
+    "objectID": "code/sql-analysis-3-c.html#monthly-time-on-site-overview",
+    "href": "code/sql-analysis-3-c.html#monthly-time-on-site-overview",
+    "title": "SQL analysis part 3",
     "section": "Monthly Time on Site overview",
-    "text": "Monthly Time on Site overview\n\nShow a monthly overview of the average time on site for every E-shop (order by E-shop and month)\nUse the aliases month and average_time_on_site\nHint: in Python, you need to use %% instead of % in your query. This means you have to use DATE_FORMAT(date, '%%m')\n\n\ndf_user_growth = pd.read_sql(\"\"\"\n    SELECT eshop_name, DATE_FORMAT(date, '%%m') as month, AVG(time_on_site) as average_time_on_site\n    FROM ecommerce_data\n    GROUP BY eshop_name, month;\n\"\"\", engine)\n\ndf_user_growth\n\n\n\n\n\n\n\n\neshop_name\nmonth\naverage_time_users\n\n\n\n\n0\nE-ShopA\n01\n5.266667\n\n\n1\nE-ShopA\n02\n3.813333\n\n\n2\nE-ShopA\n03\n5.186667\n\n\n3\nE-ShopA\n04\n6.670000\n\n\n4\nE-ShopA\n05\n5.360000\n\n\n5\nE-ShopA\n06\n7.266667\n\n\n6\nE-ShopA\n07\n6.110000\n\n\n7\nE-ShopA\n08\n3.676667\n\n\n8\nE-ShopA\n09\n7.250000\n\n\n9\nE-ShopA\n10\n7.033333\n\n\n10\nE-ShopA\n11\n7.420000\n\n\n11\nE-ShopA\n12\n7.513333\n\n\n12\nE-ShopB\n01\n3.630000\n\n\n13\nE-ShopB\n02\n3.930000\n\n\n14\nE-ShopB\n03\n3.236667\n\n\n15\nE-ShopB\n04\n6.406667\n\n\n16\nE-ShopB\n05\n3.626667\n\n\n17\nE-ShopB\n06\n6.233333\n\n\n18\nE-ShopB\n07\n4.786667\n\n\n19\nE-ShopB\n08\n6.523333\n\n\n20\nE-ShopB\n09\n6.510000\n\n\n21\nE-ShopB\n10\n6.833333\n\n\n22\nE-ShopB\n11\n6.136667\n\n\n23\nE-ShopB\n12\n6.613333\n\n\n24\nE-ShopC\n01\n4.530000\n\n\n25\nE-ShopC\n02\n2.836667\n\n\n26\nE-ShopC\n03\n2.786667\n\n\n27\nE-ShopC\n04\n7.063333\n\n\n28\nE-ShopC\n05\n5.053333\n\n\n29\nE-ShopC\n06\n6.830000\n\n\n30\nE-ShopC\n07\n3.930000\n\n\n31\nE-ShopC\n08\n6.566667\n\n\n32\nE-ShopC\n09\n6.356667\n\n\n33\nE-ShopC\n10\n6.496667\n\n\n34\nE-ShopC\n11\n6.383333\n\n\n35\nE-ShopC\n12\n7.563333"
+    "text": "Monthly Time on Site overview\n\nShow a monthly overview of the average time on site for every E-shop (order by E-shop and month)\nUse the aliases month and average_time_on_site\nHint: in Python, you need to use %% instead of % in your query. This means you have to use DATE_FORMAT(date, '%%m')\n\n\ndf_user_growth = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_user_growth"
   },
   {
-    "objectID": "code/analysis.html#close-the-connection",
-    "href": "code/analysis.html#close-the-connection",
-    "title": "SQL analysis",
+    "objectID": "code/sql-analysis-3-c.html#close-the-connection",
+    "href": "code/sql-analysis-3-c.html#close-the-connection",
+    "title": "SQL analysis part 3",
+    "section": "Close the connection",
+    "text": "Close the connection\n\n# close connection\nengine.dispose()"
+  },
+  {
+    "objectID": "workflow.html",
+    "href": "workflow.html",
+    "title": "Workflow",
+    "section": "",
+    "text": "This is a Quarto slidedeck.\n\nCreate new labs GitHub-Repo\nCreate new branch gh-pages\nChange settings in page: gh-pages and root\nOpen VS Code\nChange Quarto seetings in files\nRender all in terminal: quarto render\nPush to GitHub"
+  },
+  {
+    "objectID": "slides/slides.html#text",
+    "href": "slides/slides.html#text",
+    "title": "Title",
+    "section": "Text",
+    "text": "Text\n\na 🤖\n\nabc\n\n\n\n\nb\nc1\n\n📚 Required reading: A & B (2023)\nhttps://arxiv.org/pdf/2303.12712.pdf\n\nRussell & Norvig, 2009"
+  },
+  {
+    "objectID": "slides/slides.html#image",
+    "href": "slides/slides.html#image",
+    "title": "Title",
+    "section": "Image",
+    "text": "Image"
+  },
+  {
+    "objectID": "slides/slides.html#video",
+    "href": "slides/slides.html#video",
+    "title": "Title",
+    "section": "Video",
+    "text": "Video"
+  },
+  {
+    "objectID": "slides/slides.html#a-lot-of-text",
+    "href": "slides/slides.html#a-lot-of-text",
+    "title": "Title",
+    "section": "A lot of text",
+    "text": "A lot of text\nSmaller heading"
+  },
+  {
+    "objectID": "slides/slides.html#background-image",
+    "href": "slides/slides.html#background-image",
+    "title": "Title",
+    "section": "Background image",
+    "text": "Background image\nabc"
+  },
+  {
+    "objectID": "slides/slides.html#code",
+    "href": "slides/slides.html#code",
+    "title": "Title",
+    "section": "Code",
+    "text": "Code\n1print('Hello World')\n2for i in LIST:\n  df[i] = df[i].astype('cat')\n\n1\n\nPrint Hello World, and then,\n\n2\n\ntransform all columns in the LIST element to categorical variables"
+  },
+  {
+    "objectID": "slides/slides.html#end",
+    "href": "slides/slides.html#end",
+    "title": "Title",
+    "section": "End",
+    "text": "End\n\n\nJan Kirenz"
+  },
+  {
+    "objectID": "slide.html",
+    "href": "slide.html",
+    "title": "Slides",
+    "section": "",
+    "text": "SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT\n\n\n\n\nAggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY\nHAVING\nWITH ROLLUP"
+  },
+  {
+    "objectID": "slide.html#sql",
+    "href": "slide.html#sql",
+    "title": "Slides",
+    "section": "",
+    "text": "SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT\n\n\n\n\nAggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY\nHAVING\nWITH ROLLUP"
+  },
+  {
+    "objectID": "case.html",
+    "href": "case.html",
+    "title": "Competitive analysis E-commerce",
+    "section": "",
+    "text": "Use SQL queries to analyze your data (use the Jupyter Notebook provided in the code section):\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
+  },
+  {
+    "objectID": "case.html#first-analysis",
+    "href": "case.html#first-analysis",
+    "title": "Competitive analysis E-commerce",
+    "section": "",
+    "text": "Use SQL queries to analyze your data (use the Jupyter Notebook provided in the code section):\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Lab",
+    "section": "",
+    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data analysis with SQL, which is crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-Shop A, E-Shop B, and E-Shop C.\n\nTask descriptions"
+  },
+  {
+    "objectID": "code.html",
+    "href": "code.html",
+    "title": "Code",
+    "section": "",
+    "text": "SQL analysis part 1"
+  },
+  {
+    "objectID": "code.html#sql-analysis-part-1",
+    "href": "code.html#sql-analysis-part-1",
+    "title": "Code",
+    "section": "",
+    "text": "SQL analysis part 1"
+  },
+  {
+    "objectID": "code.html#sql-analysis-part-2",
+    "href": "code.html#sql-analysis-part-2",
+    "title": "Code",
+    "section": "SQL analysis part 2",
+    "text": "SQL analysis part 2\n\nSQL analysis part 2"
+  },
+  {
+    "objectID": "code.html#sql-analysis-part-3",
+    "href": "code.html#sql-analysis-part-3",
+    "title": "Code",
+    "section": "SQL analysis part 3",
+    "text": "SQL analysis part 3\n\nSQL analysis part 3"
+  },
+  {
+    "objectID": "code.html#pandas-analysis-part-3",
+    "href": "code.html#pandas-analysis-part-3",
+    "title": "Code",
+    "section": "Pandas analysis part 3",
+    "text": "Pandas analysis part 3\n\nAnalysis part 3 with Pandas"
+  },
+  {
+    "objectID": "code/sql-analysis-2-c.html",
+    "href": "code/sql-analysis-2-c.html",
+    "title": "SQL analysis part 2",
+    "section": "",
+    "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
+  },
+  {
+    "objectID": "code/sql-analysis-2-c.html#setup",
+    "href": "code/sql-analysis-2-c.html#setup",
+    "title": "SQL analysis part 2",
+    "section": "Setup",
+    "text": "Setup\n\nimport os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
+  },
+  {
+    "objectID": "code/sql-analysis-2-c.html#data",
+    "href": "code/sql-analysis-2-c.html#data",
+    "title": "SQL analysis part 2",
+    "section": "Data",
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
+  },
+  {
+    "objectID": "code/sql-analysis-2-c.html#close-the-connection",
+    "href": "code/sql-analysis-2-c.html#close-the-connection",
+    "title": "SQL analysis part 2",
     "section": "Close the connection",
     "text": "Close the connection\n\n# close connection\nengine.dispose()"
   },
@@ -161,233 +399,65 @@
     "text": "Close the connection\n\n# close connection\nengine.dispose()"
   },
   {
-    "objectID": "workflow.html",
-    "href": "workflow.html",
-    "title": "Workflow",
-    "section": "",
-    "text": "This is a Quarto slidedeck.\n\nCreate new labs GitHub-Repo\nCreate new branch gh-pages\nChange settings in page: gh-pages and root\nOpen VS Code\nChange Quarto seetings in files\nRender all in terminal: quarto render\nPush to GitHub"
-  },
-  {
-    "objectID": "slides/slides.html#text",
-    "href": "slides/slides.html#text",
-    "title": "Title",
-    "section": "Text",
-    "text": "Text\n\na 🤖\n\nabc\n\n\n\n\nb\nc1\n\n📚 Required reading: A & B (2023)\nhttps://arxiv.org/pdf/2303.12712.pdf\n\nRussell & Norvig, 2009"
-  },
-  {
-    "objectID": "slides/slides.html#image",
-    "href": "slides/slides.html#image",
-    "title": "Title",
-    "section": "Image",
-    "text": "Image"
-  },
-  {
-    "objectID": "slides/slides.html#video",
-    "href": "slides/slides.html#video",
-    "title": "Title",
-    "section": "Video",
-    "text": "Video"
-  },
-  {
-    "objectID": "slides/slides.html#a-lot-of-text",
-    "href": "slides/slides.html#a-lot-of-text",
-    "title": "Title",
-    "section": "A lot of text",
-    "text": "A lot of text\nSmaller heading"
-  },
-  {
-    "objectID": "slides/slides.html#background-image",
-    "href": "slides/slides.html#background-image",
-    "title": "Title",
-    "section": "Background image",
-    "text": "Background image\nabc"
-  },
-  {
-    "objectID": "slides/slides.html#code",
-    "href": "slides/slides.html#code",
-    "title": "Title",
-    "section": "Code",
-    "text": "Code\n1print('Hello World')\n2for i in LIST:\n  df[i] = df[i].astype('cat')\n\n1\n\nPrint Hello World, and then,\n\n2\n\ntransform all columns in the LIST element to categorical variables"
-  },
-  {
-    "objectID": "slides/slides.html#end",
-    "href": "slides/slides.html#end",
-    "title": "Title",
-    "section": "End",
-    "text": "End\n\n\nJan Kirenz"
-  },
-  {
-    "objectID": "slide.html",
-    "href": "slide.html",
-    "title": "Slides",
-    "section": "",
-    "text": "SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT"
-  },
-  {
-    "objectID": "slide.html#sql",
-    "href": "slide.html#sql",
-    "title": "Slides",
-    "section": "",
-    "text": "SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT"
-  },
-  {
-    "objectID": "case.html",
-    "href": "case.html",
-    "title": "Competitive analysis E-commerce",
-    "section": "",
-    "text": "Use SQL queries to analyze your data (use the Jupyter Notebook provided in the code section):\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
-  },
-  {
-    "objectID": "case.html#first-analysis",
-    "href": "case.html#first-analysis",
-    "title": "Competitive analysis E-commerce",
-    "section": "",
-    "text": "Use SQL queries to analyze your data (use the Jupyter Notebook provided in the code section):\n\nCalculate the average annual revenue for each e-shop.\n\n\n\nFind the e-shop with the highest average rating\n\n\n\nCalculate the total annual revenue for each e-shop, for each year.\n\n\n\nWhat is the E-Shop with the most Social Media Followers?\n\n\n\nShow the growth of the active user base each month for each e-shop:"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Lab",
-    "section": "",
-    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-Shop A, E-Shop B, and E-Shop C.\nWe’ll use SQL and Python for data analysis and visualization.\nTasks\n\nSQL analysis part 1"
-  },
-  {
-    "objectID": "code.html",
-    "href": "code.html",
-    "title": "Code",
-    "section": "",
-    "text": "SQL analysis part 1"
-  },
-  {
-    "objectID": "code.html#sql-analysis",
-    "href": "code.html#sql-analysis",
-    "title": "Code",
-    "section": "",
-    "text": "SQL analysis part 1"
-  },
-  {
-    "objectID": "code/analysis-c.html",
-    "href": "code/analysis-c.html",
-    "title": "First SQL analysis",
+    "objectID": "code/sql-analysis-3.html",
+    "href": "code/sql-analysis-3.html",
+    "title": "SQL analysis part 3",
     "section": "",
     "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
   },
   {
-    "objectID": "code/analysis-c.html#setup",
-    "href": "code/analysis-c.html#setup",
-    "title": "First SQL analysis",
+    "objectID": "code/sql-analysis-3.html#setup",
+    "href": "code/sql-analysis-3.html#setup",
+    "title": "SQL analysis part 3",
     "section": "Setup",
     "text": "Setup\n\nimport os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
   },
   {
-    "objectID": "code/analysis-c.html#data",
-    "href": "code/analysis-c.html#data",
-    "title": "First SQL analysis",
+    "objectID": "code/sql-analysis-3.html#data",
+    "href": "code/sql-analysis-3.html#data",
+    "title": "SQL analysis part 3",
     "section": "Data",
     "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
   },
   {
-    "objectID": "code/analysis-c.html#average-revenue-by-e-shop",
-    "href": "code/analysis-c.html#average-revenue-by-e-shop",
-    "title": "First SQL analysis",
+    "objectID": "code/sql-analysis-3.html#average-revenue-by-e-shop",
+    "href": "code/sql-analysis-3.html#average-revenue-by-e-shop",
+    "title": "SQL analysis part 3",
     "section": "Average Revenue by E-Shop",
-    "text": "Average Revenue by E-Shop\n\nShow the average revenue for all shops\nUse the alias average_revenue\n\n\n\ndf_avg_revenue = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_avg_revenue"
+    "text": "Average Revenue by E-Shop\n\nShow the average revenue for all shops\nUse the alias average_revenue\n\n\n\ndf_avg_revenue = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(annual_revenue) as average_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name;\n\"\"\", engine)\n\ndf_avg_revenue\n\n\n\n\n\n\n\n\neshop_name\naverage_revenue\n\n\n\n\n0\nE-ShopA\n54.163333\n\n\n1\nE-ShopB\n54.360000\n\n\n2\nE-ShopC\n47.520556"
   },
   {
-    "objectID": "code/analysis-c.html#e-shop-with-the-highest-average-rating",
-    "href": "code/analysis-c.html#e-shop-with-the-highest-average-rating",
-    "title": "First SQL analysis",
+    "objectID": "code/sql-analysis-3.html#e-shop-with-the-highest-average-rating",
+    "href": "code/sql-analysis-3.html#e-shop-with-the-highest-average-rating",
+    "title": "SQL analysis part 3",
     "section": "E-Shop with the Highest Average Rating",
-    "text": "E-Shop with the Highest Average Rating\n\nOnly show the E-Shop with the highest average rating\nUse the alias average_rating\n\n\n\ndf_best_rating = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_best_rating"
+    "text": "E-Shop with the Highest Average Rating\n\nOnly show the E-Shop with the highest average rating\nUse the alias average_rating\n\n\n\ndf_best_rating = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY average_rating DESC\n    LIMIT 1;\n\"\"\", engine)\n\ndf_best_rating\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopB\n7.203333"
   },
   {
-    "objectID": "code/analysis-c.html#e-shop-performance-over-time",
-    "href": "code/analysis-c.html#e-shop-performance-over-time",
-    "title": "First SQL analysis",
-    "section": "E-Shop Performance Over Time",
-    "text": "E-Shop Performance Over Time\n\nShow the annual revenue per E-Shop by year\nUse the aliases year and total_revenue\n\n\n\ndf_revenue_by_year = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_revenue_by_year"
-  },
-  {
-    "objectID": "code/analysis-c.html#maximum-social-media-followers",
-    "href": "code/analysis-c.html#maximum-social-media-followers",
-    "title": "First SQL analysis",
-    "section": "Maximum Social Media Followers",
-    "text": "Maximum Social Media Followers\n\nShow the maximum amount of social media followers for every E-shop in a descending order.\nUse the alias max_followers\n\n\n\ndf_most_followers = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_most_followers"
-  },
-  {
-    "objectID": "code/analysis-c.html#monthly-time-on-site-overview",
-    "href": "code/analysis-c.html#monthly-time-on-site-overview",
-    "title": "First SQL analysis",
-    "section": "Monthly Time on Site overview",
-    "text": "Monthly Time on Site overview\n\nShow a monthly overview of the average time on site for every E-shop (order by E-shop and month)\nUse the aliases month and average_time_on_site\nHint: in Python, you need to use %% instead of % in your query. This means you have to use DATE_FORMAT(date, '%%m')\n\n\ndf_user_growth = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf_user_growth"
-  },
-  {
-    "objectID": "code/analysis-c.html#close-the-connection",
-    "href": "code/analysis-c.html#close-the-connection",
-    "title": "First SQL analysis",
-    "section": "Close the connection",
-    "text": "Close the connection\n\n# close connection\nengine.dispose()"
-  },
-  {
-    "objectID": "code/analysis-pandas.html",
-    "href": "code/analysis-pandas.html",
-    "title": "First Pandas analysis",
-    "section": "",
-    "text": "Download this Juypter Notebook and solve the tasks with Pandas."
-  },
-  {
-    "objectID": "code/analysis-pandas.html#setup",
-    "href": "code/analysis-pandas.html#setup",
-    "title": "First Pandas analysis",
-    "section": "Setup",
-    "text": "Setup\n\nimport pandas as pd"
-  },
-  {
-    "objectID": "code/analysis-pandas.html#data",
-    "href": "code/analysis-pandas.html#data",
-    "title": "First Pandas analysis",
-    "section": "Data",
-    "text": "Data\n\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')"
-  },
-  {
-    "objectID": "code/analysis-pandas.html#average-revenue-by-e-shop",
-    "href": "code/analysis-pandas.html#average-revenue-by-e-shop",
-    "title": "First Pandas analysis",
-    "section": "Average Revenue by E-Shop",
-    "text": "Average Revenue by E-Shop\n\nShow the average revenue for all shops\nUse the alias average_revenue\n\n\n# Average Revenue by E-Shop\ndf_avg_revenue = df.groupby('eshop_name')['annual_revenue'].mean().reset_index().rename(columns={'annual_revenue':'average_revenue'})\n\ndf_avg_revenue\n\n\n\n\n\n\n\n\neshop_name\naverage_revenue\n\n\n\n\n0\nE-ShopA\n33.483333\n\n\n1\nE-ShopB\n29.222778\n\n\n2\nE-ShopC\n30.625000"
-  },
-  {
-    "objectID": "code/analysis-pandas.html#e-shop-with-the-highest-average-rating",
-    "href": "code/analysis-pandas.html#e-shop-with-the-highest-average-rating",
-    "title": "First Pandas analysis",
-    "section": "E-Shop with the Highest Average Rating",
-    "text": "E-Shop with the Highest Average Rating\n\nOnly show the E-Shop with the highest average rating\nUse the alias average_rating\n\n\ndf_best_rating = df.groupby('eshop_name')['average_rating'].mean().reset_index().sort_values('average_rating', ascending=False).head(1)\n\ndf_best_rating\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopA\n4.339167"
-  },
-  {
-    "objectID": "code/analysis-pandas.html#e-shop-performance-over-time",
-    "href": "code/analysis-pandas.html#e-shop-performance-over-time",
-    "title": "First Pandas analysis",
+    "objectID": "code/sql-analysis-3.html#e-shop-performance-over-time",
+    "href": "code/sql-analysis-3.html#e-shop-performance-over-time",
+    "title": "SQL analysis part 3",
     "section": "E-Shop Performance Over Time",
     "text": "E-Shop Performance Over Time\n\nShow the annual revenue per E-Shop by year\nUse the aliases year and total_revenue\n\n\n\ndf_revenue_by_year = pd.read_sql(\"\"\"\n    SELECT eshop_name, YEAR(date) as year, SUM(annual_revenue) as total_revenue\n    FROM ecommerce_data\n    GROUP BY eshop_name, year;\n\"\"\", engine)\n\ndf_revenue_by_year\n\n\n\n\n\n\n\n\neshop_name\nyear\ntotal_revenue\n\n\n\n\n0\nE-ShopA\n2020\n355.79\n\n\n1\nE-ShopA\n2021\n608.77\n\n\n2\nE-ShopA\n2022\n985.32\n\n\n3\nE-ShopB\n2020\n359.12\n\n\n4\nE-ShopB\n2021\n660.61\n\n\n5\nE-ShopB\n2022\n937.23\n\n\n6\nE-ShopC\n2020\n279.54\n\n\n7\nE-ShopC\n2021\n600.67\n\n\n8\nE-ShopC\n2022\n830.53"
   },
   {
-    "objectID": "code/analysis-pandas.html#maximum-social-media-followers",
-    "href": "code/analysis-pandas.html#maximum-social-media-followers",
-    "title": "First Pandas analysis",
+    "objectID": "code/sql-analysis-3.html#maximum-social-media-followers",
+    "href": "code/sql-analysis-3.html#maximum-social-media-followers",
+    "title": "SQL analysis part 3",
     "section": "Maximum Social Media Followers",
     "text": "Maximum Social Media Followers\n\nShow the maximum amount of social media followers for every E-shop in a descending order.\nUse the alias max_followers\n\n\n\ndf_most_followers = pd.read_sql(\"\"\"\n    SELECT eshop_name, MAX(social_media_followers) as max_followers\n    FROM ecommerce_data\n    GROUP BY eshop_name\n    ORDER BY max_followers DESC;\n\"\"\", engine)\n\ndf_most_followers\n\n\n\n\n\n\n\n\neshop_name\nmax_followers\n\n\n\n\n0\nE-ShopA\n2416.26\n\n\n1\nE-ShopC\n2265.09\n\n\n2\nE-ShopB\n2253.55"
   },
   {
-    "objectID": "code/analysis-pandas.html#monthly-time-on-site-overview",
-    "href": "code/analysis-pandas.html#monthly-time-on-site-overview",
-    "title": "First Pandas analysis",
+    "objectID": "code/sql-analysis-3.html#monthly-time-on-site-overview",
+    "href": "code/sql-analysis-3.html#monthly-time-on-site-overview",
+    "title": "SQL analysis part 3",
     "section": "Monthly Time on Site overview",
     "text": "Monthly Time on Site overview\n\nShow a monthly overview of the average time on site for every E-shop (order by E-shop and month)\nUse the aliases month and average_time_on_site\nHint: in Python, you need to use %% instead of % in your query. This means you have to use DATE_FORMAT(date, '%%m')\n\n\ndf_user_growth = pd.read_sql(\"\"\"\n    SELECT eshop_name, DATE_FORMAT(date, '%%m') as month, AVG(time_on_site) as average_time_on_site\n    FROM ecommerce_data\n    GROUP BY eshop_name, month;\n\"\"\", engine)\n\ndf_user_growth\n\n\n\n\n\n\n\n\neshop_name\nmonth\naverage_time_users\n\n\n\n\n0\nE-ShopA\n01\n5.266667\n\n\n1\nE-ShopA\n02\n3.813333\n\n\n2\nE-ShopA\n03\n5.186667\n\n\n3\nE-ShopA\n04\n6.670000\n\n\n4\nE-ShopA\n05\n5.360000\n\n\n5\nE-ShopA\n06\n7.266667\n\n\n6\nE-ShopA\n07\n6.110000\n\n\n7\nE-ShopA\n08\n3.676667\n\n\n8\nE-ShopA\n09\n7.250000\n\n\n9\nE-ShopA\n10\n7.033333\n\n\n10\nE-ShopA\n11\n7.420000\n\n\n11\nE-ShopA\n12\n7.513333\n\n\n12\nE-ShopB\n01\n3.630000\n\n\n13\nE-ShopB\n02\n3.930000\n\n\n14\nE-ShopB\n03\n3.236667\n\n\n15\nE-ShopB\n04\n6.406667\n\n\n16\nE-ShopB\n05\n3.626667\n\n\n17\nE-ShopB\n06\n6.233333\n\n\n18\nE-ShopB\n07\n4.786667\n\n\n19\nE-ShopB\n08\n6.523333\n\n\n20\nE-ShopB\n09\n6.510000\n\n\n21\nE-ShopB\n10\n6.833333\n\n\n22\nE-ShopB\n11\n6.136667\n\n\n23\nE-ShopB\n12\n6.613333\n\n\n24\nE-ShopC\n01\n4.530000\n\n\n25\nE-ShopC\n02\n2.836667\n\n\n26\nE-ShopC\n03\n2.786667\n\n\n27\nE-ShopC\n04\n7.063333\n\n\n28\nE-ShopC\n05\n5.053333\n\n\n29\nE-ShopC\n06\n6.830000\n\n\n30\nE-ShopC\n07\n3.930000\n\n\n31\nE-ShopC\n08\n6.566667\n\n\n32\nE-ShopC\n09\n6.356667\n\n\n33\nE-ShopC\n10\n6.496667\n\n\n34\nE-ShopC\n11\n6.383333\n\n\n35\nE-ShopC\n12\n7.563333"
   },
   {
-    "objectID": "code/analysis-pandas.html#close-the-connection",
-    "href": "code/analysis-pandas.html#close-the-connection",
-    "title": "First Pandas analysis",
+    "objectID": "code/sql-analysis-3.html#close-the-connection",
+    "href": "code/sql-analysis-3.html#close-the-connection",
+    "title": "SQL analysis part 3",
     "section": "Close the connection",
     "text": "Close the connection\n\n# close connection\nengine.dispose()"
   },
