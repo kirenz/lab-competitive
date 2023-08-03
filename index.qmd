@@ -2,8 +2,6 @@
 title: "Lab"
 ---
 
-![](logo2.png){width=40%}
-
 
 In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis. 
 

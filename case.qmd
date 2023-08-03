@@ -3,10 +3,9 @@ title: "Competitive analysis E-commerce"
 ---
 
 
-
 ## First analysis
 
-Use SQL queries to analyze your data:
+Use SQL queries to analyze your data (use the [Jupyter Notebook](/code.qmd) provided in the code section):
 
 1. Calculate the average annual revenue for each e-shop.
 
@@ -21,7 +20,6 @@ E-Shop with the Highest Average Rating
 -->
 
 2. Find the e-shop with the highest average rating
-
 
 <!-- 
 ```sql
