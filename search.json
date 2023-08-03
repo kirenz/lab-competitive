@@ -39,7 +39,7 @@
     "href": "code/first-analysis.html",
     "title": "First analysis",
     "section": "",
-    "text": "Solve the following tasks by inserting the SQL queries.\nExample query (we include df_example at the end of the code cell to print the result):"
+    "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
   },
   {
     "objectID": "code/first-analysis.html#setup",
@@ -179,7 +179,7 @@
     "href": "code/first-analysis-c.html",
     "title": "First analysis",
     "section": "",
-    "text": "Solve the following tasks by inserting the SQL queries.\nExample query (we include df_example at the end of the code cell to print the result):"
+    "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
   },
   {
     "objectID": "code/first-analysis-c.html#setup",
