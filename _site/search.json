@@ -4,14 +4,14 @@
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "To start this case study, you’ll need the following software:\n\nMySQL database\nMySQL Workbench\nAnaconda"
+    "text": "To solve this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
   },
   {
     "objectID": "resources.html#prerequisites",
     "href": "resources.html#prerequisites",
     "title": "Resources",
     "section": "",
-    "text": "To start this case study, you’ll need the following software:\n\nMySQL database\nMySQL Workbench\nAnaconda"
+    "text": "To solve this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
   },
   {
     "objectID": "resources.html#installation",
@@ -25,7 +25,7 @@
     "href": "resources.html#anaconda-environment",
     "title": "Resources",
     "section": "Anaconda Environment",
-    "text": "Anaconda Environment\nInstall the Anaconda Environment env-mr-pip.yml\n\n💾 Anaconda Environment\n\nPlease find below the materials:\n\n📑 Slides\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
+    "text": "Anaconda Environment\nInstall the Anaconda Environment env-mr-pip.yml\n\n💾 Anaconda Environment"
   },
   {
     "objectID": "slide.html",
@@ -39,7 +39,7 @@
     "href": "index.html",
     "title": "Lab",
     "section": "",
-    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC.\nWe’ll use SQL and Python for data analysis and visualization.\n\nTask description"
+    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-Shop A, E-Shop B, and E-Shop C.\nWe’ll use SQL and Python for data analysis and visualization.\nTasks\n\nFirst analysis"
   },
   {
     "objectID": "code/data.html",
@@ -60,14 +60,14 @@
     "href": "code/data.html#create-data",
     "title": "Data generation",
     "section": "Create data",
-    "text": "Create data\n\n# Function to generate monthly data\ndef generate_monthly_data(eshop_name, start_year, num_years=3):\n    # Generate a monthly date range for 3 years\n    dates = pd.date_range(start=f'{start_year}-01-01', periods=num_years*12, freq='M')\n    \n    # Initialize a random number generator\n    rng = np.random.default_rng(42)\n\n    # Generate revenues, active user base, ratings, social media followers, and response times\n    revenues = np.round(np.linspace(10, 50, num=num_years*12) + rng.normal(scale=3, size=num_years*12), 2)\n    time_on_site = np.round(np.linspace(1, 10, num=num_years*12) + rng.normal(scale=1, size=num_years*12), 2)\n    ratings = np.clip(np.linspace(3.5, 4.5, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 1, 5)\n    social_followers = np.round(np.linspace(100, 1000, num=num_years*12) + rng.normal(scale=50, size=num_years*12), 2)\n    response_times = np.clip(np.linspace(2, 1, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 0.5, 2.5)\n\n    # Create a DataFrame\n    data = {\n        'eshop_name': eshop_name,\n        'date': dates,\n        'annual_revenue': revenues,\n        'time_on_site': time_on_site,\n        'average_rating': ratings,\n        'social_media_followers': social_followers,\n        'average_response_time': response_times\n    }\n    df = pd.DataFrame(data)\n    return df\n\n# Generate data for E-ShopA, E-ShopB, and E-ShopC\ndf_a = generate_monthly_data('E-ShopA', start_year=2020)\ndf_b = generate_monthly_data('E-ShopB', start_year=2020)\ndf_c = generate_monthly_data('E-ShopC', start_year=2020)\n\n# Combine the data into one DataFrame\ndf = pd.concat([df_a, df_b, df_c])\n\n# Make numbers different\nLIST = ['annual_revenue', 'time_on_site', 'average_rating', 'social_media_followers', 'average_response_time']\nLEN = len(df)\nDATA = np.random.uniform(0.5, 1.5, size=LEN)\n\nfor i in LIST:\n    df[i] = df[i] * DATA\n\ndf = df.round(2)\n\n# Save data\ndf.to_csv(\"data.csv\", index=False)\n\n# Preview the data\nprint(df.head())\n\n  eshop_name       date  annual_revenue  time_on_site  average_rating  \\\n0    E-ShopA 2020-01-31           13.35          1.09            4.17   \n1    E-ShopA 2020-02-29           10.74          0.56            4.79   \n2    E-ShopA 2020-03-31           11.91          0.57            2.92   \n3    E-ShopA 2020-04-30           16.38          2.44            3.68   \n4    E-ShopA 2020-05-31            6.52          2.07            2.67   \n\n   social_media_followers  average_response_time  \n0                  173.76                   2.35  \n1                   52.69                   2.58  \n2                  141.79                   1.54  \n3                  190.57                   1.92  \n4                  129.49                   1.49"
+    "text": "Create data\n\n# Function to generate monthly data\ndef generate_monthly_data(eshop_name, start_year, num_years=3):\n    # Generate a monthly date range for 3 years\n    dates = pd.date_range(start=f'{start_year}-01-01', periods=num_years*12, freq='M')\n    \n    # Initialize a random number generator\n    rng = np.random.default_rng(42)\n\n    # Generate revenues, active user base, ratings, social media followers, and response times\n    revenues = np.round(np.linspace(10, 50, num=num_years*12) + rng.normal(scale=3, size=num_years*12), 2)\n    time_on_site = np.round(np.linspace(1, 10, num=num_years*12) + rng.normal(scale=1, size=num_years*12), 2)\n    ratings = np.clip(np.linspace(3.5, 4.5, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 1, 5)\n    social_followers = np.round(np.linspace(100, 1000, num=num_years*12) + rng.normal(scale=50, size=num_years*12), 2)\n    response_times = np.clip(np.linspace(2, 1, num=num_years*12) + rng.normal(scale=0.1, size=num_years*12), 0.5, 2.5)\n\n    # Create a DataFrame\n    data = {\n        'eshop_name': eshop_name,\n        'date': dates,\n        'annual_revenue': revenues,\n        'time_on_site': time_on_site,\n        'average_rating': ratings,\n        'social_media_followers': social_followers,\n        'average_response_time': response_times\n    }\n    df = pd.DataFrame(data)\n    return df\n\n# Generate data for E-ShopA, E-ShopB, and E-ShopC\ndf_a = generate_monthly_data('E-ShopA', start_year=2020)\ndf_b = generate_monthly_data('E-ShopB', start_year=2020)\ndf_c = generate_monthly_data('E-ShopC', start_year=2020)\n\n# Combine the data into one DataFrame\ndf = pd.concat([df_a, df_b, df_c])\n\n# Make numbers different\nLIST = ['annual_revenue', 'time_on_site', 'average_rating', 'social_media_followers', 'average_response_time']\nLEN = len(df)\nDATA = np.random.uniform(0.5, 1.5, size=LEN)\n\nfor i in LIST:\n    df[i] = df[i] * DATA\n\ndf = df.round(2)\n\n# Save data\ndf.to_csv(\"ecommerce.csv\", index=False)\n\n  eshop_name       date  annual_revenue  time_on_site  average_rating  \\\n0    E-ShopA 2020-01-31           13.35          1.09            4.17   \n1    E-ShopA 2020-02-29           10.74          0.56            4.79   \n2    E-ShopA 2020-03-31           11.91          0.57            2.92   \n3    E-ShopA 2020-04-30           16.38          2.44            3.68   \n4    E-ShopA 2020-05-31            6.52          2.07            2.67   \n\n   social_media_followers  average_response_time  \n0                  173.76                   2.35  \n1                   52.69                   2.58  \n2                  141.79                   1.54  \n3                  190.57                   1.92  \n4                  129.49                   1.49"
   },
   {
     "objectID": "code/data.html#sql",
     "href": "code/data.html#sql",
     "title": "Data generation",
     "section": "SQL",
-    "text": "SQL\nFirst, create the database in Workbench\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf.to_sql('ecommerce_data', engine, if_exists='replace')\n\n108"
+    "text": "SQL\nFirst, create the database in Workbench\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf.to_sql('ecommerce', engine, if_exists='replace')\n\n108"
   },
   {
     "objectID": "code/first-analysis.html",
@@ -88,7 +88,7 @@
     "href": "code/first-analysis.html#data",
     "title": "First analysis",
     "section": "Data",
-    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)"
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
   },
   {
     "objectID": "code/first-analysis.html#average-revenue-by-e-shop",
@@ -165,7 +165,7 @@
     "href": "code/first-analysis-c.html#data",
     "title": "First analysis",
     "section": "Data",
-    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)"
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
   },
   {
     "objectID": "code/first-analysis-c.html#average-revenue-by-e-shop",
