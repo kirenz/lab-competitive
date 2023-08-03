@@ -9,12 +9,13 @@ You'll analyze key competitors and examine customer reviews and social media men
 
 Through this process, you'll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.
 
-For this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC. 
+For this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-Shop A, E-Shop B, and E-Shop C. 
 
 We'll use SQL and Python for data analysis and visualization.
 
+**Tasks**
 
-- [Task description](/case.qmd)
+- [First analysis](/code.qmd)
 
 
 
