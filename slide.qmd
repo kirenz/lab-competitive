@@ -2,4 +2,16 @@
 title: "Slides"
 ---
 
-tbd
+## SQL
+
+[SQL introduction](https://kirenz.github.io/sql/slides/2-intro.html#/title-slide)
+
+- SELECT
+- DISTINCT
+- WHERE
+- ORDER BY
+- AS
+- OR, AND, IN, NOT IN, BETWEEN
+- LIKE, REGEXP
+- NULL, NOT NULL
+- LIMIT
