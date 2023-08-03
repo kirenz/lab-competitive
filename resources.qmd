@@ -4,11 +4,18 @@ title: "Resources"
 
 ## Prerequisites
 
-To start this case study, you'll need the following software:
+To solve this lab, you'll need:
 
-- MySQL database
-- MySQL Workbench
+- MySQL, MySQL Workbench and a database called `db_ecommerce`
 - Anaconda
+
+Use MySQL Workbench to create a new database called `db_ecommerce`
+
+```sql
+DROP DATABASE IF EXISTS `db_ecommerce`;
+CREATE DATABASE `db_ecommerce`; 
+USE `db_ecommerce`;
+```
 
 ## Installation
 
@@ -25,17 +32,3 @@ To start this case study, you'll need the following software:
 Install the Anaconda Environment `env-mr-pip.yml`
 
 - [💾 Anaconda Environment](https://github.com/kirenz/environments)
-
-
-
-
-
-
-Please find below the materials:
-
-- [📑 Slides](https://github.com/kirenz/lab-template/slides/slides.html)
-- [💻 Notebook](https://github.com/kirenz/lab-template/tutorial/notebook.ipynb)
-- [📚 Reading]()
-- [☑️ Questions]()
-- [Mindmap]()
-- [Weekly feedback]()
