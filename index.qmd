@@ -4,6 +4,7 @@ title: "Lab"
 
 ![](logo.png){width=30%}
 
+
 In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis. 
 
 You'll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage. 
