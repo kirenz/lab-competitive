@@ -4,14 +4,14 @@
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "To start this case study, you’ll need the following software:\n\nMySQL database\nMySQL Workbench\nAnaconda"
+    "text": "To solve this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
   },
   {
     "objectID": "resources.html#prerequisites",
     "href": "resources.html#prerequisites",
     "title": "Resources",
     "section": "",
-    "text": "To start this case study, you’ll need the following software:\n\nMySQL database\nMySQL Workbench\nAnaconda"
+    "text": "To solve this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
   },
   {
     "objectID": "resources.html#installation",
@@ -25,7 +25,7 @@
     "href": "resources.html#anaconda-environment",
     "title": "Resources",
     "section": "Anaconda Environment",
-    "text": "Anaconda Environment\nInstall the Anaconda Environment env-mr-pip.yml\n\n💾 Anaconda Environment\n\nPlease find below the materials:\n\n📑 Slides\n💻 Notebook\n📚 Reading\n☑️ Questions\nMindmap\nWeekly feedback"
+    "text": "Anaconda Environment\nInstall the Anaconda Environment env-mr-pip.yml\n\n💾 Anaconda Environment"
   },
   {
     "objectID": "workflow.html",
@@ -53,7 +53,7 @@
     "href": "code/first-analysis.html#data",
     "title": "First analysis",
     "section": "Data",
-    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)"
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
   },
   {
     "objectID": "code/first-analysis.html#average-revenue-by-e-shop",
@@ -151,7 +151,7 @@
     "href": "index.html",
     "title": "Lab",
     "section": "",
-    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-ShopA, E-ShopB, and E-ShopC.\nWe’ll use SQL and Python for data analysis and visualization.\n\nTask description"
+    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a comprehensive competitive analysis.\nYou’ll analyze key competitors and examine customer reviews and social media mentions to gauge public sentiment and identify any areas where your company could potentially gain a competitive advantage.\nThrough this process, you’ll gain practical experience in data collection, quantitative analysis, and critical evaluation skills, which are crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-Shop A, E-Shop B, and E-Shop C.\nWe’ll use SQL and Python for data analysis and visualization.\nTasks\n\nFirst analysis"
   },
   {
     "objectID": "code.html",
@@ -193,7 +193,7 @@
     "href": "code/first-analysis-c.html#data",
     "title": "First analysis",
     "section": "Data",
-    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)"
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
   },
   {
     "objectID": "code/first-analysis-c.html#average-revenue-by-e-shop",
