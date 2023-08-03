@@ -2,8 +2,7 @@
 title: "Code"
 ---
 
-## First analysis
+## SQL analysis
 
-
-- Download the [Jupyter Notebook from Colab](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/first-analysis-c.ipynb)
+- [SQL analysis part 1](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/sql-analysis-1-c.ipynb)
 
