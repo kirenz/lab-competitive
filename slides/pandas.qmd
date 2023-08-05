@@ -30,7 +30,7 @@ format:
 ---
 
 
-## What is Pandas?
+# What is Pandas?
 
 ![](https://pandas.pydata.org/docs/_static/pandas.svg)
 
@@ -41,7 +41,7 @@ format:
 - It usually uses DataFrame objects for data manipulation.
 
 
-## Understanding DataFrames in Pandas
+# Understanding DataFrames in Pandas
 
 ![](/images/dataframe.png)
 
@@ -54,36 +54,33 @@ format:
 
 Here is an example of a DataFrame:
 
-
 ```python
+# Import the module pandas as pd
 import pandas as pd
 
-# Create a simple dataframe
+# Create some data in this dictionary style
 data = {'Name': ['John', 'Anna', 'Peter'],
         'Age': [28, 24, 35],
         'City': ['New York', 'Paris', 'London']}
 
+# Transform the data into a Pandas Dataframe
 df = pd.DataFrame(data)
-
-
 ```
 
 ## Example of a DataFrame
 
 This will result in:
 
-
+```python
+print(df)
+```
 
 ```python
-
-print(df)
-
    Name  Age       City
 0  John   28   New York
 1  Anna   24      Paris
 2  Peter  35     London
 ```
-
 
 
 ## Creating DataFrame from a CSV file
@@ -92,7 +89,32 @@ print(df)
 
 - Example: `df = pd.read_csv('file.csv')`
 
+--
+
+```python
+# Import a CSV file from GitHub
+df = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')
+```
+
+## Specify Data Formats
+
+- Categorical data: `df[column_name] = df[column_name].astype('category')`
+
+
+
+- Date column `df['date_column'] = pd.to_datetime(df['date_column'])`
+
+```python
+df['date'] = pd.to_datetime(df['date'])
+```
+
 # Key Pandas Functions for Data Analysis
+
+## Mean
+
+- The `mean` function returns the mean of the values for the requested axis.
+
+- Example: `df['column_name'].mean()`
 
 ## GroupBy
 
@@ -100,11 +122,11 @@ print(df)
 
 - Example: `df.groupby('column_name')`
 
-## Mean
+## GroupBy
 
-- The `mean` function returns the mean of the values for the requested axis.
+- The groupby operation makes 'column_name' the index of grouped_df. 
 
-- Example: `df['column_name'].mean()`
+- If you want to turn 'column_name' back into a regular column and replace the index with default integers, you would use `reset_index()`.
 
 ## Reset Index
 
@@ -125,7 +147,9 @@ print(df)
 - Example: `df.sort_values('column_name', ascending=False)`
 
 ## Head
+
 - The `head` function is used to get the first n rows.
+
 - Example: `df.head(n)`
 
 ## Date Manipulation
@@ -157,4 +181,3 @@ print(df)
 ## Task 5: Monthly Active User Base Growth
 
 - Hint: Extract the month from 'date', then group by 'eshop_name' and 'month' and calculate the mean of 'active_user_base'.
-
