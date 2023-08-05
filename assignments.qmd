@@ -2,23 +2,18 @@
 title: "Assignments"
 ---
 
-## SQL analysis part 1
+## SQL 
 
 - [SQL analysis part 1](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-1-c.ipynb)
 
-## SQL analysis part 2
-
 - [SQL analysis part 2](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-2-c.ipynb)
-
-
-## SQL analysis part 3
 
 - [SQL analysis part 3](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-c.ipynb)
 
-## Pandas analysis for part 3
+## Pandas
 
 - [Analysis part 3 with Pandas](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-pandas.ipynb)
 
-## Altair analysis for part 3
+## Altair 
 
 - [Analysis part 3 with Pandas](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-altair.ipynb)
