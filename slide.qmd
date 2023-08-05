@@ -6,7 +6,7 @@ title: "Slides"
 
 ### Part 1
 
-[SQL introduction](https://kirenz.github.io/sql/slides/2-intro.html#/title-slide)
+[🖥  SQL introduction](https://kirenz.github.io/sql/slides/2-intro.html#/title-slide)
 
 - SELECT
 - DISTINCT
@@ -20,9 +20,12 @@ title: "Slides"
 
 ### Part 2
 
-[Aggregate data](https://kirenz.github.io/sql/slides/5-aggregieren.html#/title-slide)
+[🖥  Aggregate data](https://kirenz.github.io/sql/slides/5-aggregieren.html#/title-slide)
 
 - COUNT, SUM, MAX, MIN, AVG
 - GROUP BY
 - HAVING
 - WITH ROLLUP
+
+## Pandas
+
