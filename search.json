@@ -301,39 +301,39 @@
     "text": "Altair\n\n🖥 Introduction to Altair"
   },
   {
-    "objectID": "slides/pandas.html#what-is-pandas",
-    "href": "slides/pandas.html#what-is-pandas",
-    "title": "Pandas",
-    "section": "What is Pandas?",
-    "text": "What is Pandas?\n\n\nPandas is a powerful and flexible open-source data analysis and manipulation library for Python.\nIt provides data structures and functions needed to manipulate structured data.\nIt usually uses DataFrame objects for data manipulation."
-  },
-  {
-    "objectID": "slides/pandas.html#understanding-dataframes-in-pandas",
-    "href": "slides/pandas.html#understanding-dataframes-in-pandas",
-    "title": "Pandas",
-    "section": "Understanding DataFrames in Pandas",
-    "text": "Understanding DataFrames in Pandas\n\n\nA DataFrame is a two-dimensional labeled data structure with columns of potentially different types.\nYou can think of it like a spreadsheet or SQL table, or a dictionary of Series objects."
-  },
-  {
     "objectID": "slides/pandas.html#example-of-a-dataframe",
     "href": "slides/pandas.html#example-of-a-dataframe",
     "title": "Pandas",
     "section": "Example of a DataFrame",
-    "text": "Example of a DataFrame\nHere is an example of a DataFrame:\nimport pandas as pd\n\n# Create a simple dataframe\ndata = {'Name': ['John', 'Anna', 'Peter'],\n        'Age': [28, 24, 35],\n        'City': ['New York', 'Paris', 'London']}\n\ndf = pd.DataFrame(data)"
+    "text": "Example of a DataFrame\nHere is an example of a DataFrame:\n# Import the module pandas as pd\nimport pandas as pd\n\n# Create some data in this dictionary style\ndata = {'Name': ['John', 'Anna', 'Peter'],\n        'Age': [28, 24, 35],\n        'City': ['New York', 'Paris', 'London']}\n\n# Transform the data into a Pandas Dataframe\ndf = pd.DataFrame(data)"
   },
   {
     "objectID": "slides/pandas.html#example-of-a-dataframe-1",
     "href": "slides/pandas.html#example-of-a-dataframe-1",
     "title": "Pandas",
     "section": "Example of a DataFrame",
-    "text": "Example of a DataFrame\nThis will result in:\n\nprint(df)\n\n   Name  Age       City\n0  John   28   New York\n1  Anna   24      Paris\n2  Peter  35     London"
+    "text": "Example of a DataFrame\nThis will result in:\nprint(df)\n   Name  Age       City\n0  John   28   New York\n1  Anna   24      Paris\n2  Peter  35     London"
   },
   {
     "objectID": "slides/pandas.html#creating-dataframe-from-a-csv-file",
     "href": "slides/pandas.html#creating-dataframe-from-a-csv-file",
     "title": "Pandas",
     "section": "Creating DataFrame from a CSV file",
-    "text": "Creating DataFrame from a CSV file\n\nWe can create a DataFrame by importing a CSV file using the pd.read_csv() function.\nExample: df = pd.read_csv('file.csv')"
+    "text": "Creating DataFrame from a CSV file\n\nWe can create a DataFrame by importing a CSV file using the pd.read_csv() function.\nExample: df = pd.read_csv('file.csv')\n\n–\n# Import a CSV file from GitHub\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')"
+  },
+  {
+    "objectID": "slides/pandas.html#specify-data-formats",
+    "href": "slides/pandas.html#specify-data-formats",
+    "title": "Pandas",
+    "section": "Specify Data Formats",
+    "text": "Specify Data Formats\n\nCategorical data: df[column_name] = df[column_name].astype('category')\nDate column df['date_column'] = pd.to_datetime(df['date_column'])\n\ndf['date'] = pd.to_datetime(df['date'])"
+  },
+  {
+    "objectID": "slides/pandas.html#mean",
+    "href": "slides/pandas.html#mean",
+    "title": "Pandas",
+    "section": "Mean",
+    "text": "Mean\n\nThe mean function returns the mean of the values for the requested axis.\nExample: df['column_name'].mean()"
   },
   {
     "objectID": "slides/pandas.html#groupby",
@@ -343,11 +343,11 @@
     "text": "GroupBy\n\nThe groupby function is used to split the data into groups based on some criteria.\nExample: df.groupby('column_name')"
   },
   {
-    "objectID": "slides/pandas.html#mean",
-    "href": "slides/pandas.html#mean",
+    "objectID": "slides/pandas.html#groupby-1",
+    "href": "slides/pandas.html#groupby-1",
     "title": "Pandas",
-    "section": "Mean",
-    "text": "Mean\n\nThe mean function returns the mean of the values for the requested axis.\nExample: df['column_name'].mean()"
+    "section": "GroupBy",
+    "text": "GroupBy\n\nThe groupby operation makes ‘column_name’ the index of grouped_df.\nIf you want to turn ‘column_name’ back into a regular column and replace the index with default integers, you would use reset_index()."
   },
   {
     "objectID": "slides/pandas.html#reset-index",
