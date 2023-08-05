@@ -12,7 +12,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Jan Kirenz">
-  <title>Lab - Title</title>
+  <title>Lab - Pandas</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -394,8 +394,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Title</h1>
-  <p class="subtitle">Overview</p>
+  <h1 class="title">Pandas</h1>
+  <p class="subtitle">Introduction</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -409,73 +409,153 @@ Jan Kirenz
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
 <ul>
-<li class="fragment"><a href="#/h1" id="/toc-h1">H1</a></li>
+<li class="fragment"><a href="#/key-pandas-functions-for-data-analysis" id="/toc-key-pandas-functions-for-data-analysis">Key Pandas Functions for Data Analysis</a></li>
+<li class="fragment"><a href="#/tasks" id="/toc-tasks">Tasks</a></li>
 </ul>
 </nav>
 </section>
+<section id="what-is-pandas" class="slide level2">
+<h2>What is Pandas?</h2>
+
+<img data-src="https://pandas.pydata.org/docs/_static/pandas.svg" class="r-stretch"><ul>
+<li class="fragment"><p>Pandas is a powerful and flexible open-source data analysis and manipulation library for Python.</p></li>
+<li class="fragment"><p>It provides data structures and functions needed to manipulate structured data.</p></li>
+<li class="fragment"><p>It usually uses DataFrame objects for data manipulation.</p></li>
+</ul>
+</section>
+<section id="understanding-dataframes-in-pandas" class="slide level2">
+<h2>Understanding DataFrames in Pandas</h2>
+
+<img data-src="../images/dataframe.png" class="r-stretch"><ul>
+<li class="fragment"><p>A DataFrame is a two-dimensional labeled data structure with columns of potentially different types.</p></li>
+<li class="fragment"><p>You can think of it like a spreadsheet or SQL table, or a dictionary of Series objects.</p></li>
+</ul>
+</section>
+<section id="example-of-a-dataframe" class="slide level2">
+<h2>Example of a DataFrame</h2>
+<p>Here is an example of a DataFrame:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Create a simple dataframe</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>data <span class="op">=</span> {<span class="st">'Name'</span>: [<span class="st">'John'</span>, <span class="st">'Anna'</span>, <span class="st">'Peter'</span>],</span>
+<span id="cb1-5"><a href="#cb1-5"></a>        <span class="st">'Age'</span>: [<span class="dv">28</span>, <span class="dv">24</span>, <span class="dv">35</span>],</span>
+<span id="cb1-6"><a href="#cb1-6"></a>        <span class="st">'City'</span>: [<span class="st">'New York'</span>, <span class="st">'Paris'</span>, <span class="st">'London'</span>]}</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="example-of-a-dataframe-1" class="slide level2">
+<h2>Example of a DataFrame</h2>
+<p>This will result in:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="bu">print</span>(df)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>   Name  Age       City</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="dv">0</span>  John   <span class="dv">28</span>   New York</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="dv">1</span>  Anna   <span class="dv">24</span>      Paris</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="dv">2</span>  Peter  <span class="dv">35</span>     London</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="creating-dataframe-from-a-csv-file" class="slide level2">
+<h2>Creating DataFrame from a CSV file</h2>
+<ul>
+<li class="fragment"><p>We can create a DataFrame by importing a CSV file using the <code>pd.read_csv()</code> function.</p></li>
+<li class="fragment"><p>Example: <code>df = pd.read_csv('file.csv')</code></p></li>
+</ul>
+</section>
 <section>
-<section id="h1" class="title-slide slide level1 center" data-background-image="../images/dje.jpg">
-<h1>H1</h1>
+<section id="key-pandas-functions-for-data-analysis" class="title-slide slide level1 center">
+<h1>Key Pandas Functions for Data Analysis</h1>
 
 </section>
-<section id="text" class="slide level2">
-<h2>Text</h2>
+<section id="groupby" class="slide level2">
+<h2>GroupBy</h2>
 <ul>
-<li class="fragment"><p>a 🤖</p>
-<ul>
-<li class="fragment">abc</li>
-</ul></li>
+<li class="fragment"><p>The <code>groupby</code> function is used to split the data into groups based on some criteria.</p></li>
+<li class="fragment"><p>Example: <code>df.groupby('column_name')</code></p></li>
 </ul>
-<div class="fragment">
+</section>
+<section id="mean" class="slide level2">
+<h2>Mean</h2>
 <ul>
-<li class="fragment"><p>b</p></li>
-<li class="fragment"><p>c<sup>1</sup></p></li>
+<li class="fragment"><p>The <code>mean</code> function returns the mean of the values for the requested axis.</p></li>
+<li class="fragment"><p>Example: <code>df['column_name'].mean()</code></p></li>
 </ul>
-<p>📚 Required reading: <a href="link">A &amp; B (2023)</a></p>
-<p><a href="https://arxiv.org/pdf/2303.12712.pdf" class="uri">https://arxiv.org/pdf/2303.12712.pdf</a></p>
-</div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Russell &amp; Norvig, 2009</p></li></ol></aside></section>
-<section id="image" class="slide level2">
-<h2>Image</h2>
+</section>
+<section id="reset-index" class="slide level2">
+<h2>Reset Index</h2>
+<ul>
+<li class="fragment"><p><code>reset_index</code> is a method to reset index of a Data Frame.</p></li>
+<li class="fragment"><p>Example: <code>df.reset_index()</code></p></li>
+</ul>
+</section>
+<section id="rename-columns" class="slide level2">
+<h2>Rename Columns</h2>
+<ul>
+<li class="fragment"><p><code>rename</code> function is used to change the names of the column labels.</p></li>
+<li class="fragment"><p>Example: <code>df.rename(columns={'old_name1':'new_name1', 'old_name2':'new_name2'})</code></p></li>
+</ul>
+</section>
+<section id="sort-values" class="slide level2">
+<h2>Sort Values</h2>
+<ul>
+<li class="fragment"><p>The <code>sort_values</code> function sorts a data frame in ascending or descending order of passed column.</p></li>
+<li class="fragment"><p>Example: <code>df.sort_values('column_name', ascending=False)</code></p></li>
+</ul>
+</section>
+<section id="head" class="slide level2">
+<h2>Head</h2>
+<ul>
+<li class="fragment">The <code>head</code> function is used to get the first n rows.</li>
+<li class="fragment">Example: <code>df.head(n)</code></li>
+</ul>
+</section>
+<section id="date-manipulation" class="slide level2">
+<h2>Date Manipulation</h2>
+<ul>
+<li class="fragment"><p>Pandas provides a robust tool for working with dates, times, and time-indexed data.</p></li>
+<li class="fragment"><p>Example for extracting Year from Date: <code>df['date_column'].dt.year</code></p></li>
+<li class="fragment"><p>Example for extracting Month from Date: <code>df['date_column'].dt.to_period('M')</code></p></li>
+</ul>
+</section></section>
+<section>
+<section id="tasks" class="title-slide slide level1 center">
+<h1>Tasks</h1>
 
-<img data-src="../images/hdm.png" class="r-stretch"></section>
-<section id="video" class="slide level2">
-<h2>Video</h2>
-<iframe data-external="1" src="https://www.youtube.com/embed/KpedmJdrTpY" width="1920" height="1080" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-<!-- Video about Protein -->
 </section>
-<section id="a-lot-of-text" class="slide level2 smaller">
-<h2>A lot of text</h2>
-<p>Smaller heading</p>
+<section id="task-1-average-revenue-by-e-shop" class="slide level2">
+<h2>Task 1: Average Revenue by E-Shop</h2>
+<ul>
+<li class="fragment">Hint: Use the <code>groupby</code> function to group by ‘eshop_name’, then use the <code>mean</code> function on ‘annual_revenue’.</li>
+</ul>
 </section>
-<section id="background-image" class="slide level2" data-background-image="../images/hdm.png">
-<h2>Background image</h2>
-<p>abc</p>
+<section id="task-2-e-shop-with-the-highest-average-rating" class="slide level2">
+<h2>Task 2: E-Shop with the Highest Average Rating</h2>
+<ul>
+<li class="fragment">Hint: Use the <code>groupby</code> function to group by ‘eshop_name’, calculate the mean of ‘average_rating’, then sort values and use <code>head</code> to get the top one.</li>
+</ul>
 </section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="bu">print</span>(<span class="st">'Hello World'</span>)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a><span class="cf">for</span> i <span class="kw">in</span> LIST:</span>
-<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a>  df[i] <span class="op">=</span> df[i].astype(<span class="st">'cat'</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt class="fragment" data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
-<dd class="fragment">
-<span data-code-annotation="1" data-code-cell="annotated-cell-1" data-code-lines="1">Print Hello World, and then,</span>
-</dd>
-<dt class="fragment" data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
-<dd class="fragment">
-<span data-code-annotation="2" data-code-cell="annotated-cell-1" data-code-lines="2,3">transform all columns in the LIST element to categorical variables</span>
-</dd>
-</dl>
+<section id="task-3-e-shop-performance-over-time" class="slide level2">
+<h2>Task 3: E-Shop Performance Over Time</h2>
+<ul>
+<li class="fragment">Hint: Extract the year from ‘date’, then group by ‘eshop_name’ and ‘year’ and calculate the sum of ‘annual_revenue’.</li>
+</ul>
 </section>
-<section id="end" class="slide level2">
-<h2>End</h2>
+<section id="task-4-e-shop-with-the-most-social-media-followers" class="slide level2">
+<h2>Task 4: E-Shop with the Most Social Media Followers</h2>
+<ul>
+<li class="fragment">Hint: Use the <code>groupby</code> function to group by ‘eshop_name’, get the max ‘social_media_followers’, then sort values and use <code>head</code> to get the top one.</li>
+</ul>
+</section>
+<section id="task-5-monthly-active-user-base-growth" class="slide level2">
+<h2>Task 5: Monthly Active User Base Growth</h2>
+<ul>
+<li class="fragment">Hint: Extract the month from ‘date’, then group by ‘eshop_name’ and ‘month’ and calculate the mean of ‘active_user_base’.</li>
+</ul>
 
 <div class="footer footer-default">
 <p>Jan Kirenz</p>
 </div>
 </section></section>
-
     </div>
   </div>
 
