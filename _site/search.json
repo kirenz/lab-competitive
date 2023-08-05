@@ -32,28 +32,154 @@
     "href": "slide.html",
     "title": "Slides",
     "section": "",
-    "text": "🖥 SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT\n\n\n\n\n🖥 Aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY\nHAVING\nWITH ROLLUP"
+    "text": "🖥 SQL introduction\n\nSELECT, DISTINCT, WHERE, ORDER BY, AS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP, NULL, NOT NULL, LIMIT\n\n\n\n\n🖥 Aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY, HAVING, WITH ROLLUP"
   },
   {
     "objectID": "slide.html#sql",
     "href": "slide.html#sql",
     "title": "Slides",
     "section": "",
-    "text": "🖥 SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT\n\n\n\n\n🖥 Aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY\nHAVING\nWITH ROLLUP"
+    "text": "🖥 SQL introduction\n\nSELECT, DISTINCT, WHERE, ORDER BY, AS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP, NULL, NOT NULL, LIMIT\n\n\n\n\n🖥 Aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY, HAVING, WITH ROLLUP"
   },
   {
     "objectID": "slide.html#pandas",
     "href": "slide.html#pandas",
     "title": "Slides",
     "section": "Pandas",
-    "text": "Pandas"
+    "text": "Pandas\n\n🖥 Introduction to Pandas"
+  },
+  {
+    "objectID": "slide.html#altair",
+    "href": "slide.html#altair",
+    "title": "Slides",
+    "section": "Altair",
+    "text": "Altair\n\n🖥 Introduction to Altair"
+  },
+  {
+    "objectID": "slides/pandas.html#what-is-pandas",
+    "href": "slides/pandas.html#what-is-pandas",
+    "title": "Pandas",
+    "section": "What is Pandas?",
+    "text": "What is Pandas?\n\n\nPandas is a powerful and flexible open-source data analysis and manipulation library for Python.\nIt provides data structures and functions needed to manipulate structured data.\nIt usually uses DataFrame objects for data manipulation."
+  },
+  {
+    "objectID": "slides/pandas.html#understanding-dataframes-in-pandas",
+    "href": "slides/pandas.html#understanding-dataframes-in-pandas",
+    "title": "Pandas",
+    "section": "Understanding DataFrames in Pandas",
+    "text": "Understanding DataFrames in Pandas\n\n\nA DataFrame is a two-dimensional labeled data structure with columns of potentially different types.\nYou can think of it like a spreadsheet or SQL table, or a dictionary of Series objects."
+  },
+  {
+    "objectID": "slides/pandas.html#example-of-a-dataframe",
+    "href": "slides/pandas.html#example-of-a-dataframe",
+    "title": "Pandas",
+    "section": "Example of a DataFrame",
+    "text": "Example of a DataFrame\nHere is an example of a DataFrame:\nimport pandas as pd\n\n# Create a simple dataframe\ndata = {'Name': ['John', 'Anna', 'Peter'],\n        'Age': [28, 24, 35],\n        'City': ['New York', 'Paris', 'London']}\n\ndf = pd.DataFrame(data)"
+  },
+  {
+    "objectID": "slides/pandas.html#example-of-a-dataframe-1",
+    "href": "slides/pandas.html#example-of-a-dataframe-1",
+    "title": "Pandas",
+    "section": "Example of a DataFrame",
+    "text": "Example of a DataFrame\nThis will result in:\n\nprint(df)\n\n   Name  Age       City\n0  John   28   New York\n1  Anna   24      Paris\n2  Peter  35     London"
+  },
+  {
+    "objectID": "slides/pandas.html#creating-dataframe-from-a-csv-file",
+    "href": "slides/pandas.html#creating-dataframe-from-a-csv-file",
+    "title": "Pandas",
+    "section": "Creating DataFrame from a CSV file",
+    "text": "Creating DataFrame from a CSV file\n\nWe can create a DataFrame by importing a CSV file using the pd.read_csv() function.\nExample: df = pd.read_csv('file.csv')"
+  },
+  {
+    "objectID": "slides/pandas.html#groupby",
+    "href": "slides/pandas.html#groupby",
+    "title": "Pandas",
+    "section": "GroupBy",
+    "text": "GroupBy\n\nThe groupby function is used to split the data into groups based on some criteria.\nExample: df.groupby('column_name')"
+  },
+  {
+    "objectID": "slides/pandas.html#mean",
+    "href": "slides/pandas.html#mean",
+    "title": "Pandas",
+    "section": "Mean",
+    "text": "Mean\n\nThe mean function returns the mean of the values for the requested axis.\nExample: df['column_name'].mean()"
+  },
+  {
+    "objectID": "slides/pandas.html#reset-index",
+    "href": "slides/pandas.html#reset-index",
+    "title": "Pandas",
+    "section": "Reset Index",
+    "text": "Reset Index\n\nreset_index is a method to reset index of a Data Frame.\nExample: df.reset_index()"
+  },
+  {
+    "objectID": "slides/pandas.html#rename-columns",
+    "href": "slides/pandas.html#rename-columns",
+    "title": "Pandas",
+    "section": "Rename Columns",
+    "text": "Rename Columns\n\nrename function is used to change the names of the column labels.\nExample: df.rename(columns={'old_name1':'new_name1', 'old_name2':'new_name2'})"
+  },
+  {
+    "objectID": "slides/pandas.html#sort-values",
+    "href": "slides/pandas.html#sort-values",
+    "title": "Pandas",
+    "section": "Sort Values",
+    "text": "Sort Values\n\nThe sort_values function sorts a data frame in ascending or descending order of passed column.\nExample: df.sort_values('column_name', ascending=False)"
+  },
+  {
+    "objectID": "slides/pandas.html#head",
+    "href": "slides/pandas.html#head",
+    "title": "Pandas",
+    "section": "Head",
+    "text": "Head\n\nThe head function is used to get the first n rows.\nExample: df.head(n)"
+  },
+  {
+    "objectID": "slides/pandas.html#date-manipulation",
+    "href": "slides/pandas.html#date-manipulation",
+    "title": "Pandas",
+    "section": "Date Manipulation",
+    "text": "Date Manipulation\n\nPandas provides a robust tool for working with dates, times, and time-indexed data.\nExample for extracting Year from Date: df['date_column'].dt.year\nExample for extracting Month from Date: df['date_column'].dt.to_period('M')"
+  },
+  {
+    "objectID": "slides/pandas.html#task-1-average-revenue-by-e-shop",
+    "href": "slides/pandas.html#task-1-average-revenue-by-e-shop",
+    "title": "Pandas",
+    "section": "Task 1: Average Revenue by E-Shop",
+    "text": "Task 1: Average Revenue by E-Shop\n\nHint: Use the groupby function to group by ‘eshop_name’, then use the mean function on ‘annual_revenue’."
+  },
+  {
+    "objectID": "slides/pandas.html#task-2-e-shop-with-the-highest-average-rating",
+    "href": "slides/pandas.html#task-2-e-shop-with-the-highest-average-rating",
+    "title": "Pandas",
+    "section": "Task 2: E-Shop with the Highest Average Rating",
+    "text": "Task 2: E-Shop with the Highest Average Rating\n\nHint: Use the groupby function to group by ‘eshop_name’, calculate the mean of ‘average_rating’, then sort values and use head to get the top one."
+  },
+  {
+    "objectID": "slides/pandas.html#task-3-e-shop-performance-over-time",
+    "href": "slides/pandas.html#task-3-e-shop-performance-over-time",
+    "title": "Pandas",
+    "section": "Task 3: E-Shop Performance Over Time",
+    "text": "Task 3: E-Shop Performance Over Time\n\nHint: Extract the year from ‘date’, then group by ‘eshop_name’ and ‘year’ and calculate the sum of ‘annual_revenue’."
+  },
+  {
+    "objectID": "slides/pandas.html#task-4-e-shop-with-the-most-social-media-followers",
+    "href": "slides/pandas.html#task-4-e-shop-with-the-most-social-media-followers",
+    "title": "Pandas",
+    "section": "Task 4: E-Shop with the Most Social Media Followers",
+    "text": "Task 4: E-Shop with the Most Social Media Followers\n\nHint: Use the groupby function to group by ‘eshop_name’, get the max ‘social_media_followers’, then sort values and use head to get the top one."
+  },
+  {
+    "objectID": "slides/pandas.html#task-5-monthly-active-user-base-growth",
+    "href": "slides/pandas.html#task-5-monthly-active-user-base-growth",
+    "title": "Pandas",
+    "section": "Task 5: Monthly Active User Base Growth",
+    "text": "Task 5: Monthly Active User Base Growth\n\nHint: Extract the month from ‘date’, then group by ‘eshop_name’ and ‘month’ and calculate the mean of ‘active_user_base’.\n\n\n\nJan Kirenz"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Lab",
     "section": "",
-    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine some key market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you’ll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-Shop A, E-Shop B, and E-Shop C.\n\nAssignments"
+    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you’ll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-Shop A, E-Shop B, and E-Shop C.\n\nAssignments"
   },
   {
     "objectID": "code/analysis-3.html",
@@ -326,42 +452,28 @@
     "href": "assignments.html",
     "title": "Assignments",
     "section": "",
-    "text": "SQL analysis part 1"
+    "text": "SQL analysis part 1\nSQL analysis part 2\nSQL analysis part 3"
   },
   {
-    "objectID": "assignments.html#sql-analysis-part-1",
-    "href": "assignments.html#sql-analysis-part-1",
+    "objectID": "assignments.html#sql",
+    "href": "assignments.html#sql",
     "title": "Assignments",
     "section": "",
-    "text": "SQL analysis part 1"
+    "text": "SQL analysis part 1\nSQL analysis part 2\nSQL analysis part 3"
   },
   {
-    "objectID": "assignments.html#sql-analysis-part-2",
-    "href": "assignments.html#sql-analysis-part-2",
+    "objectID": "assignments.html#pandas",
+    "href": "assignments.html#pandas",
     "title": "Assignments",
-    "section": "SQL analysis part 2",
-    "text": "SQL analysis part 2\n\nSQL analysis part 2"
+    "section": "Pandas",
+    "text": "Pandas\n\nAnalysis part 3 with Pandas"
   },
   {
-    "objectID": "assignments.html#sql-analysis-part-3",
-    "href": "assignments.html#sql-analysis-part-3",
+    "objectID": "assignments.html#altair",
+    "href": "assignments.html#altair",
     "title": "Assignments",
-    "section": "SQL analysis part 3",
-    "text": "SQL analysis part 3\n\nSQL analysis part 3"
-  },
-  {
-    "objectID": "assignments.html#pandas-analysis-for-part-3",
-    "href": "assignments.html#pandas-analysis-for-part-3",
-    "title": "Assignments",
-    "section": "Pandas analysis for part 3",
-    "text": "Pandas analysis for part 3\n\nAnalysis part 3 with Pandas"
-  },
-  {
-    "objectID": "assignments.html#altair-analysis-for-part-3",
-    "href": "assignments.html#altair-analysis-for-part-3",
-    "title": "Assignments",
-    "section": "Altair analysis for part 3",
-    "text": "Altair analysis for part 3\n\nAnalysis part 3 with Pandas"
+    "section": "Altair",
+    "text": "Altair\n\nAnalysis part 3 with Pandas"
   },
   {
     "objectID": "code/analysis-2.html",
@@ -607,6 +719,55 @@
     "title": "Title",
     "section": "End",
     "text": "End\n\n\nJan Kirenz"
+  },
+  {
+    "objectID": "slides/altair.html#introduction-to-altair-vega",
+    "href": "slides/altair.html#introduction-to-altair-vega",
+    "title": "Altair",
+    "section": "Introduction to Altair-Vega",
+    "text": "Introduction to Altair-Vega\n\nAltair is a declarative statistical visualization library in Python.\nIt’s built on Vega and Vega-Lite, which are visualization grammars built on top of D3."
+  },
+  {
+    "objectID": "slides/altair.html#key-features-of-altair",
+    "href": "slides/altair.html#key-features-of-altair",
+    "title": "Altair",
+    "section": "Key features of Altair",
+    "text": "Key features of Altair\n\nSimple API: Just a few lines of code can create beautiful visualizations.\nIntegration with Pandas: Altair’s API is designed to work with Pandas dataframes.\nDeclarative Visualization: You describe the properties of a visualization and let Altair figure out how to implement it."
+  },
+  {
+    "objectID": "slides/altair.html#task-1-average-revenue-by-e-shop",
+    "href": "slides/altair.html#task-1-average-revenue-by-e-shop",
+    "title": "Altair",
+    "section": "Task 1: Average Revenue by E-Shop",
+    "text": "Task 1: Average Revenue by E-Shop\nYou’re required to show the average revenue for all shops, using the name average_revenue.\nHint:\n\nImport the Altair library.\nRead the CSV data into a Pandas DataFrame.\nUse alt.Chart() to create a chart.\nUse mark_bar() to specify that you want a bar chart.\nUse encode() to specify the X and Y axes. You can compute the average revenue using Altair’s built-in average() function."
+  },
+  {
+    "objectID": "slides/altair.html#task-2-two-e-shops-with-the-highest-average-rating",
+    "href": "slides/altair.html#task-2-two-e-shops-with-the-highest-average-rating",
+    "title": "Altair",
+    "section": "Task 2: Two E-Shops with the Highest Average Rating",
+    "text": "Task 2: Two E-Shops with the Highest Average Rating\nThe task is to show the two E-Shops with the highest average rating, using the name `average_rating`.\nHint:\n\nGroup the data by ‘eshop_name’ and calculate the mean of ‘average_rating’ for each group.\nSort the results in descending order and pick the top 2.\nUse the same charting methods as in Task 1 to visualize the data."
+  },
+  {
+    "objectID": "slides/altair.html#task-3-e-shop-performance-over-time",
+    "href": "slides/altair.html#task-3-e-shop-performance-over-time",
+    "title": "Altair",
+    "section": "Task 3: E-Shop Performance Over Time",
+    "text": "Task 3: E-Shop Performance Over Time\nYou’re tasked with showing the annual revenue per E-Shop by year, using the names `year` and `total_revenue`.\nHint:\n\nMake sure the ‘date’ column is in a date-time format.\nExtract the year from the ‘date’ column using the `year()` function in Altair.\nTo get the total revenue, use the `sum()` function in Altair.\nUse `mark_bar()` for the chart type and encode the axes accordingly."
+  },
+  {
+    "objectID": "slides/altair.html#task-4-maximum-social-media-followers",
+    "href": "slides/altair.html#task-4-maximum-social-media-followers",
+    "title": "Altair",
+    "section": "Task 4: Maximum Social Media Followers",
+    "text": "Task 4: Maximum Social Media Followers\nYour task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name `max_followers`.\nHint:\n\nUse the `max()` function in Altair to calculate the maximum number of social media followers for each E-shop.\nSort the E-shops by the ‘y’ axis in descending order when encoding the ‘x’ axis."
+  },
+  {
+    "objectID": "slides/altair.html#task-5-monthly-time-on-site-overview",
+    "href": "slides/altair.html#task-5-monthly-time-on-site-overview",
+    "title": "Altair",
+    "section": "Task 5: Monthly Time on Site overview",
+    "text": "Task 5: Monthly Time on Site overview\nThe final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names `month` and `average_time_on_site`.\nHint:\n\nExtract the month from the ‘date’ column using the `month()` function in Altair.\nTo get the average time on site, use the `average()` function in Altair.\nUse `mark_line()` for the chart type and encode the axes accordingly.\n\n\n\nJan Kirenz"
   },
   {
     "objectID": "workflow.html",
