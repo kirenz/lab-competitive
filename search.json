@@ -305,14 +305,28 @@
     "href": "slides/pandas.html#example-of-a-dataframe",
     "title": "Pandas",
     "section": "Example of a DataFrame",
-    "text": "Example of a DataFrame\nHere is an example of a DataFrame:\n# Import the module pandas as pd\nimport pandas as pd\n\n# Create some data in this dictionary style\ndata = {'Name': ['John', 'Anna', 'Peter'],\n        'Age': [28, 24, 35],\n        'City': ['New York', 'Paris', 'London']}\n\n# Transform the data into a Pandas Dataframe\ndf = pd.DataFrame(data)"
+    "text": "Example of a DataFrame\nHere is an example of a DataFrame:\n\n# Import the module pandas as pd\nimport pandas as pd\n\n# Create some data in this dictionary style\ndata = {'Name': ['John', 'Anna', 'Peter'],\n        'Age': [28, 24, 35],\n        'City': ['New York', 'Paris', 'London']}\n\n# Transform the data into a Pandas Dataframe\ndf = pd.DataFrame(data)\n\n# Import the module pandas as pd\nimport pandas as pd\n\n# Create some data in this dictionary style\ndata = {'Name': ['John', 'Anna', 'Peter'],\n        'Age': [28, 24, 35],\n        'City': ['New York', 'Paris', 'London']}\n\n# Transform the data into a Pandas Dataframe\ndf = pd.DataFrame(data)"
   },
   {
     "objectID": "slides/pandas.html#example-of-a-dataframe-1",
     "href": "slides/pandas.html#example-of-a-dataframe-1",
     "title": "Pandas",
     "section": "Example of a DataFrame",
-    "text": "Example of a DataFrame\nThis will result in:\nprint(df)\n   Name  Age       City\n0  John   28   New York\n1  Anna   24      Paris\n2  Peter  35     London"
+    "text": "Example of a DataFrame\n\nUse the .head()to show the top rows of the Dataframe:\n\ndf.head()\n   Name  Age       City\n0  John   28   New York\n1  Anna   24      Paris\n2  Peter  35     London"
+  },
+  {
+    "objectID": "slides/pandas.html#example-of-a-dataframe-2",
+    "href": "slides/pandas.html#example-of-a-dataframe-2",
+    "title": "Pandas",
+    "section": "Example of a DataFrame",
+    "text": "Example of a DataFrame\n\nUse"
+  },
+  {
+    "objectID": "slides/pandas.html#example-of-a-dataframe-3",
+    "href": "slides/pandas.html#example-of-a-dataframe-3",
+    "title": "Pandas",
+    "section": "Example of a DataFrame",
+    "text": "Example of a DataFrame\nShow the\ndf.head()"
   },
   {
     "objectID": "slides/pandas.html#creating-dataframe-from-a-csv-file",
