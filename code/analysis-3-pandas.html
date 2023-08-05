@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lab - SQL analysis part 2</title>
+<title>Lab - Pandas analysis part 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,15 +152,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import data</a></li>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">Data structure</a></li>
+  <li><a href="#data-corrections" id="toc-data-corrections" class="nav-link" data-scroll-target="#data-corrections">Data corrections</a></li>
+  </ul></li>
   <li><a href="#task-1" id="toc-task-1" class="nav-link" data-scroll-target="#task-1">Task 1</a></li>
   <li><a href="#task-2" id="toc-task-2" class="nav-link" data-scroll-target="#task-2">Task 2</a></li>
   <li><a href="#task-3" id="toc-task-3" class="nav-link" data-scroll-target="#task-3">Task 3</a></li>
   <li><a href="#task-4" id="toc-task-4" class="nav-link" data-scroll-target="#task-4">Task 4</a></li>
-  <li><a href="#task-5" id="toc-task-5" class="nav-link" data-scroll-target="#task-5">Task 5</a>
-  <ul class="collapse">
-  <li><a href="#close-the-connection" id="toc-close-the-connection" class="nav-link" data-scroll-target="#close-the-connection">Close the connection</a></li>
-  </ul></li>
+  <li><a href="#task-5" id="toc-task-5" class="nav-link" data-scroll-target="#task-5">Task 5</a></li>
   </ul>
 </nav>
     </div>
@@ -169,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">SQL analysis part 2</h1>
+<h1 class="title">Pandas analysis part 3</h1>
 </div>
 
 
@@ -184,88 +186,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).</p>
-<p>Example query (we include <code>df_example</code> at the end of the code cell to print the result):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_example <span class="op">=</span> pd.read_sql(<span class="st">"""</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT *</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM ecommerce_data;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>, engine)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>Connect to your MySQL-database “db_ecommerce” (make sure to prepare your <code>.env</code> file)</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>load_dotenv()   <span class="co"># take environment variables from .env</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">"mysql+pymysql://"</span> <span class="op">+</span> os.environ[<span class="st">'DB_URL'</span>] <span class="op">+</span> <span class="st">"/db_ecommerce"</span>, pool_pre_ping<span class="op">=</span><span class="va">True</span>, pool_recycle<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use pandas to_sql function to create the table in the database</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df.to_sql(<span class="st">'ecommerce'</span>, engine, if_exists<span class="op">=</span><span class="st">'replace'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>108</code></pre>
-</div>
+<section id="import-data" class="level3">
+<h3 class="anchored" data-anchor-id="import-data">Import data</h3>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="task-1" class="level1">
-<h1>Task 1</h1>
-<p>Get the count of E-shops that have an average rating more than 6.5. Use the alias <code>eshop_count</code>.</p>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_sql(<span class="st">"""</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT COUNT(DISTINCT eshop_name) as eshop_count</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM ecommerce_data</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">    WHERE average_rating &gt; 6.5;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>, engine)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df1</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">eshop_count</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="task-2" class="level1">
-<h1>Task 2</h1>
-<p>Get the sum of annual revenue grouped by eshop_name. Use the alias <code>total_revenue</code>.</p>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_sql(<span class="st">"""</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT eshop_name, SUM(annual_revenue) as total_revenue</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM ecommerce_data</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY eshop_name;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>, engine)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<section id="data-structure" class="level3">
+<h3 class="anchored" data-anchor-id="data-structure">Data structure</h3>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -274,74 +213,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">eshop_name</th>
-<th data-quarto-table-cell-role="th">total_revenue</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">annual_revenue</th>
+<th data-quarto-table-cell-role="th">time_on_site</th>
+<th data-quarto-table-cell-role="th">average_rating</th>
+<th data-quarto-table-cell-role="th">social_media_followers</th>
+<th data-quarto-table-cell-role="th">average_response_time</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>E-ShopA</td>
-<td>1205.40</td>
+<td>2020-01-31</td>
+<td>13.35</td>
+<td>1.09</td>
+<td>4.17</td>
+<td>173.76</td>
+<td>2.35</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>E-ShopB</td>
-<td>1052.02</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>E-ShopC</td>
-<td>1102.50</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="task-3" class="level1">
-<h1>Task 3</h1>
-<p>Get the maximum and minimum number of social_media_followers by eshop_name. Use the aliases <code>max_followers</code> and <code>min_followers</code></p>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.read_sql(<span class="st">"""</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT eshop_name, MAX(social_media_followers) as max_followers, MIN(social_media_followers) as min_followers</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM ecommerce_data</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY eshop_name;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>, engine)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>df3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">eshop_name</th>
-<th data-quarto-table-cell-role="th">max_followers</th>
-<th data-quarto-table-cell-role="th">min_followers</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
 <td>E-ShopA</td>
-<td>1417.39</td>
+<td>2020-02-29</td>
+<td>10.74</td>
+<td>0.56</td>
+<td>4.79</td>
 <td>52.69</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>E-ShopB</td>
-<td>1392.46</td>
-<td>50.92</td>
+<td>2.58</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>E-ShopC</td>
-<td>1529.19</td>
-<td>49.89</td>
+<td>E-ShopA</td>
+<td>2020-03-31</td>
+<td>11.91</td>
+<td>0.57</td>
+<td>2.92</td>
+<td>141.79</td>
+<td>1.54</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>E-ShopA</td>
+<td>2020-04-30</td>
+<td>16.38</td>
+<td>2.44</td>
+<td>3.68</td>
+<td>190.57</td>
+<td>1.92</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>E-ShopA</td>
+<td>2020-05-31</td>
+<td>6.52</td>
+<td>2.07</td>
+<td>2.67</td>
+<td>129.49</td>
+<td>1.49</td>
 </tr>
 </tbody>
 </table>
@@ -349,22 +278,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 108 entries, 0 to 107
+Data columns (total 7 columns):
+ #   Column                  Non-Null Count  Dtype  
+---  ------                  --------------  -----  
+ 0   eshop_name              108 non-null    object 
+ 1   date                    108 non-null    object 
+ 2   annual_revenue          108 non-null    float64
+ 3   time_on_site            108 non-null    float64
+ 4   average_rating          108 non-null    float64
+ 5   social_media_followers  108 non-null    float64
+ 6   average_response_time   108 non-null    float64
+dtypes: float64(5), object(2)
+memory usage: 6.0+ KB</code></pre>
+</div>
+</div>
 </section>
-<section id="task-4" class="level1">
-<h1>Task 4</h1>
-<p>Get the average annual revenue by eshop_name, only include groups having average annual revenue more than 30000. Use the alias <code>average_revenue</code>. Show average revenue with all digits (e.g.&nbsp;30000 instead of 30).</p>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> pd.read_sql(<span class="st">"""</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT eshop_name, AVG(annual_revenue)*1000 as average_revenue</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM ecommerce_data</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY eshop_name</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="st">    HAVING average_revenue &gt; 30000;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>, engine)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>df4</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<section id="data-corrections" class="level3">
+<h3 class="anchored" data-anchor-id="data-corrections">Data corrections</h3>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'eshop_name'</span>] <span class="op">=</span> df[<span class="st">'eshop_name'</span>].astype(<span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="task-1" class="level2">
+<h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
+<p>Average Revenue by E-Shop</p>
+<ul>
+<li>Show the average revenue for all shops</li>
+<li>Use the name <code>average_revenue</code></li>
+</ul>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average Revenue by E-Shop</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_avg_revenue <span class="op">=</span> df.groupby(<span class="st">'eshop_name'</span>)[<span class="st">'annual_revenue'</span>].mean().reset_index().rename(columns<span class="op">=</span>{<span class="st">'annual_revenue'</span>:<span class="st">'average_revenue'</span>})</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df_avg_revenue</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
 <div>
 
 
@@ -380,12 +334,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>E-ShopA</td>
-<td>33483.333333</td>
+<td>33.483333</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
+<td>E-ShopB</td>
+<td>29.222778</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
 <td>E-ShopC</td>
-<td>30625.000000</td>
+<td>30.625000</td>
 </tr>
 </tbody>
 </table>
@@ -394,19 +353,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="task-5" class="level1">
-<h1>Task 5</h1>
-<p>Get the total annual revenue and social media followers by eshop_name, including rollup. Use the aliases <code>total_revenue</code> and <code>total_followers</code></p>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df5 <span class="op">=</span> pd.read_sql(<span class="st">"""</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT eshop_name, SUM(annual_revenue) as total_revenue, SUM(social_media_followers) as total_followers</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM ecommerce_data</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY eshop_name WITH ROLLUP;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>, engine)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>df5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<section id="task-2" class="level2">
+<h2 class="anchored" data-anchor-id="task-2">Task 2</h2>
+<p>E-Shop with the Highest Average Rating</p>
+<ul>
+<li>Only show the E-Shop with the highest average rating</li>
+<li>Use the name <code>average_rating</code></li>
+</ul>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_best_rating <span class="op">=</span> df.groupby(<span class="st">'eshop_name'</span>)[<span class="st">'average_rating'</span>].mean().reset_index().sort_values(<span class="st">'average_rating'</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df_best_rating</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
 <div>
 
 
@@ -415,34 +373,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">eshop_name</th>
-<th data-quarto-table-cell-role="th">total_revenue</th>
-<th data-quarto-table-cell-role="th">total_followers</th>
+<th data-quarto-table-cell-role="th">average_rating</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>E-ShopA</td>
-<td>1205.40</td>
-<td>21938.24</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>E-ShopB</td>
-<td>1052.02</td>
-<td>19253.83</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>E-ShopC</td>
-<td>1102.50</td>
-<td>20042.07</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>None</td>
-<td>3359.92</td>
-<td>61234.14</td>
+<td>4.339167</td>
 </tr>
 </tbody>
 </table>
@@ -450,15 +388,380 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="close-the-connection" class="level2">
-<h2 class="anchored" data-anchor-id="close-the-connection">Close the connection</h2>
-<div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># close connection</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>engine.dispose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="task-3" class="level2">
+<h2 class="anchored" data-anchor-id="task-3">Task 3</h2>
+<p>E-Shop Performance Over Time</p>
+<ul>
+<li>Show the annual revenue per E-Shop by year</li>
+<li>Use the names <code>year</code> and <code>total_revenue</code></li>
+</ul>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.year</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df_revenue_by_year <span class="op">=</span> df.groupby([<span class="st">'eshop_name'</span>, <span class="st">'year'</span>])[<span class="st">'annual_revenue'</span>].<span class="bu">sum</span>().reset_index().rename(columns<span class="op">=</span>{<span class="st">'annual_revenue'</span>:<span class="st">'total_revenue'</span>})</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df_revenue_by_year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">eshop_name</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">total_revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>E-ShopA</td>
+<td>2020</td>
+<td>196.02</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>E-ShopA</td>
+<td>2021</td>
+<td>377.07</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>E-ShopA</td>
+<td>2022</td>
+<td>632.31</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>E-ShopB</td>
+<td>2020</td>
+<td>189.20</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>E-ShopB</td>
+<td>2021</td>
+<td>308.77</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>E-ShopB</td>
+<td>2022</td>
+<td>554.05</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>E-ShopC</td>
+<td>2020</td>
+<td>200.91</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>E-ShopC</td>
+<td>2021</td>
+<td>363.94</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>E-ShopC</td>
+<td>2022</td>
+<td>537.65</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="task-4" class="level2">
+<h2 class="anchored" data-anchor-id="task-4">Task 4</h2>
+<p>Maximum Social Media Followers</p>
+<ul>
+<li>Show the maximum amount of social media followers for every E-shop in a descending order.</li>
+<li>Use the name <code>max_followers</code></li>
+</ul>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_most_followers <span class="op">=</span> df.groupby(<span class="st">'eshop_name'</span>)[<span class="st">'social_media_followers'</span>].<span class="bu">max</span>().reset_index().rename(columns<span class="op">=</span>{<span class="st">'social_media_followers'</span>:<span class="st">'max_followers'</span>}).sort_values(<span class="st">'max_followers'</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_most_followers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">eshop_name</th>
+<th data-quarto-table-cell-role="th">max_followers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>E-ShopC</td>
+<td>1529.19</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="task-5" class="level2">
+<h2 class="anchored" data-anchor-id="task-5">Task 5</h2>
+<p>Monthly Time on Site overview</p>
+<ul>
+<li>Show a monthly overview of the average time on site for every E-shop (order by E-shop and month)</li>
+<li>Use the names <code>month</code> and <code>average_time_on_site</code></li>
+</ul>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'month'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.month</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_user_growth <span class="op">=</span> df.groupby([<span class="st">'eshop_name'</span>, <span class="st">'month'</span>])[<span class="st">'time_on_site'</span>].mean().reset_index().rename(columns<span class="op">=</span>{<span class="st">'time_on_site'</span>:<span class="st">'average_time_on_site'</span>})</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df_user_growth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">eshop_name</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">average_time_on_site</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>E-ShopA</td>
+<td>1</td>
+<td>5.266667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>E-ShopA</td>
+<td>2</td>
+<td>3.813333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>E-ShopA</td>
+<td>3</td>
+<td>5.186667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>E-ShopA</td>
+<td>4</td>
+<td>6.670000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>E-ShopA</td>
+<td>5</td>
+<td>5.360000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>E-ShopA</td>
+<td>6</td>
+<td>7.266667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>E-ShopA</td>
+<td>7</td>
+<td>6.110000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>E-ShopA</td>
+<td>8</td>
+<td>3.676667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>E-ShopA</td>
+<td>9</td>
+<td>7.250000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>E-ShopA</td>
+<td>10</td>
+<td>7.033333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>E-ShopA</td>
+<td>11</td>
+<td>7.420000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>E-ShopA</td>
+<td>12</td>
+<td>7.513333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>E-ShopB</td>
+<td>1</td>
+<td>3.630000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>E-ShopB</td>
+<td>2</td>
+<td>3.930000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>E-ShopB</td>
+<td>3</td>
+<td>3.236667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>E-ShopB</td>
+<td>4</td>
+<td>6.406667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>E-ShopB</td>
+<td>5</td>
+<td>3.626667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>E-ShopB</td>
+<td>6</td>
+<td>6.233333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>E-ShopB</td>
+<td>7</td>
+<td>4.786667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>E-ShopB</td>
+<td>8</td>
+<td>6.523333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>E-ShopB</td>
+<td>9</td>
+<td>6.510000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>E-ShopB</td>
+<td>10</td>
+<td>6.833333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>E-ShopB</td>
+<td>11</td>
+<td>6.136667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>E-ShopB</td>
+<td>12</td>
+<td>6.613333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>E-ShopC</td>
+<td>1</td>
+<td>4.530000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>E-ShopC</td>
+<td>2</td>
+<td>2.836667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>E-ShopC</td>
+<td>3</td>
+<td>2.786667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>E-ShopC</td>
+<td>4</td>
+<td>7.063333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>E-ShopC</td>
+<td>5</td>
+<td>5.053333</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>E-ShopC</td>
+<td>6</td>
+<td>6.830000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30</td>
+<td>E-ShopC</td>
+<td>7</td>
+<td>3.930000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">31</td>
+<td>E-ShopC</td>
+<td>8</td>
+<td>6.566667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32</td>
+<td>E-ShopC</td>
+<td>9</td>
+<td>6.356667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>E-ShopC</td>
+<td>10</td>
+<td>6.496667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>E-ShopC</td>
+<td>11</td>
+<td>6.383333</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35</td>
+<td>E-ShopC</td>
+<td>12</td>
+<td>7.563333</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
