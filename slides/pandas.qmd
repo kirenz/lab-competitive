@@ -1,0 +1,160 @@
+---
+title: Pandas
+lang: en
+subtitle: Introduction
+author: Jan Kirenz
+execute:
+  eval: true
+  echo: true
+highlight-style: github
+format:
+  revealjs: 
+    toc: true
+    toc-depth: 1
+    embed-resources: false
+    theme: [dark, ../custom.scss]  
+    incremental: true
+    transition: slide
+    background-transition: fade
+    transition-speed: slow
+    code-copy: true
+    code-line-numbers: true
+    smaller: false
+    scrollable: true
+    slide-number: c
+    preview-links: auto
+    chalkboard: 
+      buttons: false
+   #logo: images/logo.png
+    footer: Jan Kirenz
+---
+
+
+## What is Pandas?
+
+![](https://pandas.pydata.org/docs/_static/pandas.svg)
+
+- Pandas is a powerful and flexible open-source data analysis and manipulation library for Python.
+
+- It provides data structures and functions needed to manipulate structured data.
+
+- It usually uses DataFrame objects for data manipulation.
+
+
+## Understanding DataFrames in Pandas
+
+![](/images/dataframe.png)
+
+- A DataFrame is a two-dimensional labeled data structure with columns of potentially different types. 
+
+- You can think of it like a spreadsheet or SQL table, or a dictionary of Series objects. 
+
+
+## Example of a DataFrame
+
+Here is an example of a DataFrame:
+
+
+```python
+import pandas as pd
+
+# Create a simple dataframe
+data = {'Name': ['John', 'Anna', 'Peter'],
+        'Age': [28, 24, 35],
+        'City': ['New York', 'Paris', 'London']}
+
+df = pd.DataFrame(data)
+
+
+```
+
+## Example of a DataFrame
+
+This will result in:
+
+
+
+```python
+
+print(df)
+
+   Name  Age       City
+0  John   28   New York
+1  Anna   24      Paris
+2  Peter  35     London
+```
+
+
+
+## Creating DataFrame from a CSV file
+
+- We can create a DataFrame by importing a CSV file using the `pd.read_csv()` function.
+
+- Example: `df = pd.read_csv('file.csv')`
+
+# Key Pandas Functions for Data Analysis
+
+## GroupBy
+
+- The `groupby` function is used to split the data into groups based on some criteria.
+
+- Example: `df.groupby('column_name')`
+
+## Mean
+
+- The `mean` function returns the mean of the values for the requested axis.
+
+- Example: `df['column_name'].mean()`
+
+## Reset Index
+
+- `reset_index` is a method to reset index of a Data Frame.
+
+- Example: `df.reset_index()`
+
+## Rename Columns
+
+- `rename` function is used to change the names of the column labels.
+
+- Example: `df.rename(columns={'old_name1':'new_name1', 'old_name2':'new_name2'})`
+
+## Sort Values
+
+- The `sort_values` function sorts a data frame in ascending or descending order of passed column.
+
+- Example: `df.sort_values('column_name', ascending=False)`
+
+## Head
+- The `head` function is used to get the first n rows.
+- Example: `df.head(n)`
+
+## Date Manipulation
+
+- Pandas provides a robust tool for working with dates, times, and time-indexed data.
+
+- Example for extracting Year from Date: `df['date_column'].dt.year`
+
+- Example for extracting Month from Date: `df['date_column'].dt.to_period('M')`
+
+# Tasks 
+
+## Task 1: Average Revenue by E-Shop
+
+- Hint: Use the `groupby` function to group by 'eshop_name', then use the `mean` function on 'annual_revenue'.
+
+## Task 2: E-Shop with the Highest Average Rating
+
+- Hint: Use the `groupby` function to group by 'eshop_name', calculate the mean of 'average_rating', then sort values and use `head` to get the top one.
+
+## Task 3: E-Shop Performance Over Time
+
+- Hint: Extract the year from 'date', then group by 'eshop_name' and 'year' and calculate the sum of 'annual_revenue'.
+
+## Task 4: E-Shop with the Most Social Media Followers
+
+- Hint: Use the `groupby` function to group by 'eshop_name', get the max 'social_media_followers', then sort values and use `head` to get the top one.
+
+## Task 5: Monthly Active User Base Growth
+
+- Hint: Extract the month from 'date', then group by 'eshop_name' and 'month' and calculate the mean of 'active_user_base'.
+
