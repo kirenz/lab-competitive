@@ -4,10 +4,12 @@ title: "Resources"
 
 ## Prerequisites
 
-To solve this lab, you'll need:
+To start this lab, you'll need:
 
 - MySQL, MySQL Workbench and a database called `db_ecommerce`
 - Anaconda
+- Visual Studio Code 
+- Visual Studio Code Extensions
 
 Use MySQL Workbench to create a new database called `db_ecommerce`
 
@@ -26,6 +28,10 @@ USE `db_ecommerce`;
 - [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
 
 - [Anaconda](https://www.anaconda.com/download)
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+
+- [Visual Studio Code Extensions]()
 
 ## Anaconda Environment
 
