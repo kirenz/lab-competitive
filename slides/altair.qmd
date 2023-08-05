@@ -1,0 +1,106 @@
+---
+title: Altair
+lang: en
+subtitle: Introduction
+author: Jan Kirenz
+execute:
+  eval: true
+  echo: true
+highlight-style: github
+format:
+  revealjs: 
+    toc: true
+    toc-depth: 1
+    embed-resources: false
+    theme: [dark, ../custom.scss]  
+    incremental: true
+    transition: slide
+    background-transition: fade
+    transition-speed: slow
+    code-copy: true
+    code-line-numbers: true
+    smaller: false
+    scrollable: true
+    slide-number: c
+    preview-links: auto
+    chalkboard: 
+      buttons: false
+   #logo: images/logo.png
+    footer: Jan Kirenz
+---
+
+## Introduction to Altair-Vega
+
+- Altair is a declarative statistical visualization library in Python.
+
+- It's built on [Vega](https://vega.github.io/vega/) and [Vega-Lite](https://vega.github.io/vega-lite-api/), which are visualization grammars built on top of [D3](https://d3js.org/). 
+
+
+## Key features of Altair
+
+- Simple API: Just a few lines of code can create beautiful visualizations.
+
+- Integration with Pandas: Altair's API is designed to work with Pandas dataframes.
+
+- Declarative Visualization: You describe the properties of a visualization and let Altair figure out how to implement it.
+
+
+# Task Overview and Hints
+
+## Task 1: Average Revenue by E-Shop
+
+You're required to show the average revenue for all shops, using the name `average_revenue`.
+
+**Hint:**
+
+1. Import the Altair library.
+2. Read the CSV data into a Pandas DataFrame.
+3. Use `alt.Chart()` to create a chart.
+4. Use `mark_bar()` to specify that you want a bar chart.
+5. Use `encode()` to specify the X and Y axes. You can compute the average revenue using Altair's built-in `average()` function.
+
+
+## Task 2: Two E-Shops with the Highest Average Rating
+
+The task is to show the two E-Shops with the highest average rating, using the name \`average_rating\`.
+
+**Hint:**
+
+1. Group the data by 'eshop_name' and calculate the mean of 'average_rating' for each group.
+2. Sort the results in descending order and pick the top 2.
+3. Use the same charting methods as in Task 1 to visualize the data.
+
+
+## Task 3: E-Shop Performance Over Time
+
+You're tasked with showing the annual revenue per E-Shop by year, using the names \`year\` and \`total_revenue\`.
+
+**Hint:**
+
+1. Make sure the 'date' column is in a date-time format.
+2. Extract the year from the 'date' column using the \`year()\` function in Altair.
+3. To get the total revenue, use the \`sum()\` function in Altair.
+4. Use \`mark_bar()\` for the chart type and encode the axes accordingly.
+
+
+## Task 4: Maximum Social Media Followers
+
+Your task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name \`max_followers\`.
+
+**Hint:**
+
+1. Use the \`max()\` function in Altair to calculate the maximum number of social media followers for each E-shop.
+2. Sort the E-shops by the 'y' axis in descending order when encoding the 'x' axis.
+
+
+## Task 5: Monthly Time on Site overview
+
+The final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names \`month\` and \`average_time_on_site\`.
+
+**Hint:**
+
+1. Extract the month from the 'date' column using the \`month()\` function in Altair.
+2. To get the average time on site, use the \`average()\` function in Altair.
+3. Use \`mark_line()\` for the chart type and encode the axes accordingly.
+
+
