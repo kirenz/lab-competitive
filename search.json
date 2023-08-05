@@ -4,21 +4,21 @@
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "To solve this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
+    "text": "To start this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\nVisual Studio Code\nVisual Studio Code Extensions\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
   },
   {
     "objectID": "resources.html#prerequisites",
     "href": "resources.html#prerequisites",
     "title": "Resources",
     "section": "",
-    "text": "To solve this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
+    "text": "To start this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\nVisual Studio Code\nVisual Studio Code Extensions\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
   },
   {
     "objectID": "resources.html#installation",
     "href": "resources.html#installation",
     "title": "Resources",
     "section": "Installation",
-    "text": "Installation\n\nMySQL (select “No thanks, just start my download”)\n\nWindows\nMac\n\nMySQL Workbench\nAnaconda"
+    "text": "Installation\n\nMySQL (select “No thanks, just start my download”)\n\nWindows\nMac\n\nMySQL Workbench\nAnaconda\nVisual Studio Code\nVisual Studio Code Extensions"
   },
   {
     "objectID": "resources.html#anaconda-environment",
@@ -228,14 +228,21 @@
     "href": "slide.html",
     "title": "Slides",
     "section": "",
-    "text": "SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT\n\n\n\n\nAggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY\nHAVING\nWITH ROLLUP"
+    "text": "🖥 SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT\n\n\n\n\n🖥 Aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY\nHAVING\nWITH ROLLUP"
   },
   {
     "objectID": "slide.html#sql",
     "href": "slide.html#sql",
     "title": "Slides",
     "section": "",
-    "text": "SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT\n\n\n\n\nAggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY\nHAVING\nWITH ROLLUP"
+    "text": "🖥 SQL introduction\n\nSELECT\nDISTINCT\nWHERE\nORDER BY\nAS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP\nNULL, NOT NULL\nLIMIT\n\n\n\n\n🖥 Aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY\nHAVING\nWITH ROLLUP"
+  },
+  {
+    "objectID": "slide.html#pandas",
+    "href": "slide.html#pandas",
+    "title": "Slides",
+    "section": "Pandas",
+    "text": "Pandas"
   },
   {
     "objectID": "slides/slides.html#text",
