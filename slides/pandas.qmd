@@ -27,6 +27,7 @@ format:
       buttons: false
    #logo: images/logo.png
     footer: Jan Kirenz
+jupyter: python3
 ---
 
 
@@ -54,6 +55,19 @@ format:
 
 Here is an example of a DataFrame:
 
+```{python}
+# Import the module pandas as pd
+import pandas as pd
+
+# Create some data in this dictionary style
+data = {'Name': ['John', 'Anna', 'Peter'],
+        'Age': [28, 24, 35],
+        'City': ['New York', 'Paris', 'London']}
+
+# Transform the data into a Pandas Dataframe
+df = pd.DataFrame(data)
+```
+
 ```python
 # Import the module pandas as pd
 import pandas as pd
@@ -69,10 +83,10 @@ df = pd.DataFrame(data)
 
 ## Example of a DataFrame
 
-This will result in:
+- Use the `.head()`to show the top rows of the Dataframe:  
 
 ```python
-print(df)
+df.head()
 ```
 
 ```python
@@ -82,6 +96,16 @@ print(df)
 2  Peter  35     London
 ```
 
+## Example of a DataFrame
+
+- Use 
+
+## Example of a DataFrame
+
+Show the
+
+
+df.head()
 
 ## Creating DataFrame from a CSV file
 
