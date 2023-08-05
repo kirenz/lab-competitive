@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lab - Competitive analysis E-commerce</title>
+<title>Lab - Assignments</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -98,8 +98,8 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./code.html" rel="" target="">
- <span class="menu-text">Code</span></a>
+    <a class="nav-link active" href="./assignments.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Assignments</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -117,7 +117,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#first-analysis" id="toc-first-analysis" class="nav-link active" data-scroll-target="#first-analysis">First analysis</a></li>
+  <li><a href="#sql-analysis-part-1" id="toc-sql-analysis-part-1" class="nav-link active" data-scroll-target="#sql-analysis-part-1">SQL analysis part 1</a></li>
+  <li><a href="#sql-analysis-part-2" id="toc-sql-analysis-part-2" class="nav-link" data-scroll-target="#sql-analysis-part-2">SQL analysis part 2</a></li>
+  <li><a href="#sql-analysis-part-3" id="toc-sql-analysis-part-3" class="nav-link" data-scroll-target="#sql-analysis-part-3">SQL analysis part 3</a></li>
+  <li><a href="#pandas-analysis-for-part-3" id="toc-pandas-analysis-for-part-3" class="nav-link" data-scroll-target="#pandas-analysis-for-part-3">Pandas analysis for part 3</a></li>
+  <li><a href="#altair-analysis-for-part-3" id="toc-altair-analysis-for-part-3" class="nav-link" data-scroll-target="#altair-analysis-for-part-3">Altair analysis for part 3</a></li>
   </ul>
 </nav>
     </div>
@@ -126,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Competitive analysis E-commerce</h1>
+<h1 class="title">Assignments</h1>
 </div>
 
 
@@ -142,66 +146,35 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="first-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="first-analysis">First analysis</h2>
-<p>Use SQL queries to analyze your data (use the <a href="./code.html">Jupyter Notebook</a> provided in the code section):</p>
-<ol type="1">
-<li>Calculate the average annual revenue for each e-shop.</li>
-</ol>
-<!--
-
-```sql
-SELECT eshop_name, AVG(annual_revenue) as average_revenue
-FROM ecommerce_data
-GROUP BY eshop_name;
-E-Shop with the Highest Average Rating
-```
--->
-<ol start="2" type="1">
-<li>Find the e-shop with the highest average rating</li>
-</ol>
-<!-- 
-```sql
-SELECT eshop_name, AVG(average_rating) as average_rating
-FROM ecommerce_data
-GROUP BY eshop_name
-ORDER BY average_rating DESC
-LIMIT 1;
-E-Shop Performance Over Time
-```
- -->
-<ol start="3" type="1">
-<li>Calculate the total annual revenue for each e-shop, for each year.</li>
-</ol>
-<!-- 
-```sql
-SELECT eshop_name, YEAR(date) as year, SUM(annual_revenue) as total_revenue
-FROM ecommerce_data
-GROUP BY eshop_name, year;
-``` 
--->
-<ol start="4" type="1">
-<li>What is the E-Shop with the most Social Media Followers?</li>
-</ol>
-<!-- 
-```sql
-SELECT eshop_name, MAX(social_media_followers) as max_followers
-FROM ecommerce_data
-GROUP BY eshop_name
-ORDER BY max_followers DESC
-LIMIT 1;
-``` 
--->
-<ol start="5" type="1">
-<li>Show the growth of the active user base each month for each e-shop:</li>
-</ol>
-<!-- 
-```sql
-SELECT eshop_name, DATE_FORMAT(date, '%Y-%m') as month, AVG(active_user_base) as average_active_users
-FROM ecommerce_data
-GROUP BY eshop_name, month;
-``` 
--->
+<section id="sql-analysis-part-1" class="level2">
+<h2 class="anchored" data-anchor-id="sql-analysis-part-1">SQL analysis part 1</h2>
+<ul>
+<li><a href="https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-1-c.ipynb">SQL analysis part 1</a></li>
+</ul>
+</section>
+<section id="sql-analysis-part-2" class="level2">
+<h2 class="anchored" data-anchor-id="sql-analysis-part-2">SQL analysis part 2</h2>
+<ul>
+<li><a href="https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-2-c.ipynb">SQL analysis part 2</a></li>
+</ul>
+</section>
+<section id="sql-analysis-part-3" class="level2">
+<h2 class="anchored" data-anchor-id="sql-analysis-part-3">SQL analysis part 3</h2>
+<ul>
+<li><a href="https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-c.ipynb">SQL analysis part 3</a></li>
+</ul>
+</section>
+<section id="pandas-analysis-for-part-3" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-analysis-for-part-3">Pandas analysis for part 3</h2>
+<ul>
+<li><a href="https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-pandas.ipynb">Analysis part 3 with Pandas</a></li>
+</ul>
+</section>
+<section id="altair-analysis-for-part-3" class="level2">
+<h2 class="anchored" data-anchor-id="altair-analysis-for-part-3">Altair analysis for part 3</h2>
+<ul>
+<li><a href="https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-altair.ipynb">Analysis part 3 with Pandas</a></li>
+</ul>
 
 
 </section>
@@ -543,8 +516,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="./code.html">
-<p>Code</p>
+    <a class="nav-link" href="./assignments.html">
+<p>Assignments</p>
 </a>
   </li>  
 </ul>
