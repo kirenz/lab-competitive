@@ -8,24 +8,23 @@ title: "Slides"
 
 [🖥  SQL introduction](https://kirenz.github.io/sql/slides/2-intro.html#/title-slide)
 
-- SELECT
-- DISTINCT
-- WHERE
-- ORDER BY
-- AS
+- SELECT, DISTINCT, WHERE, ORDER BY, AS
 - OR, AND, IN, NOT IN, BETWEEN
-- LIKE, REGEXP
-- NULL, NOT NULL
-- LIMIT
+- LIKE, REGEXP, NULL, NOT NULL, LIMIT
 
 ### Part 2
 
 [🖥  Aggregate data](https://kirenz.github.io/sql/slides/5-aggregieren.html#/title-slide)
 
 - COUNT, SUM, MAX, MIN, AVG
-- GROUP BY
-- HAVING
-- WITH ROLLUP
+- GROUP BY, HAVING, WITH ROLLUP
 
 ## Pandas
+
+- [🖥 Introduction to Pandas](/slides/pandas.qmd)
+
+## Altair
+
+- [🖥 Introduction to Altair](/slides/altair.qmd)
+
 
