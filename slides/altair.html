@@ -441,14 +441,14 @@ Jan Kirenz
 </section>
 <section id="python-setup" class="slide level2">
 <h2>Python Setup</h2>
-<div id="9d07614b" class="cell" data-execution_count="1">
+<div id="a0227f3f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-a-dataframe" class="slide level2">
 <h2>Create a DataFrame</h2>
-<div id="8cbfbbdf" class="cell" data-execution_count="2">
+<div id="4c011d98" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a>data <span class="op">=</span> {<span class="st">'name'</span>: [<span class="st">'Zeynep'</span>, <span class="st">'Anna'</span>, <span class="st">'Tim'</span>, <span class="st">'Sara'</span>, <span class="st">'Elias'</span>, <span class="st">'Admir'</span>, <span class="st">'Lina'</span>],</span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a>        <span class="st">'age'</span>: [<span class="dv">33</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">31</span>],</span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a>        <span class="st">'date'</span>: [<span class="st">'1990-06-03'</span>, <span class="st">'1998-03-12'</span>, <span class="st">'2000-01-20'</span>, <span class="st">'2002-02-16'</span>, <span class="st">'1995-05-02'</span>, <span class="st">'2003-06-03'</span>, <span class="st">'1992-06-03'</span>],</span>
@@ -459,7 +459,7 @@ Jan Kirenz
 </section>
 <section id="change-data-format" class="slide level2">
 <h2>Change Data Format</h2>
-<div id="fd5e6bbc" class="cell" data-execution_count="3">
+<div id="82d8b0ce" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>CAT_LIST <span class="op">=</span> [<span class="st">'name'</span>, <span class="st">'city'</span>]</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="cf">for</span> i <span class="kw">in</span> CAT_LIST:</span>
@@ -474,11 +474,13 @@ Jan Kirenz
 <li class="fragment">We use <code>.mark_bar()</code> to create a bar plot</li>
 </ul>
 <div class="fragment">
-<div id="58c0bb6b" class="cell" data-execution_count="4">
+<div id="178b28c7" class="cell columns column-output-location" data-execution_count="4">
+<div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>),</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'age'</span>)</span>
 <span id="annotated-cell-4-4"><a href="#annotated-cell-4-4"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
@@ -495,28 +497,26 @@ Jan Kirenz
 </dd>
 </dl>
 </div>
-</div>
-<div class="cell fragment" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-  #altair-viz-5d7c744189044f0b9f301fbb859700d4.vega-embed {
+  #altair-viz-50703fb0449f43f596f74bd1d0d2e9c5.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-5d7c744189044f0b9f301fbb859700d4.vega-embed details,
-  #altair-viz-5d7c744189044f0b9f301fbb859700d4.vega-embed details summary {
+  #altair-viz-50703fb0449f43f596f74bd1d0d2e9c5.vega-embed details,
+  #altair-viz-50703fb0449f43f596f74bd1d0d2e9c5.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-5d7c744189044f0b9f301fbb859700d4"></div>
+<div id="altair-viz-50703fb0449f43f596f74bd1d0d2e9c5"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-5d7c744189044f0b9f301fbb859700d4") {
-      outputDiv = document.getElementById("altair-viz-5d7c744189044f0b9f301fbb859700d4");
+    if (outputDiv.id !== "altair-viz-50703fb0449f43f596f74bd1d0d2e9c5") {
+      outputDiv = document.getElementById("altair-viz-50703fb0449f43f596f74bd1d0d2e9c5");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -567,14 +567,17 @@ Jan Kirenz
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="bar-chart-with-sorted-values" class="slide level2">
 <h2>Bar Chart with sorted values</h2>
-<div id="5f5ef4a6" class="cell" data-execution_count="5">
+<div id="0cd88756" class="cell columns column-output-location" data-execution_count="5">
+<div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'y'</span>),</span>
 <span id="annotated-cell-5-3"><a href="#annotated-cell-5-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'age'</span>)</span>
 <span id="annotated-cell-5-4"><a href="#annotated-cell-5-4"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
@@ -583,28 +586,26 @@ Jan Kirenz
 </dd>
 </dl>
 </div>
-</div>
-<div class="cell fragment" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 
 <style>
-  #altair-viz-25a65bd115d14536956a333cae650609.vega-embed {
+  #altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-25a65bd115d14536956a333cae650609.vega-embed details,
-  #altair-viz-25a65bd115d14536956a333cae650609.vega-embed details summary {
+  #altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c.vega-embed details,
+  #altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-25a65bd115d14536956a333cae650609"></div>
+<div id="altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-25a65bd115d14536956a333cae650609") {
-      outputDiv = document.getElementById("altair-viz-25a65bd115d14536956a333cae650609");
+    if (outputDiv.id !== "altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c") {
+      outputDiv = document.getElementById("altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -654,14 +655,17 @@ Jan Kirenz
 </script>
 </div>
 </div>
+</div>
 </section>
 <section id="bar-chart-with-sorted-values-1" class="slide level2">
 <h2>Bar Chart with sorted values</h2>
-<div id="63d7f066" class="cell" data-execution_count="6">
+<div id="e71f91a5" class="cell columns column-output-location" data-execution_count="6">
+<div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
 <span id="annotated-cell-6-3"><a href="#annotated-cell-6-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'age'</span>)</span>
 <span id="annotated-cell-6-4"><a href="#annotated-cell-6-4"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
@@ -670,28 +674,26 @@ Jan Kirenz
 </dd>
 </dl>
 </div>
-</div>
-<div class="cell fragment" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 
 <style>
-  #altair-viz-f25de3a1d8cd4dcdbe67517cffb52837.vega-embed {
+  #altair-viz-65ca61b34862405faabdfb234d5e3611.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-f25de3a1d8cd4dcdbe67517cffb52837.vega-embed details,
-  #altair-viz-f25de3a1d8cd4dcdbe67517cffb52837.vega-embed details summary {
+  #altair-viz-65ca61b34862405faabdfb234d5e3611.vega-embed details,
+  #altair-viz-65ca61b34862405faabdfb234d5e3611.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-f25de3a1d8cd4dcdbe67517cffb52837"></div>
+<div id="altair-viz-65ca61b34862405faabdfb234d5e3611"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-f25de3a1d8cd4dcdbe67517cffb52837") {
-      outputDiv = document.getElementById("altair-viz-f25de3a1d8cd4dcdbe67517cffb52837");
+    if (outputDiv.id !== "altair-viz-65ca61b34862405faabdfb234d5e3611") {
+      outputDiv = document.getElementById("altair-viz-65ca61b34862405faabdfb234d5e3611");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -741,10 +743,12 @@ Jan Kirenz
 </script>
 </div>
 </div>
+</div>
 </section>
 <section id="bar-chart-with-properties" class="slide level2">
 <h2>Bar Chart with properties</h2>
-<div id="c7f1dccd" class="cell" data-execution_count="7">
+<div id="e32c5744" class="cell columns column-output-location" data-execution_count="7">
+<div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-7-2"><a href="#annotated-cell-7-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
 <span id="annotated-cell-7-3"><a href="#annotated-cell-7-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'age'</span>)</span>
@@ -753,6 +757,7 @@ Jan Kirenz
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-6" class="code-annotation-target"><a href="#annotated-cell-7-6"></a>    width<span class="op">=</span><span class="dv">300</span>,</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-7-7" class="code-annotation-target"><a href="#annotated-cell-7-7"></a>    height<span class="op">=</span><span class="dv">150</span></span>
 <span id="annotated-cell-7-8"><a href="#annotated-cell-7-8"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
@@ -773,28 +778,26 @@ Jan Kirenz
 </dd>
 </dl>
 </div>
-</div>
-<div class="cell fragment" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 
 <style>
-  #altair-viz-9b25f2695c674d50a04cc73cb3742d42.vega-embed {
+  #altair-viz-97e023215a7e4c3498823911d6ad2d2a.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-9b25f2695c674d50a04cc73cb3742d42.vega-embed details,
-  #altair-viz-9b25f2695c674d50a04cc73cb3742d42.vega-embed details summary {
+  #altair-viz-97e023215a7e4c3498823911d6ad2d2a.vega-embed details,
+  #altair-viz-97e023215a7e4c3498823911d6ad2d2a.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-9b25f2695c674d50a04cc73cb3742d42"></div>
+<div id="altair-viz-97e023215a7e4c3498823911d6ad2d2a"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-9b25f2695c674d50a04cc73cb3742d42") {
-      outputDiv = document.getElementById("altair-viz-9b25f2695c674d50a04cc73cb3742d42");
+    if (outputDiv.id !== "altair-viz-97e023215a7e4c3498823911d6ad2d2a") {
+      outputDiv = document.getElementById("altair-viz-97e023215a7e4c3498823911d6ad2d2a");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -844,11 +847,13 @@ Jan Kirenz
 </script>
 </div>
 </div>
+</div>
 </section>
 <section id="bar-chart-with-properties-1" class="slide level2">
 <h2>Bar Chart with properties</h2>
-<div id="f1d4118e" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1"></a>alt.Chart(df).mark_line().encode(</span>
+<div id="25c90660" class="cell columns column-output-location" data-execution_count="8">
+<div class="column">
+<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-8-2"><a href="#annotated-cell-8-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
 <span id="annotated-cell-8-3"><a href="#annotated-cell-8-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'age'</span>)</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-4" class="code-annotation-target"><a href="#annotated-cell-8-4"></a>).properties(</span>
@@ -856,6 +861,7 @@ Jan Kirenz
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-8-6" class="code-annotation-target"><a href="#annotated-cell-8-6"></a>    width<span class="op">=</span><span class="dv">300</span>,</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-8-7" class="code-annotation-target"><a href="#annotated-cell-8-7"></a>    height<span class="op">=</span><span class="dv">150</span></span>
 <span id="annotated-cell-8-8"><a href="#annotated-cell-8-8"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
@@ -876,28 +882,26 @@ Jan Kirenz
 </dd>
 </dl>
 </div>
-</div>
-<div class="cell fragment" data-execution_count="8">
 <div class="cell-output cell-output-display" data-execution_count="8">
 
 <style>
-  #altair-viz-ae835e0e1fe546ea94b4eeb6dc46be3c.vega-embed {
+  #altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ae835e0e1fe546ea94b4eeb6dc46be3c.vega-embed details,
-  #altair-viz-ae835e0e1fe546ea94b4eeb6dc46be3c.vega-embed details summary {
+  #altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3.vega-embed details,
+  #altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ae835e0e1fe546ea94b4eeb6dc46be3c"></div>
+<div id="altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ae835e0e1fe546ea94b4eeb6dc46be3c") {
-      outputDiv = document.getElementById("altair-viz-ae835e0e1fe546ea94b4eeb6dc46be3c");
+    if (outputDiv.id !== "altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3") {
+      outputDiv = document.getElementById("altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -943,14 +947,16 @@ Jan Kirenz
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-35a07b333ab42c20ffaa19d64e97f161"}, "mark": {"type": "line"}, "encoding": {"x": {"field": "name", "sort": "-y", "type": "nominal"}, "y": {"field": "age", "type": "quantitative"}}, "height": 150, "title": "This is a simple bar chart", "width": 300, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-35a07b333ab42c20ffaa19d64e97f161": [{"name": "Zeynep", "age": 33, "date": "1990-06-03T00:00:00", "city": "Stuttgart"}, {"name": "Anna", "age": 25, "date": "1998-03-12T00:00:00", "city": "Berlin"}, {"name": "Tim", "age": 23, "date": "2000-01-20T00:00:00", "city": "Stuttgart"}, {"name": "Sara", "age": 21, "date": "2002-02-16T00:00:00", "city": "Stuttgart"}, {"name": "Elias", "age": 28, "date": "1995-05-02T00:00:00", "city": "Berlin"}, {"name": "Admir", "age": 20, "date": "2003-06-03T00:00:00", "city": "Munich"}, {"name": "Lina", "age": 31, "date": "1992-06-03T00:00:00", "city": "Stuttgart"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-35a07b333ab42c20ffaa19d64e97f161"}, "mark": {"type": "bar"}, "encoding": {"x": {"field": "name", "sort": "-y", "type": "nominal"}, "y": {"field": "age", "type": "quantitative"}}, "height": 150, "title": "This is a simple bar chart", "width": 300, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-35a07b333ab42c20ffaa19d64e97f161": [{"name": "Zeynep", "age": 33, "date": "1990-06-03T00:00:00", "city": "Stuttgart"}, {"name": "Anna", "age": 25, "date": "1998-03-12T00:00:00", "city": "Berlin"}, {"name": "Tim", "age": 23, "date": "2000-01-20T00:00:00", "city": "Stuttgart"}, {"name": "Sara", "age": 21, "date": "2002-02-16T00:00:00", "city": "Stuttgart"}, {"name": "Elias", "age": 28, "date": "1995-05-02T00:00:00", "city": "Berlin"}, {"name": "Admir", "age": 20, "date": "2003-06-03T00:00:00", "city": "Munich"}, {"name": "Lina", "age": 31, "date": "1992-06-03T00:00:00", "city": "Stuttgart"}]}}, {"mode": "vega-lite"});
 </script>
+</div>
 </div>
 </div>
 </section>
 <section id="bar-chart-with-custom-x-axis" class="slide level2">
 <h2>Bar chart with custom x-axis</h2>
-<div id="ef2cc147" class="cell" data-execution_count="9">
+<div id="8c8331b7" class="cell columns column-output-location" data-execution_count="9">
+<div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>).axis(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-3" class="code-annotation-target"><a href="#annotated-cell-9-3"></a>        title<span class="op">=</span><span class="st">"Name"</span>,</span>
@@ -963,6 +969,7 @@ Jan Kirenz
 <span id="annotated-cell-9-10"><a href="#annotated-cell-9-10"></a>    width<span class="op">=</span><span class="dv">300</span>,</span>
 <span id="annotated-cell-9-11"><a href="#annotated-cell-9-11"></a>    height<span class="op">=</span><span class="dv">150</span></span>
 <span id="annotated-cell-9-12"><a href="#annotated-cell-9-12"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
@@ -983,28 +990,26 @@ Jan Kirenz
 </dd>
 </dl>
 </div>
-</div>
-<div class="cell fragment" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
 
 <style>
-  #altair-viz-fc7f6939737947b3a867085826234521.vega-embed {
+  #altair-viz-ef99e64578594ceb979b82732e46fd4a.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-fc7f6939737947b3a867085826234521.vega-embed details,
-  #altair-viz-fc7f6939737947b3a867085826234521.vega-embed details summary {
+  #altair-viz-ef99e64578594ceb979b82732e46fd4a.vega-embed details,
+  #altair-viz-ef99e64578594ceb979b82732e46fd4a.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-fc7f6939737947b3a867085826234521"></div>
+<div id="altair-viz-ef99e64578594ceb979b82732e46fd4a"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-fc7f6939737947b3a867085826234521") {
-      outputDiv = document.getElementById("altair-viz-fc7f6939737947b3a867085826234521");
+    if (outputDiv.id !== "altair-viz-ef99e64578594ceb979b82732e46fd4a") {
+      outputDiv = document.getElementById("altair-viz-ef99e64578594ceb979b82732e46fd4a");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1054,10 +1059,12 @@ Jan Kirenz
 </script>
 </div>
 </div>
+</div>
 </section>
 <section id="bar-chart-with-custom-y-axis" class="slide level2">
 <h2>Bar chart with custom y-axis</h2>
-<div id="da90d24d" class="cell" data-execution_count="10">
+<div id="f98c941b" class="cell columns column-output-location" data-execution_count="10">
+<div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-10-2"><a href="#annotated-cell-10-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
 <span id="annotated-cell-10-3"><a href="#annotated-cell-10-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'age'</span>).axis(</span>
@@ -1069,6 +1076,7 @@ Jan Kirenz
 <span id="annotated-cell-10-9"><a href="#annotated-cell-10-9"></a>    width<span class="op">=</span><span class="dv">300</span>,</span>
 <span id="annotated-cell-10-10"><a href="#annotated-cell-10-10"></a>    height<span class="op">=</span><span class="dv">150</span></span>
 <span id="annotated-cell-10-11"><a href="#annotated-cell-10-11"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
@@ -1085,28 +1093,26 @@ Jan Kirenz
 </dd>
 </dl>
 </div>
-</div>
-<div class="cell fragment" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 
 <style>
-  #altair-viz-0bd43ca3e83d4f08b818edfc5a923405.vega-embed {
+  #altair-viz-66f7465f380545379845d6032d751c98.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-0bd43ca3e83d4f08b818edfc5a923405.vega-embed details,
-  #altair-viz-0bd43ca3e83d4f08b818edfc5a923405.vega-embed details summary {
+  #altair-viz-66f7465f380545379845d6032d751c98.vega-embed details,
+  #altair-viz-66f7465f380545379845d6032d751c98.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-0bd43ca3e83d4f08b818edfc5a923405"></div>
+<div id="altair-viz-66f7465f380545379845d6032d751c98"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-0bd43ca3e83d4f08b818edfc5a923405") {
-      outputDiv = document.getElementById("altair-viz-0bd43ca3e83d4f08b818edfc5a923405");
+    if (outputDiv.id !== "altair-viz-66f7465f380545379845d6032d751c98") {
+      outputDiv = document.getElementById("altair-viz-66f7465f380545379845d6032d751c98");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1156,10 +1162,12 @@ Jan Kirenz
 </script>
 </div>
 </div>
+</div>
 </section>
 <section id="bar-chart-with-custom-title" class="slide level2">
 <h2>Bar chart with custom title</h2>
-<div id="05c81fd0" class="cell" data-execution_count="11">
+<div id="4336a472" class="cell columns column-output-location" data-execution_count="11">
+<div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-11-2"><a href="#annotated-cell-11-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
 <span id="annotated-cell-11-3"><a href="#annotated-cell-11-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'age'</span>)</span>
@@ -1173,6 +1181,7 @@ Jan Kirenz
 <span id="annotated-cell-11-11"><a href="#annotated-cell-11-11"></a>    color<span class="op">=</span><span class="st">'black'</span>,</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-12" class="code-annotation-target"><a href="#annotated-cell-11-12"></a>    anchor<span class="op">=</span><span class="st">'start'</span></span>
 <span id="annotated-cell-11-13"><a href="#annotated-cell-11-13"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
@@ -1185,28 +1194,26 @@ Jan Kirenz
 </dd>
 </dl>
 </div>
-</div>
-<div class="cell fragment" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
 
 <style>
-  #altair-viz-08f97a610bd74319803b6cece51586e0.vega-embed {
+  #altair-viz-4917c1793b0b45ddb221e2a67463b197.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-08f97a610bd74319803b6cece51586e0.vega-embed details,
-  #altair-viz-08f97a610bd74319803b6cece51586e0.vega-embed details summary {
+  #altair-viz-4917c1793b0b45ddb221e2a67463b197.vega-embed details,
+  #altair-viz-4917c1793b0b45ddb221e2a67463b197.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-08f97a610bd74319803b6cece51586e0"></div>
+<div id="altair-viz-4917c1793b0b45ddb221e2a67463b197"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-08f97a610bd74319803b6cece51586e0") {
-      outputDiv = document.getElementById("altair-viz-08f97a610bd74319803b6cece51586e0");
+    if (outputDiv.id !== "altair-viz-4917c1793b0b45ddb221e2a67463b197") {
+      outputDiv = document.getElementById("altair-viz-4917c1793b0b45ddb221e2a67463b197");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1256,10 +1263,11 @@ Jan Kirenz
 </script>
 </div>
 </div>
+</div>
 </section>
 <section id="final-bar-plot" class="slide level2">
 <h2>Final bar plot</h2>
-<div id="ab032321" class="cell" data-execution_count="12">
+<div id="9beb8c9d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-12-1"><a href="#annotated-cell-12-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-12-2"><a href="#annotated-cell-12-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>).axis(</span>
 <span id="annotated-cell-12-3"><a href="#annotated-cell-12-3"></a>        title<span class="op">=</span><span class="st">"Name"</span>,</span>
@@ -1291,27 +1299,28 @@ Jan Kirenz
 </dl>
 </div>
 </div>
-<div class="cell fragment" data-execution_count="12">
+
+</section><section id="final-bar-plot-output" class="slide level2 output-location-slide"><h2>Final bar plot</h2><div class="cell output-location-slide" data-execution_count="12">
 <div class="cell-output cell-output-display" data-execution_count="12">
 
 <style>
-  #altair-viz-7da7ce2a0ebf49d48e070a1106cde579.vega-embed {
+  #altair-viz-a05a35a688d7474f820138bb6f6bd662.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-7da7ce2a0ebf49d48e070a1106cde579.vega-embed details,
-  #altair-viz-7da7ce2a0ebf49d48e070a1106cde579.vega-embed details summary {
+  #altair-viz-a05a35a688d7474f820138bb6f6bd662.vega-embed details,
+  #altair-viz-a05a35a688d7474f820138bb6f6bd662.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-7da7ce2a0ebf49d48e070a1106cde579"></div>
+<div id="altair-viz-a05a35a688d7474f820138bb6f6bd662"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-7da7ce2a0ebf49d48e070a1106cde579") {
-      outputDiv = document.getElementById("altair-viz-7da7ce2a0ebf49d48e070a1106cde579");
+    if (outputDiv.id !== "altair-viz-a05a35a688d7474f820138bb6f6bd662") {
+      outputDiv = document.getElementById("altair-viz-a05a35a688d7474f820138bb6f6bd662");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1360,8 +1369,7 @@ Jan Kirenz
   })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300, "strokeWidth": 0}, "title": {"anchor": "start", "color": "black", "font": "Arial", "fontSize": 16}}, "data": {"name": "data-35a07b333ab42c20ffaa19d64e97f161"}, "mark": {"type": "bar"}, "encoding": {"x": {"axis": {"title": "Name", "labelAngle": 0, "grid": false, "titleAnchor": "start"}, "field": "name", "sort": "-y", "type": "nominal"}, "y": {"axis": {"title": "Age", "grid": false, "titleAnchor": "end"}, "field": "age", "type": "quantitative"}}, "height": 150, "title": "This is a simple bar chart", "width": 300, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-35a07b333ab42c20ffaa19d64e97f161": [{"name": "Zeynep", "age": 33, "date": "1990-06-03T00:00:00", "city": "Stuttgart"}, {"name": "Anna", "age": 25, "date": "1998-03-12T00:00:00", "city": "Berlin"}, {"name": "Tim", "age": 23, "date": "2000-01-20T00:00:00", "city": "Stuttgart"}, {"name": "Sara", "age": 21, "date": "2002-02-16T00:00:00", "city": "Stuttgart"}, {"name": "Elias", "age": 28, "date": "1995-05-02T00:00:00", "city": "Berlin"}, {"name": "Admir", "age": 20, "date": "2003-06-03T00:00:00", "city": "Munich"}, {"name": "Lina", "age": 31, "date": "1992-06-03T00:00:00", "city": "Stuttgart"}]}}, {"mode": "vega-lite"});
 </script>
 </div>
-</div>
-</section></section>
+</div></section></section>
 <section>
 <section id="task-overview-and-hints" class="title-slide slide level1 center">
 <h1>Task Overview and Hints</h1>
