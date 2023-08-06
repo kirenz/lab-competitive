@@ -886,56 +886,56 @@
     "href": "slides/altair.html#bar-chart",
     "title": "Altair",
     "section": "Bar Chart",
-    "text": "Bar Chart\n\nWe use .mark_bar() to create a bar plot\n\n\n\n1alt.Chart(df).mark_bar().encode(\n2    x=alt.X('name'),\n3    y=alt.Y('age')\n)\n\n\n1\n\nDefine a chart object (ACME acronym)\n\n2\n\nDefine x-axis\n\n3\n\nDefine y-axis"
+    "text": "Bar Chart\n\nWe use .mark_bar() to create a bar plot\n\n\n\n\n1alt.Chart(df).mark_bar().encode(\n2    x=alt.X('name'),\n3    y=alt.Y('age')\n)\n\n\n\n1\n\nDefine a chart object (ACME acronym)\n\n2\n\nDefine x-axis\n\n3\n\nDefine y-axis"
   },
   {
     "objectID": "slides/altair.html#bar-chart-with-sorted-values",
     "href": "slides/altair.html#bar-chart-with-sorted-values",
     "title": "Altair",
     "section": "Bar Chart with sorted values",
-    "text": "Bar Chart with sorted values\n\nalt.Chart(df).mark_bar().encode(\n1    x=alt.X('name').sort('y'),\n    y=alt.Y('age')\n)\n\n\n1\n\nSort the values in an ascending order"
+    "text": "Bar Chart with sorted values\n\n\nalt.Chart(df).mark_bar().encode(\n1    x=alt.X('name').sort('y'),\n    y=alt.Y('age')\n)\n\n\n\n1\n\nSort the values in an ascending order"
   },
   {
     "objectID": "slides/altair.html#bar-chart-with-sorted-values-1",
     "href": "slides/altair.html#bar-chart-with-sorted-values-1",
     "title": "Altair",
     "section": "Bar Chart with sorted values",
-    "text": "Bar Chart with sorted values\n\nalt.Chart(df).mark_bar().encode(\n1    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n)\n\n\n1\n\nSort the values in a descending order"
+    "text": "Bar Chart with sorted values\n\n\nalt.Chart(df).mark_bar().encode(\n1    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n)\n\n\n\n1\n\nSort the values in a descending order"
   },
   {
     "objectID": "slides/altair.html#bar-chart-with-properties",
     "href": "slides/altair.html#bar-chart-with-properties",
     "title": "Altair",
     "section": "Bar Chart with properties",
-    "text": "Bar Chart with properties\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n1).properties(\n2    title='This is a simple bar chart',\n3    width=300,\n4    height=150\n)\n\n\n1\n\nAdd properties to the chart\n\n2\n\nDefine a chart title\n\n3\n\nSet the width of the chart (in pixel)\n\n4\n\nSet the height of the chart (in pixel)"
+    "text": "Bar Chart with properties\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n1).properties(\n2    title='This is a simple bar chart',\n3    width=300,\n4    height=150\n)\n\n\n\n1\n\nAdd properties to the chart\n\n2\n\nDefine a chart title\n\n3\n\nSet the width of the chart (in pixel)\n\n4\n\nSet the height of the chart (in pixel)"
   },
   {
     "objectID": "slides/altair.html#bar-chart-with-properties-1",
     "href": "slides/altair.html#bar-chart-with-properties-1",
     "title": "Altair",
     "section": "Bar Chart with properties",
-    "text": "Bar Chart with properties\n\nalt.Chart(df).mark_line().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n1).properties(\n2    title='This is a simple bar chart',\n3    width=300,\n4    height=150\n)\n\n\n1\n\nAdd properties to the chart\n\n2\n\nDefine a chart title\n\n3\n\nSet the width of the chart (in pixel)\n\n4\n\nSet the height of the chart (in pixel)"
+    "text": "Bar Chart with properties\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n1).properties(\n2    title='This is a simple bar chart',\n3    width=300,\n4    height=150\n)\n\n\n\n1\n\nAdd properties to the chart\n\n2\n\nDefine a chart title\n\n3\n\nSet the width of the chart (in pixel)\n\n4\n\nSet the height of the chart (in pixel)"
   },
   {
     "objectID": "slides/altair.html#bar-chart-with-custom-x-axis",
     "href": "slides/altair.html#bar-chart-with-custom-x-axis",
     "title": "Altair",
     "section": "Bar chart with custom x-axis",
-    "text": "Bar chart with custom x-axis\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y').axis(\n1        title=\"Name\",\n2        labelAngle=0,\n3        grid=False,\n4        titleAnchor=\"start\"),\n    y=alt.Y('age')\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n)\n\n\n1\n\nTitle of x-axis\n\n2\n\nAngle of axis text\n\n3\n\nHide the lines in the background\n\n4\n\nAdjustment of the text at the x-axis"
+    "text": "Bar chart with custom x-axis\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y').axis(\n1        title=\"Name\",\n2        labelAngle=0,\n3        grid=False,\n4        titleAnchor=\"start\"),\n    y=alt.Y('age')\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n)\n\n\n\n1\n\nTitle of x-axis\n\n2\n\nAngle of axis text\n\n3\n\nHide the lines in the background\n\n4\n\nAdjustment of the text at the x-axis"
   },
   {
     "objectID": "slides/altair.html#bar-chart-with-custom-y-axis",
     "href": "slides/altair.html#bar-chart-with-custom-y-axis",
     "title": "Altair",
     "section": "Bar chart with custom y-axis",
-    "text": "Bar chart with custom y-axis\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age').axis(\n1        title=\"Age\",\n2        grid=False,\n3        titleAnchor=\"end\"),\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n)\n\n\n1\n\nTitle of y-axis\n\n2\n\nHide the grid\n\n3\n\nAdjustment of the text at the y axis"
+    "text": "Bar chart with custom y-axis\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age').axis(\n1        title=\"Age\",\n2        grid=False,\n3        titleAnchor=\"end\"),\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n)\n\n\n\n1\n\nTitle of y-axis\n\n2\n\nHide the grid\n\n3\n\nAdjustment of the text at the y axis"
   },
   {
     "objectID": "slides/altair.html#bar-chart-with-custom-title",
     "href": "slides/altair.html#bar-chart-with-custom-title",
     "title": "Altair",
     "section": "Bar chart with custom title",
-    "text": "Bar chart with custom title\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n1).configure_title(\n    fontSize=16,\n    font='Arial',\n    color='black',\n2    anchor='start'\n)\n\n\n1\n\nCustom title options\n\n2\n\nWhere to anchor the title (start, middle or end)"
+    "text": "Bar chart with custom title\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n1).configure_title(\n    fontSize=16,\n    font='Arial',\n    color='black',\n2    anchor='start'\n)\n\n\n\n1\n\nCustom title options\n\n2\n\nWhere to anchor the title (start, middle or end)"
   },
   {
     "objectID": "slides/altair.html#final-bar-plot",
@@ -943,6 +943,13 @@
     "title": "Altair",
     "section": "Final bar plot",
     "text": "Final bar plot\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y').axis(\n        title=\"Name\",\n        labelAngle=0,\n        grid=False,\n        titleAnchor=\"start\"),\n    y=alt.Y('age').axis(\n        title=\"Age\",\n        grid=False,\n        titleAnchor=\"end\"),\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n).configure_title(\n    fontSize=16,\n    font='Arial',\n    color='black',\n    anchor='start'\n1).configure_view(\n    strokeWidth=0\n)\n\n\n1\n\nRemove the lines at the top and the right of the plot"
+  },
+  {
+    "objectID": "slides/altair.html#final-bar-plot-output",
+    "href": "slides/altair.html#final-bar-plot-output",
+    "title": "Altair",
+    "section": "Final bar plot",
+    "text": "Final bar plot"
   },
   {
     "objectID": "slides/altair.html#task-1-average-revenue-by-e-shop",

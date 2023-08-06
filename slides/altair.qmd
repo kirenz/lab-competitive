@@ -89,7 +89,7 @@ df['date'] = pd.to_datetime(df['date'])
 . . .
 
 ```{python}
-# | output-location: fragment
+# | output-location: column-fragment
 
 alt.Chart(df).mark_bar().encode(  # <1>
     x=alt.X('name'),              # <2>
@@ -107,7 +107,7 @@ alt.Chart(df).mark_bar().encode(  # <1>
 ## Bar Chart with sorted values
 
 ```{python}
-# | output-location: fragment
+# | output-location: column-fragment
 
 alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('y'),   # <1>
@@ -121,7 +121,7 @@ alt.Chart(df).mark_bar().encode(
 ## Bar Chart with sorted values
 
 ```{python}
-# | output-location: fragment
+# | output-location: column-fragment
 
 alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('-y'),   # <1>
@@ -135,7 +135,7 @@ alt.Chart(df).mark_bar().encode(
 ## Bar Chart with properties
 
 ```{python}
-# | output-location: fragment
+# | output-location: column-fragment
 
 alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('-y'),
@@ -158,9 +158,9 @@ alt.Chart(df).mark_bar().encode(
 ## Bar Chart with properties
 
 ```{python}
-# | output-location: fragment
+# | output-location: column-fragment
 
-alt.Chart(df).mark_line().encode(
+alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('-y'),
     y=alt.Y('age')
 ).properties(                            # <1>
@@ -180,7 +180,7 @@ alt.Chart(df).mark_line().encode(
 
 
 ```{python}
-# | output-location: fragment
+# | output-location: column-fragment
 
 alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('-y').axis(
@@ -208,7 +208,7 @@ alt.Chart(df).mark_bar().encode(
 
 
 ```{python}
-# | output-location: fragment
+# | output-location: column-fragment
 
 alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('-y'),
@@ -234,7 +234,7 @@ alt.Chart(df).mark_bar().encode(
 
 
 ```{python}
-# | output-location: fragment
+# | output-location: column-fragment
 
 alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('-y'),
@@ -260,7 +260,7 @@ alt.Chart(df).mark_bar().encode(
 
 
 ```{python}
-# | output-location: fragment
+# | output-location: slide
 
 alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('-y').axis(
