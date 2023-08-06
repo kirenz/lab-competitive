@@ -627,7 +627,7 @@
     "href": "index.html",
     "title": "Lab",
     "section": "",
-    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you’ll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.\nFor this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-Shop A, E-Shop B, and E-Shop C.\n\nAssignments"
+    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you’ll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.\n\n\n\n\n\n\nTechnology we will use\n\n\n\n\nMySQL-Database\nSQL for data analysis\nPandas for data analysis in Python\nAltair for data visualization in Python"
   },
   {
     "objectID": "slides/pandas.html#example-of-a-dataframe",
