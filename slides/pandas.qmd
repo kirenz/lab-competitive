@@ -33,8 +33,6 @@ jupyter: python3
 
 # What is Pandas?
 
-![](https://pandas.pydata.org/docs/_static/pandas.svg)
-
 - Pandas is a powerful and flexible open-source data analysis and manipulation library for Python.
 
 - It provides data structures and functions needed to manipulate structured data.
@@ -57,18 +55,21 @@ Here is an example of a DataFrame:
 
 ```{python}
 # Import the module pandas as pd
-import pandas as pd
+import pandas as pd  # <1>
 
 # Create some data in this dictionary style
-data = {'Name': ['John', 'Anna', 'Peter'],
+data = {'Name': ['John', 'Anna', 'Peter'],  # <2>
         'Age': [28, 24, 35],
         'City': ['New York', 'Paris', 'London']}
 
 # Transform the data into a Pandas Dataframe
 df = pd.DataFrame(data)
+
+
 ```
 
-
+1. Take `penguins`, and then,
+2. add new columns for the bill ratio and bill area.
 
 ## Example of a DataFrame
 
@@ -76,18 +77,11 @@ df = pd.DataFrame(data)
 
 
 ```{python}
+# | output-location: fragment
+
 df.head()
-
 ```
 
-## Output
-
-```python
-   Name  Age       City
-0  John   28   New York
-1  Anna   24      Paris
-2  Peter  35     London
-```
 
 ## Example of a DataFrame
 
