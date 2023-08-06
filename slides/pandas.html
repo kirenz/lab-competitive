@@ -398,7 +398,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Pandas</h1>
-  <p class="subtitle">Introduction</p>
+  <p class="subtitle">Basics, Task Overview and Hints</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -415,6 +415,7 @@ Jan Kirenz
 <li class="fragment"><a href="#/what-is-pandas" id="/toc-what-is-pandas">What is Pandas?</a></li>
 <li class="fragment"><a href="#/dataframes" id="/toc-dataframes">DataFrames</a></li>
 <li class="fragment"><a href="#/key-pandas-functions-for-data-analysis" id="/toc-key-pandas-functions-for-data-analysis">Key Pandas Functions for Data Analysis</a></li>
+<li class="fragment"><a href="#/task-overview-and-hints" id="/toc-task-overview-and-hints">Task Overview and Hints</a></li>
 </ul>
 </nav>
 </section>
@@ -439,7 +440,7 @@ Jan Kirenz
 <section id="example-of-a-dataframe" class="slide level2">
 <h2>Example of a DataFrame</h2>
 <p>Here is an example of a DataFrame:</p>
-<div id="62646376" class="cell" data-execution_count="1">
+<div id="2aea6ec1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3"></a>data <span class="op">=</span> {<span class="st">'name'</span>: [<span class="st">'Zeynep'</span>, <span class="st">'Anna'</span>, <span class="st">'Tim'</span>, <span class="st">'Sara'</span>, <span class="st">'Elias'</span>, <span class="st">'Admir'</span>, <span class="st">'Lina'</span>],</span>
@@ -452,15 +453,15 @@ Jan Kirenz
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd class="fragment">
-<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-1">Import the module pandas as pd</span>
+<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-1">Import the module pandas as pd</span>
 </dd>
 <dt class="fragment" data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd class="fragment">
-<span data-code-annotation="2" data-code-lines="3" data-code-cell="annotated-cell-1">Create some data in this dictionary style</span>
+<span data-code-lines="3" data-code-annotation="2" data-code-cell="annotated-cell-1">Create some data in this dictionary style</span>
 </dd>
 <dt class="fragment" data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
 <dd class="fragment">
-<span data-code-annotation="3" data-code-lines="8" data-code-cell="annotated-cell-1">Transform the data into a Pandas Dataframe</span>
+<span data-code-lines="8" data-code-annotation="3" data-code-cell="annotated-cell-1">Transform the data into a Pandas Dataframe</span>
 </dd>
 </dl>
 </div>
@@ -472,7 +473,7 @@ Jan Kirenz
 <li class="fragment">Use <code>.head()</code>to show the top rows of the Dataframe:</li>
 </ul>
 <div class="fragment">
-<div id="7c2ab313" class="cell" data-execution_count="2">
+<div id="cbd093d1" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="2">
@@ -552,7 +553,7 @@ Jan Kirenz
 <li class="fragment">Use <code>.tail()</code>to show the last rows of the Dataframe:</li>
 </ul>
 <div class="fragment">
-<div id="54bdc166" class="cell" data-execution_count="3">
+<div id="81311f1d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="3">
@@ -632,7 +633,7 @@ Jan Kirenz
 <li class="fragment">Use <code>df</code> to get an overview of head and tail:</li>
 </ul>
 <div class="fragment">
-<div id="2b6fe38e" class="cell" data-execution_count="4">
+<div id="766a89c9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="4">
@@ -726,7 +727,7 @@ Jan Kirenz
 <li class="fragment">Use <code>.info()</code>to show metadata</li>
 </ul>
 <div class="fragment">
-<div id="225def62" class="cell" data-execution_count="5">
+<div id="feca33c5" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="5">
@@ -752,14 +753,14 @@ memory usage: 356.0+ bytes</code></pre>
 <li class="fragment">Categorical data: <code>df[column_name] = df[column_name].astype('category')</code></li>
 </ul>
 <div class="fragment">
-<div id="a84e46fd" class="cell" data-execution_count="6">
+<div id="cac68741" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df[<span class="st">'name'</span>] <span class="op">=</span> df[<span class="st">'name'</span>].astype(<span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="categorical-data-1" class="slide level2">
 <h2>Categorical Data</h2>
-<div id="11f722ec" class="cell" data-execution_count="7">
+<div id="5768f74f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="7">
@@ -784,7 +785,7 @@ memory usage: 663.0+ bytes</code></pre>
 <li class="fragment">If you want to transform multiple columns:</li>
 </ul>
 <div class="fragment">
-<div id="f6fa6726" class="cell" data-execution_count="8">
+<div id="d1a0c0c3" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1"></a>CAT_LIST <span class="op">=</span> [<span class="st">'name'</span>, <span class="st">'city'</span>]</span>
 <span id="annotated-cell-8-2"><a href="#annotated-cell-8-2"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3"></a><span class="cf">for</span> i <span class="kw">in</span> CAT_LIST:</span>
@@ -793,11 +794,11 @@ memory usage: 663.0+ bytes</code></pre>
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
 <dd class="fragment">
-<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-8">Create a list with the name of the columns</span>
+<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-8">Create a list with the name of the columns</span>
 </dd>
 <dt class="fragment" data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
 <dd class="fragment">
-<span data-code-annotation="2" data-code-lines="3" data-code-cell="annotated-cell-8">Use a for loop to transfrom the columns</span>
+<span data-code-lines="3" data-code-annotation="2" data-code-cell="annotated-cell-8">Use a for loop to transfrom the columns</span>
 </dd>
 </dl>
 </div>
@@ -810,14 +811,14 @@ memory usage: 663.0+ bytes</code></pre>
 <li class="fragment">Use <code>pd.to_datetime</code> to change the format into a date object: <code>df['column_name'] = pd.to_datetime(df['column_name'])</code></li>
 </ul>
 <div class="fragment">
-<div id="1f918acb" class="cell" data-execution_count="9">
+<div id="a659fec6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="date-columns-1" class="slide level2">
 <h2>Date Columns</h2>
-<div id="da4c9ce9" class="cell" data-execution_count="10">
+<div id="65b83037" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="10">
@@ -843,7 +844,7 @@ memory usage: 746.0 bytes</code></pre>
 <li class="fragment"><p>Example for extracting Year from Date: <code>df['date_column'].dt.year</code></p></li>
 </ul>
 <div class="fragment">
-<div id="a3fd88bc" class="cell" data-execution_count="11">
+<div id="75c52708" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.year</span>
 <span id="cb12-2"><a href="#cb12-2"></a></span>
 <span id="cb12-3"><a href="#cb12-3"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -907,7 +908,7 @@ memory usage: 746.0 bytes</code></pre>
 <li class="fragment">Example for extracting Month from Date: <code>df['date_column'].dt.to_period('M')</code></li>
 </ul>
 <div class="fragment">
-<div id="6fbb561b" class="cell" data-execution_count="12">
+<div id="8782eb58" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df[<span class="st">'month_1'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.to_period(<span class="st">'M'</span>)</span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
 <span id="cb13-3"><a href="#cb13-3"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -973,7 +974,7 @@ memory usage: 746.0 bytes</code></pre>
 <ul>
 <li class="fragment">Use <code>dt.month()</code> to only extract the month as a number</li>
 </ul>
-<div id="b295ffa8" class="cell" data-execution_count="13">
+<div id="48a140f3" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df[<span class="st">'month_2'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.month</span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1041,7 +1042,7 @@ memory usage: 746.0 bytes</code></pre>
 <ul>
 <li class="fragment">Use <code>dt.month_name()</code> to extract the name of the month</li>
 </ul>
-<div id="6363910c" class="cell" data-execution_count="14">
+<div id="59dad50c" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df[<span class="st">'month_3'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.month_name()</span>
 <span id="cb15-2"><a href="#cb15-2"></a></span>
 <span id="cb15-3"><a href="#cb15-3"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1112,7 +1113,7 @@ memory usage: 746.0 bytes</code></pre>
 <ul>
 <li class="fragment">Use <code>dt.month_name(locale='de_DE')</code> to extract the name of the month in German</li>
 </ul>
-<div id="12fa73de" class="cell" data-execution_count="15">
+<div id="8fab12b0" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df[<span class="st">'month_4'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.month_name(locale<span class="op">=</span><span class="st">'de_DE'</span>)</span>
 <span id="cb16-2"><a href="#cb16-2"></a></span>
 <span id="cb16-3"><a href="#cb16-3"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1194,7 +1195,7 @@ memory usage: 746.0 bytes</code></pre>
 <li class="fragment">We can also import data from an external source (e.g.&nbsp;GitHub)</li>
 </ul>
 <div class="fragment">
-<div id="2806ce5c" class="cell" data-execution_count="16">
+<div id="deea5e5b" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-16-1" class="code-annotation-target"><a href="#annotated-cell-16-1"></a>LINK <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv'</span></span>
 <span id="annotated-cell-16-2"><a href="#annotated-cell-16-2"></a></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-16-3" class="code-annotation-target"><a href="#annotated-cell-16-3"></a>df2 <span class="op">=</span> pd.read_csv(LINK)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1202,11 +1203,11 @@ memory usage: 746.0 bytes</code></pre>
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
 <dd class="fragment">
-<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-16">Create a new object with the URL to the data (we call it <code>LINK</code>)</span>
+<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-16">Create a new object with the URL to the data (we call it <code>LINK</code>)</span>
 </dd>
 <dt class="fragment" data-target-cell="annotated-cell-16" data-target-annotation="2">2</dt>
 <dd class="fragment">
-<span data-code-annotation="2" data-code-lines="3" data-code-cell="annotated-cell-16">Import the data</span>
+<span data-code-lines="3" data-code-annotation="2" data-code-cell="annotated-cell-16">Import the data</span>
 </dd>
 </dl>
 </div>
@@ -1215,7 +1216,7 @@ memory usage: 746.0 bytes</code></pre>
 </section>
 <section id="creating-dataframe-from-an-external-csv-file-1" class="slide level2">
 <h2>Creating DataFrame from an external CSV file</h2>
-<div id="38cb3c43" class="cell" data-execution_count="17">
+<div id="d222fa5b" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="17">
@@ -1381,7 +1382,7 @@ memory usage: 746.0 bytes</code></pre>
 </section>
 <section id="mean-1" class="slide level2">
 <h2>Mean</h2>
-<div id="d7ca2aa5" class="cell" data-execution_count="18">
+<div id="49f57f90" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df[<span class="st">'age'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="18">
@@ -1390,7 +1391,7 @@ memory usage: 746.0 bytes</code></pre>
 </div>
 </div>
 <p>…</p>
-<div id="61b2f5fb" class="cell" data-execution_count="19">
+<div id="9371346d" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df[<span class="st">'age'</span>].mean().<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="19">
@@ -1408,7 +1409,7 @@ memory usage: 746.0 bytes</code></pre>
 </section>
 <section id="groupby-1" class="slide level2">
 <h2>GroupBy</h2>
-<div id="d40c7242" class="cell" data-execution_count="20">
+<div id="248fc6db" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>df.groupby(<span class="st">'city'</span>)[<span class="st">'age'</span>].mean().<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="20">
@@ -1437,7 +1438,7 @@ Name: age, dtype: float64</code></pre>
 </section>
 <section id="reset-index-1" class="slide level2">
 <h2>Reset Index</h2>
-<div id="dcb807ce" class="cell" data-execution_count="21">
+<div id="ba7c629f" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>df.groupby(<span class="st">'city'</span>)[<span class="st">'age'</span>].mean().<span class="bu">round</span>(<span class="dv">2</span>).reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="21">
@@ -1497,7 +1498,7 @@ Name: age, dtype: float64</code></pre>
 </section>
 <section id="rename-columns-1" class="slide level2">
 <h2>Rename Columns</h2>
-<div id="3aa25216" class="cell" data-execution_count="22">
+<div id="b7f42aca" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'date_new'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="22">
@@ -1629,7 +1630,7 @@ Name: age, dtype: float64</code></pre>
 <ul>
 <li class="fragment">Did we really change the name?</li>
 </ul>
-<div id="861e8580" class="cell" data-execution_count="23">
+<div id="911688f7" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div>
@@ -1756,11 +1757,11 @@ Name: age, dtype: float64</code></pre>
 </section>
 <section id="rename-columns-3" class="slide level2">
 <h2>Rename Columns</h2>
-<div id="e3e6e40b" class="cell" data-execution_count="24">
+<div id="1102fdc8" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'date_new_2'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div id="7cf940b2" class="cell" data-execution_count="25">
+<div id="5fa36564" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment" data-execution_count="25">
@@ -1873,7 +1874,7 @@ Name: age, dtype: float64</code></pre>
 </section>
 <section id="sort-values-1" class="slide level2">
 <h2>Sort Values</h2>
-<div id="737230a2" class="cell" data-execution_count="26">
+<div id="a1ecc280" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df.groupby(<span class="st">'city'</span>)[<span class="st">'age'</span>].mean().<span class="bu">round</span>(</span>
 <span id="cb29-2"><a href="#cb29-2"></a>    <span class="dv">2</span>).reset_index().sort_values(<span class="st">'age'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1924,6 +1925,41 @@ Name: age, dtype: float64</code></pre>
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="task-overview-and-hints" class="title-slide slide level1 center">
+<h1>Task Overview and Hints</h1>
+
+</section>
+<section id="task-1-average-revenue-by-e-shop" class="slide level2">
+<h2>Task 1: Average Revenue by E-Shop</h2>
+<ul>
+<li class="fragment">Hint: Use the <code>groupby</code> function to group by ‘eshop_name’, then use the <code>mean</code> function on ‘annual_revenue’.</li>
+</ul>
+</section>
+<section id="task-2-e-shop-with-the-highest-average-rating" class="slide level2">
+<h2>Task 2: E-Shop with the Highest Average Rating</h2>
+<ul>
+<li class="fragment">Hint: Use the <code>groupby</code> function to group by ‘eshop_name’, calculate the mean of ‘average_rating’, then sort values and use <code>head</code> to get the top one.</li>
+</ul>
+</section>
+<section id="task-3-e-shop-performance-over-time" class="slide level2">
+<h2>Task 3: E-Shop Performance Over Time</h2>
+<ul>
+<li class="fragment">Hint: Extract the year from ‘date’, then group by ‘eshop_name’ and ‘year’ and calculate the sum of ‘annual_revenue’.</li>
+</ul>
+</section>
+<section id="task-4-e-shop-with-the-most-social-media-followers" class="slide level2">
+<h2>Task 4: E-Shop with the Most Social Media Followers</h2>
+<ul>
+<li class="fragment">Hint: Use the <code>groupby</code> function to group by ‘eshop_name’, get the max ‘social_media_followers’, then sort values and use <code>head</code> to get the top one.</li>
+</ul>
+</section>
+<section id="task-5-monthly-time-on-site-overview" class="slide level2">
+<h2>Task 5: Monthly Time on Site overview</h2>
+<ul>
+<li class="fragment">Hint: Extract the month from ‘date’, then group by ‘eshop_name’ and ‘month’ and calculate the mean of ‘time on site’.</li>
+</ul>
 
 <div class="footer footer-default">
 <p>Jan Kirenz</p>
