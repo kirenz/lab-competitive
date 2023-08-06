@@ -4,12 +4,16 @@ title: "Lab"
 
 In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis. 
 
-You'll analyze key competitors and examine some  market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you'll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.
-
-For this case study, we will create a fictional scenario where we have three major e-commerce competitors: E-Shop A, E-Shop B, and E-Shop C. 
-
-- [Assignments](/assignments.qmd)
+You'll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you'll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.
 
 
+::: {.callout-tip}
+## Technology we will use
 
+- MySQL-Database
+- SQL for data analysis
+- Pandas for data analysis in Python
+- Altair for data visualization in Python 
+
+:::
 
