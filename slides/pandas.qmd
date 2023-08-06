@@ -40,7 +40,7 @@ jupyter: python3
 - It usually uses DataFrame objects for data manipulation.
 
 
-# Understanding DataFrames in Pandas
+# DataFrames
 
 ![](/images/dataframe.png)
 
@@ -54,27 +54,26 @@ jupyter: python3
 Here is an example of a DataFrame:
 
 ```{python}
-# Import the module pandas as pd
 import pandas as pd  # <1>
 
-# Create some data in this dictionary style
-data = {'Name': ['John', 'Anna', 'Peter'],  # <2>
-        'Age': [28, 24, 35],
-        'City': ['New York', 'Paris', 'London']}
+data = {'name': ['Zeynep', 'Anna', 'Tim', 'Sara', 'Elias', 'Admir', 'Lina'],  # <2>
+        'age': [33, 25, 23, 21, 28, 20, 31],
+        'date': ['1990-06-03', '1998-03-12', '2000-01-20', '2002-02-16', '1995-05-02', '2003-06-03', '1992-06-03'],
+        'city': ['Stuttgart', 'Berlin', 'Stuttgart', 'Stuttgart', 'Berlin', 'Munich', 'Stuttgart']}
 
-# Transform the data into a Pandas Dataframe
-df = pd.DataFrame(data)
-
+df = pd.DataFrame(data)  # <3>
 
 ```
 
-1. Take `penguins`, and then,
-2. add new columns for the bill ratio and bill area.
+1. Import the module pandas as pd
+2. Create some data in this dictionary style
+3. Transform the data into a Pandas Dataframe
 
-## Example of a DataFrame
+## Inspecting the DataFrame
 
-- Use the `.head()`to show the top rows of the Dataframe:  
+- Use `.head()`to show the top rows of the Dataframe:  
 
+. . .
 
 ```{python}
 # | output-location: fragment
@@ -83,41 +82,203 @@ df.head()
 ```
 
 
-## Example of a DataFrame
+## Inspecting the DataFrame
 
-- Use 
+- Use `.tail()`to show the last rows of the Dataframe:  
 
-## Example of a DataFrame
+. . .
 
-Show the
+```{python}
+# | output-location: fragment
+
+df.tail()
+```
 
 
-df.head()
+## Inspecting the DataFrame
 
-## Creating DataFrame from a CSV file
+- Use `df` to get an overview of head and tail: 
+
+. . .
+
+```{python}
+# | output-location: fragment
+
+df
+```
+
+
+
+## Inspecting the DataFrame
+
+- Use `.info()`to show metadata  
+
+. . .
+
+```{python}
+# | output-location: fragment
+
+df.info()
+```
+
+
+## Categorical Data
+
+- Categorical data: `df[column_name] = df[column_name].astype('category')`
+
+. . .
+
+```{python}
+
+df['name'] = df['name'].astype('category')
+
+```
+
+## Categorical Data
+
+
+```{python}
+# | output-location: fragment
+
+df.info()
+
+```
+
+
+## Categorical Data
+
+- If you want to transform multiple columns:
+
+. . .
+
+```{python}
+
+CAT_LIST = ['name', 'city']  # <1>
+
+for i in CAT_LIST:  # <2>
+    df[i] = df[i].astype('category')
+```
+
+1. Create a list with the name of the columns
+2. Use a for loop to transfrom the columns
+
+
+## Date Columns
+
+- Use `pd.to_datetime` to change the format into a date object: `df['column_name'] = pd.to_datetime(df['column_name'])`
+
+. . .
+
+
+```{python}
+
+df['date'] = pd.to_datetime(df['date'])
+```
+
+## Date Columns 
+
+
+```{python}
+# | output-location: fragment
+
+df.info()
+
+```
+
+## Date Manipulation
+
+- Pandas provides a robust tool for working with dates, times, and time-indexed data.
+
+- Example for extracting Year from Date: `df['date_column'].dt.year`
+
+. . .
+
+```{python}
+# | output-location: fragment
+df['year'] = df['date'].dt.year
+
+df.head(2)
+```
+
+
+## Date Manipulation
+
+- Example for extracting Month from Date: `df['date_column'].dt.to_period('M')`
+
+. . .
+
+```{python}
+# | output-location: fragment
+df['month_1'] = df['date'].dt.to_period('M')
+
+df.head(2)
+```
+
+## Date Manipulation
+
+- Use `dt.month()` to only extract the month as a number
+
+```{python}
+# | output-location: fragment
+df['month_2'] = df['date'].dt.month
+
+df.head(2)
+```
+
+## Date Manipulation
+
+- Use `dt.month_name()` to extract the name of the month
+
+```{python}
+# | output-location: fragment
+df['month_3'] = df['date'].dt.month_name()
+
+df.head(2)
+```
+
+## Date Manipulation
+
+- Use `dt.month_name(locale='de_DE')` to extract the name of the month in German
+
+```{python}
+# | output-location: fragment
+df['month_4'] = df['date'].dt.month_name(locale='de_DE')
+
+df.head(2)
+```
+
+
+## Creating DataFrame from CSV file
 
 - We can create a DataFrame by importing a CSV file using the `pd.read_csv()` function.
 
 - Example: `df = pd.read_csv('file.csv')`
 
---
 
-```python
-# Import a CSV file from GitHub
-df = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')
+## Creating DataFrame from an external CSV file
+
+- We can also import data from an external source (e.g. GitHub)
+
+. . .
+
+```{python}
+LINK = 'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv'  # <1>
+
+df2 = pd.read_csv(LINK)  # <2>
 ```
 
-## Specify Data Formats
+1. Create a new object with the URL to the data (we call it `LINK`)
+2. Import the data
 
-- Categorical data: `df[column_name] = df[column_name].astype('category')`
+## Creating DataFrame from an external CSV file
 
+```{python}
+# | output-location: fragment
 
-
-- Date column `df['date_column'] = pd.to_datetime(df['date_column'])`
-
-```python
-df['date'] = pd.to_datetime(df['date'])
+df2
 ```
+
+
 
 # Key Pandas Functions for Data Analysis
 
@@ -127,11 +288,40 @@ df['date'] = pd.to_datetime(df['date'])
 
 - Example: `df['column_name'].mean()`
 
+## Mean
+
+```{python}
+# | output-location: fragment
+
+df['age'].mean()
+```
+
+...
+
+```{python}
+# | output-location: fragment
+
+df['age'].mean().round(2)
+```
+
+
+
 ## GroupBy
 
 - The `groupby` function is used to split the data into groups based on some criteria.
 
 - Example: `df.groupby('column_name')`
+
+
+## GroupBy
+
+
+```{python}
+# | output-location: fragment
+
+df.groupby('city')['age'].mean().round(2)
+```
+
 
 ## GroupBy
 
@@ -145,11 +335,56 @@ df['date'] = pd.to_datetime(df['date'])
 
 - Example: `df.reset_index()`
 
+## Reset Index
+
+
+```{python}
+# | output-location: fragment
+
+df.groupby('city')['age'].mean().round(2).reset_index()
+```
+
+
 ## Rename Columns
 
 - `rename` function is used to change the names of the column labels.
 
 - Example: `df.rename(columns={'old_name1':'new_name1', 'old_name2':'new_name2'})`
+
+
+## Rename Columns
+
+
+```{python}
+# | output-location: fragment
+
+df.rename(columns={'date': 'date_new'})
+```
+
+## Rename Columns
+
+- Did we really change the name?
+
+```{python}
+df
+```
+
+
+## Rename Columns
+
+```{python}
+
+df = df.rename(columns={'date': 'date_new_2'})
+
+```
+
+. . . 
+
+```{python}
+# | output-location: fragment
+
+df.head()
+```
 
 ## Sort Values
 
@@ -157,38 +392,13 @@ df['date'] = pd.to_datetime(df['date'])
 
 - Example: `df.sort_values('column_name', ascending=False)`
 
-## Head
+## Sort Values
 
-- The `head` function is used to get the first n rows.
+```{python}
+# | output-location: fragment
 
-- Example: `df.head(n)`
+df.groupby('city')['age'].mean().round(
+    2).reset_index().sort_values('age', ascending=False)
 
-## Date Manipulation
+```
 
-- Pandas provides a robust tool for working with dates, times, and time-indexed data.
-
-- Example for extracting Year from Date: `df['date_column'].dt.year`
-
-- Example for extracting Month from Date: `df['date_column'].dt.to_period('M')`
-
-# Tasks 
-
-## Task 1: Average Revenue by E-Shop
-
-- Hint: Use the `groupby` function to group by 'eshop_name', then use the `mean` function on 'annual_revenue'.
-
-## Task 2: E-Shop with the Highest Average Rating
-
-- Hint: Use the `groupby` function to group by 'eshop_name', calculate the mean of 'average_rating', then sort values and use `head` to get the top one.
-
-## Task 3: E-Shop Performance Over Time
-
-- Hint: Extract the year from 'date', then group by 'eshop_name' and 'year' and calculate the sum of 'annual_revenue'.
-
-## Task 4: E-Shop with the Most Social Media Followers
-
-- Hint: Use the `groupby` function to group by 'eshop_name', get the max 'social_media_followers', then sort values and use `head` to get the top one.
-
-## Task 5: Monthly Active User Base Growth
-
-- Hint: Extract the month from 'date', then group by 'eshop_name' and 'month' and calculate the mean of 'active_user_base'.
