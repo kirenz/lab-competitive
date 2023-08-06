@@ -10,7 +10,7 @@ You'll analyze key competitors and examine some market figures to identify any a
 ::: {.callout-tip}
 ## Technology we will use
 
-- MySQL-Database
+- MySQL Database and MySQL Workbench
 - SQL for data analysis
 - Pandas for data analysis in Python
 - Altair for data visualization in Python 
