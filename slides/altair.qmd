@@ -1,7 +1,7 @@
 ---
 title: Altair
 lang: en
-subtitle: Introduction
+subtitle: Basics, Task Overview and Hints
 author: Jan Kirenz
 execute:
   eval: true
@@ -29,7 +29,7 @@ format:
     footer: Jan Kirenz
 ---
 
-## Introduction to Altair-Vega
+# Introduction to Altair-Vega
 
 - Altair is a declarative statistical visualization library in Python.
 
@@ -43,6 +43,252 @@ format:
 - Integration with Pandas: Altair's API is designed to work with Pandas dataframes.
 
 - Declarative Visualization: You describe the properties of a visualization and let Altair figure out how to implement it.
+
+# Altair example
+
+## Python Setup
+
+
+```{python}
+import altair as alt
+import pandas as pd
+```
+
+## Create a DataFrame
+
+
+```{python}
+data = {'name': ['Zeynep', 'Anna', 'Tim', 'Sara', 'Elias', 'Admir', 'Lina'],  # <2>
+        'age': [33, 25, 23, 21, 28, 20, 31],
+        'date': ['1990-06-03', '1998-03-12', '2000-01-20', '2002-02-16', '1995-05-02', '2003-06-03', '1992-06-03'],
+        'city': ['Stuttgart', 'Berlin', 'Stuttgart', 'Stuttgart', 'Berlin', 'Munich', 'Stuttgart']}
+
+df = pd.DataFrame(data)
+
+```
+
+## Change Data Format
+
+
+```{python}
+CAT_LIST = ['name', 'city']
+
+for i in CAT_LIST:
+    df[i] = df[i].astype('category')
+
+df['date'] = pd.to_datetime(df['date'])
+
+```
+
+
+## Bar Chart
+
+
+- We use `.mark_bar()` to create a bar plot
+
+. . .
+
+```{python}
+# | output-location: fragment
+
+alt.Chart(df).mark_bar().encode(  # <1>
+    x=alt.X('name'),              # <2>
+    y=alt.Y('age')                # <3>
+)
+
+
+```
+
+1. Define a chart object (ACME acronym)
+2. Define x-axis
+3. Define y-axis
+
+
+## Bar Chart with sorted values
+
+```{python}
+# | output-location: fragment
+
+alt.Chart(df).mark_bar().encode(
+    x=alt.X('name').sort('y'),   # <1>
+    y=alt.Y('age')
+)
+
+```
+
+1. Sort the values in an ascending order 
+
+## Bar Chart with sorted values
+
+```{python}
+# | output-location: fragment
+
+alt.Chart(df).mark_bar().encode(
+    x=alt.X('name').sort('-y'),   # <1>
+    y=alt.Y('age')
+)
+
+```
+
+1. Sort the values in a descending order 
+
+## Bar Chart with properties
+
+```{python}
+# | output-location: fragment
+
+alt.Chart(df).mark_bar().encode(
+    x=alt.X('name').sort('-y'),
+    y=alt.Y('age')
+).properties(                            # <1>
+    title='This is a simple bar chart',  # <2>
+    width=300,                           # <3>
+    height=150                           # <4>
+)
+
+```
+
+1. Add properties to the chart
+2. Define a chart title
+3. Set the width of the chart (in pixel)
+4. Set the height of the chart (in pixel)
+
+
+
+## Bar Chart with properties
+
+```{python}
+# | output-location: fragment
+
+alt.Chart(df).mark_line().encode(
+    x=alt.X('name').sort('-y'),
+    y=alt.Y('age')
+).properties(                            # <1>
+    title='This is a simple bar chart',  # <2>
+    width=300,                           # <3>
+    height=150                           # <4>
+)
+
+```
+
+1. Add properties to the chart
+2. Define a chart title
+3. Set the width of the chart (in pixel)
+4. Set the height of the chart (in pixel)
+
+## Bar chart with custom x-axis
+
+
+```{python}
+# | output-location: fragment
+
+alt.Chart(df).mark_bar().encode(
+    x=alt.X('name').sort('-y').axis(
+        title="Name",  # <1>
+        labelAngle=0,         # <2>
+        grid=False,           # <3>
+        titleAnchor="start"),  # <4>
+    y=alt.Y('age')
+).properties(
+    title='This is a simple bar chart',
+    width=300,
+    height=150
+)
+
+
+```
+
+1. Title of x-axis
+2. Angle of axis text
+3. Hide the lines in the background
+4. Adjustment of the text at the x-axis
+
+
+## Bar chart with custom y-axis
+
+
+```{python}
+# | output-location: fragment
+
+alt.Chart(df).mark_bar().encode(
+    x=alt.X('name').sort('-y'),
+    y=alt.Y('age').axis(
+        title="Age",  # <1>
+        grid=False,  # <2>
+        titleAnchor="end"),  # <3>
+).properties(
+    title='This is a simple bar chart',
+    width=300,
+    height=150
+)
+
+
+```
+
+1. Title of y-axis
+2. Hide the grid
+3. Adjustment of the text at the y axis
+
+
+## Bar chart with custom title
+
+
+```{python}
+# | output-location: fragment
+
+alt.Chart(df).mark_bar().encode(
+    x=alt.X('name').sort('-y'),
+    y=alt.Y('age')
+).properties(
+    title='This is a simple bar chart',
+    width=300,
+    height=150
+).configure_title(  # <1>
+    fontSize=16,
+    font='Arial',
+    color='black',
+    anchor='start'  # <2>
+)
+
+
+```
+
+1. Custom title options
+2. Where to anchor the title (`start`, `middle` or `end`)
+
+## Final bar plot
+
+
+```{python}
+# | output-location: fragment
+
+alt.Chart(df).mark_bar().encode(
+    x=alt.X('name').sort('-y').axis(
+        title="Name",
+        labelAngle=0,
+        grid=False,
+        titleAnchor="start"),
+    y=alt.Y('age').axis(
+        title="Age",
+        grid=False,
+        titleAnchor="end"),
+).properties(
+    title='This is a simple bar chart',
+    width=300,
+    height=150
+).configure_title(
+    fontSize=16,
+    font='Arial',
+    color='black',
+    anchor='start'
+).configure_view(  # <1>
+    strokeWidth=0
+)
+
+
+```
+
+1. Remove the lines at the top and the right of the plot
 
 
 # Task Overview and Hints
