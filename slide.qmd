@@ -6,7 +6,7 @@ title: "Slides"
 
 ### Part 1
 
-[🖥  SQL introduction](https://kirenz.github.io/sql/slides/2-intro.html#/title-slide)
+[🖥  SQL basics](https://kirenz.github.io/sql/slides/2-intro.html#/title-slide)
 
 - SELECT, DISTINCT, WHERE, ORDER BY, AS
 - OR, AND, IN, NOT IN, BETWEEN
@@ -14,17 +14,17 @@ title: "Slides"
 
 ### Part 2
 
-[🖥  Aggregate data](https://kirenz.github.io/sql/slides/5-aggregieren.html#/title-slide)
+[🖥  How to aggregate data](https://kirenz.github.io/sql/slides/5-aggregieren.html#/title-slide)
 
 - COUNT, SUM, MAX, MIN, AVG
 - GROUP BY, HAVING, WITH ROLLUP
 
 ## Pandas
 
-- [🖥 Introduction to Pandas](/slides/pandas.qmd)
+[🖥 Pandas basics](/slides/pandas.qmd)
 
 ## Altair
 
-- [🖥 Introduction to Altair](/slides/altair.qmd)
+[🖥 Altair basics](/slides/altair.qmd)
 
 
