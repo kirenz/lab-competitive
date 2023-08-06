@@ -68,26 +68,19 @@ data = {'Name': ['John', 'Anna', 'Peter'],
 df = pd.DataFrame(data)
 ```
 
-```python
-# Import the module pandas as pd
-import pandas as pd
 
-# Create some data in this dictionary style
-data = {'Name': ['John', 'Anna', 'Peter'],
-        'Age': [28, 24, 35],
-        'City': ['New York', 'Paris', 'London']}
-
-# Transform the data into a Pandas Dataframe
-df = pd.DataFrame(data)
-```
 
 ## Example of a DataFrame
 
 - Use the `.head()`to show the top rows of the Dataframe:  
 
-```python
+
+```{python}
 df.head()
+
 ```
+
+## Output
 
 ```python
    Name  Age       City
