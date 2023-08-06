@@ -388,6 +388,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-dark">
   <div class="reveal">
@@ -438,7 +441,7 @@ Jan Kirenz
 <section id="example-of-a-dataframe" class="slide level2">
 <h2>Example of a DataFrame</h2>
 <p>Here is an example of a DataFrame:</p>
-<div id="dfa211c6" class="cell" data-execution_count="1">
+<div id="249c206a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Import the module pandas as pd</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -450,27 +453,71 @@ Jan Kirenz
 <span id="cb1-9"><a href="#cb1-9"></a><span class="co"># Transform the data into a Pandas Dataframe</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a>df <span class="op">=</span> pd.DataFrame(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Import the module pandas as pd</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Create some data in this dictionary style</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>data <span class="op">=</span> {<span class="st">'Name'</span>: [<span class="st">'John'</span>, <span class="st">'Anna'</span>, <span class="st">'Peter'</span>],</span>
-<span id="cb2-6"><a href="#cb2-6"></a>        <span class="st">'Age'</span>: [<span class="dv">28</span>, <span class="dv">24</span>, <span class="dv">35</span>],</span>
-<span id="cb2-7"><a href="#cb2-7"></a>        <span class="st">'City'</span>: [<span class="st">'New York'</span>, <span class="st">'Paris'</span>, <span class="st">'London'</span>]}</span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># Transform the data into a Pandas Dataframe</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>df <span class="op">=</span> pd.DataFrame(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="example-of-a-dataframe-1" class="slide level2">
 <h2>Example of a DataFrame</h2>
 <ul>
 <li class="fragment">Use the <code>.head()</code>to show the top rows of the Dataframe:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>   Name  Age       City</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="dv">0</span>  John   <span class="dv">28</span>   New York</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="dv">1</span>  Anna   <span class="dv">24</span>      Paris</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="dv">2</span>  Peter  <span class="dv">35</span>     London</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c2c3abf2" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">City</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>John</td>
+<td>28</td>
+<td>New York</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Anna</td>
+<td>24</td>
+<td>Paris</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Peter</td>
+<td>35</td>
+<td>London</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="output" class="slide level2">
+<h2>Output</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>   Name  Age       City</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="dv">0</span>  John   <span class="dv">28</span>   New York</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="dv">1</span>  Anna   <span class="dv">24</span>      Paris</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="dv">2</span>  Peter  <span class="dv">35</span>     London</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="example-of-a-dataframe-2" class="slide level2">
 <h2>Example of a DataFrame</h2>
@@ -490,8 +537,8 @@ Jan Kirenz
 <li class="fragment"><p>Example: <code>df = pd.read_csv('file.csv')</code></p></li>
 </ul>
 <p>–</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Import a CSV file from GitHub</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Import a CSV file from GitHub</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="specify-data-formats" class="slide level2">
 <h2>Specify Data Formats</h2>
@@ -499,7 +546,7 @@ Jan Kirenz
 <li class="fragment"><p>Categorical data: <code>df[column_name] = df[column_name].astype('category')</code></p></li>
 <li class="fragment"><p>Date column <code>df['date_column'] = pd.to_datetime(df['date_column'])</code></p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="key-pandas-functions-for-data-analysis" class="title-slide slide level1 center">
