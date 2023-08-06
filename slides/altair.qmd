@@ -31,7 +31,7 @@ format:
 
 # Introduction to Altair-Vega
 
-- Altair is a declarative statistical visualization library in Python.
+- Altair is a *declarative* statistical visualization library in Python.
 
 - It's built on [Vega](https://vega.github.io/vega/) and [Vega-Lite](https://vega.github.io/vega-lite-api/), which are visualization grammars built on top of [D3](https://d3js.org/). 
 
@@ -44,7 +44,7 @@ format:
 
 - Declarative Visualization: You describe the properties of a visualization and let Altair figure out how to implement it.
 
-# Altair example
+# Altair and Pandas setup
 
 ## Python Setup
 
@@ -64,7 +64,6 @@ data = {'name': ['Zeynep', 'Anna', 'Tim', 'Sara', 'Elias', 'Admir', 'Lina'],  # 
         'city': ['Stuttgart', 'Berlin', 'Stuttgart', 'Stuttgart', 'Berlin', 'Munich', 'Stuttgart']}
 
 df = pd.DataFrame(data)
-
 ```
 
 ## Change Data Format
@@ -77,8 +76,9 @@ for i in CAT_LIST:
     df[i] = df[i].astype('category')
 
 df['date'] = pd.to_datetime(df['date'])
-
 ```
+
+# Altair bar chart example
 
 
 ## Bar Chart
@@ -95,8 +95,6 @@ alt.Chart(df).mark_bar().encode(  # <1>
     x=alt.X('name'),              # <2>
     y=alt.Y('age')                # <3>
 )
-
-
 ```
 
 1. Define a chart object (ACME acronym)
@@ -113,7 +111,6 @@ alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('y'),   # <1>
     y=alt.Y('age')
 )
-
 ```
 
 1. Sort the values in an ascending order 
@@ -127,7 +124,6 @@ alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('-y'),   # <1>
     y=alt.Y('age')
 )
-
 ```
 
 1. Sort the values in a descending order 
@@ -145,7 +141,6 @@ alt.Chart(df).mark_bar().encode(
     width=300,                           # <3>
     height=150                           # <4>
 )
-
 ```
 
 1. Add properties to the chart
@@ -168,7 +163,6 @@ alt.Chart(df).mark_bar().encode(
     width=300,                           # <3>
     height=150                           # <4>
 )
-
 ```
 
 1. Add properties to the chart
@@ -194,8 +188,6 @@ alt.Chart(df).mark_bar().encode(
     width=300,
     height=150
 )
-
-
 ```
 
 1. Title of x-axis
@@ -221,8 +213,6 @@ alt.Chart(df).mark_bar().encode(
     width=300,
     height=150
 )
-
-
 ```
 
 1. Title of y-axis
@@ -249,8 +239,6 @@ alt.Chart(df).mark_bar().encode(
     color='black',
     anchor='start'  # <2>
 )
-
-
 ```
 
 1. Custom title options
@@ -260,7 +248,7 @@ alt.Chart(df).mark_bar().encode(
 
 
 ```{python}
-# | output-location: slide
+# | output-location: column-fragment
 
 alt.Chart(df).mark_bar().encode(
     x=alt.X('name').sort('-y').axis(
@@ -284,11 +272,87 @@ alt.Chart(df).mark_bar().encode(
 ).configure_view(  # <1>
     strokeWidth=0
 )
-
-
 ```
 
 1. Remove the lines at the top and the right of the plot
+
+# Altair line chart example
+
+## Data
+
+```{python}
+df2 = pd.read_csv(
+    'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')
+
+df2['date'] = pd.to_datetime(df2['date'])
+
+```
+
+```{python}
+# | output-location: slide
+df2
+```
+
+
+## What is wrong with this chart?
+
+
+```{python}
+# | output-location: column-fragment
+
+alt.Chart(df2).mark_line().encode(
+    x=alt.X('date:O'),  # <1>
+    y=alt.Y('annual_revenue')
+)
+
+```
+
+1. `O` = ordinal and defines the x-axis
+
+## We have multiple values for every time stamp
+
+```{python}
+# | output-location: column-fragment
+
+alt.Chart(df2).mark_line().encode(
+    x=alt.X('date:O'),
+    y=alt.Y('average(annual_revenue)')  # <1>
+)
+
+```
+
+1. We need to calculate the average
+
+
+## We could also show the different shops
+
+```{python}
+# | output-location: column-fragment
+
+alt.Chart(df2).mark_line().encode(
+    x=alt.X('date:O'),
+    y=alt.Y('average(annual_revenue)'),
+    color=alt.Color('eshop_name')  # <1>
+)
+
+```
+
+1. We use `color` to show the different shops
+
+## Make the X-Axis look nicer
+
+```{python}
+# | output-location: column-fragment
+
+alt.Chart(df2).mark_line().encode(
+    x=alt.X('date:T').axis(
+        labelAngle=90,
+        format="%m/%y"),
+    y=alt.Y('average(annual_revenue)')
+)
+
+```
+
 
 
 # Task Overview and Hints
@@ -308,7 +372,7 @@ You're required to show the average revenue for all shops, using the name `avera
 
 ## Task 2: Two E-Shops with the Highest Average Rating
 
-The task is to show the two E-Shops with the highest average rating, using the name \`average_rating\`.
+The task is to show the two E-Shops with the highest average rating, using the name `average_rating`.
 
 **Hint:**
 
@@ -319,34 +383,34 @@ The task is to show the two E-Shops with the highest average rating, using the n
 
 ## Task 3: E-Shop Performance Over Time
 
-You're tasked with showing the annual revenue per E-Shop by year, using the names \`year\` and \`total_revenue\`.
+You're tasked with showing the annual revenue per E-Shop by year, using the names `year` and `total_revenue`.
 
 **Hint:**
 
 1. Make sure the 'date' column is in a date-time format.
-2. Extract the year from the 'date' column using the \`year()\` function in Altair.
-3. To get the total revenue, use the \`sum()\` function in Altair.
-4. Use \`mark_bar()\` for the chart type and encode the axes accordingly.
+2. Extract the year from the 'date' column using the `year()` function in Altair.
+3. To get the total revenue, use the `sum()` function in Altair.
+4. Use `mark_bar()` for the chart type and encode the axes accordingly.
 
 
 ## Task 4: Maximum Social Media Followers
 
-Your task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name \`max_followers\`.
+Your task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name `max_followers`.
 
 **Hint:**
 
-1. Use the \`max()\` function in Altair to calculate the maximum number of social media followers for each E-shop.
+1. Use the `max()` function in Altair to calculate the maximum number of social media followers for each E-shop.
 2. Sort the E-shops by the 'y' axis in descending order when encoding the 'x' axis.
 
 
 ## Task 5: Monthly Time on Site overview
 
-The final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names \`month\` and \`average_time_on_site\`.
+The final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names `month` and `average_time_on_site`.
 
 **Hint:**
 
-1. Extract the month from the 'date' column using the \`month()\` function in Altair.
-2. To get the average time on site, use the \`average()\` function in Altair.
-3. Use \`mark_line()\` for the chart type and encode the axes accordingly.
+1. Extract the month from the 'date' column using the `month()` function in Altair.
+2. To get the average time on site, use the `average()` function in Altair.
+3. Use `mark_line()` for the chart type and encode the axes accordingly.
 
 

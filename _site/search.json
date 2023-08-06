@@ -942,14 +942,49 @@
     "href": "slides/altair.html#final-bar-plot",
     "title": "Altair",
     "section": "Final bar plot",
-    "text": "Final bar plot\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y').axis(\n        title=\"Name\",\n        labelAngle=0,\n        grid=False,\n        titleAnchor=\"start\"),\n    y=alt.Y('age').axis(\n        title=\"Age\",\n        grid=False,\n        titleAnchor=\"end\"),\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n).configure_title(\n    fontSize=16,\n    font='Arial',\n    color='black',\n    anchor='start'\n1).configure_view(\n    strokeWidth=0\n)\n\n\n1\n\nRemove the lines at the top and the right of the plot"
+    "text": "Final bar plot\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y').axis(\n        title=\"Name\",\n        labelAngle=0,\n        grid=False,\n        titleAnchor=\"start\"),\n    y=alt.Y('age').axis(\n        title=\"Age\",\n        grid=False,\n        titleAnchor=\"end\"),\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n).configure_title(\n    fontSize=16,\n    font='Arial',\n    color='black',\n    anchor='start'\n1).configure_view(\n    strokeWidth=0\n)\n\n\n\n1\n\nRemove the lines at the top and the right of the plot"
   },
   {
-    "objectID": "slides/altair.html#final-bar-plot-output",
-    "href": "slides/altair.html#final-bar-plot-output",
+    "objectID": "slides/altair.html#data",
+    "href": "slides/altair.html#data",
     "title": "Altair",
-    "section": "Final bar plot",
-    "text": "Final bar plot"
+    "section": "Data",
+    "text": "Data\n\ndf2 = pd.read_csv(\n    'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\n\ndf2['date'] = pd.to_datetime(df2['date'])\n\n\ndf2"
+  },
+  {
+    "objectID": "slides/altair.html#data-output",
+    "href": "slides/altair.html#data-output",
+    "title": "Altair",
+    "section": "Data",
+    "text": "Data\n\n\n\n\n\n\n\n\neshop_name\ndate\nannual_revenue\ntime_on_site\naverage_rating\nsocial_media_followers\naverage_response_time\n\n\n\n\n0\nE-ShopA\n2020-01-31\n13.35\n1.09\n4.17\n173.76\n2.35\n\n\n1\nE-ShopA\n2020-02-29\n10.74\n0.56\n4.79\n52.69\n2.58\n\n\n2\nE-ShopA\n2020-03-31\n11.91\n0.57\n2.92\n141.79\n1.54\n\n\n3\nE-ShopA\n2020-04-30\n16.38\n2.44\n3.68\n190.57\n1.92\n\n\n4\nE-ShopA\n2020-05-31\n6.52\n2.07\n2.67\n129.49\n1.49\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n103\nE-ShopC\n2022-08-31\n64.83\n12.48\n6.54\n1529.19\n1.66\n\n\n104\nE-ShopC\n2022-09-30\n31.70\n7.10\n3.04\n664.30\n0.88\n\n\n105\nE-ShopC\n2022-10-31\n27.09\n5.56\n2.65\n538.03\n0.64\n\n\n106\nE-ShopC\n2022-11-30\n56.59\n9.45\n4.88\n968.37\n1.13\n\n\n107\nE-ShopC\n2022-12-31\n66.50\n11.05\n5.56\n1262.25\n1.28\n\n\n\n\n108 rows × 7 columns"
+  },
+  {
+    "objectID": "slides/altair.html#what-is-wrong-with-this-chart",
+    "href": "slides/altair.html#what-is-wrong-with-this-chart",
+    "title": "Altair",
+    "section": "What is wrong with this chart?",
+    "text": "What is wrong with this chart?\n\n\nalt.Chart(df2).mark_line().encode(\n1    x=alt.X('date:O'),\n    y=alt.Y('annual_revenue')\n)\n\n\n\n1\n\nO = ordinal and defines the x-axis"
+  },
+  {
+    "objectID": "slides/altair.html#we-have-multiple-values-for-every-time-stamp",
+    "href": "slides/altair.html#we-have-multiple-values-for-every-time-stamp",
+    "title": "Altair",
+    "section": "We have multiple values for every time stamp",
+    "text": "We have multiple values for every time stamp\n\n\nalt.Chart(df2).mark_line().encode(\n    x=alt.X('date:O'),\n1    y=alt.Y('average(annual_revenue)')\n)\n\n\n\n1\n\nWe need to calculate the average"
+  },
+  {
+    "objectID": "slides/altair.html#we-could-also-show-the-different-shops",
+    "href": "slides/altair.html#we-could-also-show-the-different-shops",
+    "title": "Altair",
+    "section": "We could also show the different shops",
+    "text": "We could also show the different shops\n\n\nalt.Chart(df2).mark_line().encode(\n    x=alt.X('date:O'),\n    y=alt.Y('average(annual_revenue)'),\n1    color=alt.Color('eshop_name')\n)\n\n\n\n1\n\nWe use color to show the different shops"
+  },
+  {
+    "objectID": "slides/altair.html#make-the-x-axis-look-nicer",
+    "href": "slides/altair.html#make-the-x-axis-look-nicer",
+    "title": "Altair",
+    "section": "Make the X-Axis look nicer",
+    "text": "Make the X-Axis look nicer\n\n\nalt.Chart(df2).mark_line().encode(\n    x=alt.X('date:T').axis(\n        labelAngle=90,\n        format=\"%m/%y\"),\n    y=alt.Y('average(annual_revenue)')\n)"
   },
   {
     "objectID": "slides/altair.html#task-1-average-revenue-by-e-shop",
@@ -963,28 +998,28 @@
     "href": "slides/altair.html#task-2-two-e-shops-with-the-highest-average-rating",
     "title": "Altair",
     "section": "Task 2: Two E-Shops with the Highest Average Rating",
-    "text": "Task 2: Two E-Shops with the Highest Average Rating\nThe task is to show the two E-Shops with the highest average rating, using the name `average_rating`.\nHint:\n\nGroup the data by ‘eshop_name’ and calculate the mean of ‘average_rating’ for each group.\nSort the results in descending order and pick the top 2.\nUse the same charting methods as in Task 1 to visualize the data."
+    "text": "Task 2: Two E-Shops with the Highest Average Rating\nThe task is to show the two E-Shops with the highest average rating, using the name average_rating.\nHint:\n\nGroup the data by ‘eshop_name’ and calculate the mean of ‘average_rating’ for each group.\nSort the results in descending order and pick the top 2.\nUse the same charting methods as in Task 1 to visualize the data."
   },
   {
     "objectID": "slides/altair.html#task-3-e-shop-performance-over-time",
     "href": "slides/altair.html#task-3-e-shop-performance-over-time",
     "title": "Altair",
     "section": "Task 3: E-Shop Performance Over Time",
-    "text": "Task 3: E-Shop Performance Over Time\nYou’re tasked with showing the annual revenue per E-Shop by year, using the names `year` and `total_revenue`.\nHint:\n\nMake sure the ‘date’ column is in a date-time format.\nExtract the year from the ‘date’ column using the `year()` function in Altair.\nTo get the total revenue, use the `sum()` function in Altair.\nUse `mark_bar()` for the chart type and encode the axes accordingly."
+    "text": "Task 3: E-Shop Performance Over Time\nYou’re tasked with showing the annual revenue per E-Shop by year, using the names year and total_revenue.\nHint:\n\nMake sure the ‘date’ column is in a date-time format.\nExtract the year from the ‘date’ column using the year() function in Altair.\nTo get the total revenue, use the sum() function in Altair.\nUse mark_bar() for the chart type and encode the axes accordingly."
   },
   {
     "objectID": "slides/altair.html#task-4-maximum-social-media-followers",
     "href": "slides/altair.html#task-4-maximum-social-media-followers",
     "title": "Altair",
     "section": "Task 4: Maximum Social Media Followers",
-    "text": "Task 4: Maximum Social Media Followers\nYour task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name `max_followers`.\nHint:\n\nUse the `max()` function in Altair to calculate the maximum number of social media followers for each E-shop.\nSort the E-shops by the ‘y’ axis in descending order when encoding the ‘x’ axis."
+    "text": "Task 4: Maximum Social Media Followers\nYour task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name max_followers.\nHint:\n\nUse the max() function in Altair to calculate the maximum number of social media followers for each E-shop.\nSort the E-shops by the ‘y’ axis in descending order when encoding the ‘x’ axis."
   },
   {
     "objectID": "slides/altair.html#task-5-monthly-time-on-site-overview",
     "href": "slides/altair.html#task-5-monthly-time-on-site-overview",
     "title": "Altair",
     "section": "Task 5: Monthly Time on Site overview",
-    "text": "Task 5: Monthly Time on Site overview\nThe final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names `month` and `average_time_on_site`.\nHint:\n\nExtract the month from the ‘date’ column using the `month()` function in Altair.\nTo get the average time on site, use the `average()` function in Altair.\nUse `mark_line()` for the chart type and encode the axes accordingly.\n\n\n\nJan Kirenz"
+    "text": "Task 5: Monthly Time on Site overview\nThe final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names month and average_time_on_site.\nHint:\n\nExtract the month from the ‘date’ column using the month() function in Altair.\nTo get the average time on site, use the average() function in Altair.\nUse mark_line() for the chart type and encode the axes accordingly.\n\n\n\nJan Kirenz"
   },
   {
     "objectID": "workflow.html",

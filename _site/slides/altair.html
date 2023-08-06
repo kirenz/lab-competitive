@@ -414,7 +414,9 @@ Jan Kirenz
 <h2 id="toc-title">Table of contents</h2>
 <ul>
 <li class="fragment"><a href="#/introduction-to-altair-vega" id="/toc-introduction-to-altair-vega">Introduction to Altair-Vega</a></li>
-<li class="fragment"><a href="#/altair-example" id="/toc-altair-example">Altair example</a></li>
+<li class="fragment"><a href="#/altair-and-pandas-setup" id="/toc-altair-and-pandas-setup">Altair and Pandas setup</a></li>
+<li class="fragment"><a href="#/altair-bar-chart-example" id="/toc-altair-bar-chart-example">Altair bar chart example</a></li>
+<li class="fragment"><a href="#/altair-line-chart-example" id="/toc-altair-line-chart-example">Altair line chart example</a></li>
 <li class="fragment"><a href="#/task-overview-and-hints" id="/toc-task-overview-and-hints">Task Overview and Hints</a></li>
 </ul>
 </nav>
@@ -423,7 +425,7 @@ Jan Kirenz
 <section id="introduction-to-altair-vega" class="title-slide slide level1 center">
 <h1>Introduction to Altair-Vega</h1>
 <ul>
-<li class="fragment"><p>Altair is a declarative statistical visualization library in Python.</p></li>
+<li class="fragment"><p>Altair is a <em>declarative</em> statistical visualization library in Python.</p></li>
 <li class="fragment"><p>It’s built on <a href="https://vega.github.io/vega/">Vega</a> and <a href="https://vega.github.io/vega-lite-api/">Vega-Lite</a>, which are visualization grammars built on top of <a href="https://d3js.org/">D3</a>.</p></li>
 </ul>
 </section>
@@ -436,20 +438,20 @@ Jan Kirenz
 </ul>
 </section></section>
 <section>
-<section id="altair-example" class="title-slide slide level1 center">
-<h1>Altair example</h1>
+<section id="altair-and-pandas-setup" class="title-slide slide level1 center">
+<h1>Altair and Pandas setup</h1>
 
 </section>
 <section id="python-setup" class="slide level2">
 <h2>Python Setup</h2>
-<div id="a0227f3f" class="cell" data-execution_count="1">
+<div id="a5e40791" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-a-dataframe" class="slide level2">
 <h2>Create a DataFrame</h2>
-<div id="4c011d98" class="cell" data-execution_count="2">
+<div id="1da0f7bf" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a>data <span class="op">=</span> {<span class="st">'name'</span>: [<span class="st">'Zeynep'</span>, <span class="st">'Anna'</span>, <span class="st">'Tim'</span>, <span class="st">'Sara'</span>, <span class="st">'Elias'</span>, <span class="st">'Admir'</span>, <span class="st">'Lina'</span>],</span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a>        <span class="st">'age'</span>: [<span class="dv">33</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">31</span>],</span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a>        <span class="st">'date'</span>: [<span class="st">'1990-06-03'</span>, <span class="st">'1998-03-12'</span>, <span class="st">'2000-01-20'</span>, <span class="st">'2002-02-16'</span>, <span class="st">'1995-05-02'</span>, <span class="st">'2003-06-03'</span>, <span class="st">'1992-06-03'</span>],</span>
@@ -460,7 +462,7 @@ Jan Kirenz
 </section>
 <section id="change-data-format" class="slide level2">
 <h2>Change Data Format</h2>
-<div id="82d8b0ce" class="cell" data-execution_count="3">
+<div id="cf34c96c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>CAT_LIST <span class="op">=</span> [<span class="st">'name'</span>, <span class="st">'city'</span>]</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="cf">for</span> i <span class="kw">in</span> CAT_LIST:</span>
@@ -468,6 +470,11 @@ Jan Kirenz
 <span id="cb2-5"><a href="#cb2-5"></a></span>
 <span id="cb2-6"><a href="#cb2-6"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section></section>
+<section>
+<section id="altair-bar-chart-example" class="title-slide slide level1 center">
+<h1>Altair bar chart example</h1>
+
 </section>
 <section id="bar-chart" class="slide level2">
 <h2>Bar Chart</h2>
@@ -475,7 +482,7 @@ Jan Kirenz
 <li class="fragment">We use <code>.mark_bar()</code> to create a bar plot</li>
 </ul>
 <div class="fragment">
-<div id="178b28c7" class="cell columns column-output-location" data-execution_count="4">
+<div id="e7b9285c" class="cell columns column-output-location" data-execution_count="4">
 <div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>),</span>
@@ -501,23 +508,23 @@ Jan Kirenz
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-  #altair-viz-50703fb0449f43f596f74bd1d0d2e9c5.vega-embed {
+  #altair-viz-09af45c7f1db488389b97ec4c4644f49.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-50703fb0449f43f596f74bd1d0d2e9c5.vega-embed details,
-  #altair-viz-50703fb0449f43f596f74bd1d0d2e9c5.vega-embed details summary {
+  #altair-viz-09af45c7f1db488389b97ec4c4644f49.vega-embed details,
+  #altair-viz-09af45c7f1db488389b97ec4c4644f49.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-50703fb0449f43f596f74bd1d0d2e9c5"></div>
+<div id="altair-viz-09af45c7f1db488389b97ec4c4644f49"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-50703fb0449f43f596f74bd1d0d2e9c5") {
-      outputDiv = document.getElementById("altair-viz-50703fb0449f43f596f74bd1d0d2e9c5");
+    if (outputDiv.id !== "altair-viz-09af45c7f1db488389b97ec4c4644f49") {
+      outputDiv = document.getElementById("altair-viz-09af45c7f1db488389b97ec4c4644f49");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -572,7 +579,7 @@ Jan Kirenz
 </section>
 <section id="bar-chart-with-sorted-values" class="slide level2">
 <h2>Bar Chart with sorted values</h2>
-<div id="0cd88756" class="cell columns column-output-location" data-execution_count="5">
+<div id="e486f679" class="cell columns column-output-location" data-execution_count="5">
 <div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'y'</span>),</span>
@@ -590,23 +597,23 @@ Jan Kirenz
 <div class="cell-output cell-output-display" data-execution_count="5">
 
 <style>
-  #altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c.vega-embed {
+  #altair-viz-87af8a2bf9ac4c82b9129d488e99cc1c.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c.vega-embed details,
-  #altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c.vega-embed details summary {
+  #altair-viz-87af8a2bf9ac4c82b9129d488e99cc1c.vega-embed details,
+  #altair-viz-87af8a2bf9ac4c82b9129d488e99cc1c.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c"></div>
+<div id="altair-viz-87af8a2bf9ac4c82b9129d488e99cc1c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c") {
-      outputDiv = document.getElementById("altair-viz-ef36831bd1f94b06bff5c58a5f8ae79c");
+    if (outputDiv.id !== "altair-viz-87af8a2bf9ac4c82b9129d488e99cc1c") {
+      outputDiv = document.getElementById("altair-viz-87af8a2bf9ac4c82b9129d488e99cc1c");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -660,7 +667,7 @@ Jan Kirenz
 </section>
 <section id="bar-chart-with-sorted-values-1" class="slide level2">
 <h2>Bar Chart with sorted values</h2>
-<div id="e71f91a5" class="cell columns column-output-location" data-execution_count="6">
+<div id="fb9dab32" class="cell columns column-output-location" data-execution_count="6">
 <div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
@@ -678,23 +685,23 @@ Jan Kirenz
 <div class="cell-output cell-output-display" data-execution_count="6">
 
 <style>
-  #altair-viz-65ca61b34862405faabdfb234d5e3611.vega-embed {
+  #altair-viz-b666307c80524ad7897c869fc26407ba.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-65ca61b34862405faabdfb234d5e3611.vega-embed details,
-  #altair-viz-65ca61b34862405faabdfb234d5e3611.vega-embed details summary {
+  #altair-viz-b666307c80524ad7897c869fc26407ba.vega-embed details,
+  #altair-viz-b666307c80524ad7897c869fc26407ba.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-65ca61b34862405faabdfb234d5e3611"></div>
+<div id="altair-viz-b666307c80524ad7897c869fc26407ba"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-65ca61b34862405faabdfb234d5e3611") {
-      outputDiv = document.getElementById("altair-viz-65ca61b34862405faabdfb234d5e3611");
+    if (outputDiv.id !== "altair-viz-b666307c80524ad7897c869fc26407ba") {
+      outputDiv = document.getElementById("altair-viz-b666307c80524ad7897c869fc26407ba");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -748,7 +755,7 @@ Jan Kirenz
 </section>
 <section id="bar-chart-with-properties" class="slide level2">
 <h2>Bar Chart with properties</h2>
-<div id="e32c5744" class="cell columns column-output-location" data-execution_count="7">
+<div id="f0728245" class="cell columns column-output-location" data-execution_count="7">
 <div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-7-2"><a href="#annotated-cell-7-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
@@ -782,23 +789,23 @@ Jan Kirenz
 <div class="cell-output cell-output-display" data-execution_count="7">
 
 <style>
-  #altair-viz-97e023215a7e4c3498823911d6ad2d2a.vega-embed {
+  #altair-viz-25b50e00601e4c2ca9540e3a35afea6d.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-97e023215a7e4c3498823911d6ad2d2a.vega-embed details,
-  #altair-viz-97e023215a7e4c3498823911d6ad2d2a.vega-embed details summary {
+  #altair-viz-25b50e00601e4c2ca9540e3a35afea6d.vega-embed details,
+  #altair-viz-25b50e00601e4c2ca9540e3a35afea6d.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-97e023215a7e4c3498823911d6ad2d2a"></div>
+<div id="altair-viz-25b50e00601e4c2ca9540e3a35afea6d"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-97e023215a7e4c3498823911d6ad2d2a") {
-      outputDiv = document.getElementById("altair-viz-97e023215a7e4c3498823911d6ad2d2a");
+    if (outputDiv.id !== "altair-viz-25b50e00601e4c2ca9540e3a35afea6d") {
+      outputDiv = document.getElementById("altair-viz-25b50e00601e4c2ca9540e3a35afea6d");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -852,7 +859,7 @@ Jan Kirenz
 </section>
 <section id="bar-chart-with-properties-1" class="slide level2">
 <h2>Bar Chart with properties</h2>
-<div id="25c90660" class="cell columns column-output-location" data-execution_count="8">
+<div id="47ae247b" class="cell columns column-output-location" data-execution_count="8">
 <div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-8-2"><a href="#annotated-cell-8-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
@@ -886,23 +893,23 @@ Jan Kirenz
 <div class="cell-output cell-output-display" data-execution_count="8">
 
 <style>
-  #altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3.vega-embed {
+  #altair-viz-5078253ac4294e60915a065fd1f3702c.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3.vega-embed details,
-  #altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3.vega-embed details summary {
+  #altair-viz-5078253ac4294e60915a065fd1f3702c.vega-embed details,
+  #altair-viz-5078253ac4294e60915a065fd1f3702c.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3"></div>
+<div id="altair-viz-5078253ac4294e60915a065fd1f3702c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3") {
-      outputDiv = document.getElementById("altair-viz-64bcd1b0b5b244589ba1bf1225de7bf3");
+    if (outputDiv.id !== "altair-viz-5078253ac4294e60915a065fd1f3702c") {
+      outputDiv = document.getElementById("altair-viz-5078253ac4294e60915a065fd1f3702c");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -956,7 +963,7 @@ Jan Kirenz
 </section>
 <section id="bar-chart-with-custom-x-axis" class="slide level2">
 <h2>Bar chart with custom x-axis</h2>
-<div id="8c8331b7" class="cell columns column-output-location" data-execution_count="9">
+<div id="1012fcc2" class="cell columns column-output-location" data-execution_count="9">
 <div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>).axis(</span>
@@ -994,23 +1001,23 @@ Jan Kirenz
 <div class="cell-output cell-output-display" data-execution_count="9">
 
 <style>
-  #altair-viz-ef99e64578594ceb979b82732e46fd4a.vega-embed {
+  #altair-viz-a532065d79354ab6b36c99f79669bef2.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ef99e64578594ceb979b82732e46fd4a.vega-embed details,
-  #altair-viz-ef99e64578594ceb979b82732e46fd4a.vega-embed details summary {
+  #altair-viz-a532065d79354ab6b36c99f79669bef2.vega-embed details,
+  #altair-viz-a532065d79354ab6b36c99f79669bef2.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ef99e64578594ceb979b82732e46fd4a"></div>
+<div id="altair-viz-a532065d79354ab6b36c99f79669bef2"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ef99e64578594ceb979b82732e46fd4a") {
-      outputDiv = document.getElementById("altair-viz-ef99e64578594ceb979b82732e46fd4a");
+    if (outputDiv.id !== "altair-viz-a532065d79354ab6b36c99f79669bef2") {
+      outputDiv = document.getElementById("altair-viz-a532065d79354ab6b36c99f79669bef2");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1064,7 +1071,7 @@ Jan Kirenz
 </section>
 <section id="bar-chart-with-custom-y-axis" class="slide level2">
 <h2>Bar chart with custom y-axis</h2>
-<div id="f98c941b" class="cell columns column-output-location" data-execution_count="10">
+<div id="8c7ff264" class="cell columns column-output-location" data-execution_count="10">
 <div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-10-2"><a href="#annotated-cell-10-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
@@ -1097,23 +1104,23 @@ Jan Kirenz
 <div class="cell-output cell-output-display" data-execution_count="10">
 
 <style>
-  #altair-viz-66f7465f380545379845d6032d751c98.vega-embed {
+  #altair-viz-a5dd993a8aa1497095a3c62457ba8633.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-66f7465f380545379845d6032d751c98.vega-embed details,
-  #altair-viz-66f7465f380545379845d6032d751c98.vega-embed details summary {
+  #altair-viz-a5dd993a8aa1497095a3c62457ba8633.vega-embed details,
+  #altair-viz-a5dd993a8aa1497095a3c62457ba8633.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-66f7465f380545379845d6032d751c98"></div>
+<div id="altair-viz-a5dd993a8aa1497095a3c62457ba8633"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-66f7465f380545379845d6032d751c98") {
-      outputDiv = document.getElementById("altair-viz-66f7465f380545379845d6032d751c98");
+    if (outputDiv.id !== "altair-viz-a5dd993a8aa1497095a3c62457ba8633") {
+      outputDiv = document.getElementById("altair-viz-a5dd993a8aa1497095a3c62457ba8633");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1167,7 +1174,7 @@ Jan Kirenz
 </section>
 <section id="bar-chart-with-custom-title" class="slide level2">
 <h2>Bar chart with custom title</h2>
-<div id="4336a472" class="cell columns column-output-location" data-execution_count="11">
+<div id="d64938c0" class="cell columns column-output-location" data-execution_count="11">
 <div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-11-2"><a href="#annotated-cell-11-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>),</span>
@@ -1198,23 +1205,23 @@ Jan Kirenz
 <div class="cell-output cell-output-display" data-execution_count="11">
 
 <style>
-  #altair-viz-4917c1793b0b45ddb221e2a67463b197.vega-embed {
+  #altair-viz-32ef6fbf6a0c49f49bc6704dc48af56f.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-4917c1793b0b45ddb221e2a67463b197.vega-embed details,
-  #altair-viz-4917c1793b0b45ddb221e2a67463b197.vega-embed details summary {
+  #altair-viz-32ef6fbf6a0c49f49bc6704dc48af56f.vega-embed details,
+  #altair-viz-32ef6fbf6a0c49f49bc6704dc48af56f.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-4917c1793b0b45ddb221e2a67463b197"></div>
+<div id="altair-viz-32ef6fbf6a0c49f49bc6704dc48af56f"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-4917c1793b0b45ddb221e2a67463b197") {
-      outputDiv = document.getElementById("altair-viz-4917c1793b0b45ddb221e2a67463b197");
+    if (outputDiv.id !== "altair-viz-32ef6fbf6a0c49f49bc6704dc48af56f") {
+      outputDiv = document.getElementById("altair-viz-32ef6fbf6a0c49f49bc6704dc48af56f");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1268,7 +1275,8 @@ Jan Kirenz
 </section>
 <section id="final-bar-plot" class="slide level2">
 <h2>Final bar plot</h2>
-<div id="9beb8c9d" class="cell" data-execution_count="12">
+<div id="2364eecb" class="cell columns column-output-location" data-execution_count="12">
+<div class="column">
 <div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-12-1"><a href="#annotated-cell-12-1"></a>alt.Chart(df).mark_bar().encode(</span>
 <span id="annotated-cell-12-2"><a href="#annotated-cell-12-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'name'</span>).sort(<span class="st">'-y'</span>).axis(</span>
 <span id="annotated-cell-12-3"><a href="#annotated-cell-12-3"></a>        title<span class="op">=</span><span class="st">"Name"</span>,</span>
@@ -1291,6 +1299,7 @@ Jan Kirenz
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-12-20" class="code-annotation-target"><a href="#annotated-cell-12-20"></a>).configure_view(</span>
 <span id="annotated-cell-12-21"><a href="#annotated-cell-12-21"></a>    strokeWidth<span class="op">=</span><span class="dv">0</span></span>
 <span id="annotated-cell-12-22"><a href="#annotated-cell-12-22"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt class="fragment" data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
@@ -1299,29 +1308,26 @@ Jan Kirenz
 </dd>
 </dl>
 </div>
-</div>
-
-</section><section id="final-bar-plot-output" class="slide level2 output-location-slide"><h2>Final bar plot</h2><div class="cell output-location-slide" data-execution_count="12">
 <div class="cell-output cell-output-display" data-execution_count="12">
 
 <style>
-  #altair-viz-a05a35a688d7474f820138bb6f6bd662.vega-embed {
+  #altair-viz-7caf050cd713429b9a5292167b406b48.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-a05a35a688d7474f820138bb6f6bd662.vega-embed details,
-  #altair-viz-a05a35a688d7474f820138bb6f6bd662.vega-embed details summary {
+  #altair-viz-7caf050cd713429b9a5292167b406b48.vega-embed details,
+  #altair-viz-7caf050cd713429b9a5292167b406b48.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-a05a35a688d7474f820138bb6f6bd662"></div>
+<div id="altair-viz-7caf050cd713429b9a5292167b406b48"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-a05a35a688d7474f820138bb6f6bd662") {
-      outputDiv = document.getElementById("altair-viz-a05a35a688d7474f820138bb6f6bd662");
+    if (outputDiv.id !== "altair-viz-7caf050cd713429b9a5292167b406b48") {
+      outputDiv = document.getElementById("altair-viz-7caf050cd713429b9a5292167b406b48");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1370,7 +1376,521 @@ Jan Kirenz
   })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300, "strokeWidth": 0}, "title": {"anchor": "start", "color": "black", "font": "Arial", "fontSize": 16}}, "data": {"name": "data-35a07b333ab42c20ffaa19d64e97f161"}, "mark": {"type": "bar"}, "encoding": {"x": {"axis": {"title": "Name", "labelAngle": 0, "grid": false, "titleAnchor": "start"}, "field": "name", "sort": "-y", "type": "nominal"}, "y": {"axis": {"title": "Age", "grid": false, "titleAnchor": "end"}, "field": "age", "type": "quantitative"}}, "height": 150, "title": "This is a simple bar chart", "width": 300, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-35a07b333ab42c20ffaa19d64e97f161": [{"name": "Zeynep", "age": 33, "date": "1990-06-03T00:00:00", "city": "Stuttgart"}, {"name": "Anna", "age": 25, "date": "1998-03-12T00:00:00", "city": "Berlin"}, {"name": "Tim", "age": 23, "date": "2000-01-20T00:00:00", "city": "Stuttgart"}, {"name": "Sara", "age": 21, "date": "2002-02-16T00:00:00", "city": "Stuttgart"}, {"name": "Elias", "age": 28, "date": "1995-05-02T00:00:00", "city": "Berlin"}, {"name": "Admir", "age": 20, "date": "2003-06-03T00:00:00", "city": "Munich"}, {"name": "Lina", "age": 31, "date": "1992-06-03T00:00:00", "city": "Stuttgart"}]}}, {"mode": "vega-lite"});
 </script>
 </div>
-</div></section></section>
+</div>
+</div>
+</section></section>
+<section>
+<section id="altair-line-chart-example" class="title-slide slide level1 center">
+<h1>Altair line chart example</h1>
+
+</section>
+<section id="data" class="slide level2">
+<h2>Data</h2>
+<div id="34485ed4" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df2 <span class="op">=</span> pd.read_csv(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="st">'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>df2[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df2[<span class="st">'date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0bf0add4" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="data-output" class="slide level2 output-location-slide"><h2>Data</h2><div class="cell output-location-slide" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">eshop_name</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">annual_revenue</th>
+<th data-quarto-table-cell-role="th">time_on_site</th>
+<th data-quarto-table-cell-role="th">average_rating</th>
+<th data-quarto-table-cell-role="th">social_media_followers</th>
+<th data-quarto-table-cell-role="th">average_response_time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>E-ShopA</td>
+<td>2020-01-31</td>
+<td>13.35</td>
+<td>1.09</td>
+<td>4.17</td>
+<td>173.76</td>
+<td>2.35</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>E-ShopA</td>
+<td>2020-02-29</td>
+<td>10.74</td>
+<td>0.56</td>
+<td>4.79</td>
+<td>52.69</td>
+<td>2.58</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>E-ShopA</td>
+<td>2020-03-31</td>
+<td>11.91</td>
+<td>0.57</td>
+<td>2.92</td>
+<td>141.79</td>
+<td>1.54</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>E-ShopA</td>
+<td>2020-04-30</td>
+<td>16.38</td>
+<td>2.44</td>
+<td>3.68</td>
+<td>190.57</td>
+<td>1.92</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>E-ShopA</td>
+<td>2020-05-31</td>
+<td>6.52</td>
+<td>2.07</td>
+<td>2.67</td>
+<td>129.49</td>
+<td>1.49</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">103</td>
+<td>E-ShopC</td>
+<td>2022-08-31</td>
+<td>64.83</td>
+<td>12.48</td>
+<td>6.54</td>
+<td>1529.19</td>
+<td>1.66</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">104</td>
+<td>E-ShopC</td>
+<td>2022-09-30</td>
+<td>31.70</td>
+<td>7.10</td>
+<td>3.04</td>
+<td>664.30</td>
+<td>0.88</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">105</td>
+<td>E-ShopC</td>
+<td>2022-10-31</td>
+<td>27.09</td>
+<td>5.56</td>
+<td>2.65</td>
+<td>538.03</td>
+<td>0.64</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">106</td>
+<td>E-ShopC</td>
+<td>2022-11-30</td>
+<td>56.59</td>
+<td>9.45</td>
+<td>4.88</td>
+<td>968.37</td>
+<td>1.13</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">107</td>
+<td>E-ShopC</td>
+<td>2022-12-31</td>
+<td>66.50</td>
+<td>11.05</td>
+<td>5.56</td>
+<td>1262.25</td>
+<td>1.28</td>
+</tr>
+</tbody>
+</table>
+
+<p>108 rows × 7 columns</p>
+</div>
+</div>
+</div></section><section id="what-is-wrong-with-this-chart" class="slide level2">
+<h2>What is wrong with this chart?</h2>
+<div id="b12bbb93" class="cell columns column-output-location" data-execution_count="15">
+<div class="column">
+<div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-15-1"><a href="#annotated-cell-15-1"></a>alt.Chart(df2).mark_line().encode(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-2" class="code-annotation-target"><a href="#annotated-cell-15-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'date:O'</span>),</span>
+<span id="annotated-cell-15-3"><a href="#annotated-cell-15-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'annual_revenue'</span>)</span>
+<span id="annotated-cell-15-4"><a href="#annotated-cell-15-4"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt class="fragment" data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
+<dd class="fragment">
+<span data-code-cell="annotated-cell-15" data-code-lines="2" data-code-annotation="1"><code>O</code> = ordinal and defines the x-axis</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+
+<style>
+  #altair-viz-63d90a3f06fd4137992d4dc662cb127c.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-63d90a3f06fd4137992d4dc662cb127c.vega-embed details,
+  #altair-viz-63d90a3f06fd4137992d4dc662cb127c.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-63d90a3f06fd4137992d4dc662cb127c"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-63d90a3f06fd4137992d4dc662cb127c") {
+      outputDiv = document.getElementById("altair-viz-63d90a3f06fd4137992d4dc662cb127c");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.8.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.8.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-3a26c000e4862bfeb4ac3c81f7273b97"}, "mark": {"type": "line"}, "encoding": {"x": {"field": "date", "type": "ordinal"}, "y": {"field": "annual_revenue", "type": "quantitative"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-3a26c000e4862bfeb4ac3c81f7273b97": [{"eshop_name": "E-ShopA", "date": "2020-01-31T00:00:00", "annual_revenue": 13.35, "time_on_site": 1.09, "average_rating": 4.17, "social_media_followers": 173.76, "average_response_time": 2.35}, {"eshop_name": "E-ShopA", "date": "2020-02-29T00:00:00", "annual_revenue": 10.74, "time_on_site": 0.56, "average_rating": 4.79, "social_media_followers": 52.69, "average_response_time": 2.58}, {"eshop_name": "E-ShopA", "date": "2020-03-31T00:00:00", "annual_revenue": 11.91, "time_on_site": 0.57, "average_rating": 2.92, "social_media_followers": 141.79, "average_response_time": 1.54}, {"eshop_name": "E-ShopA", "date": "2020-04-30T00:00:00", "annual_revenue": 16.38, "time_on_site": 2.44, "average_rating": 3.68, "social_media_followers": 190.57, "average_response_time": 1.92}, {"eshop_name": "E-ShopA", "date": "2020-05-31T00:00:00", "annual_revenue": 6.52, "time_on_site": 2.07, "average_rating": 2.67, "social_media_followers": 129.49, "average_response_time": 1.49}, {"eshop_name": "E-ShopA", "date": "2020-06-30T00:00:00", "annual_revenue": 15.8, "time_on_site": 3.79, "average_rating": 4.9, "social_media_followers": 209.08, "average_response_time": 2.51}, {"eshop_name": "E-ShopA", "date": "2020-07-31T00:00:00", "annual_revenue": 20.97, "time_on_site": 2.29, "average_rating": 4.54, "social_media_followers": 313.68, "average_response_time": 2.2}, {"eshop_name": "E-ShopA", "date": "2020-08-31T00:00:00", "annual_revenue": 9.4, "time_on_site": 1.67, "average_rating": 2.02, "social_media_followers": 139.71, "average_response_time": 0.93}, {"eshop_name": "E-ShopA", "date": "2020-09-30T00:00:00", "annual_revenue": 10.09, "time_on_site": 1.67, "average_rating": 1.99, "social_media_followers": 167.66, "average_response_time": 0.85}, {"eshop_name": "E-ShopA", "date": "2020-10-31T00:00:00", "annual_revenue": 25.98, "time_on_site": 5.17, "average_rating": 5.41, "social_media_followers": 487.31, "average_response_time": 2.48}, {"eshop_name": "E-ShopA", "date": "2020-11-30T00:00:00", "annual_revenue": 18.07, "time_on_site": 3.33, "average_rating": 2.81, "social_media_followers": 328.19, "average_response_time": 1.28}, {"eshop_name": "E-ShopA", "date": "2020-12-31T00:00:00", "annual_revenue": 36.81, "time_on_site": 5.99, "average_rating": 5.58, "social_media_followers": 548.23, "average_response_time": 2.75}, {"eshop_name": "E-ShopA", "date": "2021-01-31T00:00:00", "annual_revenue": 33.28, "time_on_site": 6.63, "average_rating": 5.18, "social_media_followers": 497.46, "average_response_time": 2.32}, {"eshop_name": "E-ShopA", "date": "2021-02-28T00:00:00", "annual_revenue": 14.35, "time_on_site": 2.24, "average_rating": 1.99, "social_media_followers": 225.24, "average_response_time": 0.88}, {"eshop_name": "E-ShopA", "date": "2021-03-31T00:00:00", "annual_revenue": 32.38, "time_on_site": 5.78, "average_rating": 4.55, "social_media_followers": 556.54, "average_response_time": 1.83}, {"eshop_name": "E-ShopA", "date": "2021-04-30T00:00:00", "annual_revenue": 34.06, "time_on_site": 7.61, "average_rating": 5.45, "social_media_followers": 767.84, "average_response_time": 2.01}, {"eshop_name": "E-ShopA", "date": "2021-05-31T00:00:00", "annual_revenue": 37.03, "time_on_site": 4.61, "average_rating": 5.05, "social_media_followers": 697.06, "average_response_time": 1.82}, {"eshop_name": "E-ShopA", "date": "2021-06-30T00:00:00", "annual_revenue": 22.18, "time_on_site": 4.22, "average_rating": 3.37, "social_media_followers": 463.57, "average_response_time": 1.2}, {"eshop_name": "E-ShopA", "date": "2021-07-31T00:00:00", "annual_revenue": 36.24, "time_on_site": 5.63, "average_rating": 4.45, "social_media_followers": 694.09, "average_response_time": 1.85}, {"eshop_name": "E-ShopA", "date": "2021-08-31T00:00:00", "annual_revenue": 20.09, "time_on_site": 3.34, "average_rating": 2.57, "social_media_followers": 336.78, "average_response_time": 0.88}, {"eshop_name": "E-ShopA", "date": "2021-09-30T00:00:00", "annual_revenue": 28.98, "time_on_site": 5.27, "average_rating": 3.62, "social_media_followers": 522.46, "average_response_time": 1.36}, {"eshop_name": "E-ShopA", "date": "2021-10-31T00:00:00", "annual_revenue": 41.89, "time_on_site": 10.34, "average_rating": 5.36, "social_media_followers": 778.12, "average_response_time": 1.72}, {"eshop_name": "E-ShopA", "date": "2021-11-30T00:00:00", "annual_revenue": 57.76, "time_on_site": 8.62, "average_rating": 5.89, "social_media_followers": 961.73, "average_response_time": 2.18}, {"eshop_name": "E-ShopA", "date": "2021-12-31T00:00:00", "annual_revenue": 18.83, "time_on_site": 4.14, "average_rating": 2.11, "social_media_followers": 327.24, "average_response_time": 0.73}, {"eshop_name": "E-ShopA", "date": "2022-01-31T00:00:00", "annual_revenue": 53.2, "time_on_site": 8.08, "average_rating": 5.97, "social_media_followers": 1102.33, "average_response_time": 1.91}, {"eshop_name": "E-ShopA", "date": "2022-02-28T00:00:00", "annual_revenue": 45.74, "time_on_site": 8.64, "average_rating": 5.02, "social_media_followers": 892.1, "average_response_time": 1.56}, {"eshop_name": "E-ShopA", "date": "2022-03-31T00:00:00", "annual_revenue": 48.44, "time_on_site": 9.21, "average_rating": 5.02, "social_media_followers": 815.05, "average_response_time": 1.4}, {"eshop_name": "E-ShopA", "date": "2022-04-30T00:00:00", "annual_revenue": 48.98, "time_on_site": 9.96, "average_rating": 4.88, "social_media_followers": 868.04, "average_response_time": 1.49}, {"eshop_name": "E-ShopA", "date": "2022-05-31T00:00:00", "annual_revenue": 45.62, "time_on_site": 9.4, "average_rating": 4.5, "social_media_followers": 881.61, "average_response_time": 1.22}, {"eshop_name": "E-ShopA", "date": "2022-06-30T00:00:00", "annual_revenue": 66.27, "time_on_site": 13.79, "average_rating": 6.65, "social_media_followers": 1323.58, "average_response_time": 1.56}, {"eshop_name": "E-ShopA", "date": "2022-07-31T00:00:00", "annual_revenue": 63.04, "time_on_site": 10.41, "average_rating": 5.37, "social_media_followers": 1207.44, "average_response_time": 1.26}, {"eshop_name": "E-ShopA", "date": "2022-08-31T00:00:00", "annual_revenue": 31.29, "time_on_site": 6.02, "average_rating": 3.16, "social_media_followers": 738.19, "average_response_time": 0.8}, {"eshop_name": "E-ShopA", "date": "2022-09-30T00:00:00", "annual_revenue": 66.11, "time_on_site": 14.81, "average_rating": 6.34, "social_media_followers": 1385.38, "average_response_time": 1.83}, {"eshop_name": "E-ShopA", "date": "2022-10-31T00:00:00", "annual_revenue": 27.25, "time_on_site": 5.59, "average_rating": 2.66, "social_media_followers": 541.14, "average_response_time": 0.65}, {"eshop_name": "E-ShopA", "date": "2022-11-30T00:00:00", "annual_revenue": 61.7, "time_on_site": 10.31, "average_rating": 5.32, "social_media_followers": 1055.7, "average_response_time": 1.24}, {"eshop_name": "E-ShopA", "date": "2022-12-31T00:00:00", "annual_revenue": 74.67, "time_on_site": 12.41, "average_rating": 6.25, "social_media_followers": 1417.39, "average_response_time": 1.44}, {"eshop_name": "E-ShopB", "date": "2020-01-31T00:00:00", "annual_revenue": 7.29, "time_on_site": 0.59, "average_rating": 2.28, "social_media_followers": 94.92, "average_response_time": 1.28}, {"eshop_name": "E-ShopB", "date": "2020-02-29T00:00:00", "annual_revenue": 10.38, "time_on_site": 0.54, "average_rating": 4.63, "social_media_followers": 50.92, "average_response_time": 2.5}, {"eshop_name": "E-ShopB", "date": "2020-03-31T00:00:00", "annual_revenue": 9.49, "time_on_site": 0.45, "average_rating": 2.33, "social_media_followers": 113.0, "average_response_time": 1.23}, {"eshop_name": "E-ShopB", "date": "2020-04-30T00:00:00", "annual_revenue": 10.21, "time_on_site": 1.52, "average_rating": 2.3, "social_media_followers": 118.81, "average_response_time": 1.19}, {"eshop_name": "E-ShopB", "date": "2020-05-31T00:00:00", "annual_revenue": 10.48, "time_on_site": 3.33, "average_rating": 4.29, "social_media_followers": 208.06, "average_response_time": 2.39}, {"eshop_name": "E-ShopB", "date": "2020-06-30T00:00:00", "annual_revenue": 12.52, "time_on_site": 3.0, "average_rating": 3.88, "social_media_followers": 165.64, "average_response_time": 1.99}, {"eshop_name": "E-ShopB", "date": "2020-07-31T00:00:00", "annual_revenue": 20.23, "time_on_site": 2.21, "average_rating": 4.38, "social_media_followers": 302.67, "average_response_time": 2.13}, {"eshop_name": "E-ShopB", "date": "2020-08-31T00:00:00", "annual_revenue": 20.03, "time_on_site": 3.56, "average_rating": 4.31, "social_media_followers": 297.85, "average_response_time": 1.99}, {"eshop_name": "E-ShopB", "date": "2020-09-30T00:00:00", "annual_revenue": 20.65, "time_on_site": 3.43, "average_rating": 4.08, "social_media_followers": 343.22, "average_response_time": 1.73}, {"eshop_name": "E-ShopB", "date": "2020-10-31T00:00:00", "annual_revenue": 23.25, "time_on_site": 4.63, "average_rating": 4.84, "social_media_followers": 435.95, "average_response_time": 2.22}, {"eshop_name": "E-ShopB", "date": "2020-11-30T00:00:00", "annual_revenue": 19.02, "time_on_site": 3.51, "average_rating": 2.96, "social_media_followers": 345.43, "average_response_time": 1.35}, {"eshop_name": "E-ShopB", "date": "2020-12-31T00:00:00", "annual_revenue": 25.65, "time_on_site": 4.17, "average_rating": 3.89, "social_media_followers": 382.13, "average_response_time": 1.92}, {"eshop_name": "E-ShopB", "date": "2021-01-31T00:00:00", "annual_revenue": 31.11, "time_on_site": 6.19, "average_rating": 4.85, "social_media_followers": 465.09, "average_response_time": 2.17}, {"eshop_name": "E-ShopB", "date": "2021-02-28T00:00:00", "annual_revenue": 29.82, "time_on_site": 4.66, "average_rating": 4.14, "social_media_followers": 468.06, "average_response_time": 1.82}, {"eshop_name": "E-ShopB", "date": "2021-03-31T00:00:00", "annual_revenue": 19.91, "time_on_site": 3.55, "average_rating": 2.8, "social_media_followers": 342.25, "average_response_time": 1.13}, {"eshop_name": "E-ShopB", "date": "2021-04-30T00:00:00", "annual_revenue": 34.53, "time_on_site": 7.72, "average_rating": 5.53, "social_media_followers": 778.44, "average_response_time": 2.04}, {"eshop_name": "E-ShopB", "date": "2021-05-31T00:00:00", "annual_revenue": 19.22, "time_on_site": 2.39, "average_rating": 2.62, "social_media_followers": 361.78, "average_response_time": 0.95}, {"eshop_name": "E-ShopB", "date": "2021-06-30T00:00:00", "annual_revenue": 18.94, "time_on_site": 3.6, "average_rating": 2.87, "social_media_followers": 395.87, "average_response_time": 1.03}, {"eshop_name": "E-ShopB", "date": "2021-07-31T00:00:00", "annual_revenue": 28.1, "time_on_site": 4.37, "average_rating": 3.45, "social_media_followers": 538.12, "average_response_time": 1.44}, {"eshop_name": "E-ShopB", "date": "2021-08-31T00:00:00", "annual_revenue": 27.93, "time_on_site": 4.65, "average_rating": 3.57, "social_media_followers": 468.33, "average_response_time": 1.22}, {"eshop_name": "E-ShopB", "date": "2021-09-30T00:00:00", "annual_revenue": 17.15, "time_on_site": 3.12, "average_rating": 2.14, "social_media_followers": 309.19, "average_response_time": 0.8}, {"eshop_name": "E-ShopB", "date": "2021-10-31T00:00:00", "annual_revenue": 38.4, "time_on_site": 9.48, "average_rating": 4.92, "social_media_followers": 713.21, "average_response_time": 1.57}, {"eshop_name": "E-ShopB", "date": "2021-11-30T00:00:00", "annual_revenue": 20.59, "time_on_site": 3.07, "average_rating": 2.1, "social_media_followers": 342.89, "average_response_time": 0.78}, {"eshop_name": "E-ShopB", "date": "2021-12-31T00:00:00", "annual_revenue": 23.07, "time_on_site": 5.08, "average_rating": 2.58, "social_media_followers": 401.07, "average_response_time": 0.89}, {"eshop_name": "E-ShopB", "date": "2022-01-31T00:00:00", "annual_revenue": 27.05, "time_on_site": 4.11, "average_rating": 3.03, "social_media_followers": 560.48, "average_response_time": 0.97}, {"eshop_name": "E-ShopB", "date": "2022-02-28T00:00:00", "annual_revenue": 34.88, "time_on_site": 6.59, "average_rating": 3.83, "social_media_followers": 680.28, "average_response_time": 1.19}, {"eshop_name": "E-ShopB", "date": "2022-03-31T00:00:00", "annual_revenue": 30.02, "time_on_site": 5.71, "average_rating": 3.11, "social_media_followers": 505.16, "average_response_time": 0.87}, {"eshop_name": "E-ShopB", "date": "2022-04-30T00:00:00", "annual_revenue": 49.08, "time_on_site": 9.98, "average_rating": 4.89, "social_media_followers": 869.97, "average_response_time": 1.49}, {"eshop_name": "E-ShopB", "date": "2022-05-31T00:00:00", "annual_revenue": 25.02, "time_on_site": 5.16, "average_rating": 2.47, "social_media_followers": 483.57, "average_response_time": 0.67}, {"eshop_name": "E-ShopB", "date": "2022-06-30T00:00:00", "annual_revenue": 58.14, "time_on_site": 12.1, "average_rating": 5.83, "social_media_followers": 1161.17, "average_response_time": 1.37}, {"eshop_name": "E-ShopB", "date": "2022-07-31T00:00:00", "annual_revenue": 47.16, "time_on_site": 7.78, "average_rating": 4.02, "social_media_followers": 903.2, "average_response_time": 0.94}, {"eshop_name": "E-ShopB", "date": "2022-08-31T00:00:00", "annual_revenue": 59.03, "time_on_site": 11.36, "average_rating": 5.95, "social_media_followers": 1392.46, "average_response_time": 1.51}, {"eshop_name": "E-ShopB", "date": "2022-09-30T00:00:00", "annual_revenue": 57.93, "time_on_site": 12.98, "average_rating": 5.56, "social_media_followers": 1213.84, "average_response_time": 1.6}, {"eshop_name": "E-ShopB", "date": "2022-10-31T00:00:00", "annual_revenue": 31.13, "time_on_site": 6.39, "average_rating": 3.04, "social_media_followers": 618.3, "average_response_time": 0.74}, {"eshop_name": "E-ShopB", "date": "2022-11-30T00:00:00", "annual_revenue": 70.84, "time_on_site": 11.83, "average_rating": 6.11, "social_media_followers": 1212.05, "average_response_time": 1.42}, {"eshop_name": "E-ShopB", "date": "2022-12-31T00:00:00", "annual_revenue": 63.77, "time_on_site": 10.59, "average_rating": 5.33, "social_media_followers": 1210.45, "average_response_time": 1.23}, {"eshop_name": "E-ShopC", "date": "2020-01-31T00:00:00", "annual_revenue": 7.8, "time_on_site": 0.64, "average_rating": 2.44, "social_media_followers": 101.48, "average_response_time": 1.37}, {"eshop_name": "E-ShopC", "date": "2020-02-29T00:00:00", "annual_revenue": 10.17, "time_on_site": 0.53, "average_rating": 4.54, "social_media_followers": 49.89, "average_response_time": 2.45}, {"eshop_name": "E-ShopC", "date": "2020-03-31T00:00:00", "annual_revenue": 21.13, "time_on_site": 1.0, "average_rating": 5.19, "social_media_followers": 251.58, "average_response_time": 2.73}, {"eshop_name": "E-ShopC", "date": "2020-04-30T00:00:00", "annual_revenue": 21.77, "time_on_site": 3.24, "average_rating": 4.9, "social_media_followers": 253.29, "average_response_time": 2.55}, {"eshop_name": "E-ShopC", "date": "2020-05-31T00:00:00", "annual_revenue": 8.46, "time_on_site": 2.69, "average_rating": 3.47, "social_media_followers": 168.01, "average_response_time": 1.93}, {"eshop_name": "E-ShopC", "date": "2020-06-30T00:00:00", "annual_revenue": 17.21, "time_on_site": 4.12, "average_rating": 5.33, "social_media_followers": 227.75, "average_response_time": 2.73}, {"eshop_name": "E-ShopC", "date": "2020-07-31T00:00:00", "annual_revenue": 24.99, "time_on_site": 2.73, "average_rating": 5.41, "social_media_followers": 373.88, "average_response_time": 2.63}, {"eshop_name": "E-ShopC", "date": "2020-08-31T00:00:00", "annual_revenue": 25.1, "time_on_site": 4.46, "average_rating": 5.4, "social_media_followers": 373.21, "average_response_time": 2.5}, {"eshop_name": "E-ShopC", "date": "2020-09-30T00:00:00", "annual_revenue": 20.67, "time_on_site": 3.43, "average_rating": 4.09, "social_media_followers": 343.61, "average_response_time": 1.74}, {"eshop_name": "E-ShopC", "date": "2020-10-31T00:00:00", "annual_revenue": 15.02, "time_on_site": 2.99, "average_rating": 3.13, "social_media_followers": 281.72, "average_response_time": 1.44}, {"eshop_name": "E-ShopC", "date": "2020-11-30T00:00:00", "annual_revenue": 12.32, "time_on_site": 2.27, "average_rating": 1.92, "social_media_followers": 223.82, "average_response_time": 0.87}, {"eshop_name": "E-ShopC", "date": "2020-12-31T00:00:00", "annual_revenue": 16.27, "time_on_site": 2.65, "average_rating": 2.47, "social_media_followers": 242.29, "average_response_time": 1.22}, {"eshop_name": "E-ShopC", "date": "2021-01-31T00:00:00", "annual_revenue": 24.35, "time_on_site": 4.85, "average_rating": 3.79, "social_media_followers": 364.03, "average_response_time": 1.7}, {"eshop_name": "E-ShopC", "date": "2021-02-28T00:00:00", "annual_revenue": 14.82, "time_on_site": 2.31, "average_rating": 2.06, "social_media_followers": 232.54, "average_response_time": 0.91}, {"eshop_name": "E-ShopC", "date": "2021-03-31T00:00:00", "annual_revenue": 18.86, "time_on_site": 3.37, "average_rating": 2.65, "social_media_followers": 324.17, "average_response_time": 1.07}, {"eshop_name": "E-ShopC", "date": "2021-04-30T00:00:00", "annual_revenue": 28.54, "time_on_site": 6.38, "average_rating": 4.57, "social_media_followers": 643.32, "average_response_time": 1.69}, {"eshop_name": "E-ShopC", "date": "2021-05-31T00:00:00", "annual_revenue": 27.21, "time_on_site": 3.39, "average_rating": 3.71, "social_media_followers": 512.22, "average_response_time": 1.34}, {"eshop_name": "E-ShopC", "date": "2021-06-30T00:00:00", "annual_revenue": 27.9, "time_on_site": 5.31, "average_rating": 4.24, "social_media_followers": 583.31, "average_response_time": 1.52}, {"eshop_name": "E-ShopC", "date": "2021-07-31T00:00:00", "annual_revenue": 23.72, "time_on_site": 3.69, "average_rating": 2.91, "social_media_followers": 454.31, "average_response_time": 1.21}, {"eshop_name": "E-ShopC", "date": "2021-08-31T00:00:00", "annual_revenue": 16.58, "time_on_site": 2.76, "average_rating": 2.12, "social_media_followers": 278.01, "average_response_time": 0.72}, {"eshop_name": "E-ShopC", "date": "2021-09-30T00:00:00", "annual_revenue": 47.0, "time_on_site": 8.54, "average_rating": 5.86, "social_media_followers": 847.25, "average_response_time": 2.2}, {"eshop_name": "E-ShopC", "date": "2021-10-31T00:00:00", "annual_revenue": 44.3, "time_on_site": 10.94, "average_rating": 5.67, "social_media_followers": 822.93, "average_response_time": 1.82}, {"eshop_name": "E-ShopC", "date": "2021-11-30T00:00:00", "annual_revenue": 49.79, "time_on_site": 7.43, "average_rating": 5.08, "social_media_followers": 829.0, "average_response_time": 1.88}, {"eshop_name": "E-ShopC", "date": "2021-12-31T00:00:00", "annual_revenue": 40.87, "time_on_site": 8.99, "average_rating": 4.58, "social_media_followers": 710.44, "average_response_time": 1.58}, {"eshop_name": "E-ShopC", "date": "2022-01-31T00:00:00", "annual_revenue": 53.32, "time_on_site": 8.1, "average_rating": 5.98, "social_media_followers": 1104.95, "average_response_time": 1.92}, {"eshop_name": "E-ShopC", "date": "2022-02-28T00:00:00", "annual_revenue": 29.99, "time_on_site": 5.67, "average_rating": 3.29, "social_media_followers": 584.84, "average_response_time": 1.02}, {"eshop_name": "E-ShopC", "date": "2022-03-31T00:00:00", "annual_revenue": 21.0, "time_on_site": 3.99, "average_rating": 2.18, "social_media_followers": 353.32, "average_response_time": 0.61}, {"eshop_name": "E-ShopC", "date": "2022-04-30T00:00:00", "annual_revenue": 56.89, "time_on_site": 11.57, "average_rating": 5.67, "social_media_followers": 1008.37, "average_response_time": 1.73}, {"eshop_name": "E-ShopC", "date": "2022-05-31T00:00:00", "annual_revenue": 44.04, "time_on_site": 9.08, "average_rating": 4.34, "social_media_followers": 851.22, "average_response_time": 1.18}, {"eshop_name": "E-ShopC", "date": "2022-06-30T00:00:00", "annual_revenue": 53.14, "time_on_site": 11.06, "average_rating": 5.33, "social_media_followers": 1061.45, "average_response_time": 1.25}, {"eshop_name": "E-ShopC", "date": "2022-07-31T00:00:00", "annual_revenue": 32.56, "time_on_site": 5.37, "average_rating": 2.78, "social_media_followers": 623.72, "average_response_time": 0.65}, {"eshop_name": "E-ShopC", "date": "2022-08-31T00:00:00", "annual_revenue": 64.83, "time_on_site": 12.48, "average_rating": 6.54, "social_media_followers": 1529.19, "average_response_time": 1.66}, {"eshop_name": "E-ShopC", "date": "2022-09-30T00:00:00", "annual_revenue": 31.7, "time_on_site": 7.1, "average_rating": 3.04, "social_media_followers": 664.3, "average_response_time": 0.88}, {"eshop_name": "E-ShopC", "date": "2022-10-31T00:00:00", "annual_revenue": 27.09, "time_on_site": 5.56, "average_rating": 2.65, "social_media_followers": 538.03, "average_response_time": 0.64}, {"eshop_name": "E-ShopC", "date": "2022-11-30T00:00:00", "annual_revenue": 56.59, "time_on_site": 9.45, "average_rating": 4.88, "social_media_followers": 968.37, "average_response_time": 1.13}, {"eshop_name": "E-ShopC", "date": "2022-12-31T00:00:00", "annual_revenue": 66.5, "time_on_site": 11.05, "average_rating": 5.56, "social_media_followers": 1262.25, "average_response_time": 1.28}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="we-have-multiple-values-for-every-time-stamp" class="slide level2">
+<h2>We have multiple values for every time stamp</h2>
+<div id="b39af1d6" class="cell columns column-output-location" data-execution_count="16">
+<div class="column">
+<div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-16-1"><a href="#annotated-cell-16-1"></a>alt.Chart(df2).mark_line().encode(</span>
+<span id="annotated-cell-16-2"><a href="#annotated-cell-16-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'date:O'</span>),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-16-3" class="code-annotation-target"><a href="#annotated-cell-16-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'average(annual_revenue)'</span>)</span>
+<span id="annotated-cell-16-4"><a href="#annotated-cell-16-4"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt class="fragment" data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
+<dd class="fragment">
+<span data-code-cell="annotated-cell-16" data-code-lines="3" data-code-annotation="1">We need to calculate the average</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+
+<style>
+  #altair-viz-9252191dea12471fbfe1c453a8fa556b.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-9252191dea12471fbfe1c453a8fa556b.vega-embed details,
+  #altair-viz-9252191dea12471fbfe1c453a8fa556b.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-9252191dea12471fbfe1c453a8fa556b"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-9252191dea12471fbfe1c453a8fa556b") {
+      outputDiv = document.getElementById("altair-viz-9252191dea12471fbfe1c453a8fa556b");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.8.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.8.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-3a26c000e4862bfeb4ac3c81f7273b97"}, "mark": {"type": "line"}, "encoding": {"x": {"field": "date", "type": "ordinal"}, "y": {"aggregate": "average", "field": "annual_revenue", "type": "quantitative"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-3a26c000e4862bfeb4ac3c81f7273b97": [{"eshop_name": "E-ShopA", "date": "2020-01-31T00:00:00", "annual_revenue": 13.35, "time_on_site": 1.09, "average_rating": 4.17, "social_media_followers": 173.76, "average_response_time": 2.35}, {"eshop_name": "E-ShopA", "date": "2020-02-29T00:00:00", "annual_revenue": 10.74, "time_on_site": 0.56, "average_rating": 4.79, "social_media_followers": 52.69, "average_response_time": 2.58}, {"eshop_name": "E-ShopA", "date": "2020-03-31T00:00:00", "annual_revenue": 11.91, "time_on_site": 0.57, "average_rating": 2.92, "social_media_followers": 141.79, "average_response_time": 1.54}, {"eshop_name": "E-ShopA", "date": "2020-04-30T00:00:00", "annual_revenue": 16.38, "time_on_site": 2.44, "average_rating": 3.68, "social_media_followers": 190.57, "average_response_time": 1.92}, {"eshop_name": "E-ShopA", "date": "2020-05-31T00:00:00", "annual_revenue": 6.52, "time_on_site": 2.07, "average_rating": 2.67, "social_media_followers": 129.49, "average_response_time": 1.49}, {"eshop_name": "E-ShopA", "date": "2020-06-30T00:00:00", "annual_revenue": 15.8, "time_on_site": 3.79, "average_rating": 4.9, "social_media_followers": 209.08, "average_response_time": 2.51}, {"eshop_name": "E-ShopA", "date": "2020-07-31T00:00:00", "annual_revenue": 20.97, "time_on_site": 2.29, "average_rating": 4.54, "social_media_followers": 313.68, "average_response_time": 2.2}, {"eshop_name": "E-ShopA", "date": "2020-08-31T00:00:00", "annual_revenue": 9.4, "time_on_site": 1.67, "average_rating": 2.02, "social_media_followers": 139.71, "average_response_time": 0.93}, {"eshop_name": "E-ShopA", "date": "2020-09-30T00:00:00", "annual_revenue": 10.09, "time_on_site": 1.67, "average_rating": 1.99, "social_media_followers": 167.66, "average_response_time": 0.85}, {"eshop_name": "E-ShopA", "date": "2020-10-31T00:00:00", "annual_revenue": 25.98, "time_on_site": 5.17, "average_rating": 5.41, "social_media_followers": 487.31, "average_response_time": 2.48}, {"eshop_name": "E-ShopA", "date": "2020-11-30T00:00:00", "annual_revenue": 18.07, "time_on_site": 3.33, "average_rating": 2.81, "social_media_followers": 328.19, "average_response_time": 1.28}, {"eshop_name": "E-ShopA", "date": "2020-12-31T00:00:00", "annual_revenue": 36.81, "time_on_site": 5.99, "average_rating": 5.58, "social_media_followers": 548.23, "average_response_time": 2.75}, {"eshop_name": "E-ShopA", "date": "2021-01-31T00:00:00", "annual_revenue": 33.28, "time_on_site": 6.63, "average_rating": 5.18, "social_media_followers": 497.46, "average_response_time": 2.32}, {"eshop_name": "E-ShopA", "date": "2021-02-28T00:00:00", "annual_revenue": 14.35, "time_on_site": 2.24, "average_rating": 1.99, "social_media_followers": 225.24, "average_response_time": 0.88}, {"eshop_name": "E-ShopA", "date": "2021-03-31T00:00:00", "annual_revenue": 32.38, "time_on_site": 5.78, "average_rating": 4.55, "social_media_followers": 556.54, "average_response_time": 1.83}, {"eshop_name": "E-ShopA", "date": "2021-04-30T00:00:00", "annual_revenue": 34.06, "time_on_site": 7.61, "average_rating": 5.45, "social_media_followers": 767.84, "average_response_time": 2.01}, {"eshop_name": "E-ShopA", "date": "2021-05-31T00:00:00", "annual_revenue": 37.03, "time_on_site": 4.61, "average_rating": 5.05, "social_media_followers": 697.06, "average_response_time": 1.82}, {"eshop_name": "E-ShopA", "date": "2021-06-30T00:00:00", "annual_revenue": 22.18, "time_on_site": 4.22, "average_rating": 3.37, "social_media_followers": 463.57, "average_response_time": 1.2}, {"eshop_name": "E-ShopA", "date": "2021-07-31T00:00:00", "annual_revenue": 36.24, "time_on_site": 5.63, "average_rating": 4.45, "social_media_followers": 694.09, "average_response_time": 1.85}, {"eshop_name": "E-ShopA", "date": "2021-08-31T00:00:00", "annual_revenue": 20.09, "time_on_site": 3.34, "average_rating": 2.57, "social_media_followers": 336.78, "average_response_time": 0.88}, {"eshop_name": "E-ShopA", "date": "2021-09-30T00:00:00", "annual_revenue": 28.98, "time_on_site": 5.27, "average_rating": 3.62, "social_media_followers": 522.46, "average_response_time": 1.36}, {"eshop_name": "E-ShopA", "date": "2021-10-31T00:00:00", "annual_revenue": 41.89, "time_on_site": 10.34, "average_rating": 5.36, "social_media_followers": 778.12, "average_response_time": 1.72}, {"eshop_name": "E-ShopA", "date": "2021-11-30T00:00:00", "annual_revenue": 57.76, "time_on_site": 8.62, "average_rating": 5.89, "social_media_followers": 961.73, "average_response_time": 2.18}, {"eshop_name": "E-ShopA", "date": "2021-12-31T00:00:00", "annual_revenue": 18.83, "time_on_site": 4.14, "average_rating": 2.11, "social_media_followers": 327.24, "average_response_time": 0.73}, {"eshop_name": "E-ShopA", "date": "2022-01-31T00:00:00", "annual_revenue": 53.2, "time_on_site": 8.08, "average_rating": 5.97, "social_media_followers": 1102.33, "average_response_time": 1.91}, {"eshop_name": "E-ShopA", "date": "2022-02-28T00:00:00", "annual_revenue": 45.74, "time_on_site": 8.64, "average_rating": 5.02, "social_media_followers": 892.1, "average_response_time": 1.56}, {"eshop_name": "E-ShopA", "date": "2022-03-31T00:00:00", "annual_revenue": 48.44, "time_on_site": 9.21, "average_rating": 5.02, "social_media_followers": 815.05, "average_response_time": 1.4}, {"eshop_name": "E-ShopA", "date": "2022-04-30T00:00:00", "annual_revenue": 48.98, "time_on_site": 9.96, "average_rating": 4.88, "social_media_followers": 868.04, "average_response_time": 1.49}, {"eshop_name": "E-ShopA", "date": "2022-05-31T00:00:00", "annual_revenue": 45.62, "time_on_site": 9.4, "average_rating": 4.5, "social_media_followers": 881.61, "average_response_time": 1.22}, {"eshop_name": "E-ShopA", "date": "2022-06-30T00:00:00", "annual_revenue": 66.27, "time_on_site": 13.79, "average_rating": 6.65, "social_media_followers": 1323.58, "average_response_time": 1.56}, {"eshop_name": "E-ShopA", "date": "2022-07-31T00:00:00", "annual_revenue": 63.04, "time_on_site": 10.41, "average_rating": 5.37, "social_media_followers": 1207.44, "average_response_time": 1.26}, {"eshop_name": "E-ShopA", "date": "2022-08-31T00:00:00", "annual_revenue": 31.29, "time_on_site": 6.02, "average_rating": 3.16, "social_media_followers": 738.19, "average_response_time": 0.8}, {"eshop_name": "E-ShopA", "date": "2022-09-30T00:00:00", "annual_revenue": 66.11, "time_on_site": 14.81, "average_rating": 6.34, "social_media_followers": 1385.38, "average_response_time": 1.83}, {"eshop_name": "E-ShopA", "date": "2022-10-31T00:00:00", "annual_revenue": 27.25, "time_on_site": 5.59, "average_rating": 2.66, "social_media_followers": 541.14, "average_response_time": 0.65}, {"eshop_name": "E-ShopA", "date": "2022-11-30T00:00:00", "annual_revenue": 61.7, "time_on_site": 10.31, "average_rating": 5.32, "social_media_followers": 1055.7, "average_response_time": 1.24}, {"eshop_name": "E-ShopA", "date": "2022-12-31T00:00:00", "annual_revenue": 74.67, "time_on_site": 12.41, "average_rating": 6.25, "social_media_followers": 1417.39, "average_response_time": 1.44}, {"eshop_name": "E-ShopB", "date": "2020-01-31T00:00:00", "annual_revenue": 7.29, "time_on_site": 0.59, "average_rating": 2.28, "social_media_followers": 94.92, "average_response_time": 1.28}, {"eshop_name": "E-ShopB", "date": "2020-02-29T00:00:00", "annual_revenue": 10.38, "time_on_site": 0.54, "average_rating": 4.63, "social_media_followers": 50.92, "average_response_time": 2.5}, {"eshop_name": "E-ShopB", "date": "2020-03-31T00:00:00", "annual_revenue": 9.49, "time_on_site": 0.45, "average_rating": 2.33, "social_media_followers": 113.0, "average_response_time": 1.23}, {"eshop_name": "E-ShopB", "date": "2020-04-30T00:00:00", "annual_revenue": 10.21, "time_on_site": 1.52, "average_rating": 2.3, "social_media_followers": 118.81, "average_response_time": 1.19}, {"eshop_name": "E-ShopB", "date": "2020-05-31T00:00:00", "annual_revenue": 10.48, "time_on_site": 3.33, "average_rating": 4.29, "social_media_followers": 208.06, "average_response_time": 2.39}, {"eshop_name": "E-ShopB", "date": "2020-06-30T00:00:00", "annual_revenue": 12.52, "time_on_site": 3.0, "average_rating": 3.88, "social_media_followers": 165.64, "average_response_time": 1.99}, {"eshop_name": "E-ShopB", "date": "2020-07-31T00:00:00", "annual_revenue": 20.23, "time_on_site": 2.21, "average_rating": 4.38, "social_media_followers": 302.67, "average_response_time": 2.13}, {"eshop_name": "E-ShopB", "date": "2020-08-31T00:00:00", "annual_revenue": 20.03, "time_on_site": 3.56, "average_rating": 4.31, "social_media_followers": 297.85, "average_response_time": 1.99}, {"eshop_name": "E-ShopB", "date": "2020-09-30T00:00:00", "annual_revenue": 20.65, "time_on_site": 3.43, "average_rating": 4.08, "social_media_followers": 343.22, "average_response_time": 1.73}, {"eshop_name": "E-ShopB", "date": "2020-10-31T00:00:00", "annual_revenue": 23.25, "time_on_site": 4.63, "average_rating": 4.84, "social_media_followers": 435.95, "average_response_time": 2.22}, {"eshop_name": "E-ShopB", "date": "2020-11-30T00:00:00", "annual_revenue": 19.02, "time_on_site": 3.51, "average_rating": 2.96, "social_media_followers": 345.43, "average_response_time": 1.35}, {"eshop_name": "E-ShopB", "date": "2020-12-31T00:00:00", "annual_revenue": 25.65, "time_on_site": 4.17, "average_rating": 3.89, "social_media_followers": 382.13, "average_response_time": 1.92}, {"eshop_name": "E-ShopB", "date": "2021-01-31T00:00:00", "annual_revenue": 31.11, "time_on_site": 6.19, "average_rating": 4.85, "social_media_followers": 465.09, "average_response_time": 2.17}, {"eshop_name": "E-ShopB", "date": "2021-02-28T00:00:00", "annual_revenue": 29.82, "time_on_site": 4.66, "average_rating": 4.14, "social_media_followers": 468.06, "average_response_time": 1.82}, {"eshop_name": "E-ShopB", "date": "2021-03-31T00:00:00", "annual_revenue": 19.91, "time_on_site": 3.55, "average_rating": 2.8, "social_media_followers": 342.25, "average_response_time": 1.13}, {"eshop_name": "E-ShopB", "date": "2021-04-30T00:00:00", "annual_revenue": 34.53, "time_on_site": 7.72, "average_rating": 5.53, "social_media_followers": 778.44, "average_response_time": 2.04}, {"eshop_name": "E-ShopB", "date": "2021-05-31T00:00:00", "annual_revenue": 19.22, "time_on_site": 2.39, "average_rating": 2.62, "social_media_followers": 361.78, "average_response_time": 0.95}, {"eshop_name": "E-ShopB", "date": "2021-06-30T00:00:00", "annual_revenue": 18.94, "time_on_site": 3.6, "average_rating": 2.87, "social_media_followers": 395.87, "average_response_time": 1.03}, {"eshop_name": "E-ShopB", "date": "2021-07-31T00:00:00", "annual_revenue": 28.1, "time_on_site": 4.37, "average_rating": 3.45, "social_media_followers": 538.12, "average_response_time": 1.44}, {"eshop_name": "E-ShopB", "date": "2021-08-31T00:00:00", "annual_revenue": 27.93, "time_on_site": 4.65, "average_rating": 3.57, "social_media_followers": 468.33, "average_response_time": 1.22}, {"eshop_name": "E-ShopB", "date": "2021-09-30T00:00:00", "annual_revenue": 17.15, "time_on_site": 3.12, "average_rating": 2.14, "social_media_followers": 309.19, "average_response_time": 0.8}, {"eshop_name": "E-ShopB", "date": "2021-10-31T00:00:00", "annual_revenue": 38.4, "time_on_site": 9.48, "average_rating": 4.92, "social_media_followers": 713.21, "average_response_time": 1.57}, {"eshop_name": "E-ShopB", "date": "2021-11-30T00:00:00", "annual_revenue": 20.59, "time_on_site": 3.07, "average_rating": 2.1, "social_media_followers": 342.89, "average_response_time": 0.78}, {"eshop_name": "E-ShopB", "date": "2021-12-31T00:00:00", "annual_revenue": 23.07, "time_on_site": 5.08, "average_rating": 2.58, "social_media_followers": 401.07, "average_response_time": 0.89}, {"eshop_name": "E-ShopB", "date": "2022-01-31T00:00:00", "annual_revenue": 27.05, "time_on_site": 4.11, "average_rating": 3.03, "social_media_followers": 560.48, "average_response_time": 0.97}, {"eshop_name": "E-ShopB", "date": "2022-02-28T00:00:00", "annual_revenue": 34.88, "time_on_site": 6.59, "average_rating": 3.83, "social_media_followers": 680.28, "average_response_time": 1.19}, {"eshop_name": "E-ShopB", "date": "2022-03-31T00:00:00", "annual_revenue": 30.02, "time_on_site": 5.71, "average_rating": 3.11, "social_media_followers": 505.16, "average_response_time": 0.87}, {"eshop_name": "E-ShopB", "date": "2022-04-30T00:00:00", "annual_revenue": 49.08, "time_on_site": 9.98, "average_rating": 4.89, "social_media_followers": 869.97, "average_response_time": 1.49}, {"eshop_name": "E-ShopB", "date": "2022-05-31T00:00:00", "annual_revenue": 25.02, "time_on_site": 5.16, "average_rating": 2.47, "social_media_followers": 483.57, "average_response_time": 0.67}, {"eshop_name": "E-ShopB", "date": "2022-06-30T00:00:00", "annual_revenue": 58.14, "time_on_site": 12.1, "average_rating": 5.83, "social_media_followers": 1161.17, "average_response_time": 1.37}, {"eshop_name": "E-ShopB", "date": "2022-07-31T00:00:00", "annual_revenue": 47.16, "time_on_site": 7.78, "average_rating": 4.02, "social_media_followers": 903.2, "average_response_time": 0.94}, {"eshop_name": "E-ShopB", "date": "2022-08-31T00:00:00", "annual_revenue": 59.03, "time_on_site": 11.36, "average_rating": 5.95, "social_media_followers": 1392.46, "average_response_time": 1.51}, {"eshop_name": "E-ShopB", "date": "2022-09-30T00:00:00", "annual_revenue": 57.93, "time_on_site": 12.98, "average_rating": 5.56, "social_media_followers": 1213.84, "average_response_time": 1.6}, {"eshop_name": "E-ShopB", "date": "2022-10-31T00:00:00", "annual_revenue": 31.13, "time_on_site": 6.39, "average_rating": 3.04, "social_media_followers": 618.3, "average_response_time": 0.74}, {"eshop_name": "E-ShopB", "date": "2022-11-30T00:00:00", "annual_revenue": 70.84, "time_on_site": 11.83, "average_rating": 6.11, "social_media_followers": 1212.05, "average_response_time": 1.42}, {"eshop_name": "E-ShopB", "date": "2022-12-31T00:00:00", "annual_revenue": 63.77, "time_on_site": 10.59, "average_rating": 5.33, "social_media_followers": 1210.45, "average_response_time": 1.23}, {"eshop_name": "E-ShopC", "date": "2020-01-31T00:00:00", "annual_revenue": 7.8, "time_on_site": 0.64, "average_rating": 2.44, "social_media_followers": 101.48, "average_response_time": 1.37}, {"eshop_name": "E-ShopC", "date": "2020-02-29T00:00:00", "annual_revenue": 10.17, "time_on_site": 0.53, "average_rating": 4.54, "social_media_followers": 49.89, "average_response_time": 2.45}, {"eshop_name": "E-ShopC", "date": "2020-03-31T00:00:00", "annual_revenue": 21.13, "time_on_site": 1.0, "average_rating": 5.19, "social_media_followers": 251.58, "average_response_time": 2.73}, {"eshop_name": "E-ShopC", "date": "2020-04-30T00:00:00", "annual_revenue": 21.77, "time_on_site": 3.24, "average_rating": 4.9, "social_media_followers": 253.29, "average_response_time": 2.55}, {"eshop_name": "E-ShopC", "date": "2020-05-31T00:00:00", "annual_revenue": 8.46, "time_on_site": 2.69, "average_rating": 3.47, "social_media_followers": 168.01, "average_response_time": 1.93}, {"eshop_name": "E-ShopC", "date": "2020-06-30T00:00:00", "annual_revenue": 17.21, "time_on_site": 4.12, "average_rating": 5.33, "social_media_followers": 227.75, "average_response_time": 2.73}, {"eshop_name": "E-ShopC", "date": "2020-07-31T00:00:00", "annual_revenue": 24.99, "time_on_site": 2.73, "average_rating": 5.41, "social_media_followers": 373.88, "average_response_time": 2.63}, {"eshop_name": "E-ShopC", "date": "2020-08-31T00:00:00", "annual_revenue": 25.1, "time_on_site": 4.46, "average_rating": 5.4, "social_media_followers": 373.21, "average_response_time": 2.5}, {"eshop_name": "E-ShopC", "date": "2020-09-30T00:00:00", "annual_revenue": 20.67, "time_on_site": 3.43, "average_rating": 4.09, "social_media_followers": 343.61, "average_response_time": 1.74}, {"eshop_name": "E-ShopC", "date": "2020-10-31T00:00:00", "annual_revenue": 15.02, "time_on_site": 2.99, "average_rating": 3.13, "social_media_followers": 281.72, "average_response_time": 1.44}, {"eshop_name": "E-ShopC", "date": "2020-11-30T00:00:00", "annual_revenue": 12.32, "time_on_site": 2.27, "average_rating": 1.92, "social_media_followers": 223.82, "average_response_time": 0.87}, {"eshop_name": "E-ShopC", "date": "2020-12-31T00:00:00", "annual_revenue": 16.27, "time_on_site": 2.65, "average_rating": 2.47, "social_media_followers": 242.29, "average_response_time": 1.22}, {"eshop_name": "E-ShopC", "date": "2021-01-31T00:00:00", "annual_revenue": 24.35, "time_on_site": 4.85, "average_rating": 3.79, "social_media_followers": 364.03, "average_response_time": 1.7}, {"eshop_name": "E-ShopC", "date": "2021-02-28T00:00:00", "annual_revenue": 14.82, "time_on_site": 2.31, "average_rating": 2.06, "social_media_followers": 232.54, "average_response_time": 0.91}, {"eshop_name": "E-ShopC", "date": "2021-03-31T00:00:00", "annual_revenue": 18.86, "time_on_site": 3.37, "average_rating": 2.65, "social_media_followers": 324.17, "average_response_time": 1.07}, {"eshop_name": "E-ShopC", "date": "2021-04-30T00:00:00", "annual_revenue": 28.54, "time_on_site": 6.38, "average_rating": 4.57, "social_media_followers": 643.32, "average_response_time": 1.69}, {"eshop_name": "E-ShopC", "date": "2021-05-31T00:00:00", "annual_revenue": 27.21, "time_on_site": 3.39, "average_rating": 3.71, "social_media_followers": 512.22, "average_response_time": 1.34}, {"eshop_name": "E-ShopC", "date": "2021-06-30T00:00:00", "annual_revenue": 27.9, "time_on_site": 5.31, "average_rating": 4.24, "social_media_followers": 583.31, "average_response_time": 1.52}, {"eshop_name": "E-ShopC", "date": "2021-07-31T00:00:00", "annual_revenue": 23.72, "time_on_site": 3.69, "average_rating": 2.91, "social_media_followers": 454.31, "average_response_time": 1.21}, {"eshop_name": "E-ShopC", "date": "2021-08-31T00:00:00", "annual_revenue": 16.58, "time_on_site": 2.76, "average_rating": 2.12, "social_media_followers": 278.01, "average_response_time": 0.72}, {"eshop_name": "E-ShopC", "date": "2021-09-30T00:00:00", "annual_revenue": 47.0, "time_on_site": 8.54, "average_rating": 5.86, "social_media_followers": 847.25, "average_response_time": 2.2}, {"eshop_name": "E-ShopC", "date": "2021-10-31T00:00:00", "annual_revenue": 44.3, "time_on_site": 10.94, "average_rating": 5.67, "social_media_followers": 822.93, "average_response_time": 1.82}, {"eshop_name": "E-ShopC", "date": "2021-11-30T00:00:00", "annual_revenue": 49.79, "time_on_site": 7.43, "average_rating": 5.08, "social_media_followers": 829.0, "average_response_time": 1.88}, {"eshop_name": "E-ShopC", "date": "2021-12-31T00:00:00", "annual_revenue": 40.87, "time_on_site": 8.99, "average_rating": 4.58, "social_media_followers": 710.44, "average_response_time": 1.58}, {"eshop_name": "E-ShopC", "date": "2022-01-31T00:00:00", "annual_revenue": 53.32, "time_on_site": 8.1, "average_rating": 5.98, "social_media_followers": 1104.95, "average_response_time": 1.92}, {"eshop_name": "E-ShopC", "date": "2022-02-28T00:00:00", "annual_revenue": 29.99, "time_on_site": 5.67, "average_rating": 3.29, "social_media_followers": 584.84, "average_response_time": 1.02}, {"eshop_name": "E-ShopC", "date": "2022-03-31T00:00:00", "annual_revenue": 21.0, "time_on_site": 3.99, "average_rating": 2.18, "social_media_followers": 353.32, "average_response_time": 0.61}, {"eshop_name": "E-ShopC", "date": "2022-04-30T00:00:00", "annual_revenue": 56.89, "time_on_site": 11.57, "average_rating": 5.67, "social_media_followers": 1008.37, "average_response_time": 1.73}, {"eshop_name": "E-ShopC", "date": "2022-05-31T00:00:00", "annual_revenue": 44.04, "time_on_site": 9.08, "average_rating": 4.34, "social_media_followers": 851.22, "average_response_time": 1.18}, {"eshop_name": "E-ShopC", "date": "2022-06-30T00:00:00", "annual_revenue": 53.14, "time_on_site": 11.06, "average_rating": 5.33, "social_media_followers": 1061.45, "average_response_time": 1.25}, {"eshop_name": "E-ShopC", "date": "2022-07-31T00:00:00", "annual_revenue": 32.56, "time_on_site": 5.37, "average_rating": 2.78, "social_media_followers": 623.72, "average_response_time": 0.65}, {"eshop_name": "E-ShopC", "date": "2022-08-31T00:00:00", "annual_revenue": 64.83, "time_on_site": 12.48, "average_rating": 6.54, "social_media_followers": 1529.19, "average_response_time": 1.66}, {"eshop_name": "E-ShopC", "date": "2022-09-30T00:00:00", "annual_revenue": 31.7, "time_on_site": 7.1, "average_rating": 3.04, "social_media_followers": 664.3, "average_response_time": 0.88}, {"eshop_name": "E-ShopC", "date": "2022-10-31T00:00:00", "annual_revenue": 27.09, "time_on_site": 5.56, "average_rating": 2.65, "social_media_followers": 538.03, "average_response_time": 0.64}, {"eshop_name": "E-ShopC", "date": "2022-11-30T00:00:00", "annual_revenue": 56.59, "time_on_site": 9.45, "average_rating": 4.88, "social_media_followers": 968.37, "average_response_time": 1.13}, {"eshop_name": "E-ShopC", "date": "2022-12-31T00:00:00", "annual_revenue": 66.5, "time_on_site": 11.05, "average_rating": 5.56, "social_media_followers": 1262.25, "average_response_time": 1.28}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="we-could-also-show-the-different-shops" class="slide level2">
+<h2>We could also show the different shops</h2>
+<div id="b53c5cc6" class="cell columns column-output-location" data-execution_count="17">
+<div class="column">
+<div class="sourceCode cell-code" id="annotated-cell-17"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-17-1"><a href="#annotated-cell-17-1"></a>alt.Chart(df2).mark_line().encode(</span>
+<span id="annotated-cell-17-2"><a href="#annotated-cell-17-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'date:O'</span>),</span>
+<span id="annotated-cell-17-3"><a href="#annotated-cell-17-3"></a>    y<span class="op">=</span>alt.Y(<span class="st">'average(annual_revenue)'</span>),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-17-4" class="code-annotation-target"><a href="#annotated-cell-17-4"></a>    color<span class="op">=</span>alt.Color(<span class="st">'eshop_name'</span>)</span>
+<span id="annotated-cell-17-5"><a href="#annotated-cell-17-5"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt class="fragment" data-target-cell="annotated-cell-17" data-target-annotation="1">1</dt>
+<dd class="fragment">
+<span data-code-cell="annotated-cell-17" data-code-lines="4" data-code-annotation="1">We use <code>color</code> to show the different shops</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+
+<style>
+  #altair-viz-63654de8942d4c7b87dab60d92d7df2c.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-63654de8942d4c7b87dab60d92d7df2c.vega-embed details,
+  #altair-viz-63654de8942d4c7b87dab60d92d7df2c.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-63654de8942d4c7b87dab60d92d7df2c"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-63654de8942d4c7b87dab60d92d7df2c") {
+      outputDiv = document.getElementById("altair-viz-63654de8942d4c7b87dab60d92d7df2c");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.8.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.8.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-3a26c000e4862bfeb4ac3c81f7273b97"}, "mark": {"type": "line"}, "encoding": {"color": {"field": "eshop_name", "type": "nominal"}, "x": {"field": "date", "type": "ordinal"}, "y": {"aggregate": "average", "field": "annual_revenue", "type": "quantitative"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-3a26c000e4862bfeb4ac3c81f7273b97": [{"eshop_name": "E-ShopA", "date": "2020-01-31T00:00:00", "annual_revenue": 13.35, "time_on_site": 1.09, "average_rating": 4.17, "social_media_followers": 173.76, "average_response_time": 2.35}, {"eshop_name": "E-ShopA", "date": "2020-02-29T00:00:00", "annual_revenue": 10.74, "time_on_site": 0.56, "average_rating": 4.79, "social_media_followers": 52.69, "average_response_time": 2.58}, {"eshop_name": "E-ShopA", "date": "2020-03-31T00:00:00", "annual_revenue": 11.91, "time_on_site": 0.57, "average_rating": 2.92, "social_media_followers": 141.79, "average_response_time": 1.54}, {"eshop_name": "E-ShopA", "date": "2020-04-30T00:00:00", "annual_revenue": 16.38, "time_on_site": 2.44, "average_rating": 3.68, "social_media_followers": 190.57, "average_response_time": 1.92}, {"eshop_name": "E-ShopA", "date": "2020-05-31T00:00:00", "annual_revenue": 6.52, "time_on_site": 2.07, "average_rating": 2.67, "social_media_followers": 129.49, "average_response_time": 1.49}, {"eshop_name": "E-ShopA", "date": "2020-06-30T00:00:00", "annual_revenue": 15.8, "time_on_site": 3.79, "average_rating": 4.9, "social_media_followers": 209.08, "average_response_time": 2.51}, {"eshop_name": "E-ShopA", "date": "2020-07-31T00:00:00", "annual_revenue": 20.97, "time_on_site": 2.29, "average_rating": 4.54, "social_media_followers": 313.68, "average_response_time": 2.2}, {"eshop_name": "E-ShopA", "date": "2020-08-31T00:00:00", "annual_revenue": 9.4, "time_on_site": 1.67, "average_rating": 2.02, "social_media_followers": 139.71, "average_response_time": 0.93}, {"eshop_name": "E-ShopA", "date": "2020-09-30T00:00:00", "annual_revenue": 10.09, "time_on_site": 1.67, "average_rating": 1.99, "social_media_followers": 167.66, "average_response_time": 0.85}, {"eshop_name": "E-ShopA", "date": "2020-10-31T00:00:00", "annual_revenue": 25.98, "time_on_site": 5.17, "average_rating": 5.41, "social_media_followers": 487.31, "average_response_time": 2.48}, {"eshop_name": "E-ShopA", "date": "2020-11-30T00:00:00", "annual_revenue": 18.07, "time_on_site": 3.33, "average_rating": 2.81, "social_media_followers": 328.19, "average_response_time": 1.28}, {"eshop_name": "E-ShopA", "date": "2020-12-31T00:00:00", "annual_revenue": 36.81, "time_on_site": 5.99, "average_rating": 5.58, "social_media_followers": 548.23, "average_response_time": 2.75}, {"eshop_name": "E-ShopA", "date": "2021-01-31T00:00:00", "annual_revenue": 33.28, "time_on_site": 6.63, "average_rating": 5.18, "social_media_followers": 497.46, "average_response_time": 2.32}, {"eshop_name": "E-ShopA", "date": "2021-02-28T00:00:00", "annual_revenue": 14.35, "time_on_site": 2.24, "average_rating": 1.99, "social_media_followers": 225.24, "average_response_time": 0.88}, {"eshop_name": "E-ShopA", "date": "2021-03-31T00:00:00", "annual_revenue": 32.38, "time_on_site": 5.78, "average_rating": 4.55, "social_media_followers": 556.54, "average_response_time": 1.83}, {"eshop_name": "E-ShopA", "date": "2021-04-30T00:00:00", "annual_revenue": 34.06, "time_on_site": 7.61, "average_rating": 5.45, "social_media_followers": 767.84, "average_response_time": 2.01}, {"eshop_name": "E-ShopA", "date": "2021-05-31T00:00:00", "annual_revenue": 37.03, "time_on_site": 4.61, "average_rating": 5.05, "social_media_followers": 697.06, "average_response_time": 1.82}, {"eshop_name": "E-ShopA", "date": "2021-06-30T00:00:00", "annual_revenue": 22.18, "time_on_site": 4.22, "average_rating": 3.37, "social_media_followers": 463.57, "average_response_time": 1.2}, {"eshop_name": "E-ShopA", "date": "2021-07-31T00:00:00", "annual_revenue": 36.24, "time_on_site": 5.63, "average_rating": 4.45, "social_media_followers": 694.09, "average_response_time": 1.85}, {"eshop_name": "E-ShopA", "date": "2021-08-31T00:00:00", "annual_revenue": 20.09, "time_on_site": 3.34, "average_rating": 2.57, "social_media_followers": 336.78, "average_response_time": 0.88}, {"eshop_name": "E-ShopA", "date": "2021-09-30T00:00:00", "annual_revenue": 28.98, "time_on_site": 5.27, "average_rating": 3.62, "social_media_followers": 522.46, "average_response_time": 1.36}, {"eshop_name": "E-ShopA", "date": "2021-10-31T00:00:00", "annual_revenue": 41.89, "time_on_site": 10.34, "average_rating": 5.36, "social_media_followers": 778.12, "average_response_time": 1.72}, {"eshop_name": "E-ShopA", "date": "2021-11-30T00:00:00", "annual_revenue": 57.76, "time_on_site": 8.62, "average_rating": 5.89, "social_media_followers": 961.73, "average_response_time": 2.18}, {"eshop_name": "E-ShopA", "date": "2021-12-31T00:00:00", "annual_revenue": 18.83, "time_on_site": 4.14, "average_rating": 2.11, "social_media_followers": 327.24, "average_response_time": 0.73}, {"eshop_name": "E-ShopA", "date": "2022-01-31T00:00:00", "annual_revenue": 53.2, "time_on_site": 8.08, "average_rating": 5.97, "social_media_followers": 1102.33, "average_response_time": 1.91}, {"eshop_name": "E-ShopA", "date": "2022-02-28T00:00:00", "annual_revenue": 45.74, "time_on_site": 8.64, "average_rating": 5.02, "social_media_followers": 892.1, "average_response_time": 1.56}, {"eshop_name": "E-ShopA", "date": "2022-03-31T00:00:00", "annual_revenue": 48.44, "time_on_site": 9.21, "average_rating": 5.02, "social_media_followers": 815.05, "average_response_time": 1.4}, {"eshop_name": "E-ShopA", "date": "2022-04-30T00:00:00", "annual_revenue": 48.98, "time_on_site": 9.96, "average_rating": 4.88, "social_media_followers": 868.04, "average_response_time": 1.49}, {"eshop_name": "E-ShopA", "date": "2022-05-31T00:00:00", "annual_revenue": 45.62, "time_on_site": 9.4, "average_rating": 4.5, "social_media_followers": 881.61, "average_response_time": 1.22}, {"eshop_name": "E-ShopA", "date": "2022-06-30T00:00:00", "annual_revenue": 66.27, "time_on_site": 13.79, "average_rating": 6.65, "social_media_followers": 1323.58, "average_response_time": 1.56}, {"eshop_name": "E-ShopA", "date": "2022-07-31T00:00:00", "annual_revenue": 63.04, "time_on_site": 10.41, "average_rating": 5.37, "social_media_followers": 1207.44, "average_response_time": 1.26}, {"eshop_name": "E-ShopA", "date": "2022-08-31T00:00:00", "annual_revenue": 31.29, "time_on_site": 6.02, "average_rating": 3.16, "social_media_followers": 738.19, "average_response_time": 0.8}, {"eshop_name": "E-ShopA", "date": "2022-09-30T00:00:00", "annual_revenue": 66.11, "time_on_site": 14.81, "average_rating": 6.34, "social_media_followers": 1385.38, "average_response_time": 1.83}, {"eshop_name": "E-ShopA", "date": "2022-10-31T00:00:00", "annual_revenue": 27.25, "time_on_site": 5.59, "average_rating": 2.66, "social_media_followers": 541.14, "average_response_time": 0.65}, {"eshop_name": "E-ShopA", "date": "2022-11-30T00:00:00", "annual_revenue": 61.7, "time_on_site": 10.31, "average_rating": 5.32, "social_media_followers": 1055.7, "average_response_time": 1.24}, {"eshop_name": "E-ShopA", "date": "2022-12-31T00:00:00", "annual_revenue": 74.67, "time_on_site": 12.41, "average_rating": 6.25, "social_media_followers": 1417.39, "average_response_time": 1.44}, {"eshop_name": "E-ShopB", "date": "2020-01-31T00:00:00", "annual_revenue": 7.29, "time_on_site": 0.59, "average_rating": 2.28, "social_media_followers": 94.92, "average_response_time": 1.28}, {"eshop_name": "E-ShopB", "date": "2020-02-29T00:00:00", "annual_revenue": 10.38, "time_on_site": 0.54, "average_rating": 4.63, "social_media_followers": 50.92, "average_response_time": 2.5}, {"eshop_name": "E-ShopB", "date": "2020-03-31T00:00:00", "annual_revenue": 9.49, "time_on_site": 0.45, "average_rating": 2.33, "social_media_followers": 113.0, "average_response_time": 1.23}, {"eshop_name": "E-ShopB", "date": "2020-04-30T00:00:00", "annual_revenue": 10.21, "time_on_site": 1.52, "average_rating": 2.3, "social_media_followers": 118.81, "average_response_time": 1.19}, {"eshop_name": "E-ShopB", "date": "2020-05-31T00:00:00", "annual_revenue": 10.48, "time_on_site": 3.33, "average_rating": 4.29, "social_media_followers": 208.06, "average_response_time": 2.39}, {"eshop_name": "E-ShopB", "date": "2020-06-30T00:00:00", "annual_revenue": 12.52, "time_on_site": 3.0, "average_rating": 3.88, "social_media_followers": 165.64, "average_response_time": 1.99}, {"eshop_name": "E-ShopB", "date": "2020-07-31T00:00:00", "annual_revenue": 20.23, "time_on_site": 2.21, "average_rating": 4.38, "social_media_followers": 302.67, "average_response_time": 2.13}, {"eshop_name": "E-ShopB", "date": "2020-08-31T00:00:00", "annual_revenue": 20.03, "time_on_site": 3.56, "average_rating": 4.31, "social_media_followers": 297.85, "average_response_time": 1.99}, {"eshop_name": "E-ShopB", "date": "2020-09-30T00:00:00", "annual_revenue": 20.65, "time_on_site": 3.43, "average_rating": 4.08, "social_media_followers": 343.22, "average_response_time": 1.73}, {"eshop_name": "E-ShopB", "date": "2020-10-31T00:00:00", "annual_revenue": 23.25, "time_on_site": 4.63, "average_rating": 4.84, "social_media_followers": 435.95, "average_response_time": 2.22}, {"eshop_name": "E-ShopB", "date": "2020-11-30T00:00:00", "annual_revenue": 19.02, "time_on_site": 3.51, "average_rating": 2.96, "social_media_followers": 345.43, "average_response_time": 1.35}, {"eshop_name": "E-ShopB", "date": "2020-12-31T00:00:00", "annual_revenue": 25.65, "time_on_site": 4.17, "average_rating": 3.89, "social_media_followers": 382.13, "average_response_time": 1.92}, {"eshop_name": "E-ShopB", "date": "2021-01-31T00:00:00", "annual_revenue": 31.11, "time_on_site": 6.19, "average_rating": 4.85, "social_media_followers": 465.09, "average_response_time": 2.17}, {"eshop_name": "E-ShopB", "date": "2021-02-28T00:00:00", "annual_revenue": 29.82, "time_on_site": 4.66, "average_rating": 4.14, "social_media_followers": 468.06, "average_response_time": 1.82}, {"eshop_name": "E-ShopB", "date": "2021-03-31T00:00:00", "annual_revenue": 19.91, "time_on_site": 3.55, "average_rating": 2.8, "social_media_followers": 342.25, "average_response_time": 1.13}, {"eshop_name": "E-ShopB", "date": "2021-04-30T00:00:00", "annual_revenue": 34.53, "time_on_site": 7.72, "average_rating": 5.53, "social_media_followers": 778.44, "average_response_time": 2.04}, {"eshop_name": "E-ShopB", "date": "2021-05-31T00:00:00", "annual_revenue": 19.22, "time_on_site": 2.39, "average_rating": 2.62, "social_media_followers": 361.78, "average_response_time": 0.95}, {"eshop_name": "E-ShopB", "date": "2021-06-30T00:00:00", "annual_revenue": 18.94, "time_on_site": 3.6, "average_rating": 2.87, "social_media_followers": 395.87, "average_response_time": 1.03}, {"eshop_name": "E-ShopB", "date": "2021-07-31T00:00:00", "annual_revenue": 28.1, "time_on_site": 4.37, "average_rating": 3.45, "social_media_followers": 538.12, "average_response_time": 1.44}, {"eshop_name": "E-ShopB", "date": "2021-08-31T00:00:00", "annual_revenue": 27.93, "time_on_site": 4.65, "average_rating": 3.57, "social_media_followers": 468.33, "average_response_time": 1.22}, {"eshop_name": "E-ShopB", "date": "2021-09-30T00:00:00", "annual_revenue": 17.15, "time_on_site": 3.12, "average_rating": 2.14, "social_media_followers": 309.19, "average_response_time": 0.8}, {"eshop_name": "E-ShopB", "date": "2021-10-31T00:00:00", "annual_revenue": 38.4, "time_on_site": 9.48, "average_rating": 4.92, "social_media_followers": 713.21, "average_response_time": 1.57}, {"eshop_name": "E-ShopB", "date": "2021-11-30T00:00:00", "annual_revenue": 20.59, "time_on_site": 3.07, "average_rating": 2.1, "social_media_followers": 342.89, "average_response_time": 0.78}, {"eshop_name": "E-ShopB", "date": "2021-12-31T00:00:00", "annual_revenue": 23.07, "time_on_site": 5.08, "average_rating": 2.58, "social_media_followers": 401.07, "average_response_time": 0.89}, {"eshop_name": "E-ShopB", "date": "2022-01-31T00:00:00", "annual_revenue": 27.05, "time_on_site": 4.11, "average_rating": 3.03, "social_media_followers": 560.48, "average_response_time": 0.97}, {"eshop_name": "E-ShopB", "date": "2022-02-28T00:00:00", "annual_revenue": 34.88, "time_on_site": 6.59, "average_rating": 3.83, "social_media_followers": 680.28, "average_response_time": 1.19}, {"eshop_name": "E-ShopB", "date": "2022-03-31T00:00:00", "annual_revenue": 30.02, "time_on_site": 5.71, "average_rating": 3.11, "social_media_followers": 505.16, "average_response_time": 0.87}, {"eshop_name": "E-ShopB", "date": "2022-04-30T00:00:00", "annual_revenue": 49.08, "time_on_site": 9.98, "average_rating": 4.89, "social_media_followers": 869.97, "average_response_time": 1.49}, {"eshop_name": "E-ShopB", "date": "2022-05-31T00:00:00", "annual_revenue": 25.02, "time_on_site": 5.16, "average_rating": 2.47, "social_media_followers": 483.57, "average_response_time": 0.67}, {"eshop_name": "E-ShopB", "date": "2022-06-30T00:00:00", "annual_revenue": 58.14, "time_on_site": 12.1, "average_rating": 5.83, "social_media_followers": 1161.17, "average_response_time": 1.37}, {"eshop_name": "E-ShopB", "date": "2022-07-31T00:00:00", "annual_revenue": 47.16, "time_on_site": 7.78, "average_rating": 4.02, "social_media_followers": 903.2, "average_response_time": 0.94}, {"eshop_name": "E-ShopB", "date": "2022-08-31T00:00:00", "annual_revenue": 59.03, "time_on_site": 11.36, "average_rating": 5.95, "social_media_followers": 1392.46, "average_response_time": 1.51}, {"eshop_name": "E-ShopB", "date": "2022-09-30T00:00:00", "annual_revenue": 57.93, "time_on_site": 12.98, "average_rating": 5.56, "social_media_followers": 1213.84, "average_response_time": 1.6}, {"eshop_name": "E-ShopB", "date": "2022-10-31T00:00:00", "annual_revenue": 31.13, "time_on_site": 6.39, "average_rating": 3.04, "social_media_followers": 618.3, "average_response_time": 0.74}, {"eshop_name": "E-ShopB", "date": "2022-11-30T00:00:00", "annual_revenue": 70.84, "time_on_site": 11.83, "average_rating": 6.11, "social_media_followers": 1212.05, "average_response_time": 1.42}, {"eshop_name": "E-ShopB", "date": "2022-12-31T00:00:00", "annual_revenue": 63.77, "time_on_site": 10.59, "average_rating": 5.33, "social_media_followers": 1210.45, "average_response_time": 1.23}, {"eshop_name": "E-ShopC", "date": "2020-01-31T00:00:00", "annual_revenue": 7.8, "time_on_site": 0.64, "average_rating": 2.44, "social_media_followers": 101.48, "average_response_time": 1.37}, {"eshop_name": "E-ShopC", "date": "2020-02-29T00:00:00", "annual_revenue": 10.17, "time_on_site": 0.53, "average_rating": 4.54, "social_media_followers": 49.89, "average_response_time": 2.45}, {"eshop_name": "E-ShopC", "date": "2020-03-31T00:00:00", "annual_revenue": 21.13, "time_on_site": 1.0, "average_rating": 5.19, "social_media_followers": 251.58, "average_response_time": 2.73}, {"eshop_name": "E-ShopC", "date": "2020-04-30T00:00:00", "annual_revenue": 21.77, "time_on_site": 3.24, "average_rating": 4.9, "social_media_followers": 253.29, "average_response_time": 2.55}, {"eshop_name": "E-ShopC", "date": "2020-05-31T00:00:00", "annual_revenue": 8.46, "time_on_site": 2.69, "average_rating": 3.47, "social_media_followers": 168.01, "average_response_time": 1.93}, {"eshop_name": "E-ShopC", "date": "2020-06-30T00:00:00", "annual_revenue": 17.21, "time_on_site": 4.12, "average_rating": 5.33, "social_media_followers": 227.75, "average_response_time": 2.73}, {"eshop_name": "E-ShopC", "date": "2020-07-31T00:00:00", "annual_revenue": 24.99, "time_on_site": 2.73, "average_rating": 5.41, "social_media_followers": 373.88, "average_response_time": 2.63}, {"eshop_name": "E-ShopC", "date": "2020-08-31T00:00:00", "annual_revenue": 25.1, "time_on_site": 4.46, "average_rating": 5.4, "social_media_followers": 373.21, "average_response_time": 2.5}, {"eshop_name": "E-ShopC", "date": "2020-09-30T00:00:00", "annual_revenue": 20.67, "time_on_site": 3.43, "average_rating": 4.09, "social_media_followers": 343.61, "average_response_time": 1.74}, {"eshop_name": "E-ShopC", "date": "2020-10-31T00:00:00", "annual_revenue": 15.02, "time_on_site": 2.99, "average_rating": 3.13, "social_media_followers": 281.72, "average_response_time": 1.44}, {"eshop_name": "E-ShopC", "date": "2020-11-30T00:00:00", "annual_revenue": 12.32, "time_on_site": 2.27, "average_rating": 1.92, "social_media_followers": 223.82, "average_response_time": 0.87}, {"eshop_name": "E-ShopC", "date": "2020-12-31T00:00:00", "annual_revenue": 16.27, "time_on_site": 2.65, "average_rating": 2.47, "social_media_followers": 242.29, "average_response_time": 1.22}, {"eshop_name": "E-ShopC", "date": "2021-01-31T00:00:00", "annual_revenue": 24.35, "time_on_site": 4.85, "average_rating": 3.79, "social_media_followers": 364.03, "average_response_time": 1.7}, {"eshop_name": "E-ShopC", "date": "2021-02-28T00:00:00", "annual_revenue": 14.82, "time_on_site": 2.31, "average_rating": 2.06, "social_media_followers": 232.54, "average_response_time": 0.91}, {"eshop_name": "E-ShopC", "date": "2021-03-31T00:00:00", "annual_revenue": 18.86, "time_on_site": 3.37, "average_rating": 2.65, "social_media_followers": 324.17, "average_response_time": 1.07}, {"eshop_name": "E-ShopC", "date": "2021-04-30T00:00:00", "annual_revenue": 28.54, "time_on_site": 6.38, "average_rating": 4.57, "social_media_followers": 643.32, "average_response_time": 1.69}, {"eshop_name": "E-ShopC", "date": "2021-05-31T00:00:00", "annual_revenue": 27.21, "time_on_site": 3.39, "average_rating": 3.71, "social_media_followers": 512.22, "average_response_time": 1.34}, {"eshop_name": "E-ShopC", "date": "2021-06-30T00:00:00", "annual_revenue": 27.9, "time_on_site": 5.31, "average_rating": 4.24, "social_media_followers": 583.31, "average_response_time": 1.52}, {"eshop_name": "E-ShopC", "date": "2021-07-31T00:00:00", "annual_revenue": 23.72, "time_on_site": 3.69, "average_rating": 2.91, "social_media_followers": 454.31, "average_response_time": 1.21}, {"eshop_name": "E-ShopC", "date": "2021-08-31T00:00:00", "annual_revenue": 16.58, "time_on_site": 2.76, "average_rating": 2.12, "social_media_followers": 278.01, "average_response_time": 0.72}, {"eshop_name": "E-ShopC", "date": "2021-09-30T00:00:00", "annual_revenue": 47.0, "time_on_site": 8.54, "average_rating": 5.86, "social_media_followers": 847.25, "average_response_time": 2.2}, {"eshop_name": "E-ShopC", "date": "2021-10-31T00:00:00", "annual_revenue": 44.3, "time_on_site": 10.94, "average_rating": 5.67, "social_media_followers": 822.93, "average_response_time": 1.82}, {"eshop_name": "E-ShopC", "date": "2021-11-30T00:00:00", "annual_revenue": 49.79, "time_on_site": 7.43, "average_rating": 5.08, "social_media_followers": 829.0, "average_response_time": 1.88}, {"eshop_name": "E-ShopC", "date": "2021-12-31T00:00:00", "annual_revenue": 40.87, "time_on_site": 8.99, "average_rating": 4.58, "social_media_followers": 710.44, "average_response_time": 1.58}, {"eshop_name": "E-ShopC", "date": "2022-01-31T00:00:00", "annual_revenue": 53.32, "time_on_site": 8.1, "average_rating": 5.98, "social_media_followers": 1104.95, "average_response_time": 1.92}, {"eshop_name": "E-ShopC", "date": "2022-02-28T00:00:00", "annual_revenue": 29.99, "time_on_site": 5.67, "average_rating": 3.29, "social_media_followers": 584.84, "average_response_time": 1.02}, {"eshop_name": "E-ShopC", "date": "2022-03-31T00:00:00", "annual_revenue": 21.0, "time_on_site": 3.99, "average_rating": 2.18, "social_media_followers": 353.32, "average_response_time": 0.61}, {"eshop_name": "E-ShopC", "date": "2022-04-30T00:00:00", "annual_revenue": 56.89, "time_on_site": 11.57, "average_rating": 5.67, "social_media_followers": 1008.37, "average_response_time": 1.73}, {"eshop_name": "E-ShopC", "date": "2022-05-31T00:00:00", "annual_revenue": 44.04, "time_on_site": 9.08, "average_rating": 4.34, "social_media_followers": 851.22, "average_response_time": 1.18}, {"eshop_name": "E-ShopC", "date": "2022-06-30T00:00:00", "annual_revenue": 53.14, "time_on_site": 11.06, "average_rating": 5.33, "social_media_followers": 1061.45, "average_response_time": 1.25}, {"eshop_name": "E-ShopC", "date": "2022-07-31T00:00:00", "annual_revenue": 32.56, "time_on_site": 5.37, "average_rating": 2.78, "social_media_followers": 623.72, "average_response_time": 0.65}, {"eshop_name": "E-ShopC", "date": "2022-08-31T00:00:00", "annual_revenue": 64.83, "time_on_site": 12.48, "average_rating": 6.54, "social_media_followers": 1529.19, "average_response_time": 1.66}, {"eshop_name": "E-ShopC", "date": "2022-09-30T00:00:00", "annual_revenue": 31.7, "time_on_site": 7.1, "average_rating": 3.04, "social_media_followers": 664.3, "average_response_time": 0.88}, {"eshop_name": "E-ShopC", "date": "2022-10-31T00:00:00", "annual_revenue": 27.09, "time_on_site": 5.56, "average_rating": 2.65, "social_media_followers": 538.03, "average_response_time": 0.64}, {"eshop_name": "E-ShopC", "date": "2022-11-30T00:00:00", "annual_revenue": 56.59, "time_on_site": 9.45, "average_rating": 4.88, "social_media_followers": 968.37, "average_response_time": 1.13}, {"eshop_name": "E-ShopC", "date": "2022-12-31T00:00:00", "annual_revenue": 66.5, "time_on_site": 11.05, "average_rating": 5.56, "social_media_followers": 1262.25, "average_response_time": 1.28}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+</div>
+</section>
+<section id="make-the-x-axis-look-nicer" class="slide level2">
+<h2>Make the X-Axis look nicer</h2>
+<div id="180f16b6" class="cell columns column-output-location" data-execution_count="18">
+<div class="column">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>alt.Chart(df2).mark_line().encode(</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    x<span class="op">=</span>alt.X(<span class="st">'date:T'</span>).axis(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>        labelAngle<span class="op">=</span><span class="dv">90</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>        <span class="bu">format</span><span class="op">=</span><span class="st">"%m/%y"</span>),</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    y<span class="op">=</span>alt.Y(<span class="st">'average(annual_revenue)'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output cell-output-display" data-execution_count="18">
+
+<style>
+  #altair-viz-d849fd6f57fb4537a3f0a06024c2ad1a.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-d849fd6f57fb4537a3f0a06024c2ad1a.vega-embed details,
+  #altair-viz-d849fd6f57fb4537a3f0a06024c2ad1a.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-d849fd6f57fb4537a3f0a06024c2ad1a"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-d849fd6f57fb4537a3f0a06024c2ad1a") {
+      outputDiv = document.getElementById("altair-viz-d849fd6f57fb4537a3f0a06024c2ad1a");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.8.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.8.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-3a26c000e4862bfeb4ac3c81f7273b97"}, "mark": {"type": "line"}, "encoding": {"x": {"axis": {"labelAngle": 90, "format": "%m/%y"}, "field": "date", "type": "temporal"}, "y": {"aggregate": "average", "field": "annual_revenue", "type": "quantitative"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-3a26c000e4862bfeb4ac3c81f7273b97": [{"eshop_name": "E-ShopA", "date": "2020-01-31T00:00:00", "annual_revenue": 13.35, "time_on_site": 1.09, "average_rating": 4.17, "social_media_followers": 173.76, "average_response_time": 2.35}, {"eshop_name": "E-ShopA", "date": "2020-02-29T00:00:00", "annual_revenue": 10.74, "time_on_site": 0.56, "average_rating": 4.79, "social_media_followers": 52.69, "average_response_time": 2.58}, {"eshop_name": "E-ShopA", "date": "2020-03-31T00:00:00", "annual_revenue": 11.91, "time_on_site": 0.57, "average_rating": 2.92, "social_media_followers": 141.79, "average_response_time": 1.54}, {"eshop_name": "E-ShopA", "date": "2020-04-30T00:00:00", "annual_revenue": 16.38, "time_on_site": 2.44, "average_rating": 3.68, "social_media_followers": 190.57, "average_response_time": 1.92}, {"eshop_name": "E-ShopA", "date": "2020-05-31T00:00:00", "annual_revenue": 6.52, "time_on_site": 2.07, "average_rating": 2.67, "social_media_followers": 129.49, "average_response_time": 1.49}, {"eshop_name": "E-ShopA", "date": "2020-06-30T00:00:00", "annual_revenue": 15.8, "time_on_site": 3.79, "average_rating": 4.9, "social_media_followers": 209.08, "average_response_time": 2.51}, {"eshop_name": "E-ShopA", "date": "2020-07-31T00:00:00", "annual_revenue": 20.97, "time_on_site": 2.29, "average_rating": 4.54, "social_media_followers": 313.68, "average_response_time": 2.2}, {"eshop_name": "E-ShopA", "date": "2020-08-31T00:00:00", "annual_revenue": 9.4, "time_on_site": 1.67, "average_rating": 2.02, "social_media_followers": 139.71, "average_response_time": 0.93}, {"eshop_name": "E-ShopA", "date": "2020-09-30T00:00:00", "annual_revenue": 10.09, "time_on_site": 1.67, "average_rating": 1.99, "social_media_followers": 167.66, "average_response_time": 0.85}, {"eshop_name": "E-ShopA", "date": "2020-10-31T00:00:00", "annual_revenue": 25.98, "time_on_site": 5.17, "average_rating": 5.41, "social_media_followers": 487.31, "average_response_time": 2.48}, {"eshop_name": "E-ShopA", "date": "2020-11-30T00:00:00", "annual_revenue": 18.07, "time_on_site": 3.33, "average_rating": 2.81, "social_media_followers": 328.19, "average_response_time": 1.28}, {"eshop_name": "E-ShopA", "date": "2020-12-31T00:00:00", "annual_revenue": 36.81, "time_on_site": 5.99, "average_rating": 5.58, "social_media_followers": 548.23, "average_response_time": 2.75}, {"eshop_name": "E-ShopA", "date": "2021-01-31T00:00:00", "annual_revenue": 33.28, "time_on_site": 6.63, "average_rating": 5.18, "social_media_followers": 497.46, "average_response_time": 2.32}, {"eshop_name": "E-ShopA", "date": "2021-02-28T00:00:00", "annual_revenue": 14.35, "time_on_site": 2.24, "average_rating": 1.99, "social_media_followers": 225.24, "average_response_time": 0.88}, {"eshop_name": "E-ShopA", "date": "2021-03-31T00:00:00", "annual_revenue": 32.38, "time_on_site": 5.78, "average_rating": 4.55, "social_media_followers": 556.54, "average_response_time": 1.83}, {"eshop_name": "E-ShopA", "date": "2021-04-30T00:00:00", "annual_revenue": 34.06, "time_on_site": 7.61, "average_rating": 5.45, "social_media_followers": 767.84, "average_response_time": 2.01}, {"eshop_name": "E-ShopA", "date": "2021-05-31T00:00:00", "annual_revenue": 37.03, "time_on_site": 4.61, "average_rating": 5.05, "social_media_followers": 697.06, "average_response_time": 1.82}, {"eshop_name": "E-ShopA", "date": "2021-06-30T00:00:00", "annual_revenue": 22.18, "time_on_site": 4.22, "average_rating": 3.37, "social_media_followers": 463.57, "average_response_time": 1.2}, {"eshop_name": "E-ShopA", "date": "2021-07-31T00:00:00", "annual_revenue": 36.24, "time_on_site": 5.63, "average_rating": 4.45, "social_media_followers": 694.09, "average_response_time": 1.85}, {"eshop_name": "E-ShopA", "date": "2021-08-31T00:00:00", "annual_revenue": 20.09, "time_on_site": 3.34, "average_rating": 2.57, "social_media_followers": 336.78, "average_response_time": 0.88}, {"eshop_name": "E-ShopA", "date": "2021-09-30T00:00:00", "annual_revenue": 28.98, "time_on_site": 5.27, "average_rating": 3.62, "social_media_followers": 522.46, "average_response_time": 1.36}, {"eshop_name": "E-ShopA", "date": "2021-10-31T00:00:00", "annual_revenue": 41.89, "time_on_site": 10.34, "average_rating": 5.36, "social_media_followers": 778.12, "average_response_time": 1.72}, {"eshop_name": "E-ShopA", "date": "2021-11-30T00:00:00", "annual_revenue": 57.76, "time_on_site": 8.62, "average_rating": 5.89, "social_media_followers": 961.73, "average_response_time": 2.18}, {"eshop_name": "E-ShopA", "date": "2021-12-31T00:00:00", "annual_revenue": 18.83, "time_on_site": 4.14, "average_rating": 2.11, "social_media_followers": 327.24, "average_response_time": 0.73}, {"eshop_name": "E-ShopA", "date": "2022-01-31T00:00:00", "annual_revenue": 53.2, "time_on_site": 8.08, "average_rating": 5.97, "social_media_followers": 1102.33, "average_response_time": 1.91}, {"eshop_name": "E-ShopA", "date": "2022-02-28T00:00:00", "annual_revenue": 45.74, "time_on_site": 8.64, "average_rating": 5.02, "social_media_followers": 892.1, "average_response_time": 1.56}, {"eshop_name": "E-ShopA", "date": "2022-03-31T00:00:00", "annual_revenue": 48.44, "time_on_site": 9.21, "average_rating": 5.02, "social_media_followers": 815.05, "average_response_time": 1.4}, {"eshop_name": "E-ShopA", "date": "2022-04-30T00:00:00", "annual_revenue": 48.98, "time_on_site": 9.96, "average_rating": 4.88, "social_media_followers": 868.04, "average_response_time": 1.49}, {"eshop_name": "E-ShopA", "date": "2022-05-31T00:00:00", "annual_revenue": 45.62, "time_on_site": 9.4, "average_rating": 4.5, "social_media_followers": 881.61, "average_response_time": 1.22}, {"eshop_name": "E-ShopA", "date": "2022-06-30T00:00:00", "annual_revenue": 66.27, "time_on_site": 13.79, "average_rating": 6.65, "social_media_followers": 1323.58, "average_response_time": 1.56}, {"eshop_name": "E-ShopA", "date": "2022-07-31T00:00:00", "annual_revenue": 63.04, "time_on_site": 10.41, "average_rating": 5.37, "social_media_followers": 1207.44, "average_response_time": 1.26}, {"eshop_name": "E-ShopA", "date": "2022-08-31T00:00:00", "annual_revenue": 31.29, "time_on_site": 6.02, "average_rating": 3.16, "social_media_followers": 738.19, "average_response_time": 0.8}, {"eshop_name": "E-ShopA", "date": "2022-09-30T00:00:00", "annual_revenue": 66.11, "time_on_site": 14.81, "average_rating": 6.34, "social_media_followers": 1385.38, "average_response_time": 1.83}, {"eshop_name": "E-ShopA", "date": "2022-10-31T00:00:00", "annual_revenue": 27.25, "time_on_site": 5.59, "average_rating": 2.66, "social_media_followers": 541.14, "average_response_time": 0.65}, {"eshop_name": "E-ShopA", "date": "2022-11-30T00:00:00", "annual_revenue": 61.7, "time_on_site": 10.31, "average_rating": 5.32, "social_media_followers": 1055.7, "average_response_time": 1.24}, {"eshop_name": "E-ShopA", "date": "2022-12-31T00:00:00", "annual_revenue": 74.67, "time_on_site": 12.41, "average_rating": 6.25, "social_media_followers": 1417.39, "average_response_time": 1.44}, {"eshop_name": "E-ShopB", "date": "2020-01-31T00:00:00", "annual_revenue": 7.29, "time_on_site": 0.59, "average_rating": 2.28, "social_media_followers": 94.92, "average_response_time": 1.28}, {"eshop_name": "E-ShopB", "date": "2020-02-29T00:00:00", "annual_revenue": 10.38, "time_on_site": 0.54, "average_rating": 4.63, "social_media_followers": 50.92, "average_response_time": 2.5}, {"eshop_name": "E-ShopB", "date": "2020-03-31T00:00:00", "annual_revenue": 9.49, "time_on_site": 0.45, "average_rating": 2.33, "social_media_followers": 113.0, "average_response_time": 1.23}, {"eshop_name": "E-ShopB", "date": "2020-04-30T00:00:00", "annual_revenue": 10.21, "time_on_site": 1.52, "average_rating": 2.3, "social_media_followers": 118.81, "average_response_time": 1.19}, {"eshop_name": "E-ShopB", "date": "2020-05-31T00:00:00", "annual_revenue": 10.48, "time_on_site": 3.33, "average_rating": 4.29, "social_media_followers": 208.06, "average_response_time": 2.39}, {"eshop_name": "E-ShopB", "date": "2020-06-30T00:00:00", "annual_revenue": 12.52, "time_on_site": 3.0, "average_rating": 3.88, "social_media_followers": 165.64, "average_response_time": 1.99}, {"eshop_name": "E-ShopB", "date": "2020-07-31T00:00:00", "annual_revenue": 20.23, "time_on_site": 2.21, "average_rating": 4.38, "social_media_followers": 302.67, "average_response_time": 2.13}, {"eshop_name": "E-ShopB", "date": "2020-08-31T00:00:00", "annual_revenue": 20.03, "time_on_site": 3.56, "average_rating": 4.31, "social_media_followers": 297.85, "average_response_time": 1.99}, {"eshop_name": "E-ShopB", "date": "2020-09-30T00:00:00", "annual_revenue": 20.65, "time_on_site": 3.43, "average_rating": 4.08, "social_media_followers": 343.22, "average_response_time": 1.73}, {"eshop_name": "E-ShopB", "date": "2020-10-31T00:00:00", "annual_revenue": 23.25, "time_on_site": 4.63, "average_rating": 4.84, "social_media_followers": 435.95, "average_response_time": 2.22}, {"eshop_name": "E-ShopB", "date": "2020-11-30T00:00:00", "annual_revenue": 19.02, "time_on_site": 3.51, "average_rating": 2.96, "social_media_followers": 345.43, "average_response_time": 1.35}, {"eshop_name": "E-ShopB", "date": "2020-12-31T00:00:00", "annual_revenue": 25.65, "time_on_site": 4.17, "average_rating": 3.89, "social_media_followers": 382.13, "average_response_time": 1.92}, {"eshop_name": "E-ShopB", "date": "2021-01-31T00:00:00", "annual_revenue": 31.11, "time_on_site": 6.19, "average_rating": 4.85, "social_media_followers": 465.09, "average_response_time": 2.17}, {"eshop_name": "E-ShopB", "date": "2021-02-28T00:00:00", "annual_revenue": 29.82, "time_on_site": 4.66, "average_rating": 4.14, "social_media_followers": 468.06, "average_response_time": 1.82}, {"eshop_name": "E-ShopB", "date": "2021-03-31T00:00:00", "annual_revenue": 19.91, "time_on_site": 3.55, "average_rating": 2.8, "social_media_followers": 342.25, "average_response_time": 1.13}, {"eshop_name": "E-ShopB", "date": "2021-04-30T00:00:00", "annual_revenue": 34.53, "time_on_site": 7.72, "average_rating": 5.53, "social_media_followers": 778.44, "average_response_time": 2.04}, {"eshop_name": "E-ShopB", "date": "2021-05-31T00:00:00", "annual_revenue": 19.22, "time_on_site": 2.39, "average_rating": 2.62, "social_media_followers": 361.78, "average_response_time": 0.95}, {"eshop_name": "E-ShopB", "date": "2021-06-30T00:00:00", "annual_revenue": 18.94, "time_on_site": 3.6, "average_rating": 2.87, "social_media_followers": 395.87, "average_response_time": 1.03}, {"eshop_name": "E-ShopB", "date": "2021-07-31T00:00:00", "annual_revenue": 28.1, "time_on_site": 4.37, "average_rating": 3.45, "social_media_followers": 538.12, "average_response_time": 1.44}, {"eshop_name": "E-ShopB", "date": "2021-08-31T00:00:00", "annual_revenue": 27.93, "time_on_site": 4.65, "average_rating": 3.57, "social_media_followers": 468.33, "average_response_time": 1.22}, {"eshop_name": "E-ShopB", "date": "2021-09-30T00:00:00", "annual_revenue": 17.15, "time_on_site": 3.12, "average_rating": 2.14, "social_media_followers": 309.19, "average_response_time": 0.8}, {"eshop_name": "E-ShopB", "date": "2021-10-31T00:00:00", "annual_revenue": 38.4, "time_on_site": 9.48, "average_rating": 4.92, "social_media_followers": 713.21, "average_response_time": 1.57}, {"eshop_name": "E-ShopB", "date": "2021-11-30T00:00:00", "annual_revenue": 20.59, "time_on_site": 3.07, "average_rating": 2.1, "social_media_followers": 342.89, "average_response_time": 0.78}, {"eshop_name": "E-ShopB", "date": "2021-12-31T00:00:00", "annual_revenue": 23.07, "time_on_site": 5.08, "average_rating": 2.58, "social_media_followers": 401.07, "average_response_time": 0.89}, {"eshop_name": "E-ShopB", "date": "2022-01-31T00:00:00", "annual_revenue": 27.05, "time_on_site": 4.11, "average_rating": 3.03, "social_media_followers": 560.48, "average_response_time": 0.97}, {"eshop_name": "E-ShopB", "date": "2022-02-28T00:00:00", "annual_revenue": 34.88, "time_on_site": 6.59, "average_rating": 3.83, "social_media_followers": 680.28, "average_response_time": 1.19}, {"eshop_name": "E-ShopB", "date": "2022-03-31T00:00:00", "annual_revenue": 30.02, "time_on_site": 5.71, "average_rating": 3.11, "social_media_followers": 505.16, "average_response_time": 0.87}, {"eshop_name": "E-ShopB", "date": "2022-04-30T00:00:00", "annual_revenue": 49.08, "time_on_site": 9.98, "average_rating": 4.89, "social_media_followers": 869.97, "average_response_time": 1.49}, {"eshop_name": "E-ShopB", "date": "2022-05-31T00:00:00", "annual_revenue": 25.02, "time_on_site": 5.16, "average_rating": 2.47, "social_media_followers": 483.57, "average_response_time": 0.67}, {"eshop_name": "E-ShopB", "date": "2022-06-30T00:00:00", "annual_revenue": 58.14, "time_on_site": 12.1, "average_rating": 5.83, "social_media_followers": 1161.17, "average_response_time": 1.37}, {"eshop_name": "E-ShopB", "date": "2022-07-31T00:00:00", "annual_revenue": 47.16, "time_on_site": 7.78, "average_rating": 4.02, "social_media_followers": 903.2, "average_response_time": 0.94}, {"eshop_name": "E-ShopB", "date": "2022-08-31T00:00:00", "annual_revenue": 59.03, "time_on_site": 11.36, "average_rating": 5.95, "social_media_followers": 1392.46, "average_response_time": 1.51}, {"eshop_name": "E-ShopB", "date": "2022-09-30T00:00:00", "annual_revenue": 57.93, "time_on_site": 12.98, "average_rating": 5.56, "social_media_followers": 1213.84, "average_response_time": 1.6}, {"eshop_name": "E-ShopB", "date": "2022-10-31T00:00:00", "annual_revenue": 31.13, "time_on_site": 6.39, "average_rating": 3.04, "social_media_followers": 618.3, "average_response_time": 0.74}, {"eshop_name": "E-ShopB", "date": "2022-11-30T00:00:00", "annual_revenue": 70.84, "time_on_site": 11.83, "average_rating": 6.11, "social_media_followers": 1212.05, "average_response_time": 1.42}, {"eshop_name": "E-ShopB", "date": "2022-12-31T00:00:00", "annual_revenue": 63.77, "time_on_site": 10.59, "average_rating": 5.33, "social_media_followers": 1210.45, "average_response_time": 1.23}, {"eshop_name": "E-ShopC", "date": "2020-01-31T00:00:00", "annual_revenue": 7.8, "time_on_site": 0.64, "average_rating": 2.44, "social_media_followers": 101.48, "average_response_time": 1.37}, {"eshop_name": "E-ShopC", "date": "2020-02-29T00:00:00", "annual_revenue": 10.17, "time_on_site": 0.53, "average_rating": 4.54, "social_media_followers": 49.89, "average_response_time": 2.45}, {"eshop_name": "E-ShopC", "date": "2020-03-31T00:00:00", "annual_revenue": 21.13, "time_on_site": 1.0, "average_rating": 5.19, "social_media_followers": 251.58, "average_response_time": 2.73}, {"eshop_name": "E-ShopC", "date": "2020-04-30T00:00:00", "annual_revenue": 21.77, "time_on_site": 3.24, "average_rating": 4.9, "social_media_followers": 253.29, "average_response_time": 2.55}, {"eshop_name": "E-ShopC", "date": "2020-05-31T00:00:00", "annual_revenue": 8.46, "time_on_site": 2.69, "average_rating": 3.47, "social_media_followers": 168.01, "average_response_time": 1.93}, {"eshop_name": "E-ShopC", "date": "2020-06-30T00:00:00", "annual_revenue": 17.21, "time_on_site": 4.12, "average_rating": 5.33, "social_media_followers": 227.75, "average_response_time": 2.73}, {"eshop_name": "E-ShopC", "date": "2020-07-31T00:00:00", "annual_revenue": 24.99, "time_on_site": 2.73, "average_rating": 5.41, "social_media_followers": 373.88, "average_response_time": 2.63}, {"eshop_name": "E-ShopC", "date": "2020-08-31T00:00:00", "annual_revenue": 25.1, "time_on_site": 4.46, "average_rating": 5.4, "social_media_followers": 373.21, "average_response_time": 2.5}, {"eshop_name": "E-ShopC", "date": "2020-09-30T00:00:00", "annual_revenue": 20.67, "time_on_site": 3.43, "average_rating": 4.09, "social_media_followers": 343.61, "average_response_time": 1.74}, {"eshop_name": "E-ShopC", "date": "2020-10-31T00:00:00", "annual_revenue": 15.02, "time_on_site": 2.99, "average_rating": 3.13, "social_media_followers": 281.72, "average_response_time": 1.44}, {"eshop_name": "E-ShopC", "date": "2020-11-30T00:00:00", "annual_revenue": 12.32, "time_on_site": 2.27, "average_rating": 1.92, "social_media_followers": 223.82, "average_response_time": 0.87}, {"eshop_name": "E-ShopC", "date": "2020-12-31T00:00:00", "annual_revenue": 16.27, "time_on_site": 2.65, "average_rating": 2.47, "social_media_followers": 242.29, "average_response_time": 1.22}, {"eshop_name": "E-ShopC", "date": "2021-01-31T00:00:00", "annual_revenue": 24.35, "time_on_site": 4.85, "average_rating": 3.79, "social_media_followers": 364.03, "average_response_time": 1.7}, {"eshop_name": "E-ShopC", "date": "2021-02-28T00:00:00", "annual_revenue": 14.82, "time_on_site": 2.31, "average_rating": 2.06, "social_media_followers": 232.54, "average_response_time": 0.91}, {"eshop_name": "E-ShopC", "date": "2021-03-31T00:00:00", "annual_revenue": 18.86, "time_on_site": 3.37, "average_rating": 2.65, "social_media_followers": 324.17, "average_response_time": 1.07}, {"eshop_name": "E-ShopC", "date": "2021-04-30T00:00:00", "annual_revenue": 28.54, "time_on_site": 6.38, "average_rating": 4.57, "social_media_followers": 643.32, "average_response_time": 1.69}, {"eshop_name": "E-ShopC", "date": "2021-05-31T00:00:00", "annual_revenue": 27.21, "time_on_site": 3.39, "average_rating": 3.71, "social_media_followers": 512.22, "average_response_time": 1.34}, {"eshop_name": "E-ShopC", "date": "2021-06-30T00:00:00", "annual_revenue": 27.9, "time_on_site": 5.31, "average_rating": 4.24, "social_media_followers": 583.31, "average_response_time": 1.52}, {"eshop_name": "E-ShopC", "date": "2021-07-31T00:00:00", "annual_revenue": 23.72, "time_on_site": 3.69, "average_rating": 2.91, "social_media_followers": 454.31, "average_response_time": 1.21}, {"eshop_name": "E-ShopC", "date": "2021-08-31T00:00:00", "annual_revenue": 16.58, "time_on_site": 2.76, "average_rating": 2.12, "social_media_followers": 278.01, "average_response_time": 0.72}, {"eshop_name": "E-ShopC", "date": "2021-09-30T00:00:00", "annual_revenue": 47.0, "time_on_site": 8.54, "average_rating": 5.86, "social_media_followers": 847.25, "average_response_time": 2.2}, {"eshop_name": "E-ShopC", "date": "2021-10-31T00:00:00", "annual_revenue": 44.3, "time_on_site": 10.94, "average_rating": 5.67, "social_media_followers": 822.93, "average_response_time": 1.82}, {"eshop_name": "E-ShopC", "date": "2021-11-30T00:00:00", "annual_revenue": 49.79, "time_on_site": 7.43, "average_rating": 5.08, "social_media_followers": 829.0, "average_response_time": 1.88}, {"eshop_name": "E-ShopC", "date": "2021-12-31T00:00:00", "annual_revenue": 40.87, "time_on_site": 8.99, "average_rating": 4.58, "social_media_followers": 710.44, "average_response_time": 1.58}, {"eshop_name": "E-ShopC", "date": "2022-01-31T00:00:00", "annual_revenue": 53.32, "time_on_site": 8.1, "average_rating": 5.98, "social_media_followers": 1104.95, "average_response_time": 1.92}, {"eshop_name": "E-ShopC", "date": "2022-02-28T00:00:00", "annual_revenue": 29.99, "time_on_site": 5.67, "average_rating": 3.29, "social_media_followers": 584.84, "average_response_time": 1.02}, {"eshop_name": "E-ShopC", "date": "2022-03-31T00:00:00", "annual_revenue": 21.0, "time_on_site": 3.99, "average_rating": 2.18, "social_media_followers": 353.32, "average_response_time": 0.61}, {"eshop_name": "E-ShopC", "date": "2022-04-30T00:00:00", "annual_revenue": 56.89, "time_on_site": 11.57, "average_rating": 5.67, "social_media_followers": 1008.37, "average_response_time": 1.73}, {"eshop_name": "E-ShopC", "date": "2022-05-31T00:00:00", "annual_revenue": 44.04, "time_on_site": 9.08, "average_rating": 4.34, "social_media_followers": 851.22, "average_response_time": 1.18}, {"eshop_name": "E-ShopC", "date": "2022-06-30T00:00:00", "annual_revenue": 53.14, "time_on_site": 11.06, "average_rating": 5.33, "social_media_followers": 1061.45, "average_response_time": 1.25}, {"eshop_name": "E-ShopC", "date": "2022-07-31T00:00:00", "annual_revenue": 32.56, "time_on_site": 5.37, "average_rating": 2.78, "social_media_followers": 623.72, "average_response_time": 0.65}, {"eshop_name": "E-ShopC", "date": "2022-08-31T00:00:00", "annual_revenue": 64.83, "time_on_site": 12.48, "average_rating": 6.54, "social_media_followers": 1529.19, "average_response_time": 1.66}, {"eshop_name": "E-ShopC", "date": "2022-09-30T00:00:00", "annual_revenue": 31.7, "time_on_site": 7.1, "average_rating": 3.04, "social_media_followers": 664.3, "average_response_time": 0.88}, {"eshop_name": "E-ShopC", "date": "2022-10-31T00:00:00", "annual_revenue": 27.09, "time_on_site": 5.56, "average_rating": 2.65, "social_media_followers": 538.03, "average_response_time": 0.64}, {"eshop_name": "E-ShopC", "date": "2022-11-30T00:00:00", "annual_revenue": 56.59, "time_on_site": 9.45, "average_rating": 4.88, "social_media_followers": 968.37, "average_response_time": 1.13}, {"eshop_name": "E-ShopC", "date": "2022-12-31T00:00:00", "annual_revenue": 66.5, "time_on_site": 11.05, "average_rating": 5.56, "social_media_followers": 1262.25, "average_response_time": 1.28}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+</div>
+</section></section>
 <section>
 <section id="task-overview-and-hints" class="title-slide slide level1 center">
 <h1>Task Overview and Hints</h1>
@@ -1390,7 +1910,7 @@ Jan Kirenz
 </section>
 <section id="task-2-two-e-shops-with-the-highest-average-rating" class="slide level2">
 <h2>Task 2: Two E-Shops with the Highest Average Rating</h2>
-<p>The task is to show the two E-Shops with the highest average rating, using the name `average_rating`.</p>
+<p>The task is to show the two E-Shops with the highest average rating, using the name <code>average_rating</code>.</p>
 <p><strong>Hint:</strong></p>
 <ol type="1">
 <li class="fragment">Group the data by ‘eshop_name’ and calculate the mean of ‘average_rating’ for each group.</li>
@@ -1400,32 +1920,32 @@ Jan Kirenz
 </section>
 <section id="task-3-e-shop-performance-over-time" class="slide level2">
 <h2>Task 3: E-Shop Performance Over Time</h2>
-<p>You’re tasked with showing the annual revenue per E-Shop by year, using the names `year` and `total_revenue`.</p>
+<p>You’re tasked with showing the annual revenue per E-Shop by year, using the names <code>year</code> and <code>total_revenue</code>.</p>
 <p><strong>Hint:</strong></p>
 <ol type="1">
 <li class="fragment">Make sure the ‘date’ column is in a date-time format.</li>
-<li class="fragment">Extract the year from the ‘date’ column using the `year()` function in Altair.</li>
-<li class="fragment">To get the total revenue, use the `sum()` function in Altair.</li>
-<li class="fragment">Use `mark_bar()` for the chart type and encode the axes accordingly.</li>
+<li class="fragment">Extract the year from the ‘date’ column using the <code>year()</code> function in Altair.</li>
+<li class="fragment">To get the total revenue, use the <code>sum()</code> function in Altair.</li>
+<li class="fragment">Use <code>mark_bar()</code> for the chart type and encode the axes accordingly.</li>
 </ol>
 </section>
 <section id="task-4-maximum-social-media-followers" class="slide level2">
 <h2>Task 4: Maximum Social Media Followers</h2>
-<p>Your task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name `max_followers`.</p>
+<p>Your task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name <code>max_followers</code>.</p>
 <p><strong>Hint:</strong></p>
 <ol type="1">
-<li class="fragment">Use the `max()` function in Altair to calculate the maximum number of social media followers for each E-shop.</li>
+<li class="fragment">Use the <code>max()</code> function in Altair to calculate the maximum number of social media followers for each E-shop.</li>
 <li class="fragment">Sort the E-shops by the ‘y’ axis in descending order when encoding the ‘x’ axis.</li>
 </ol>
 </section>
 <section id="task-5-monthly-time-on-site-overview" class="slide level2">
 <h2>Task 5: Monthly Time on Site overview</h2>
-<p>The final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names `month` and `average_time_on_site`.</p>
+<p>The final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names <code>month</code> and <code>average_time_on_site</code>.</p>
 <p><strong>Hint:</strong></p>
 <ol type="1">
-<li class="fragment">Extract the month from the ‘date’ column using the `month()` function in Altair.</li>
-<li class="fragment">To get the average time on site, use the `average()` function in Altair.</li>
-<li class="fragment">Use `mark_line()` for the chart type and encode the axes accordingly.</li>
+<li class="fragment">Extract the month from the ‘date’ column using the <code>month()</code> function in Altair.</li>
+<li class="fragment">To get the average time on site, use the <code>average()</code> function in Altair.</li>
+<li class="fragment">Use <code>mark_line()</code> for the chart type and encode the axes accordingly.</li>
 </ol>
 
 <div class="footer footer-default">
