@@ -15,11 +15,6 @@ title: "Assignments"
 
 - [Analysis part 3 with Pandas](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-pandas.ipynb)
 
-::: {.callout-note}
-Hints to solve the tasks: [Pandas hints](/pandas-hints.qmd) 
-:::
-
-
 ## Altair 
 
 - [Analysis part 3 with Pandas](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-altair.ipynb)
