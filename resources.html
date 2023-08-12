@@ -149,8 +149,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#software-installation" id="toc-software-installation" class="nav-link" data-scroll-target="#software-installation">Software installation</a></li>
   <li><a href="#anaconda-environment" id="toc-anaconda-environment" class="nav-link" data-scroll-target="#anaconda-environment">Anaconda Environment</a></li>
+  <li><a href="#environment-.env-file-for-mysql" id="toc-environment-.env-file-for-mysql" class="nav-link" data-scroll-target="#environment-.env-file-for-mysql">Environment .env file for MySQL</a>
+  <ul class="collapse">
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">MacOS</a></li>
+  <li><a href="#windows-10" id="toc-windows-10" class="nav-link" data-scroll-target="#windows-10">Windows 10</a></li>
+  <li><a href="#windows-11" id="toc-windows-11" class="nav-link" data-scroll-target="#windows-11">Windows 11</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -182,14 +188,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Anaconda</li>
 <li>Visual Studio Code</li>
 <li>Visual Studio Code Extensions</li>
+<li>To create a folder on your machine called <code>lab-competitive</code></li>
+<li>A <code>.env</code> file with your MySQL password</li>
 </ul>
 <p>Use MySQL Workbench to create a new database called <code>db_ecommerce</code></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> `db_ecommerce`;</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> `db_ecommerce`; </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> `db_ecommerce`;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<section id="software-installation" class="level2">
+<h2 class="anchored" data-anchor-id="software-installation">Software installation</h2>
 <ul>
 <li><p>MySQL (select “No thanks, just start my download”)</p>
 <ul>
@@ -208,8 +216,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><a href="https://github.com/kirenz/environments">💾 Anaconda Environment</a></li>
 </ul>
+</section>
+<section id="environment-.env-file-for-mysql" class="level2">
+<h2 class="anchored" data-anchor-id="environment-.env-file-for-mysql">Environment .env file for MySQL</h2>
+<p>You need to use this <code>.env</code> file with your MySQL database password to access MySQL:</p>
+<section id="macos" class="level3">
+<h3 class="anchored" data-anchor-id="macos">MacOS</h3>
+<ol type="1">
+<li><a href="./.env">Download the <code>.env</code> file</a> in your Downloads folder (the file is hidden)</li>
+<li>Open Finder and navigate to the Downloads folder</li>
+<li>Press the “Command” + “Shift” + “.” (period) keys at the same time. The hidden files will show up as translucent in the folder.</li>
+<li>Move the file in your folder <code>lab-competitive</code>.</li>
+<li>Open the file and replace <code>YOUR-PASSWORD</code> with your MySQL password.</li>
+<li>Save the changes.</li>
+<li>If you want to obscure the files again, press the same “Command” + “Shift” + “.” (period) combination.</li>
+</ol>
+</section>
+<section id="windows-10" class="level3">
+<h3 class="anchored" data-anchor-id="windows-10">Windows 10</h3>
+<ol type="1">
+<li><a href="./.env">Download the <code>.env</code> file</a> in your Downloads folder (the file is hidden)</li>
+<li>Open File Explorer from the taskbar.</li>
+<li>Select View &gt; Options &gt; Change folder and search options.</li>
+<li>Select the View tab and, in Advanced settings, select Show hidden files, folders, and drives and OK.</li>
+<li>Move the file in your folder <code>lab-competitive</code>.</li>
+<li>Open the file and replace <code>YOUR-PASSWORD</code> with your MySQL password.</li>
+<li>Save the changes.</li>
+</ol>
+</section>
+<section id="windows-11" class="level3">
+<h3 class="anchored" data-anchor-id="windows-11">Windows 11</h3>
+<ol type="1">
+<li><a href="./.env">Download the <code>.env</code> file</a> in your Downloads folder (the file is hidden)</li>
+<li>Open File Explorer from the taskbar.</li>
+<li>Select View &gt; Show &gt; Hidden items.</li>
+<li>Move the file in your folder <code>lab-competitive</code>.</li>
+<li>Open the file and replace <code>YOUR-PASSWORD</code> with your MySQL password.</li>
+<li>Save the changes.</li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
