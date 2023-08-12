@@ -59,9 +59,11 @@ Install the Anaconda Environment `env-mr-pip.yml`
 
 Create a new folder called `lab-competitive`
 
-### Environment .env file for MySQL 
+### Environment file
 
-You need to use this `.env` file with your MySQL database password to access MySQL:
+You need to use an env file to store environment variables () file with your MySQL database password to access MySQL.
+
+env file to store environment variables. This file contains key-value pairs in the format KEY=VALUE , with each variable on a new line. We can use libraries like python-dotenv to load the variables from the file into our Python script automatically.
 
 
 #### MacOS
