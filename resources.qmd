@@ -6,12 +6,34 @@ title: "Resources"
 
 To start this lab, you'll need:
 
+**SQL**
+
 - MySQL, MySQL Workbench and a database called `db_ecommerce`
+
+**Python**
+
 - Anaconda
-- Visual Studio Code 
-- Visual Studio Code Extensions
-- To create a folder on your machine called `lab-competitive`
-- A `.env` file with your MySQL password
+- Visual Studio Code and Visual Studio Code Extensions
+
+**Working environment**
+
+- A folder on your machine called `lab-competitive`
+- Environment file (`env`) with your MySQL password
+
+
+## SQL
+
+### MySQL
+
+- MySQL (select "No thanks, just start my download")
+  - [Windows](https://dev.mysql.com/downloads/installer/)
+  - [Mac](https://dev.mysql.com/downloads/mysql/)
+
+### MySQL Workbench
+
+- [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+
+### Create Database
 
 Use MySQL Workbench to create a new database called `db_ecommerce`
 
@@ -21,58 +43,76 @@ CREATE DATABASE `db_ecommerce`;
 USE `db_ecommerce`;
 ```
 
-## Software installation
+## Python
 
-- MySQL (select "No thanks, just start my download")
-  - [Windows](https://dev.mysql.com/downloads/installer/)
-  - [Mac](https://dev.mysql.com/downloads/mysql/)
-
-- [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+### Anconda
 
 - [Anaconda](https://www.anaconda.com/download)
 
+### Visual Studio Code
+
 - [Visual Studio Code](https://code.visualstudio.com/)
+
+### Visual Studio Code Extensions
 
 - [Visual Studio Code Extensions](https://vscode.dev/profile/github/94d1b9a0184dec88655f9622c87b866d)
 
-## Anaconda Environment
+
+### Anaconda Environment
 
 Install the Anaconda Environment `env-mr-pip.yml`
 
 - [💾 Anaconda Environment](https://github.com/kirenz/environments)
 
-## Environment .env file for MySQL 
+
+## Working environment
+
+### Folder
+
+Create a new folder called `lab-competitive`
+
+### Environment .env file for MySQL 
 
 You need to use this `.env` file with your MySQL database password to access MySQL:
 
 
-### MacOS
+#### MacOS
 
-1. [Download the `.env` file](/.env) in your Downloads folder (the file is hidden)
+1. [Download the `env` file](/.env) in your Downloads folder (the file is hidden)
 2. Open Finder and navigate to the Downloads folder 
-3. Press the “Command” + “Shift” + “.” (period) keys at the same time. The hidden files will show up as translucent in the folder.
-4. Move the file in your folder `lab-competitive`.
-5. Open the file and replace `YOUR-PASSWORD` with your MySQL password.
-6. Save the changes.
-7. If you want to obscure the files again, press the same “Command” + “Shift” + “.” (period) combination.
 
+<!--
+3. Press the “Command” + “Shift” + “.” (period) keys at the same time. The hidden files will show up as translucent in the folder.
+-->
+3. Move the file in your folder `lab-competitive`.
+4. Open the file and replace `YOUR-PASSWORD` with your MySQL password.
+5. Save the changes.
+
+<!--
+7. If you want to obscure the files again, press the same “Command” + “Shift” + “.” (period) combination.
+-->
 
 ### Windows 10
 
-1. [Download the `.env` file](/.env) in your Downloads folder (the file is hidden)
+1. [Download the `env` file](/.env) in your Downloads folder (the file is hidden)
 2. Open File Explorer from the taskbar. 
+
+<!--
 3. Select View > Options > Change folder and search options.
 4. Select the View tab and, in Advanced settings, select Show hidden files, folders, and drives and OK.
-5. Move the file in your folder `lab-competitive`.
-6. Open the file and replace `YOUR-PASSWORD` with your MySQL password.
-7. Save the changes.
+-->
+3. Move the file in your folder `lab-competitive`.
+4. Open the file and replace `YOUR-PASSWORD` with your MySQL password.
+5. Save the changes.
 
 
 ### Windows 11
 
-1. [Download the `.env` file](/.env) in your Downloads folder (the file is hidden)
+1. [Download the `env` file](/.env) in your Downloads folder (the file is hidden)
 2. Open File Explorer from the taskbar. 
+<!--
 3. Select View > Show > Hidden items.
-4. Move the file in your folder `lab-competitive`.
-5. Open the file and replace `YOUR-PASSWORD` with your MySQL password.
-6. Save the changes.
+-->
+3. Move the file in your folder `lab-competitive`.
+4. Open the file and replace `YOUR-PASSWORD` with your MySQL password.
+5. Save the changes.
