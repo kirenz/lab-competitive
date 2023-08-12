@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#working-environment" id="toc-working-environment" class="nav-link" data-scroll-target="#working-environment">Working environment</a>
   <ul class="collapse">
   <li><a href="#folder" id="toc-folder" class="nav-link" data-scroll-target="#folder">Folder</a></li>
-  <li><a href="#environment-.env-file-for-mysql" id="toc-environment-.env-file-for-mysql" class="nav-link" data-scroll-target="#environment-.env-file-for-mysql">Environment .env file for MySQL</a></li>
+  <li><a href="#environment-file" id="toc-environment-file" class="nav-link" data-scroll-target="#environment-file">Environment file</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -259,53 +259,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="folder">Folder</h3>
 <p>Create a new folder called <code>lab-competitive</code></p>
 </section>
-<section id="environment-.env-file-for-mysql" class="level3">
-<h3 class="anchored" data-anchor-id="environment-.env-file-for-mysql">Environment .env file for MySQL</h3>
-<p>You need to use this <code>.env</code> file with your MySQL database password to access MySQL:</p>
+<section id="environment-file" class="level3">
+<h3 class="anchored" data-anchor-id="environment-file">Environment file</h3>
+<p>You need to use an env file to store environment variables () file with your MySQL database password to access MySQL.</p>
+<p>env file to store environment variables. This file contains key-value pairs in the format KEY=VALUE , with each variable on a new line. We can use libraries like python-dotenv to load the variables from the file into our Python script automatically.</p>
 <section id="macos" class="level4">
 <h4 class="anchored" data-anchor-id="macos">MacOS</h4>
 <ol type="1">
 <li><a href="./.env">Download the <code>env</code> file</a> in your Downloads folder (the file is hidden)</li>
 <li>Open Finder and navigate to the Downloads folder</li>
-</ol>
-<!--
-3. Press the “Command” + “Shift” + “.” (period) keys at the same time. The hidden files will show up as translucent in the folder.
--->
-<ol start="3" type="1">
 <li>Move the file in your folder <code>lab-competitive</code>.</li>
 <li>Open the file and replace <code>YOUR-PASSWORD</code> with your MySQL password.</li>
 <li>Save the changes.</li>
+<li>Rename the file from <code>env</code> to <code>.env</code> (this will hide the file)</li>
+<li>To view hidden files, you need to press the “Command” + “Shift” + “.” (period) keys at the same time. The hidden files will show up as translucent in the folder.</li>
+<li>If you want to obscure the files again, press the same “Command” + “Shift” + “.” (period) combination.</li>
 </ol>
-<!--
-7. If you want to obscure the files again, press the same “Command” + “Shift” + “.” (period) combination.
--->
 </section>
 <section id="windows-10" class="level4">
 <h4 class="anchored" data-anchor-id="windows-10">Windows 10</h4>
 <ol type="1">
 <li><a href="./.env">Download the <code>env</code> file</a> in your Downloads folder (the file is hidden)</li>
 <li>Open File Explorer from the taskbar.</li>
-</ol>
-<!--
-3. Select View > Options > Change folder and search options.
-4. Select the View tab and, in Advanced settings, select Show hidden files, folders, and drives and OK.
--->
-<ol start="3" type="1">
 <li>Move the file in your folder <code>lab-competitive</code>.</li>
 <li>Open the file and replace <code>YOUR-PASSWORD</code> with your MySQL password.</li>
 <li>Save the changes.</li>
+<li>Rename the file from <code>env</code> to <code>.env</code> (this will hide the file)</li>
+<li>To view the hidden file: Select View &gt; Options &gt; Change folder and search options.</li>
+<li>Select the View tab and, in Advanced settings, select Show hidden files, folders, and drives and OK.</li>
 </ol>
 </section>
 <section id="windows-11" class="level4">
 <h4 class="anchored" data-anchor-id="windows-11">Windows 11</h4>
 <ol type="1">
 <li><a href="./.env">Download the <code>env</code> file</a> in your Downloads folder (the file is hidden)</li>
-<li>Open File Explorer from the taskbar. <!--
-3. Select View > Show > Hidden items.
---></li>
+<li>Open File Explorer from the taskbar.</li>
 <li>Move the file in your folder <code>lab-competitive</code>.</li>
 <li>Open the file and replace <code>YOUR-PASSWORD</code> with your MySQL password.</li>
 <li>Save the changes.</li>
+<li>Rename the file from <code>env</code> to <code>.env</code> (this will hide the file)</li>
+<li>To view the hidden file: Select View &gt; Show &gt; Hidden items.</li>
 </ol>
 
 
