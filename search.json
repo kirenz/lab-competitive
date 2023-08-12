@@ -4,14 +4,14 @@
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "To start this lab, you’ll need:\nSQL\n\nMySQL, MySQL Workbench and a database called db_ecommerce\n\nPython\n\nAnaconda\nVisual Studio Code and Visual Studio Code Extensions\n\nWorking environment\n\nA folder on your machine called lab-competitive\nEnvironment file (env) with your MySQL password"
+    "text": "To start this lab, you’ll need:\n\nSQL: MySQL, MySQL Workbench and a database called db_ecommerce\nPython: Anaconda, Visual Studio Code and Visual Studio Code Extensions\nWorking environment: A folder on your machine called lab-competitive and an environment file with your MySQL password"
   },
   {
     "objectID": "resources.html#prerequisites",
     "href": "resources.html#prerequisites",
     "title": "Resources",
     "section": "",
-    "text": "To start this lab, you’ll need:\nSQL\n\nMySQL, MySQL Workbench and a database called db_ecommerce\n\nPython\n\nAnaconda\nVisual Studio Code and Visual Studio Code Extensions\n\nWorking environment\n\nA folder on your machine called lab-competitive\nEnvironment file (env) with your MySQL password"
+    "text": "To start this lab, you’ll need:\n\nSQL: MySQL, MySQL Workbench and a database called db_ecommerce\nPython: Anaconda, Visual Studio Code and Visual Studio Code Extensions\nWorking environment: A folder on your machine called lab-competitive and an environment file with your MySQL password"
   },
   {
     "objectID": "resources.html#sql",
@@ -32,7 +32,7 @@
     "href": "resources.html#working-environment",
     "title": "Resources",
     "section": "Working environment",
-    "text": "Working environment\n\nFolder\nCreate a new folder called lab-competitive\n\n\nEnvironment .env file for MySQL\nYou need to use this .env file with your MySQL database password to access MySQL:\n\nMacOS\n\nDownload the env file in your Downloads folder (the file is hidden)\nOpen Finder and navigate to the Downloads folder\n\n\n\nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes.\n\n\n\n\n\nWindows 10\n\nDownload the env file in your Downloads folder (the file is hidden)\nOpen File Explorer from the taskbar.\n\n\n\nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes.\n\n\n\nWindows 11\n\nDownload the env file in your Downloads folder (the file is hidden)\nOpen File Explorer from the taskbar. \nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes."
+    "text": "Working environment\n\nFolder\nCreate a new folder called lab-competitive\n\n\nEnvironment .env file for MySQL\nYou need to use this .env file with your MySQL database password to access MySQL:\n\nMacOS\n\nDownload the env file in your Downloads folder (the file is hidden)\nOpen Finder and navigate to the Downloads folder\n\n\n\nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes.\n\n\n\n\nWindows 10\n\nDownload the env file in your Downloads folder (the file is hidden)\nOpen File Explorer from the taskbar.\n\n\n\nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes.\n\n\n\nWindows 11\n\nDownload the env file in your Downloads folder (the file is hidden)\nOpen File Explorer from the taskbar. \nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes."
   },
   {
     "objectID": "code/analysis-2.html",
