@@ -4,35 +4,35 @@
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "To start this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\nVisual Studio Code\nVisual Studio Code Extensions\nTo create a folder on your machine called lab-competitive\nA .env file with your MySQL password\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
+    "text": "To start this lab, you’ll need:\nSQL\n\nMySQL, MySQL Workbench and a database called db_ecommerce\n\nPython\n\nAnaconda\nVisual Studio Code and Visual Studio Code Extensions\n\nWorking environment\n\nA folder on your machine called lab-competitive\nEnvironment file (env) with your MySQL password"
   },
   {
     "objectID": "resources.html#prerequisites",
     "href": "resources.html#prerequisites",
     "title": "Resources",
     "section": "",
-    "text": "To start this lab, you’ll need:\n\nMySQL, MySQL Workbench and a database called db_ecommerce\nAnaconda\nVisual Studio Code\nVisual Studio Code Extensions\nTo create a folder on your machine called lab-competitive\nA .env file with your MySQL password\n\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
+    "text": "To start this lab, you’ll need:\nSQL\n\nMySQL, MySQL Workbench and a database called db_ecommerce\n\nPython\n\nAnaconda\nVisual Studio Code and Visual Studio Code Extensions\n\nWorking environment\n\nA folder on your machine called lab-competitive\nEnvironment file (env) with your MySQL password"
   },
   {
-    "objectID": "resources.html#software-installation",
-    "href": "resources.html#software-installation",
+    "objectID": "resources.html#sql",
+    "href": "resources.html#sql",
     "title": "Resources",
-    "section": "Software installation",
-    "text": "Software installation\n\nMySQL (select “No thanks, just start my download”)\n\nWindows\nMac\n\nMySQL Workbench\nAnaconda\nVisual Studio Code\nVisual Studio Code Extensions"
+    "section": "SQL",
+    "text": "SQL\n\nMySQL\n\nMySQL (select “No thanks, just start my download”)\n\nWindows\nMac\n\n\n\n\nMySQL Workbench\n\nMySQL Workbench\n\n\n\nCreate Database\nUse MySQL Workbench to create a new database called db_ecommerce\nDROP DATABASE IF EXISTS `db_ecommerce`;\nCREATE DATABASE `db_ecommerce`; \nUSE `db_ecommerce`;"
   },
   {
-    "objectID": "resources.html#anaconda-environment",
-    "href": "resources.html#anaconda-environment",
+    "objectID": "resources.html#python",
+    "href": "resources.html#python",
     "title": "Resources",
-    "section": "Anaconda Environment",
-    "text": "Anaconda Environment\nInstall the Anaconda Environment env-mr-pip.yml\n\n💾 Anaconda Environment"
+    "section": "Python",
+    "text": "Python\n\nAnconda\n\nAnaconda\n\n\n\nVisual Studio Code\n\nVisual Studio Code\n\n\n\nVisual Studio Code Extensions\n\nVisual Studio Code Extensions\n\n\n\nAnaconda Environment\nInstall the Anaconda Environment env-mr-pip.yml\n\n💾 Anaconda Environment"
   },
   {
-    "objectID": "resources.html#environment-.env-file-for-mysql",
-    "href": "resources.html#environment-.env-file-for-mysql",
+    "objectID": "resources.html#working-environment",
+    "href": "resources.html#working-environment",
     "title": "Resources",
-    "section": "Environment .env file for MySQL",
-    "text": "Environment .env file for MySQL\nYou need to use this .env file with your MySQL database password to access MySQL:\n\nMacOS\n\nDownload the .env file in your Downloads folder (the file is hidden)\nOpen Finder and navigate to the Downloads folder\nPress the “Command” + “Shift” + “.” (period) keys at the same time. The hidden files will show up as translucent in the folder.\nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes.\nIf you want to obscure the files again, press the same “Command” + “Shift” + “.” (period) combination.\n\n\n\nWindows 10\n\nDownload the .env file in your Downloads folder (the file is hidden)\nOpen File Explorer from the taskbar.\nSelect View &gt; Options &gt; Change folder and search options.\nSelect the View tab and, in Advanced settings, select Show hidden files, folders, and drives and OK.\nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes.\n\n\n\nWindows 11\n\nDownload the .env file in your Downloads folder (the file is hidden)\nOpen File Explorer from the taskbar.\nSelect View &gt; Show &gt; Hidden items.\nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes."
+    "section": "Working environment",
+    "text": "Working environment\n\nFolder\nCreate a new folder called lab-competitive\n\n\nEnvironment .env file for MySQL\nYou need to use this .env file with your MySQL database password to access MySQL:\n\nMacOS\n\nDownload the env file in your Downloads folder (the file is hidden)\nOpen Finder and navigate to the Downloads folder\n\n\n\nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes.\n\n\n\n\n\nWindows 10\n\nDownload the env file in your Downloads folder (the file is hidden)\nOpen File Explorer from the taskbar.\n\n\n\nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes.\n\n\n\nWindows 11\n\nDownload the env file in your Downloads folder (the file is hidden)\nOpen File Explorer from the taskbar. \nMove the file in your folder lab-competitive.\nOpen the file and replace YOUR-PASSWORD with your MySQL password.\nSave the changes."
   },
   {
     "objectID": "code/analysis-2.html",
