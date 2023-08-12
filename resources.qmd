@@ -6,20 +6,9 @@ title: "Resources"
 
 To start this lab, you'll need:
 
-**SQL**
-
-- MySQL, MySQL Workbench and a database called `db_ecommerce`
-
-**Python**
-
-- Anaconda
-- Visual Studio Code and Visual Studio Code Extensions
-
-**Working environment**
-
-- A folder on your machine called `lab-competitive`
-- Environment file (`env`) with your MySQL password
-
+- **SQL**: MySQL, MySQL Workbench and a database called `db_ecommerce`
+- **Python**: Anaconda, Visual Studio Code and Visual Studio Code Extensions
+- **Working environment**: A folder on your machine called `lab-competitive` and an environment file with your MySQL password
 
 ## SQL
 
@@ -64,7 +53,6 @@ Install the Anaconda Environment `env-mr-pip.yml`
 
 - [💾 Anaconda Environment](https://github.com/kirenz/environments)
 
-
 ## Working environment
 
 ### Folder
@@ -92,7 +80,7 @@ You need to use this `.env` file with your MySQL database password to access MyS
 7. If you want to obscure the files again, press the same “Command” + “Shift” + “.” (period) combination.
 -->
 
-### Windows 10
+#### Windows 10
 
 1. [Download the `env` file](/.env) in your Downloads folder (the file is hidden)
 2. Open File Explorer from the taskbar. 
@@ -106,7 +94,7 @@ You need to use this `.env` file with your MySQL database password to access MyS
 5. Save the changes.
 
 
-### Windows 11
+#### Windows 11
 
 1. [Download the `env` file](/.env) in your Downloads folder (the file is hidden)
 2. Open File Explorer from the taskbar. 
