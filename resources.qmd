@@ -10,6 +10,8 @@ To start this lab, you'll need:
 - Anaconda
 - Visual Studio Code 
 - Visual Studio Code Extensions
+- To create a folder on your machine called `lab-competitive`
+- A `.env` file with your MySQL password
 
 Use MySQL Workbench to create a new database called `db_ecommerce`
 
@@ -19,7 +21,7 @@ CREATE DATABASE `db_ecommerce`;
 USE `db_ecommerce`;
 ```
 
-## Installation
+## Software installation
 
 - MySQL (select "No thanks, just start my download")
   - [Windows](https://dev.mysql.com/downloads/installer/)
@@ -38,3 +40,39 @@ USE `db_ecommerce`;
 Install the Anaconda Environment `env-mr-pip.yml`
 
 - [💾 Anaconda Environment](https://github.com/kirenz/environments)
+
+## Environment .env file for MySQL 
+
+You need to use this `.env` file with your MySQL database password to access MySQL:
+
+
+### MacOS
+
+1. [Download the `.env` file](/.env) in your Downloads folder (the file is hidden)
+2. Open Finder and navigate to the Downloads folder 
+3. Press the “Command” + “Shift” + “.” (period) keys at the same time. The hidden files will show up as translucent in the folder.
+4. Move the file in your folder `lab-competitive`.
+5. Open the file and replace `YOUR-PASSWORD` with your MySQL password.
+6. Save the changes.
+7. If you want to obscure the files again, press the same “Command” + “Shift” + “.” (period) combination.
+
+
+### Windows 10
+
+1. [Download the `.env` file](/.env) in your Downloads folder (the file is hidden)
+2. Open File Explorer from the taskbar. 
+3. Select View > Options > Change folder and search options.
+4. Select the View tab and, in Advanced settings, select Show hidden files, folders, and drives and OK.
+5. Move the file in your folder `lab-competitive`.
+6. Open the file and replace `YOUR-PASSWORD` with your MySQL password.
+7. Save the changes.
+
+
+### Windows 11
+
+1. [Download the `.env` file](/.env) in your Downloads folder (the file is hidden)
+2. Open File Explorer from the taskbar. 
+3. Select View > Show > Hidden items.
+4. Move the file in your folder `lab-competitive`.
+5. Open the file and replace `YOUR-PASSWORD` with your MySQL password.
+6. Save the changes.
