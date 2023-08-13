@@ -2,6 +2,8 @@
 title: "Assignments"
 ---
 
+Download Jupyter Notebooks in your local folder `competitive`. 
+
 ## SQL 
 
 - [SQL analysis part 1](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-1-c.ipynb)
