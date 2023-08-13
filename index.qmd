@@ -7,17 +7,12 @@ In this lab called "Competitive", you will step into the shoes of a market resea
 You'll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you'll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.
 
 ::: {.callout-important}
-Make sure you meet all the [pre](/requirements.qmd) for starting this lab
+Make sure you meet all the [requirements](/requirements.qmd) before you start with the [assignments](/assignments.qmd) 
 :::
 
-::: {.callout-note}
-## Technology we will use
+What you will learn in this lab:
 
-- MySQL database
-- SQL for data analysis
-- Pandas for data analysis in Python
-- Altair for data visualization in Python 
-
-:::
-
-
+- How to set up a MySQL database
+- Use SQL for data analysis
+- Make use of Pandas for data analysis in Python
+- Use Altair for data visualization in Python 
