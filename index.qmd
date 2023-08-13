@@ -1,5 +1,5 @@
 ---
-title: "Lab"
+title: "Welcome 👋"
 ---
 
 In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis. 
