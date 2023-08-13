@@ -119,193 +119,368 @@
     "text": "Task 5\nMonthly Time on Site overview\n\nShow a monthly overview of the average time on site for every E-shop (order by E-shop and month). We don’t care about the years.\nUse the names month and average_time_on_site\n\n\ndf['month'] = df['date'].dt.month\ndf_user_growth = df.groupby(['eshop_name', 'month'])['time_on_site'].mean().reset_index().rename(columns={'time_on_site':'average_time_on_site'})\n\ndf_user_growth\n\n\n\n\n\n\n\n\neshop_name\nmonth\naverage_time_on_site\n\n\n\n\n0\nE-ShopA\n1\n5.266667\n\n\n1\nE-ShopA\n2\n3.813333\n\n\n2\nE-ShopA\n3\n5.186667\n\n\n3\nE-ShopA\n4\n6.670000\n\n\n4\nE-ShopA\n5\n5.360000\n\n\n5\nE-ShopA\n6\n7.266667\n\n\n6\nE-ShopA\n7\n6.110000\n\n\n7\nE-ShopA\n8\n3.676667\n\n\n8\nE-ShopA\n9\n7.250000\n\n\n9\nE-ShopA\n10\n7.033333\n\n\n10\nE-ShopA\n11\n7.420000\n\n\n11\nE-ShopA\n12\n7.513333\n\n\n12\nE-ShopB\n1\n3.630000\n\n\n13\nE-ShopB\n2\n3.930000\n\n\n14\nE-ShopB\n3\n3.236667\n\n\n15\nE-ShopB\n4\n6.406667\n\n\n16\nE-ShopB\n5\n3.626667\n\n\n17\nE-ShopB\n6\n6.233333\n\n\n18\nE-ShopB\n7\n4.786667\n\n\n19\nE-ShopB\n8\n6.523333\n\n\n20\nE-ShopB\n9\n6.510000\n\n\n21\nE-ShopB\n10\n6.833333\n\n\n22\nE-ShopB\n11\n6.136667\n\n\n23\nE-ShopB\n12\n6.613333\n\n\n24\nE-ShopC\n1\n4.530000\n\n\n25\nE-ShopC\n2\n2.836667\n\n\n26\nE-ShopC\n3\n2.786667\n\n\n27\nE-ShopC\n4\n7.063333\n\n\n28\nE-ShopC\n5\n5.053333\n\n\n29\nE-ShopC\n6\n6.830000\n\n\n30\nE-ShopC\n7\n3.930000\n\n\n31\nE-ShopC\n8\n6.566667\n\n\n32\nE-ShopC\n9\n6.356667\n\n\n33\nE-ShopC\n10\n6.496667\n\n\n34\nE-ShopC\n11\n6.383333\n\n\n35\nE-ShopC\n12\n7.563333"
   },
   {
-    "objectID": "code/analysis-1-c.html",
-    "href": "code/analysis-1-c.html",
+    "objectID": "code/analysis-4.html",
+    "href": "code/analysis-4.html",
+    "title": "SQL analysis part 4",
+    "section": "",
+    "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
+  },
+  {
+    "objectID": "code/analysis-4.html#setup",
+    "href": "code/analysis-4.html#setup",
+    "title": "SQL analysis part 4",
+    "section": "Setup",
+    "text": "Setup\n\nimport os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
+  },
+  {
+    "objectID": "code/analysis-4.html#data",
+    "href": "code/analysis-4.html#data",
+    "title": "SQL analysis part 4",
+    "section": "Data",
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')\n\n108"
+  },
+  {
+    "objectID": "code/analysis-4.html#task-1",
+    "href": "code/analysis-4.html#task-1",
+    "title": "SQL analysis part 4",
+    "section": "Task 1",
+    "text": "Task 1\nGet the list of distinct E-shops that have annual revenue more than 70000 and less than 75000 (note that annual revenue is recorded in 10K, i.e. 70 in the data equals 70000)\n\ndf1 = pd.read_sql(\"\"\"\n    SELECT DISTINCT eshop_name\n    FROM ecommerce_data\n    WHERE annual_revenue BETWEEN 70 AND 75\n    ORDER BY eshop_name;\n\"\"\", engine)\n\ndf1\n\n\n\n\n\n\n\n\neshop_name\n\n\n\n\n0\nE-ShopA\n\n\n1\nE-ShopB"
+  },
+  {
+    "objectID": "code/analysis-4.html#task-2",
+    "href": "code/analysis-4.html#task-2",
+    "title": "SQL analysis part 4",
+    "section": "Task 2",
+    "text": "Task 2\nGet the top 3 records with the highest annual revenue and which have ‘b’ or ‘a’ in their names (note that you need to use two % in Python, e.g. ‘%%a%%’ instead of ‘%a%’). Show the annual revenue in thousands of dollars (e.g. 10000 instead of 10) and name it revenue.\n\ndf2 = pd.read_sql(\"\"\"\n    SELECT eshop_name, annual_revenue * 1000 AS revenue\n    FROM ecommerce_data\n    WHERE eshop_name LIKE '%%a%%' OR eshop_name LIKE '%%b%%'\n    ORDER BY revenue DESC\n    LIMIT 3;\n\"\"\", engine)\n\ndf2\n\n\n\n\n\n\n\n\neshop_name\nrevenue\n\n\n\n\n0\nE-ShopA\n74670.0\n\n\n1\nE-ShopB\n70840.0\n\n\n2\nE-ShopA\n66270.0"
+  },
+  {
+    "objectID": "code/analysis-4.html#task-3",
+    "href": "code/analysis-4.html#task-3",
+    "title": "SQL analysis part 4",
+    "section": "Task 3",
+    "text": "Task 3\nGet the list of E-shops that have NULL in social_media_followers\n\ndf3 = pd.read_sql(\"\"\"\n    SELECT eshop_name\n    FROM ecommerce_data\n    WHERE social_media_followers IS NULL;\n\"\"\", engine)\n\ndf3\n\n\n\n\n\n\n\n\neshop_name"
+  },
+  {
+    "objectID": "code/analysis-4.html#task-4",
+    "href": "code/analysis-4.html#task-4",
+    "title": "SQL analysis part 4",
+    "section": "Task 4",
+    "text": "Task 4\nGet the E-shops whose average rating is in (3.5, 4.0, 4.5). Note that only returns values which exactly matches one of the conditions (this is not an intervall).\n\ndf4 = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    WHERE average_rating IN (3.5, 4.5, 5.0) \n    GROUP BY eshop_name\n    ORDER BY average_rating DESC;\n\"\"\", engine)\n\ndf4\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopA\n4.5"
+  },
+  {
+    "objectID": "code/analysis-4.html#task-5",
+    "href": "code/analysis-4.html#task-5",
+    "title": "SQL analysis part 4",
+    "section": "Task 5",
+    "text": "Task 5\nGet the E-shops with social media followers that are above 1400 and have ‘a’ or ‘c’ in their names. Use REGEXP to obtain the result.\n\ndf5 = pd.read_sql(\"\"\"\n    SELECT eshop_name, social_media_followers\n    FROM ecommerce_data\n    WHERE eshop_name REGEXP 'a|c' AND social_media_followers &gt; 1400\n    ORDER BY social_media_followers DESC;\n\"\"\", engine)\n\ndf5\n\n\n\n\n\n\n\n\neshop_name\nsocial_media_followers\n\n\n\n\n0\nE-ShopC\n1529.19\n\n\n1\nE-ShopA\n1417.39"
+  },
+  {
+    "objectID": "code/analysis-4.html#task-6",
+    "href": "code/analysis-4.html#task-6",
+    "title": "SQL analysis part 4",
+    "section": "Task 6",
+    "text": "Task 6\nGet the E-shops with annual revenue above 70000 or with social media followers that are above 1400 and end with ‘a’ in their names. Use REGEXP to obtain the result.\n\ndf6 = pd.read_sql(\"\"\"\n    SELECT eshop_name, social_media_followers, annual_revenue\n    FROM ecommerce_data\n    WHERE annual_revenue &gt; 70 OR\n        (eshop_name REGEXP 'a$' AND social_media_followers &gt; 1400)\n    ORDER BY social_media_followers DESC;\n\"\"\", engine)\n\n\ndf6\n\n\n\n\n\n\n\n\neshop_name\nsocial_media_followers\nannual_revenue\n\n\n\n\n0\nE-ShopA\n1417.39\n74.67\n\n\n1\nE-ShopB\n1212.05\n70.84"
+  },
+  {
+    "objectID": "code/analysis-4.html#close-the-connection",
+    "href": "code/analysis-4.html#close-the-connection",
+    "title": "SQL analysis part 4",
+    "section": "Close the connection",
+    "text": "Close the connection\n\n# close connection\nengine.dispose()"
+  },
+  {
+    "objectID": "code/analysis-1.html",
+    "href": "code/analysis-1.html",
     "title": "SQL analysis part 1",
     "section": "",
     "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
   },
   {
-    "objectID": "code/analysis-1-c.html#setup",
-    "href": "code/analysis-1-c.html#setup",
+    "objectID": "code/analysis-1.html#setup",
+    "href": "code/analysis-1.html#setup",
     "title": "SQL analysis part 1",
     "section": "Setup",
     "text": "Setup\n\nimport os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
   },
   {
-    "objectID": "code/analysis-1-c.html#data",
-    "href": "code/analysis-1-c.html#data",
+    "objectID": "code/analysis-1.html#data",
+    "href": "code/analysis-1.html#data",
     "title": "SQL analysis part 1",
     "section": "Data",
-    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')\n\n108"
   },
   {
-    "objectID": "code/analysis-1-c.html#task-1",
-    "href": "code/analysis-1-c.html#task-1",
+    "objectID": "code/analysis-1.html#task-1",
+    "href": "code/analysis-1.html#task-1",
     "title": "SQL analysis part 1",
     "section": "Task 1",
-    "text": "Task 1\nGet the list of distinct E-shops that have annual revenue more than 70000 and less than 75000 (note that annual revenue is recorded in 10K, i.e. 70 in the data equals 70000)\n\ndf1 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf1"
+    "text": "Task 1\nGet the list of distinct E-shops that have annual revenue more than 70000 and less than 75000 (note that annual revenue is recorded in 10K, i.e. 70 in the data equals 70000)\n\ndf1 = pd.read_sql(\"\"\"\n    SELECT DISTINCT eshop_name\n    FROM ecommerce_data\n    WHERE annual_revenue BETWEEN 70 AND 75\n    ORDER BY eshop_name;\n\"\"\", engine)\n\ndf1\n\n\n\n\n\n\n\n\neshop_name\n\n\n\n\n0\nE-ShopA\n\n\n1\nE-ShopB"
   },
   {
-    "objectID": "code/analysis-1-c.html#task-2",
-    "href": "code/analysis-1-c.html#task-2",
+    "objectID": "code/analysis-1.html#task-2",
+    "href": "code/analysis-1.html#task-2",
     "title": "SQL analysis part 1",
     "section": "Task 2",
-    "text": "Task 2\nGet the top 3 records with the highest annual revenue and which have ‘b’ or ‘a’ in their names (note that you need to use two % in Python, e.g. ‘%%a%%’ instead of ‘%a%’). Show the annual revenue in thousands of dollars (e.g. 10000 instead of 10) and name it revenue.\n\ndf2 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf2"
+    "text": "Task 2\nGet the top 3 records with the highest annual revenue and which have ‘b’ or ‘a’ in their names (note that you need to use two % in Python, e.g. ‘%%a%%’ instead of ‘%a%’). Show the annual revenue in thousands of dollars (e.g. 10000 instead of 10) and name it revenue.\n\ndf2 = pd.read_sql(\"\"\"\n    SELECT eshop_name, annual_revenue * 1000 AS revenue\n    FROM ecommerce_data\n    WHERE eshop_name LIKE '%%a%%' OR eshop_name LIKE '%%b%%'\n    ORDER BY revenue DESC\n    LIMIT 3;\n\"\"\", engine)\n\ndf2\n\n\n\n\n\n\n\n\neshop_name\nrevenue\n\n\n\n\n0\nE-ShopA\n74670.0\n\n\n1\nE-ShopB\n70840.0\n\n\n2\nE-ShopA\n66270.0"
   },
   {
-    "objectID": "code/analysis-1-c.html#task-3",
-    "href": "code/analysis-1-c.html#task-3",
+    "objectID": "code/analysis-1.html#task-3",
+    "href": "code/analysis-1.html#task-3",
     "title": "SQL analysis part 1",
     "section": "Task 3",
-    "text": "Task 3\nGet the list of E-shops that have NULL in social_media_followers\n\ndf3 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf3"
+    "text": "Task 3\nGet the list of E-shops that have NULL in social_media_followers\n\ndf3 = pd.read_sql(\"\"\"\n    SELECT eshop_name\n    FROM ecommerce_data\n    WHERE social_media_followers IS NULL;\n\"\"\", engine)\n\ndf3\n\n\n\n\n\n\n\n\neshop_name"
   },
   {
-    "objectID": "code/analysis-1-c.html#task-4",
-    "href": "code/analysis-1-c.html#task-4",
+    "objectID": "code/analysis-1.html#task-4",
+    "href": "code/analysis-1.html#task-4",
     "title": "SQL analysis part 1",
     "section": "Task 4",
-    "text": "Task 4\nGet the E-shops whose average rating is in (3.5, 4.0, 4.5). Note that only returns values which exactly matches one of the conditions (this is not an intervall).\n\ndf4 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf4"
+    "text": "Task 4\nGet the E-shops whose average rating is in (3.5, 4.0, 4.5). Note that only returns values which exactly matches one of the conditions (this is not an intervall).\n\ndf4 = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    WHERE average_rating IN (3.5, 4.5, 5.0) \n    GROUP BY eshop_name\n    ORDER BY average_rating DESC;\n\"\"\", engine)\n\ndf4\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopA\n4.5"
   },
   {
-    "objectID": "code/analysis-1-c.html#task-5",
-    "href": "code/analysis-1-c.html#task-5",
+    "objectID": "code/analysis-1.html#task-5",
+    "href": "code/analysis-1.html#task-5",
     "title": "SQL analysis part 1",
     "section": "Task 5",
-    "text": "Task 5\nGet the E-shops with social media followers that are above 1400 and have ‘a’ or ‘c’ in their names. Use REGEXP to obtain the result.\n\ndf5 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf5"
+    "text": "Task 5\nGet the E-shops with social media followers that are above 1400 and have ‘a’ or ‘c’ in their names. Use REGEXP to obtain the result.\n\ndf5 = pd.read_sql(\"\"\"\n    SELECT eshop_name, social_media_followers\n    FROM ecommerce_data\n    WHERE eshop_name REGEXP 'a|c' AND social_media_followers &gt; 1400\n    ORDER BY social_media_followers DESC;\n\"\"\", engine)\n\ndf5\n\n\n\n\n\n\n\n\neshop_name\nsocial_media_followers\n\n\n\n\n0\nE-ShopC\n1529.19\n\n\n1\nE-ShopA\n1417.39"
   },
   {
-    "objectID": "code/analysis-1-c.html#task-6",
-    "href": "code/analysis-1-c.html#task-6",
+    "objectID": "code/analysis-1.html#task-6",
+    "href": "code/analysis-1.html#task-6",
     "title": "SQL analysis part 1",
     "section": "Task 6",
-    "text": "Task 6\nGet the E-shops with annual revenue above 70000 or with social media followers that are above 1400 and end with ‘a’ in their names. Use REGEXP to obtain the result.\n\ndf6 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\n\ndf6"
+    "text": "Task 6\nGet the E-shops with annual revenue above 70000 or with social media followers that are above 1400 and end with ‘a’ in their names. Use REGEXP to obtain the result.\n\ndf6 = pd.read_sql(\"\"\"\n    SELECT eshop_name, social_media_followers, annual_revenue\n    FROM ecommerce_data\n    WHERE annual_revenue &gt; 70 OR\n        (eshop_name REGEXP 'a$' AND social_media_followers &gt; 1400)\n    ORDER BY social_media_followers DESC;\n\"\"\", engine)\n\n\ndf6\n\n\n\n\n\n\n\n\neshop_name\nsocial_media_followers\nannual_revenue\n\n\n\n\n0\nE-ShopA\n1417.39\n74.67\n\n\n1\nE-ShopB\n1212.05\n70.84"
   },
   {
-    "objectID": "code/analysis-1-c.html#close-the-connection",
-    "href": "code/analysis-1-c.html#close-the-connection",
+    "objectID": "code/analysis-1.html#close-the-connection",
+    "href": "code/analysis-1.html#close-the-connection",
     "title": "SQL analysis part 1",
     "section": "Close the connection",
     "text": "Close the connection\n\n# close connection\nengine.dispose()"
   },
   {
-    "objectID": "code/analysis-2-c.html",
-    "href": "code/analysis-2-c.html",
-    "title": "SQL analysis part 2",
+    "objectID": "code/analysis-3-altair.html",
+    "href": "code/analysis-3-altair.html",
+    "title": "Altair analysis part 3",
     "section": "",
-    "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
+    "text": "import pandas as pd\nimport altair as alt\n#alt.renderers.enable('mimetype')"
   },
   {
-    "objectID": "code/analysis-2-c.html#setup",
-    "href": "code/analysis-2-c.html#setup",
-    "title": "SQL analysis part 2",
-    "section": "Setup",
-    "text": "Setup\n\nimport os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
+    "objectID": "code/analysis-3-altair.html#setup",
+    "href": "code/analysis-3-altair.html#setup",
+    "title": "Altair analysis part 3",
+    "section": "",
+    "text": "import pandas as pd\nimport altair as alt\n#alt.renderers.enable('mimetype')"
   },
   {
-    "objectID": "code/analysis-2-c.html#data",
-    "href": "code/analysis-2-c.html#data",
-    "title": "SQL analysis part 2",
+    "objectID": "code/analysis-3-altair.html#data",
+    "href": "code/analysis-3-altair.html#data",
+    "title": "Altair analysis part 3",
     "section": "Data",
-    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
+    "text": "Data\n\nImport data\n\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\n\n\n\nData structure\n\ndf.head()\n\n\n\n\n\n\n\n\neshop_name\ndate\nannual_revenue\ntime_on_site\naverage_rating\nsocial_media_followers\naverage_response_time\n\n\n\n\n0\nE-ShopA\n2020-01-31\n13.35\n1.09\n4.17\n173.76\n2.35\n\n\n1\nE-ShopA\n2020-02-29\n10.74\n0.56\n4.79\n52.69\n2.58\n\n\n2\nE-ShopA\n2020-03-31\n11.91\n0.57\n2.92\n141.79\n1.54\n\n\n3\nE-ShopA\n2020-04-30\n16.38\n2.44\n3.68\n190.57\n1.92\n\n\n4\nE-ShopA\n2020-05-31\n6.52\n2.07\n2.67\n129.49\n1.49\n\n\n\n\n\n\n\n\ndf.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 108 entries, 0 to 107\nData columns (total 7 columns):\n #   Column                  Non-Null Count  Dtype  \n---  ------                  --------------  -----  \n 0   eshop_name              108 non-null    object \n 1   date                    108 non-null    object \n 2   annual_revenue          108 non-null    float64\n 3   time_on_site            108 non-null    float64\n 4   average_rating          108 non-null    float64\n 5   social_media_followers  108 non-null    float64\n 6   average_response_time   108 non-null    float64\ndtypes: float64(5), object(2)\nmemory usage: 6.0+ KB\n\n\n\n\nData corrections\n\ndf['date'] = pd.to_datetime(df['date'])\ndf['eshop_name'] = df['eshop_name'].astype('category')"
   },
   {
-    "objectID": "code/analysis-2-c.html#close-the-connection",
-    "href": "code/analysis-2-c.html#close-the-connection",
-    "title": "SQL analysis part 2",
-    "section": "Close the connection",
-    "text": "Close the connection\n\n# close connection\nengine.dispose()"
+    "objectID": "code/analysis-3-altair.html#task-1",
+    "href": "code/analysis-3-altair.html#task-1",
+    "title": "Altair analysis part 3",
+    "section": "Task 1",
+    "text": "Task 1\nAverage Revenue by E-Shop\n\nShow the average revenue for all shops\nUse the name average_revenue\n\n\n# Simple chart\nchart = alt.Chart(df).mark_bar().encode(\n    x=alt.X('eshop_name'),\n    y=alt.Y('average(annual_revenue)')\n)\n\nchart\n\n\n\n\n\n\n\n\nchart = alt.Chart(df).mark_bar().encode(\n    x=alt.X('eshop_name').axis(\n                            title='E-Shop', \n                            titleAnchor=\"start\",\n                            labelAngle=0,\n                            grid=False\n                            ),\n    y=alt.Y('average(annual_revenue)').axis(\n                            title='Average Annnual Revenue', \n                            titleAnchor=\"end\",\n                            grid=False\n                            ),\n    tooltip=alt.Tooltip(\"average(annual_revenue)\", format=\",.2f\")\n).properties(\n    title='Average Annual Revenue by E-Shop',\n    width= 250,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
   },
   {
-    "objectID": "workflow.html",
-    "href": "workflow.html",
-    "title": "Workflow",
-    "section": "",
-    "text": "This is a Quarto slidedeck.\n\nCreate new labs GitHub-Repo\nCreate new branch gh-pages\nChange settings in page: gh-pages and root\nOpen VS Code\nChange Quarto seetings in files\nRender all in terminal: quarto render\nPush to GitHub"
+    "objectID": "code/analysis-3-altair.html#task-2",
+    "href": "code/analysis-3-altair.html#task-2",
+    "title": "Altair analysis part 3",
+    "section": "Task 2",
+    "text": "Task 2\nTwo E-Shops with the Highest Average Rating\n\nShow the two E-Shops with the highest average rating\nUse the name average_rating\n\n\ndf_best_rating = df.groupby('eshop_name')['average_rating'].mean().reset_index().sort_values('average_rating', ascending=False).head(2)\n\nchart = alt.Chart(df_best_rating).mark_bar().encode(\n    x=alt.X('eshop_name').axis(\n                            title='E-Shop', \n                            titleAnchor=\"start\",\n                            labelAngle=0,\n                            grid=False\n                            ),\n    y=alt.Y('average_rating').axis(\n                            title='Average Rating', \n                            titleAnchor=\"end\",\n                            grid=False\n                            ),\n    tooltip=alt.Tooltip(\"average_rating\", format=\",.2f\")\n).properties(\n    title='Shops with the Highest Average Ratings',\n    width= 250,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
   },
   {
-    "objectID": "slides/slides.html#text",
-    "href": "slides/slides.html#text",
-    "title": "Title",
-    "section": "Text",
-    "text": "Text\n\na 🤖\n\nabc\n\n\n\n\nb\nc1\n\n📚 Required reading: A & B (2023)\nhttps://arxiv.org/pdf/2303.12712.pdf\n\nRussell & Norvig, 2009"
+    "objectID": "code/analysis-3-altair.html#task-3",
+    "href": "code/analysis-3-altair.html#task-3",
+    "title": "Altair analysis part 3",
+    "section": "Task 3",
+    "text": "Task 3\nE-Shop Performance Over Time\n\nShow the annual revenue per E-Shop by year\nUse the names year and total_revenue\n\n\nchart = alt.Chart(df).mark_bar().encode(\n    x=alt.X('year(date):O').axis(\n                            title='Year', \n                            titleAnchor=\"start\",\n                            labelAngle=0,\n                            grid=False\n                            ),\n    y=alt.Y('sum(annual_revenue):Q').axis(\n                            title='Total Revenue', \n                            titleAnchor=\"end\",\n                            grid=False\n                            ),\n    color=alt.Color('eshop_name:N', title=None),\n).properties(\n    title='Total Annual Revenue by E-shop and Year',\n    width= 250,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
   },
   {
-    "objectID": "slides/slides.html#image",
-    "href": "slides/slides.html#image",
-    "title": "Title",
-    "section": "Image",
-    "text": "Image"
+    "objectID": "code/analysis-3-altair.html#task-4",
+    "href": "code/analysis-3-altair.html#task-4",
+    "title": "Altair analysis part 3",
+    "section": "Task 4",
+    "text": "Task 4\nMaximum Social Media Followers\n\nShow the maximum amount of social media followers for every E-shop in a descending order.\nUse the name max_followers\n\n\nchart = alt.Chart(df).mark_bar().encode(\n    x=alt.X('eshop_name:N').axis(\n                            title='E-Shop', \n                            titleAnchor=\"start\",\n                            labelAngle=0,\n                            grid=False\n                            ).sort('-y'),\n    y=alt.Y('max(social_media_followers):Q').axis(\n                            title='Social Media Followers', \n                            titleAnchor=\"end\",\n                            grid=False\n                            )\n).properties(\n    title='Maximum Social Media Followers',\n    width= 250,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
   },
   {
-    "objectID": "slides/slides.html#video",
-    "href": "slides/slides.html#video",
-    "title": "Title",
-    "section": "Video",
-    "text": "Video"
+    "objectID": "code/analysis-3-altair.html#task-5",
+    "href": "code/analysis-3-altair.html#task-5",
+    "title": "Altair analysis part 3",
+    "section": "Task 5",
+    "text": "Task 5\nMonthly Time on Site overview\n\nShow a monthly overview of the average time on site for every E-shop (order by E-shop and month)\nUse the names month and average_time_on_site\n\n\nchart = alt.Chart(df).mark_line().encode(\n    x=alt.X('month(date):T').axis(\n                               title='Month', \n                               titleAnchor=\"start\",\n                               labelAngle=0,\n                               grid=False\n                               ),\n    y=alt.Y('average(time_on_site):Q').axis(\n                               title='Social Media Followers', \n                               titleAnchor=\"end\",\n                               grid=False\n                               ),\n    color=alt.Color('eshop_name:N', title=None)\n).properties(\n    title='Average Monthly Time on Site',\n    width= 450,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
   },
   {
-    "objectID": "slides/slides.html#a-lot-of-text",
-    "href": "slides/slides.html#a-lot-of-text",
-    "title": "Title",
-    "section": "A lot of text",
-    "text": "A lot of text\nSmaller heading"
+    "objectID": "slides/altair.html#key-features-of-altair",
+    "href": "slides/altair.html#key-features-of-altair",
+    "title": "Altair",
+    "section": "Key features of Altair",
+    "text": "Key features of Altair\n\nSimple API: Just a few lines of code can create beautiful visualizations.\nIntegration with Pandas: Altair’s API is designed to work with Pandas dataframes.\nDeclarative Visualization: You describe the properties of a visualization and let Altair figure out how to implement it."
   },
   {
-    "objectID": "slides/slides.html#background-image",
-    "href": "slides/slides.html#background-image",
-    "title": "Title",
-    "section": "Background image",
-    "text": "Background image\nabc"
+    "objectID": "slides/altair.html#python-setup",
+    "href": "slides/altair.html#python-setup",
+    "title": "Altair",
+    "section": "Python Setup",
+    "text": "Python Setup\n\nimport altair as alt\nimport pandas as pd"
   },
   {
-    "objectID": "slides/slides.html#code",
-    "href": "slides/slides.html#code",
-    "title": "Title",
-    "section": "Code",
-    "text": "Code\n1print('Hello World')\n2for i in LIST:\n  df[i] = df[i].astype('cat')\n\n1\n\nPrint Hello World, and then,\n\n2\n\ntransform all columns in the LIST element to categorical variables"
+    "objectID": "slides/altair.html#create-a-dataframe",
+    "href": "slides/altair.html#create-a-dataframe",
+    "title": "Altair",
+    "section": "Create a DataFrame",
+    "text": "Create a DataFrame\n\ndata = {'name': ['Zeynep', 'Anna', 'Tim', 'Sara', 'Elias', 'Admir', 'Lina'],\n        'age': [33, 25, 23, 21, 28, 20, 31],\n        'date': ['1990-06-03', '1998-03-12', '2000-01-20', '2002-02-16', '1995-05-02', '2003-06-03', '1992-06-03'],\n        'city': ['Stuttgart', 'Berlin', 'Stuttgart', 'Stuttgart', 'Berlin', 'Munich', 'Stuttgart']}\n\ndf = pd.DataFrame(data)"
   },
   {
-    "objectID": "slides/slides.html#end",
-    "href": "slides/slides.html#end",
-    "title": "Title",
-    "section": "End",
-    "text": "End\n\n\nJan Kirenz"
+    "objectID": "slides/altair.html#change-data-format",
+    "href": "slides/altair.html#change-data-format",
+    "title": "Altair",
+    "section": "Change Data Format",
+    "text": "Change Data Format\n\nCAT_LIST = ['name', 'city']\n\nfor i in CAT_LIST:\n    df[i] = df[i].astype('category')\n\ndf['date'] = pd.to_datetime(df['date'])"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Lab",
-    "section": "",
-    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you’ll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.\n\n\n\n\n\n\nTechnology we will use\n\n\n\n\nMySQL Database and MySQL Workbench\nSQL for data analysis\nPandas for data analysis in Python\nAltair for data visualization in Python"
+    "objectID": "slides/altair.html#bar-chart",
+    "href": "slides/altair.html#bar-chart",
+    "title": "Altair",
+    "section": "Bar Chart",
+    "text": "Bar Chart\n\nWe use .mark_bar() to create a bar plot\n\n\n\n\n1alt.Chart(df).mark_bar().encode(\n2    x=alt.X('name'),\n3    y=alt.Y('age')\n)\n\n\n\n1\n\nDefine a chart object (ACME acronym)\n\n2\n\nDefine x-axis\n\n3\n\nDefine y-axis"
   },
   {
-    "objectID": "slide.html",
-    "href": "slide.html",
-    "title": "Slides",
-    "section": "",
-    "text": "🖥 SQL basics\n\nSELECT, DISTINCT, WHERE, ORDER BY, AS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP, NULL, NOT NULL, LIMIT\n\n\n\n\n🖥 How to aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY, HAVING, WITH ROLLUP"
+    "objectID": "slides/altair.html#bar-chart-with-sorted-values",
+    "href": "slides/altair.html#bar-chart-with-sorted-values",
+    "title": "Altair",
+    "section": "Bar Chart with sorted values",
+    "text": "Bar Chart with sorted values\n\n\nalt.Chart(df).mark_bar().encode(\n1    x=alt.X('name').sort('y'),\n    y=alt.Y('age')\n)\n\n\n\n1\n\nSort the values in an ascending order"
   },
   {
-    "objectID": "slide.html#sql",
-    "href": "slide.html#sql",
-    "title": "Slides",
-    "section": "",
-    "text": "🖥 SQL basics\n\nSELECT, DISTINCT, WHERE, ORDER BY, AS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP, NULL, NOT NULL, LIMIT\n\n\n\n\n🖥 How to aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY, HAVING, WITH ROLLUP"
+    "objectID": "slides/altair.html#bar-chart-with-sorted-values-1",
+    "href": "slides/altair.html#bar-chart-with-sorted-values-1",
+    "title": "Altair",
+    "section": "Bar Chart with sorted values",
+    "text": "Bar Chart with sorted values\n\n\nalt.Chart(df).mark_bar().encode(\n1    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n)\n\n\n\n1\n\nSort the values in a descending order"
   },
   {
-    "objectID": "slide.html#pandas",
-    "href": "slide.html#pandas",
-    "title": "Slides",
-    "section": "Pandas",
-    "text": "Pandas\n🖥 Pandas basics"
+    "objectID": "slides/altair.html#bar-chart-with-properties",
+    "href": "slides/altair.html#bar-chart-with-properties",
+    "title": "Altair",
+    "section": "Bar Chart with properties",
+    "text": "Bar Chart with properties\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n1).properties(\n2    title='This is a simple bar chart',\n3    width=300,\n4    height=150\n)\n\n\n\n1\n\nAdd properties to the chart\n\n2\n\nDefine a chart title\n\n3\n\nSet the width of the chart (in pixel)\n\n4\n\nSet the height of the chart (in pixel)"
   },
   {
-    "objectID": "slide.html#altair",
-    "href": "slide.html#altair",
-    "title": "Slides",
-    "section": "Altair",
-    "text": "Altair\n🖥 Altair basics"
+    "objectID": "slides/altair.html#bar-chart-with-properties-1",
+    "href": "slides/altair.html#bar-chart-with-properties-1",
+    "title": "Altair",
+    "section": "Bar Chart with properties",
+    "text": "Bar Chart with properties\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n1).properties(\n2    title='This is a simple bar chart',\n3    width=300,\n4    height=150\n)\n\n\n\n1\n\nAdd properties to the chart\n\n2\n\nDefine a chart title\n\n3\n\nSet the width of the chart (in pixel)\n\n4\n\nSet the height of the chart (in pixel)"
+  },
+  {
+    "objectID": "slides/altair.html#bar-chart-with-custom-x-axis",
+    "href": "slides/altair.html#bar-chart-with-custom-x-axis",
+    "title": "Altair",
+    "section": "Bar chart with custom x-axis",
+    "text": "Bar chart with custom x-axis\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y').axis(\n1        title=\"Name\",\n2        labelAngle=0,\n3        grid=False,\n4        titleAnchor=\"start\"),\n    y=alt.Y('age')\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n)\n\n\n\n1\n\nTitle of x-axis\n\n2\n\nAngle of axis text\n\n3\n\nHide the lines in the background\n\n4\n\nAdjustment of the text at the x-axis"
+  },
+  {
+    "objectID": "slides/altair.html#bar-chart-with-custom-y-axis",
+    "href": "slides/altair.html#bar-chart-with-custom-y-axis",
+    "title": "Altair",
+    "section": "Bar chart with custom y-axis",
+    "text": "Bar chart with custom y-axis\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age').axis(\n1        title=\"Age\",\n2        grid=False,\n3        titleAnchor=\"end\"),\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n)\n\n\n\n1\n\nTitle of y-axis\n\n2\n\nHide the grid\n\n3\n\nAdjustment of the text at the y axis"
+  },
+  {
+    "objectID": "slides/altair.html#bar-chart-with-custom-title",
+    "href": "slides/altair.html#bar-chart-with-custom-title",
+    "title": "Altair",
+    "section": "Bar chart with custom title",
+    "text": "Bar chart with custom title\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n1).configure_title(\n    fontSize=16,\n    font='Arial',\n    color='black',\n2    anchor='start'\n)\n\n\n\n1\n\nCustom title options\n\n2\n\nWhere to anchor the title (start, middle or end)"
+  },
+  {
+    "objectID": "slides/altair.html#final-bar-plot",
+    "href": "slides/altair.html#final-bar-plot",
+    "title": "Altair",
+    "section": "Final bar plot",
+    "text": "Final bar plot\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y').axis(\n        title=\"Name\",\n        labelAngle=0,\n        grid=False,\n        titleAnchor=\"start\"),\n    y=alt.Y('age').axis(\n        title=\"Age\",\n        grid=False,\n        titleAnchor=\"end\"),\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n).configure_title(\n    fontSize=16,\n    font='Arial',\n    color='black',\n    anchor='start'\n1).configure_view(\n    strokeWidth=0\n)\n\n\n\n1\n\nRemove the lines at the top and the right of the plot"
+  },
+  {
+    "objectID": "slides/altair.html#data",
+    "href": "slides/altair.html#data",
+    "title": "Altair",
+    "section": "Data",
+    "text": "Data\n\ndf2 = pd.read_csv(\n    'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\n\ndf2['date'] = pd.to_datetime(df2['date'])\n\n\ndf2"
+  },
+  {
+    "objectID": "slides/altair.html#data-output",
+    "href": "slides/altair.html#data-output",
+    "title": "Altair",
+    "section": "Data",
+    "text": "Data\n\n\n\n\n\n\n\n\neshop_name\ndate\nannual_revenue\ntime_on_site\naverage_rating\nsocial_media_followers\naverage_response_time\n\n\n\n\n0\nE-ShopA\n2020-01-31\n13.35\n1.09\n4.17\n173.76\n2.35\n\n\n1\nE-ShopA\n2020-02-29\n10.74\n0.56\n4.79\n52.69\n2.58\n\n\n2\nE-ShopA\n2020-03-31\n11.91\n0.57\n2.92\n141.79\n1.54\n\n\n3\nE-ShopA\n2020-04-30\n16.38\n2.44\n3.68\n190.57\n1.92\n\n\n4\nE-ShopA\n2020-05-31\n6.52\n2.07\n2.67\n129.49\n1.49\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n103\nE-ShopC\n2022-08-31\n64.83\n12.48\n6.54\n1529.19\n1.66\n\n\n104\nE-ShopC\n2022-09-30\n31.70\n7.10\n3.04\n664.30\n0.88\n\n\n105\nE-ShopC\n2022-10-31\n27.09\n5.56\n2.65\n538.03\n0.64\n\n\n106\nE-ShopC\n2022-11-30\n56.59\n9.45\n4.88\n968.37\n1.13\n\n\n107\nE-ShopC\n2022-12-31\n66.50\n11.05\n5.56\n1262.25\n1.28\n\n\n\n\n108 rows × 7 columns"
+  },
+  {
+    "objectID": "slides/altair.html#what-is-wrong-with-this-chart",
+    "href": "slides/altair.html#what-is-wrong-with-this-chart",
+    "title": "Altair",
+    "section": "What is wrong with this chart?",
+    "text": "What is wrong with this chart?\n\n\nalt.Chart(df2).mark_line().encode(\n1    x=alt.X('date:O'),\n    y=alt.Y('annual_revenue')\n)\n\n\n\n1\n\nO = ordinal and defines the x-axis"
+  },
+  {
+    "objectID": "slides/altair.html#we-have-multiple-values-for-every-time-stamp",
+    "href": "slides/altair.html#we-have-multiple-values-for-every-time-stamp",
+    "title": "Altair",
+    "section": "We have multiple values for every time stamp",
+    "text": "We have multiple values for every time stamp\n\n\nalt.Chart(df2).mark_line().encode(\n    x=alt.X('date:O'),\n1    y=alt.Y('average(annual_revenue)')\n)\n\n\n\n1\n\nWe need to calculate the average"
+  },
+  {
+    "objectID": "slides/altair.html#we-could-also-show-the-different-shops",
+    "href": "slides/altair.html#we-could-also-show-the-different-shops",
+    "title": "Altair",
+    "section": "We could also show the different shops",
+    "text": "We could also show the different shops\n\n\nalt.Chart(df2).mark_line().encode(\n    x=alt.X('date:O'),\n    y=alt.Y('average(annual_revenue)'),\n1    color=alt.Color('eshop_name')\n)\n\n\n\n1\n\nWe use color to show the different shops"
+  },
+  {
+    "objectID": "slides/altair.html#make-the-x-axis-look-nicer",
+    "href": "slides/altair.html#make-the-x-axis-look-nicer",
+    "title": "Altair",
+    "section": "Make the X-Axis look nicer",
+    "text": "Make the X-Axis look nicer\n\n\nalt.Chart(df2).mark_line().encode(\n    x=alt.X('date:T').axis(\n        labelAngle=90,\n        format=\"%m/%y\"),\n    y=alt.Y('average(annual_revenue)')\n)"
+  },
+  {
+    "objectID": "slides/altair.html#task-1-average-revenue-by-e-shop",
+    "href": "slides/altair.html#task-1-average-revenue-by-e-shop",
+    "title": "Altair",
+    "section": "Task 1: Average Revenue by E-Shop",
+    "text": "Task 1: Average Revenue by E-Shop\nYou’re required to show the average revenue for all shops, using the name average_revenue.\nHint:\n\nImport the Altair library.\nRead the CSV data into a Pandas DataFrame.\nUse alt.Chart() to create a chart.\nUse mark_bar() to specify that you want a bar chart.\nUse encode() to specify the X and Y axes. You can compute the average revenue using Altair’s built-in average() function."
+  },
+  {
+    "objectID": "slides/altair.html#task-2-two-e-shops-with-the-highest-average-rating",
+    "href": "slides/altair.html#task-2-two-e-shops-with-the-highest-average-rating",
+    "title": "Altair",
+    "section": "Task 2: Two E-Shops with the Highest Average Rating",
+    "text": "Task 2: Two E-Shops with the Highest Average Rating\nThe task is to show the two E-Shops with the highest average rating, using the name average_rating.\nHint:\n\nGroup the data by ‘eshop_name’ and calculate the mean of ‘average_rating’ for each group.\nSort the results in descending order and pick the top 2.\nUse the same charting methods as in Task 1 to visualize the data."
+  },
+  {
+    "objectID": "slides/altair.html#task-3-e-shop-performance-over-time",
+    "href": "slides/altair.html#task-3-e-shop-performance-over-time",
+    "title": "Altair",
+    "section": "Task 3: E-Shop Performance Over Time",
+    "text": "Task 3: E-Shop Performance Over Time\nYou’re tasked with showing the annual revenue per E-Shop by year, using the names year and total_revenue.\nHint:\n\nMake sure the ‘date’ column is in a date-time format.\nExtract the year from the ‘date’ column using the year() function in Altair.\nTo get the total revenue, use the sum() function in Altair.\nUse mark_bar() for the chart type and encode the axes accordingly."
+  },
+  {
+    "objectID": "slides/altair.html#task-4-maximum-social-media-followers",
+    "href": "slides/altair.html#task-4-maximum-social-media-followers",
+    "title": "Altair",
+    "section": "Task 4: Maximum Social Media Followers",
+    "text": "Task 4: Maximum Social Media Followers\nYour task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name max_followers.\nHint:\n\nUse the max() function in Altair to calculate the maximum number of social media followers for each E-shop.\nSort the E-shops by the ‘y’ axis in descending order when encoding the ‘x’ axis."
+  },
+  {
+    "objectID": "slides/altair.html#task-5-monthly-time-on-site-overview",
+    "href": "slides/altair.html#task-5-monthly-time-on-site-overview",
+    "title": "Altair",
+    "section": "Task 5: Monthly Time on Site overview",
+    "text": "Task 5: Monthly Time on Site overview\nThe final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names month and average_time_on_site.\nHint:\n\nExtract the month from the ‘date’ column using the month() function in Altair.\nTo get the average time on site, use the average() function in Altair.\nUse mark_line() for the chart type and encode the axes accordingly.\n\n\n\nJan Kirenz"
   },
   {
     "objectID": "slides/pandas.html#example-of-a-dataframe",
@@ -560,295 +735,190 @@
     "text": "Task 5: Monthly Time on Site overview\n\nHint: Extract the month from ‘date’, then group by ‘eshop_name’ and ‘month’ and calculate the mean of ‘time on site’.\n\n\n\nJan Kirenz"
   },
   {
-    "objectID": "slides/altair.html#key-features-of-altair",
-    "href": "slides/altair.html#key-features-of-altair",
-    "title": "Altair",
-    "section": "Key features of Altair",
-    "text": "Key features of Altair\n\nSimple API: Just a few lines of code can create beautiful visualizations.\nIntegration with Pandas: Altair’s API is designed to work with Pandas dataframes.\nDeclarative Visualization: You describe the properties of a visualization and let Altair figure out how to implement it."
-  },
-  {
-    "objectID": "slides/altair.html#python-setup",
-    "href": "slides/altair.html#python-setup",
-    "title": "Altair",
-    "section": "Python Setup",
-    "text": "Python Setup\n\nimport altair as alt\nimport pandas as pd"
-  },
-  {
-    "objectID": "slides/altair.html#create-a-dataframe",
-    "href": "slides/altair.html#create-a-dataframe",
-    "title": "Altair",
-    "section": "Create a DataFrame",
-    "text": "Create a DataFrame\n\ndata = {'name': ['Zeynep', 'Anna', 'Tim', 'Sara', 'Elias', 'Admir', 'Lina'],\n        'age': [33, 25, 23, 21, 28, 20, 31],\n        'date': ['1990-06-03', '1998-03-12', '2000-01-20', '2002-02-16', '1995-05-02', '2003-06-03', '1992-06-03'],\n        'city': ['Stuttgart', 'Berlin', 'Stuttgart', 'Stuttgart', 'Berlin', 'Munich', 'Stuttgart']}\n\ndf = pd.DataFrame(data)"
-  },
-  {
-    "objectID": "slides/altair.html#change-data-format",
-    "href": "slides/altair.html#change-data-format",
-    "title": "Altair",
-    "section": "Change Data Format",
-    "text": "Change Data Format\n\nCAT_LIST = ['name', 'city']\n\nfor i in CAT_LIST:\n    df[i] = df[i].astype('category')\n\ndf['date'] = pd.to_datetime(df['date'])"
-  },
-  {
-    "objectID": "slides/altair.html#bar-chart",
-    "href": "slides/altair.html#bar-chart",
-    "title": "Altair",
-    "section": "Bar Chart",
-    "text": "Bar Chart\n\nWe use .mark_bar() to create a bar plot\n\n\n\n\n1alt.Chart(df).mark_bar().encode(\n2    x=alt.X('name'),\n3    y=alt.Y('age')\n)\n\n\n\n1\n\nDefine a chart object (ACME acronym)\n\n2\n\nDefine x-axis\n\n3\n\nDefine y-axis"
-  },
-  {
-    "objectID": "slides/altair.html#bar-chart-with-sorted-values",
-    "href": "slides/altair.html#bar-chart-with-sorted-values",
-    "title": "Altair",
-    "section": "Bar Chart with sorted values",
-    "text": "Bar Chart with sorted values\n\n\nalt.Chart(df).mark_bar().encode(\n1    x=alt.X('name').sort('y'),\n    y=alt.Y('age')\n)\n\n\n\n1\n\nSort the values in an ascending order"
-  },
-  {
-    "objectID": "slides/altair.html#bar-chart-with-sorted-values-1",
-    "href": "slides/altair.html#bar-chart-with-sorted-values-1",
-    "title": "Altair",
-    "section": "Bar Chart with sorted values",
-    "text": "Bar Chart with sorted values\n\n\nalt.Chart(df).mark_bar().encode(\n1    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n)\n\n\n\n1\n\nSort the values in a descending order"
-  },
-  {
-    "objectID": "slides/altair.html#bar-chart-with-properties",
-    "href": "slides/altair.html#bar-chart-with-properties",
-    "title": "Altair",
-    "section": "Bar Chart with properties",
-    "text": "Bar Chart with properties\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n1).properties(\n2    title='This is a simple bar chart',\n3    width=300,\n4    height=150\n)\n\n\n\n1\n\nAdd properties to the chart\n\n2\n\nDefine a chart title\n\n3\n\nSet the width of the chart (in pixel)\n\n4\n\nSet the height of the chart (in pixel)"
-  },
-  {
-    "objectID": "slides/altair.html#bar-chart-with-properties-1",
-    "href": "slides/altair.html#bar-chart-with-properties-1",
-    "title": "Altair",
-    "section": "Bar Chart with properties",
-    "text": "Bar Chart with properties\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n1).properties(\n2    title='This is a simple bar chart',\n3    width=300,\n4    height=150\n)\n\n\n\n1\n\nAdd properties to the chart\n\n2\n\nDefine a chart title\n\n3\n\nSet the width of the chart (in pixel)\n\n4\n\nSet the height of the chart (in pixel)"
-  },
-  {
-    "objectID": "slides/altair.html#bar-chart-with-custom-x-axis",
-    "href": "slides/altair.html#bar-chart-with-custom-x-axis",
-    "title": "Altair",
-    "section": "Bar chart with custom x-axis",
-    "text": "Bar chart with custom x-axis\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y').axis(\n1        title=\"Name\",\n2        labelAngle=0,\n3        grid=False,\n4        titleAnchor=\"start\"),\n    y=alt.Y('age')\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n)\n\n\n\n1\n\nTitle of x-axis\n\n2\n\nAngle of axis text\n\n3\n\nHide the lines in the background\n\n4\n\nAdjustment of the text at the x-axis"
-  },
-  {
-    "objectID": "slides/altair.html#bar-chart-with-custom-y-axis",
-    "href": "slides/altair.html#bar-chart-with-custom-y-axis",
-    "title": "Altair",
-    "section": "Bar chart with custom y-axis",
-    "text": "Bar chart with custom y-axis\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age').axis(\n1        title=\"Age\",\n2        grid=False,\n3        titleAnchor=\"end\"),\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n)\n\n\n\n1\n\nTitle of y-axis\n\n2\n\nHide the grid\n\n3\n\nAdjustment of the text at the y axis"
-  },
-  {
-    "objectID": "slides/altair.html#bar-chart-with-custom-title",
-    "href": "slides/altair.html#bar-chart-with-custom-title",
-    "title": "Altair",
-    "section": "Bar chart with custom title",
-    "text": "Bar chart with custom title\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y'),\n    y=alt.Y('age')\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n1).configure_title(\n    fontSize=16,\n    font='Arial',\n    color='black',\n2    anchor='start'\n)\n\n\n\n1\n\nCustom title options\n\n2\n\nWhere to anchor the title (start, middle or end)"
-  },
-  {
-    "objectID": "slides/altair.html#final-bar-plot",
-    "href": "slides/altair.html#final-bar-plot",
-    "title": "Altair",
-    "section": "Final bar plot",
-    "text": "Final bar plot\n\n\nalt.Chart(df).mark_bar().encode(\n    x=alt.X('name').sort('-y').axis(\n        title=\"Name\",\n        labelAngle=0,\n        grid=False,\n        titleAnchor=\"start\"),\n    y=alt.Y('age').axis(\n        title=\"Age\",\n        grid=False,\n        titleAnchor=\"end\"),\n).properties(\n    title='This is a simple bar chart',\n    width=300,\n    height=150\n).configure_title(\n    fontSize=16,\n    font='Arial',\n    color='black',\n    anchor='start'\n1).configure_view(\n    strokeWidth=0\n)\n\n\n\n1\n\nRemove the lines at the top and the right of the plot"
-  },
-  {
-    "objectID": "slides/altair.html#data",
-    "href": "slides/altair.html#data",
-    "title": "Altair",
-    "section": "Data",
-    "text": "Data\n\ndf2 = pd.read_csv(\n    'https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\n\ndf2['date'] = pd.to_datetime(df2['date'])\n\n\ndf2"
-  },
-  {
-    "objectID": "slides/altair.html#data-output",
-    "href": "slides/altair.html#data-output",
-    "title": "Altair",
-    "section": "Data",
-    "text": "Data\n\n\n\n\n\n\n\n\neshop_name\ndate\nannual_revenue\ntime_on_site\naverage_rating\nsocial_media_followers\naverage_response_time\n\n\n\n\n0\nE-ShopA\n2020-01-31\n13.35\n1.09\n4.17\n173.76\n2.35\n\n\n1\nE-ShopA\n2020-02-29\n10.74\n0.56\n4.79\n52.69\n2.58\n\n\n2\nE-ShopA\n2020-03-31\n11.91\n0.57\n2.92\n141.79\n1.54\n\n\n3\nE-ShopA\n2020-04-30\n16.38\n2.44\n3.68\n190.57\n1.92\n\n\n4\nE-ShopA\n2020-05-31\n6.52\n2.07\n2.67\n129.49\n1.49\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n103\nE-ShopC\n2022-08-31\n64.83\n12.48\n6.54\n1529.19\n1.66\n\n\n104\nE-ShopC\n2022-09-30\n31.70\n7.10\n3.04\n664.30\n0.88\n\n\n105\nE-ShopC\n2022-10-31\n27.09\n5.56\n2.65\n538.03\n0.64\n\n\n106\nE-ShopC\n2022-11-30\n56.59\n9.45\n4.88\n968.37\n1.13\n\n\n107\nE-ShopC\n2022-12-31\n66.50\n11.05\n5.56\n1262.25\n1.28\n\n\n\n\n108 rows × 7 columns"
-  },
-  {
-    "objectID": "slides/altair.html#what-is-wrong-with-this-chart",
-    "href": "slides/altair.html#what-is-wrong-with-this-chart",
-    "title": "Altair",
-    "section": "What is wrong with this chart?",
-    "text": "What is wrong with this chart?\n\n\nalt.Chart(df2).mark_line().encode(\n1    x=alt.X('date:O'),\n    y=alt.Y('annual_revenue')\n)\n\n\n\n1\n\nO = ordinal and defines the x-axis"
-  },
-  {
-    "objectID": "slides/altair.html#we-have-multiple-values-for-every-time-stamp",
-    "href": "slides/altair.html#we-have-multiple-values-for-every-time-stamp",
-    "title": "Altair",
-    "section": "We have multiple values for every time stamp",
-    "text": "We have multiple values for every time stamp\n\n\nalt.Chart(df2).mark_line().encode(\n    x=alt.X('date:O'),\n1    y=alt.Y('average(annual_revenue)')\n)\n\n\n\n1\n\nWe need to calculate the average"
-  },
-  {
-    "objectID": "slides/altair.html#we-could-also-show-the-different-shops",
-    "href": "slides/altair.html#we-could-also-show-the-different-shops",
-    "title": "Altair",
-    "section": "We could also show the different shops",
-    "text": "We could also show the different shops\n\n\nalt.Chart(df2).mark_line().encode(\n    x=alt.X('date:O'),\n    y=alt.Y('average(annual_revenue)'),\n1    color=alt.Color('eshop_name')\n)\n\n\n\n1\n\nWe use color to show the different shops"
-  },
-  {
-    "objectID": "slides/altair.html#make-the-x-axis-look-nicer",
-    "href": "slides/altair.html#make-the-x-axis-look-nicer",
-    "title": "Altair",
-    "section": "Make the X-Axis look nicer",
-    "text": "Make the X-Axis look nicer\n\n\nalt.Chart(df2).mark_line().encode(\n    x=alt.X('date:T').axis(\n        labelAngle=90,\n        format=\"%m/%y\"),\n    y=alt.Y('average(annual_revenue)')\n)"
-  },
-  {
-    "objectID": "slides/altair.html#task-1-average-revenue-by-e-shop",
-    "href": "slides/altair.html#task-1-average-revenue-by-e-shop",
-    "title": "Altair",
-    "section": "Task 1: Average Revenue by E-Shop",
-    "text": "Task 1: Average Revenue by E-Shop\nYou’re required to show the average revenue for all shops, using the name average_revenue.\nHint:\n\nImport the Altair library.\nRead the CSV data into a Pandas DataFrame.\nUse alt.Chart() to create a chart.\nUse mark_bar() to specify that you want a bar chart.\nUse encode() to specify the X and Y axes. You can compute the average revenue using Altair’s built-in average() function."
-  },
-  {
-    "objectID": "slides/altair.html#task-2-two-e-shops-with-the-highest-average-rating",
-    "href": "slides/altair.html#task-2-two-e-shops-with-the-highest-average-rating",
-    "title": "Altair",
-    "section": "Task 2: Two E-Shops with the Highest Average Rating",
-    "text": "Task 2: Two E-Shops with the Highest Average Rating\nThe task is to show the two E-Shops with the highest average rating, using the name average_rating.\nHint:\n\nGroup the data by ‘eshop_name’ and calculate the mean of ‘average_rating’ for each group.\nSort the results in descending order and pick the top 2.\nUse the same charting methods as in Task 1 to visualize the data."
-  },
-  {
-    "objectID": "slides/altair.html#task-3-e-shop-performance-over-time",
-    "href": "slides/altair.html#task-3-e-shop-performance-over-time",
-    "title": "Altair",
-    "section": "Task 3: E-Shop Performance Over Time",
-    "text": "Task 3: E-Shop Performance Over Time\nYou’re tasked with showing the annual revenue per E-Shop by year, using the names year and total_revenue.\nHint:\n\nMake sure the ‘date’ column is in a date-time format.\nExtract the year from the ‘date’ column using the year() function in Altair.\nTo get the total revenue, use the sum() function in Altair.\nUse mark_bar() for the chart type and encode the axes accordingly."
-  },
-  {
-    "objectID": "slides/altair.html#task-4-maximum-social-media-followers",
-    "href": "slides/altair.html#task-4-maximum-social-media-followers",
-    "title": "Altair",
-    "section": "Task 4: Maximum Social Media Followers",
-    "text": "Task 4: Maximum Social Media Followers\nYour task is to show the maximum amount of social media followers for every E-shop in a descending order, using the name max_followers.\nHint:\n\nUse the max() function in Altair to calculate the maximum number of social media followers for each E-shop.\nSort the E-shops by the ‘y’ axis in descending order when encoding the ‘x’ axis."
-  },
-  {
-    "objectID": "slides/altair.html#task-5-monthly-time-on-site-overview",
-    "href": "slides/altair.html#task-5-monthly-time-on-site-overview",
-    "title": "Altair",
-    "section": "Task 5: Monthly Time on Site overview",
-    "text": "Task 5: Monthly Time on Site overview\nThe final task is to show a monthly overview of the average time on site for every E-shop (ordered by E-shop and month), using the names month and average_time_on_site.\nHint:\n\nExtract the month from the ‘date’ column using the month() function in Altair.\nTo get the average time on site, use the average() function in Altair.\nUse mark_line() for the chart type and encode the axes accordingly.\n\n\n\nJan Kirenz"
-  },
-  {
-    "objectID": "code/analysis-3-altair.html",
-    "href": "code/analysis-3-altair.html",
-    "title": "Altair analysis part 3",
+    "objectID": "slide.html",
+    "href": "slide.html",
+    "title": "Slides",
     "section": "",
-    "text": "import pandas as pd\nimport altair as alt\n#alt.renderers.enable('mimetype')"
+    "text": "🖥 SQL basics\n\nSELECT, DISTINCT, WHERE, ORDER BY, AS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP, NULL, NOT NULL, LIMIT\n\n\n\n\n🖥 How to aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY, HAVING, WITH ROLLUP"
   },
   {
-    "objectID": "code/analysis-3-altair.html#setup",
-    "href": "code/analysis-3-altair.html#setup",
-    "title": "Altair analysis part 3",
+    "objectID": "slide.html#sql",
+    "href": "slide.html#sql",
+    "title": "Slides",
     "section": "",
-    "text": "import pandas as pd\nimport altair as alt\n#alt.renderers.enable('mimetype')"
+    "text": "🖥 SQL basics\n\nSELECT, DISTINCT, WHERE, ORDER BY, AS\nOR, AND, IN, NOT IN, BETWEEN\nLIKE, REGEXP, NULL, NOT NULL, LIMIT\n\n\n\n\n🖥 How to aggregate data\n\nCOUNT, SUM, MAX, MIN, AVG\nGROUP BY, HAVING, WITH ROLLUP"
   },
   {
-    "objectID": "code/analysis-3-altair.html#data",
-    "href": "code/analysis-3-altair.html#data",
-    "title": "Altair analysis part 3",
+    "objectID": "slide.html#pandas",
+    "href": "slide.html#pandas",
+    "title": "Slides",
+    "section": "Pandas",
+    "text": "Pandas\n🖥 Pandas basics"
+  },
+  {
+    "objectID": "slide.html#altair",
+    "href": "slide.html#altair",
+    "title": "Slides",
+    "section": "Altair",
+    "text": "Altair\n🖥 Altair basics"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome 👋",
+    "section": "",
+    "text": "In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you’ll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.\n\n\n\n\n\n\nTechnology we will use\n\n\n\n\nMySQL Database and MySQL Workbench\nSQL for data analysis\nPandas for data analysis in Python\nAltair for data visualization in Python"
+  },
+  {
+    "objectID": "slides/slides.html#text",
+    "href": "slides/slides.html#text",
+    "title": "Title",
+    "section": "Text",
+    "text": "Text\n\na 🤖\n\nabc\n\n\n\n\nb\nc1\n\n📚 Required reading: A & B (2023)\nhttps://arxiv.org/pdf/2303.12712.pdf\n\nRussell & Norvig, 2009"
+  },
+  {
+    "objectID": "slides/slides.html#image",
+    "href": "slides/slides.html#image",
+    "title": "Title",
+    "section": "Image",
+    "text": "Image"
+  },
+  {
+    "objectID": "slides/slides.html#video",
+    "href": "slides/slides.html#video",
+    "title": "Title",
+    "section": "Video",
+    "text": "Video"
+  },
+  {
+    "objectID": "slides/slides.html#a-lot-of-text",
+    "href": "slides/slides.html#a-lot-of-text",
+    "title": "Title",
+    "section": "A lot of text",
+    "text": "A lot of text\nSmaller heading"
+  },
+  {
+    "objectID": "slides/slides.html#background-image",
+    "href": "slides/slides.html#background-image",
+    "title": "Title",
+    "section": "Background image",
+    "text": "Background image\nabc"
+  },
+  {
+    "objectID": "slides/slides.html#code",
+    "href": "slides/slides.html#code",
+    "title": "Title",
+    "section": "Code",
+    "text": "Code\n1print('Hello World')\n2for i in LIST:\n  df[i] = df[i].astype('cat')\n\n1\n\nPrint Hello World, and then,\n\n2\n\ntransform all columns in the LIST element to categorical variables"
+  },
+  {
+    "objectID": "slides/slides.html#end",
+    "href": "slides/slides.html#end",
+    "title": "Title",
+    "section": "End",
+    "text": "End\n\n\nJan Kirenz"
+  },
+  {
+    "objectID": "workflow.html",
+    "href": "workflow.html",
+    "title": "Workflow",
+    "section": "",
+    "text": "This is a Quarto slidedeck.\n\nCreate new labs GitHub-Repo\nCreate new branch gh-pages\nChange settings in page: gh-pages and root\nOpen VS Code\nChange Quarto seetings in files\nRender all in terminal: quarto render\nPush to GitHub"
+  },
+  {
+    "objectID": "code/analysis-2-c.html",
+    "href": "code/analysis-2-c.html",
+    "title": "SQL analysis part 2",
+    "section": "",
+    "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
+  },
+  {
+    "objectID": "code/analysis-2-c.html#setup",
+    "href": "code/analysis-2-c.html#setup",
+    "title": "SQL analysis part 2",
+    "section": "Setup",
+    "text": "Setup\n\nimport os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
+  },
+  {
+    "objectID": "code/analysis-2-c.html#data",
+    "href": "code/analysis-2-c.html#data",
+    "title": "SQL analysis part 2",
     "section": "Data",
-    "text": "Data\n\nImport data\n\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\n\n\n\nData structure\n\ndf.head()\n\n\n\n\n\n\n\n\neshop_name\ndate\nannual_revenue\ntime_on_site\naverage_rating\nsocial_media_followers\naverage_response_time\n\n\n\n\n0\nE-ShopA\n2020-01-31\n13.35\n1.09\n4.17\n173.76\n2.35\n\n\n1\nE-ShopA\n2020-02-29\n10.74\n0.56\n4.79\n52.69\n2.58\n\n\n2\nE-ShopA\n2020-03-31\n11.91\n0.57\n2.92\n141.79\n1.54\n\n\n3\nE-ShopA\n2020-04-30\n16.38\n2.44\n3.68\n190.57\n1.92\n\n\n4\nE-ShopA\n2020-05-31\n6.52\n2.07\n2.67\n129.49\n1.49\n\n\n\n\n\n\n\n\ndf.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 108 entries, 0 to 107\nData columns (total 7 columns):\n #   Column                  Non-Null Count  Dtype  \n---  ------                  --------------  -----  \n 0   eshop_name              108 non-null    object \n 1   date                    108 non-null    object \n 2   annual_revenue          108 non-null    float64\n 3   time_on_site            108 non-null    float64\n 4   average_rating          108 non-null    float64\n 5   social_media_followers  108 non-null    float64\n 6   average_response_time   108 non-null    float64\ndtypes: float64(5), object(2)\nmemory usage: 6.0+ KB\n\n\n\n\nData corrections\n\ndf['date'] = pd.to_datetime(df['date'])\ndf['eshop_name'] = df['eshop_name'].astype('category')"
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
   },
   {
-    "objectID": "code/analysis-3-altair.html#task-1",
-    "href": "code/analysis-3-altair.html#task-1",
-    "title": "Altair analysis part 3",
-    "section": "Task 1",
-    "text": "Task 1\nAverage Revenue by E-Shop\n\nShow the average revenue for all shops\nUse the name average_revenue\n\n\n# Simple chart\nchart = alt.Chart(df).mark_bar().encode(\n    x=alt.X('eshop_name'),\n    y=alt.Y('average(annual_revenue)')\n)\n\nchart\n\n\n\n\n\n\n\n\nchart = alt.Chart(df).mark_bar().encode(\n    x=alt.X('eshop_name').axis(\n                            title='E-Shop', \n                            titleAnchor=\"start\",\n                            labelAngle=0,\n                            grid=False\n                            ),\n    y=alt.Y('average(annual_revenue)').axis(\n                            title='Average Annnual Revenue', \n                            titleAnchor=\"end\",\n                            grid=False\n                            ),\n    tooltip=alt.Tooltip(\"average(annual_revenue)\", format=\",.2f\")\n).properties(\n    title='Average Annual Revenue by E-Shop',\n    width= 250,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
+    "objectID": "code/analysis-2-c.html#close-the-connection",
+    "href": "code/analysis-2-c.html#close-the-connection",
+    "title": "SQL analysis part 2",
+    "section": "Close the connection",
+    "text": "Close the connection\n\n# close connection\nengine.dispose()"
   },
   {
-    "objectID": "code/analysis-3-altair.html#task-2",
-    "href": "code/analysis-3-altair.html#task-2",
-    "title": "Altair analysis part 3",
-    "section": "Task 2",
-    "text": "Task 2\nTwo E-Shops with the Highest Average Rating\n\nShow the two E-Shops with the highest average rating\nUse the name average_rating\n\n\ndf_best_rating = df.groupby('eshop_name')['average_rating'].mean().reset_index().sort_values('average_rating', ascending=False).head(2)\n\nchart = alt.Chart(df_best_rating).mark_bar().encode(\n    x=alt.X('eshop_name').axis(\n                            title='E-Shop', \n                            titleAnchor=\"start\",\n                            labelAngle=0,\n                            grid=False\n                            ),\n    y=alt.Y('average_rating').axis(\n                            title='Average Rating', \n                            titleAnchor=\"end\",\n                            grid=False\n                            ),\n    tooltip=alt.Tooltip(\"average_rating\", format=\",.2f\")\n).properties(\n    title='Shops with the Highest Average Ratings',\n    width= 250,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
-  },
-  {
-    "objectID": "code/analysis-3-altair.html#task-3",
-    "href": "code/analysis-3-altair.html#task-3",
-    "title": "Altair analysis part 3",
-    "section": "Task 3",
-    "text": "Task 3\nE-Shop Performance Over Time\n\nShow the annual revenue per E-Shop by year\nUse the names year and total_revenue\n\n\nchart = alt.Chart(df).mark_bar().encode(\n    x=alt.X('year(date):O').axis(\n                            title='Year', \n                            titleAnchor=\"start\",\n                            labelAngle=0,\n                            grid=False\n                            ),\n    y=alt.Y('sum(annual_revenue):Q').axis(\n                            title='Total Revenue', \n                            titleAnchor=\"end\",\n                            grid=False\n                            ),\n    color=alt.Color('eshop_name:N', title=None),\n).properties(\n    title='Total Annual Revenue by E-shop and Year',\n    width= 250,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
-  },
-  {
-    "objectID": "code/analysis-3-altair.html#task-4",
-    "href": "code/analysis-3-altair.html#task-4",
-    "title": "Altair analysis part 3",
-    "section": "Task 4",
-    "text": "Task 4\nMaximum Social Media Followers\n\nShow the maximum amount of social media followers for every E-shop in a descending order.\nUse the name max_followers\n\n\nchart = alt.Chart(df).mark_bar().encode(\n    x=alt.X('eshop_name:N').axis(\n                            title='E-Shop', \n                            titleAnchor=\"start\",\n                            labelAngle=0,\n                            grid=False\n                            ).sort('-y'),\n    y=alt.Y('max(social_media_followers):Q').axis(\n                            title='Social Media Followers', \n                            titleAnchor=\"end\",\n                            grid=False\n                            )\n).properties(\n    title='Maximum Social Media Followers',\n    width= 250,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
-  },
-  {
-    "objectID": "code/analysis-3-altair.html#task-5",
-    "href": "code/analysis-3-altair.html#task-5",
-    "title": "Altair analysis part 3",
-    "section": "Task 5",
-    "text": "Task 5\nMonthly Time on Site overview\n\nShow a monthly overview of the average time on site for every E-shop (order by E-shop and month)\nUse the names month and average_time_on_site\n\n\nchart = alt.Chart(df).mark_line().encode(\n    x=alt.X('month(date):T').axis(\n                               title='Month', \n                               titleAnchor=\"start\",\n                               labelAngle=0,\n                               grid=False\n                               ),\n    y=alt.Y('average(time_on_site):Q').axis(\n                               title='Social Media Followers', \n                               titleAnchor=\"end\",\n                               grid=False\n                               ),\n    color=alt.Color('eshop_name:N', title=None)\n).properties(\n    title='Average Monthly Time on Site',\n    width= 450,\n    height=200\n).configure_title( \n    fontSize=16,\n    font='Arial',\n    anchor='start'\n).configure_view(\n    strokeWidth=0\n)\n\nchart"
-  },
-  {
-    "objectID": "code/analysis-1.html",
-    "href": "code/analysis-1.html",
+    "objectID": "code/analysis-1-c.html",
+    "href": "code/analysis-1-c.html",
     "title": "SQL analysis part 1",
     "section": "",
     "text": "Download this Juypter Notebook and solve the tasks by inserting the SQL queries (it is not possible to solve the tasks in Colab).\nExample query (we include df_example at the end of the code cell to print the result):"
   },
   {
-    "objectID": "code/analysis-1.html#setup",
-    "href": "code/analysis-1.html#setup",
+    "objectID": "code/analysis-1-c.html#setup",
+    "href": "code/analysis-1-c.html#setup",
     "title": "SQL analysis part 1",
     "section": "Setup",
     "text": "Setup\n\nimport os\nimport pandas as pd\nfrom sqlalchemy import create_engine\nfrom dotenv import load_dotenv"
   },
   {
-    "objectID": "code/analysis-1.html#data",
-    "href": "code/analysis-1.html#data",
+    "objectID": "code/analysis-1-c.html#data",
+    "href": "code/analysis-1-c.html#data",
     "title": "SQL analysis part 1",
     "section": "Data",
-    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')\n\n108"
+    "text": "Data\nConnect to your MySQL-database “db_ecommerce” (make sure to prepare your .env file)\n\nload_dotenv()   # take environment variables from .env\n\nengine = create_engine(\"mysql+pymysql://\" + os.environ['DB_URL'] + \"/db_ecommerce\", pool_pre_ping=True, pool_recycle=300)\n\n\n# Use pandas to_sql function to create the table in the database\ndf = pd.read_csv('https://raw.githubusercontent.com/kirenz/lab-competitive/main/code/ecommerce.csv')\ndf.to_sql('ecommerce', engine, if_exists='replace')"
   },
   {
-    "objectID": "code/analysis-1.html#task-1",
-    "href": "code/analysis-1.html#task-1",
+    "objectID": "code/analysis-1-c.html#task-1",
+    "href": "code/analysis-1-c.html#task-1",
     "title": "SQL analysis part 1",
     "section": "Task 1",
-    "text": "Task 1\nGet the list of distinct E-shops that have annual revenue more than 70000 and less than 75000 (note that annual revenue is recorded in 10K, i.e. 70 in the data equals 70000)\n\ndf1 = pd.read_sql(\"\"\"\n    SELECT DISTINCT eshop_name\n    FROM ecommerce_data\n    WHERE annual_revenue BETWEEN 70 AND 75\n    ORDER BY eshop_name;\n\"\"\", engine)\n\ndf1\n\n\n\n\n\n\n\n\neshop_name\n\n\n\n\n0\nE-ShopA\n\n\n1\nE-ShopB"
+    "text": "Task 1\nGet the list of distinct E-shops that have annual revenue more than 70000 and less than 75000 (note that annual revenue is recorded in 10K, i.e. 70 in the data equals 70000)\n\ndf1 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf1"
   },
   {
-    "objectID": "code/analysis-1.html#task-2",
-    "href": "code/analysis-1.html#task-2",
+    "objectID": "code/analysis-1-c.html#task-2",
+    "href": "code/analysis-1-c.html#task-2",
     "title": "SQL analysis part 1",
     "section": "Task 2",
-    "text": "Task 2\nGet the top 3 records with the highest annual revenue and which have ‘b’ or ‘a’ in their names (note that you need to use two % in Python, e.g. ‘%%a%%’ instead of ‘%a%’). Show the annual revenue in thousands of dollars (e.g. 10000 instead of 10) and name it revenue.\n\ndf2 = pd.read_sql(\"\"\"\n    SELECT eshop_name, annual_revenue * 1000 AS revenue\n    FROM ecommerce_data\n    WHERE eshop_name LIKE '%%a%%' OR eshop_name LIKE '%%b%%'\n    ORDER BY revenue DESC\n    LIMIT 3;\n\"\"\", engine)\n\ndf2\n\n\n\n\n\n\n\n\neshop_name\nrevenue\n\n\n\n\n0\nE-ShopA\n74670.0\n\n\n1\nE-ShopB\n70840.0\n\n\n2\nE-ShopA\n66270.0"
+    "text": "Task 2\nGet the top 3 records with the highest annual revenue and which have ‘b’ or ‘a’ in their names (note that you need to use two % in Python, e.g. ‘%%a%%’ instead of ‘%a%’). Show the annual revenue in thousands of dollars (e.g. 10000 instead of 10) and name it revenue.\n\ndf2 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf2"
   },
   {
-    "objectID": "code/analysis-1.html#task-3",
-    "href": "code/analysis-1.html#task-3",
+    "objectID": "code/analysis-1-c.html#task-3",
+    "href": "code/analysis-1-c.html#task-3",
     "title": "SQL analysis part 1",
     "section": "Task 3",
-    "text": "Task 3\nGet the list of E-shops that have NULL in social_media_followers\n\ndf3 = pd.read_sql(\"\"\"\n    SELECT eshop_name\n    FROM ecommerce_data\n    WHERE social_media_followers IS NULL;\n\"\"\", engine)\n\ndf3\n\n\n\n\n\n\n\n\neshop_name"
+    "text": "Task 3\nGet the list of E-shops that have NULL in social_media_followers\n\ndf3 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf3"
   },
   {
-    "objectID": "code/analysis-1.html#task-4",
-    "href": "code/analysis-1.html#task-4",
+    "objectID": "code/analysis-1-c.html#task-4",
+    "href": "code/analysis-1-c.html#task-4",
     "title": "SQL analysis part 1",
     "section": "Task 4",
-    "text": "Task 4\nGet the E-shops whose average rating is in (3.5, 4.0, 4.5). Note that only returns values which exactly matches one of the conditions (this is not an intervall).\n\ndf4 = pd.read_sql(\"\"\"\n    SELECT eshop_name, AVG(average_rating) as average_rating\n    FROM ecommerce_data\n    WHERE average_rating IN (3.5, 4.5, 5.0) \n    GROUP BY eshop_name\n    ORDER BY average_rating DESC;\n\"\"\", engine)\n\ndf4\n\n\n\n\n\n\n\n\neshop_name\naverage_rating\n\n\n\n\n0\nE-ShopA\n4.5"
+    "text": "Task 4\nGet the E-shops whose average rating is in (3.5, 4.0, 4.5). Note that only returns values which exactly matches one of the conditions (this is not an intervall).\n\ndf4 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf4"
   },
   {
-    "objectID": "code/analysis-1.html#task-5",
-    "href": "code/analysis-1.html#task-5",
+    "objectID": "code/analysis-1-c.html#task-5",
+    "href": "code/analysis-1-c.html#task-5",
     "title": "SQL analysis part 1",
     "section": "Task 5",
-    "text": "Task 5\nGet the E-shops with social media followers that are above 1400 and have ‘a’ or ‘c’ in their names. Use REGEXP to obtain the result.\n\ndf5 = pd.read_sql(\"\"\"\n    SELECT eshop_name, social_media_followers\n    FROM ecommerce_data\n    WHERE eshop_name REGEXP 'a|c' AND social_media_followers &gt; 1400\n    ORDER BY social_media_followers DESC;\n\"\"\", engine)\n\ndf5\n\n\n\n\n\n\n\n\neshop_name\nsocial_media_followers\n\n\n\n\n0\nE-ShopC\n1529.19\n\n\n1\nE-ShopA\n1417.39"
+    "text": "Task 5\nGet the E-shops with social media followers that are above 1400 and have ‘a’ or ‘c’ in their names. Use REGEXP to obtain the result.\n\ndf5 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\ndf5"
   },
   {
-    "objectID": "code/analysis-1.html#task-6",
-    "href": "code/analysis-1.html#task-6",
+    "objectID": "code/analysis-1-c.html#task-6",
+    "href": "code/analysis-1-c.html#task-6",
     "title": "SQL analysis part 1",
     "section": "Task 6",
-    "text": "Task 6\nGet the E-shops with annual revenue above 70000 or with social media followers that are above 1400 and end with ‘a’ in their names. Use REGEXP to obtain the result.\n\ndf6 = pd.read_sql(\"\"\"\n    SELECT eshop_name, social_media_followers, annual_revenue\n    FROM ecommerce_data\n    WHERE annual_revenue &gt; 70 OR\n        (eshop_name REGEXP 'a$' AND social_media_followers &gt; 1400)\n    ORDER BY social_media_followers DESC;\n\"\"\", engine)\n\n\ndf6\n\n\n\n\n\n\n\n\neshop_name\nsocial_media_followers\nannual_revenue\n\n\n\n\n0\nE-ShopA\n1417.39\n74.67\n\n\n1\nE-ShopB\n1212.05\n70.84"
+    "text": "Task 6\nGet the E-shops with annual revenue above 70000 or with social media followers that are above 1400 and end with ‘a’ in their names. Use REGEXP to obtain the result.\n\ndf6 = pd.read_sql(\"\"\"\n\n\"\"\", engine)\n\n\ndf6"
   },
   {
-    "objectID": "code/analysis-1.html#close-the-connection",
-    "href": "code/analysis-1.html#close-the-connection",
+    "objectID": "code/analysis-1-c.html#close-the-connection",
+    "href": "code/analysis-1-c.html#close-the-connection",
     "title": "SQL analysis part 1",
     "section": "Close the connection",
     "text": "Close the connection\n\n# close connection\nengine.dispose()"
