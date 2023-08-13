@@ -3,5 +3,6 @@
 */.DS_Store
 /.quarto/
 code/data.ipynb
+code/data2.ipynb
 code/key.py
 code/.env
