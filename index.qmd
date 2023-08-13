@@ -2,18 +2,22 @@
 title: "Welcome 👋"
 ---
 
-In this case study, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis. 
+In this lab called "Competitive", you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis. 
 
 You'll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you'll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.
 
+::: {.callout-important}
+Make sure you meet all the [pre](/requirements.qmd) for starting this lab
+:::
 
-::: {.callout-tip}
+::: {.callout-note}
 ## Technology we will use
 
-- MySQL Database and MySQL Workbench
+- MySQL database
 - SQL for data analysis
 - Pandas for data analysis in Python
 - Altair for data visualization in Python 
 
 :::
+
 
