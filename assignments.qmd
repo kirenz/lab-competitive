@@ -2,7 +2,7 @@
 title: "Assignments"
 ---
 
-Download Jupyter Notebooks in your local folder `competitive`. 
+Download the Jupyter Notebooks in your local folder `competitive`. 
 
 ## SQL 
 
@@ -19,4 +19,4 @@ Download Jupyter Notebooks in your local folder `competitive`.
 
 ## Altair 
 
-- [Analysis part 3 with Pandas](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-altair.ipynb)
+- [Analysis part 3 with Altair](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-altair.ipynb)
