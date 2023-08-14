@@ -4,7 +4,7 @@
     "href": "assignments.html",
     "title": "Assignments",
     "section": "",
-    "text": "Download Jupyter Notebooks in your local folder competitive."
+    "text": "Download the Jupyter Notebooks in your local folder competitive."
   },
   {
     "objectID": "assignments.html#sql",
@@ -25,7 +25,7 @@
     "href": "assignments.html#altair",
     "title": "Assignments",
     "section": "Altair",
-    "text": "Altair\n\nAnalysis part 3 with Pandas"
+    "text": "Altair\n\nAnalysis part 3 with Altair"
   },
   {
     "objectID": "code/analysis-3-c.html",
@@ -340,7 +340,7 @@
     "href": "index.html",
     "title": "Welcome 👋",
     "section": "",
-    "text": "In this lab called “Competitive”, you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you’ll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you meet all the requirements before you start with the assignments\n\n\nWhat you will learn in this lab:\n\nHow to set up a MySQL database\nUse SQL for data analysis\nMake use of Pandas for data analysis in Python\nUse Altair for data visualization in Python"
+    "text": "Lab “Competitive”\nIn this lab you will step into the shoes of a market researcher for an e-commerce company. Your task is to conduct a competitive analysis.\nYou’ll analyze key competitors and examine some market figures to identify any areas where your company could potentially gain a competitive advantage. Through this process, you’ll gain practical experience in data analysis with SQL and Python, which is crucial in strategic decision-making.\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you meet all the requirements and have read the lecture slides before you start with the assignments\n\n\nWhat you will learn in this lab:\n\nHow to set up a MySQL database\nUse SQL for data analysis\nMake use of Pandas for data analysis in Python\nUse Altair for data visualization in Python"
   },
   {
     "objectID": "slide.html",
