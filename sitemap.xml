@@ -1,67 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/kirenz/lab-competitive/assignments.html</loc>
-    <lastmod>2023-08-14T06:53:41.647Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-competitive/code/analysis-3-c.html</loc>
-    <lastmod>2023-08-14T06:53:40.711Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-competitive/code/analysis-3.html</loc>
-    <lastmod>2023-08-14T06:53:39.355Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-competitive/code/analysis-1.html</loc>
-    <lastmod>2023-08-14T06:53:38.042Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-competitive/code/analysis-3-altair.html</loc>
-    <lastmod>2023-08-14T06:53:37.082Z</lastmod>
-  </url>
-  <url>
     <loc>https://github.com/kirenz/lab-competitive/requirements.html</loc>
-    <lastmod>2023-08-14T06:53:36.042Z</lastmod>
+    <lastmod>2023-08-21T18:52:07.013Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/kirenz/lab-competitive/slides/slides.html</loc>
-    <lastmod>2023-08-14T06:53:34.042Z</lastmod>
+    <lastmod>2023-08-21T18:52:04.905Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/kirenz/lab-competitive/index.html</loc>
-    <lastmod>2023-08-14T06:53:29.434Z</lastmod>
+    <loc>https://github.com/kirenz/lab-competitive/code/analysis_3.html</loc>
+    <lastmod>2023-08-21T18:52:02.305Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-competitive/code/analysis_3_altair.html</loc>
+    <lastmod>2023-08-21T18:52:00.873Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-competitive/code/analysis_1.html</loc>
+    <lastmod>2023-08-21T18:51:59.785Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-competitive/assignments.html</loc>
+    <lastmod>2023-08-21T18:51:58.933Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/kirenz/lab-competitive/slide.html</loc>
-    <lastmod>2023-08-14T06:53:28.614Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-competitive/slides/pandas.html</loc>
-    <lastmod>2023-08-14T06:53:32.646Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-competitive/slides/altair.html</loc>
-    <lastmod>2023-08-14T06:53:35.254Z</lastmod>
+    <lastmod>2023-08-21T18:51:57.793Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/kirenz/lab-competitive/workflow.html</loc>
-    <lastmod>2023-08-14T06:53:36.422Z</lastmod>
+    <lastmod>2023-08-21T18:51:58.549Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/kirenz/lab-competitive/code/analysis-2-c.html</loc>
-    <lastmod>2023-08-14T06:53:37.522Z</lastmod>
+    <loc>https://github.com/kirenz/lab-competitive/index.html</loc>
+    <lastmod>2023-08-21T18:51:59.325Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/kirenz/lab-competitive/code/analysis-1-c.html</loc>
-    <lastmod>2023-08-14T06:53:38.519Z</lastmod>
+    <loc>https://github.com/kirenz/lab-competitive/code/analysis_2.html</loc>
+    <lastmod>2023-08-21T18:52:00.197Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/kirenz/lab-competitive/code/analysis-3-pandas.html</loc>
-    <lastmod>2023-08-14T06:53:40.243Z</lastmod>
+    <loc>https://github.com/kirenz/lab-competitive/code/analysis_3_pandas.html</loc>
+    <lastmod>2023-08-21T18:52:01.813Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/kirenz/lab-competitive/code/analysis-2.html</loc>
-    <lastmod>2023-08-14T06:53:41.299Z</lastmod>
+    <loc>https://github.com/kirenz/lab-competitive/slides/pandas.html</loc>
+    <lastmod>2023-08-21T18:52:04.509Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-competitive/slides/altair.html</loc>
+    <lastmod>2023-08-21T18:52:06.201Z</lastmod>
   </url>
 </urlset>
