@@ -6,17 +6,17 @@ Download the Jupyter Notebooks in your local folder `competitive`.
 
 ## SQL 
 
-- [SQL analysis part 1](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-1-c.ipynb)
+- [SQL analysis part 1](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis_1.ipynb)
 
-- [SQL analysis part 2](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-2-c.ipynb)
+- [SQL analysis part 2](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis_2.ipynb)
 
-- [SQL analysis part 3](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-c.ipynb)
+- [SQL analysis part 3](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis_3.ipynb)
 
 ## Pandas
 
 
-- [Analysis part 3 with Pandas](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-pandas.ipynb)
+- [Analysis part 3 with Pandas](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis_3_pandas.ipynb)
 
 ## Altair 
 
-- [Analysis part 3 with Altair](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis-3-altair.ipynb)
+- [Analysis part 3 with Altair](https://colab.research.google.com/github/kirenz/lab-competitive/blob/main/code/analysis_3_altair.ipynb)
